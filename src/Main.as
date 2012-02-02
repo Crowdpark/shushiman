@@ -6,7 +6,9 @@
 	{
 		public function Main()
 		{
+			trace("Hello World!");
 			// Launch your application by right clicking within this class and select: Debug As > FDT SWF Application
 		}
 	}
 }
+
