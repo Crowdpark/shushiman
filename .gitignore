@@ -1,2 +1,9 @@
 *.DS_Store*
 assets/sushiman_5.swf
+.s
+.settings/
+.settings/com.powerflasher.fdt.classpath
+.settings/com.powerflasher.fdt.core.prefs
+.settings/launch
+.settings/org.eclipse.core.resources.prefs
+bin/
