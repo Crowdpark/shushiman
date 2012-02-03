@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.model.SushimanModel;
+	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.services.UserService;
 	import starling.display.DisplayObjectContainer;
 	import com.crowdpark.sushiman.commands.StartupCommand;
@@ -25,6 +27,7 @@ package com.crowdpark.sushiman
 
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			
+			this.injector.mapSingletonOf(ISushimanModel, SushimanModel);
 			this.injector.mapSingleton(UserService);
 			
 			super.startup();
