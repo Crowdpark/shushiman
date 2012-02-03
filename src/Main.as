@@ -1,5 +1,7 @@
 ﻿package 
 {
+	import flash.display.DisplayObject;
+	import flash.accessibility.AccessibilityImplementation;
 	import flash.display.Sprite;
 
 	public class Main extends Sprite
