@@ -1,11 +1,8 @@
-package com.crowdpark.sushiman {
-	import starling.display.Sprite;
-
-	import com.crowdpark.sushiman.views.TestView;
-
-	import starling.events.Event;
+package com.crowdpark.sushiman
+{
 	import starling.display.DisplayObjectContainer;
-	import org.robotlegs.mvcs.StarlingContext;
+	import starling.display.Sprite;
+	import starling.events.Event;
 
 	/**
 	 * @author sandberg
