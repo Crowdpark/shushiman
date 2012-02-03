@@ -17,6 +17,7 @@
 	
 		private var _starling:Starling;
 		private var _starlingContext:SushimanContext;
+		
 		public function Main()
 		{
 			this.addEventListener(Event.ADDED_TO_STAGE, stageHandler); 
