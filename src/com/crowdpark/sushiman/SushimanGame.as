@@ -19,8 +19,7 @@ package com.crowdpark.sushiman
 
         private function onAddedToStage(event:Event):void
         {
-            //var testView:TestView = new TestView();
-            //addChild(testView);
+            
         }
 
 	}
