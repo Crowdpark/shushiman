@@ -4,7 +4,7 @@ package com.crowdpark.sushiman.views.mediators {
 	/**
 	 * @author sandberg
 	 */
-	public class TestMediator extends StarlingMediator 
+	public class TestViewMediator extends StarlingMediator 
 	{
 	}
 }

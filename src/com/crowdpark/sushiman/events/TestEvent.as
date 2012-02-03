@@ -1,6 +1,8 @@
 package com.crowdpark.sushiman.events {
 	import flash.events.Event;
 
+
+
 	/**
 	 * @author sandberg
 	 */
@@ -8,9 +10,9 @@ package com.crowdpark.sushiman.events {
 		
 		public static const TEST:String = "test";
 		
-		public function TestEvent(type : String, bubbles : Boolean = false, cancelable : Boolean = false) 
+		public function TestEvent(type : String, bubbles : Boolean = false) 
 		{
-			super(type, bubbles, cancelable);
+			super(type, bubbles);
 		}
 	}
 }

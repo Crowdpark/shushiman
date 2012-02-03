@@ -1,10 +1,13 @@
 ﻿package 
 {
 
+	import com.crowdpark.sushiman.SushimanContext;
 	import com.crowdpark.sushiman.SushimanGame;
+
 	import starling.core.Starling;
-	import starling.display.Sprite;
-	import starling.events.Event;
+
+	import flash.events.Event;
+	import flash.display.Sprite;
 
 	import org.robotlegs.mvcs.StarlingContext;
 	
@@ -13,15 +16,14 @@
 	{
 	
 		private var _starling:Starling;
-		private var _starlingContext:StarlingContext;
+		private var _starlingContext:SushimanContext;
 		public function Main()
 		{
-			this.addEventListener(Event.ADDED_TO_STAGE, stageHandler);
+			this.addEventListener(Event.ADDED_TO_STAGE, stageHandler); 
 		}
 		
 		private function stageHandler(event:Event):void
 		{
-			trace("hej");
 			_starling = new Starling(SushimanGame, stage);
 			_starling.start();
 		}

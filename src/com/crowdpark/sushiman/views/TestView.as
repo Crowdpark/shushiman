@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views {
-	import flash.display.Sprite;
+	import starling.display.Sprite;
+
 	/**
 	 * @author sandberg
 	 */

@@ -2,7 +2,7 @@ package com.crowdpark.sushiman {
 	import com.crowdpark.sushiman.commands.TestCommand;
 	import com.crowdpark.sushiman.events.TestEvent;
 	import org.robotlegs.core.IMediator;
-	import com.crowdpark.sushiman.views.mediators.TestMediator;
+	import com.crowdpark.sushiman.views.mediators.TestViewMediator;
 	import com.crowdpark.sushiman.views.TestView;
 	import org.robotlegs.mvcs.StarlingContext;
 
@@ -11,17 +11,18 @@ package com.crowdpark.sushiman {
 	/**
 	 * @author sandberg
 	 */
-	public class SushimanContext extends StarlingContext {
-		public function SushimanContext(contextView : DisplayObjectContainer = null, autoStartup : Boolean = true) {
+	public class SushimanContext extends StarlingContext 
+	{
+		public function SushimanContext(contextView : DisplayObjectContainer = null, autoStartup : Boolean = true) 
+		{
 			super(contextView, autoStartup);
 		}
 		
 		override public function startup():void
 		{
-			this.mediatorMap.registerMediator(TestView, TestMediator as IMediator );
+			this.mediatorMap.mapView(TestView, TestViewMediator)
 			
-			this.commandMap.mapEvent(TestEvent.TEST, TestCommand)
-			
+			this.commandMap.mapEvent(TestEvent.TEST, TestCommand);
 			super.startup();
 			
 			this.dispatchEvent(new TestEvent(TestEvent.TEST));
