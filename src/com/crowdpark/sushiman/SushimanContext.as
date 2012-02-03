@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.core.rpc.JsonRpcClient;
+	import com.crowdpark.sushiman.services.LeaderboardService;
 	import com.crowdpark.sushiman.services.UserService;
 	import starling.display.DisplayObjectContainer;
 	import com.crowdpark.sushiman.commands.StartupCommand;
@@ -26,6 +28,8 @@ package com.crowdpark.sushiman
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			
 			this.injector.mapSingleton(UserService);
+			this.injector.mapSingleton(LeaderboardService);
+			this.injector.mapSingleton(JsonRpcClient);
 			
 			super.startup();
 		}
