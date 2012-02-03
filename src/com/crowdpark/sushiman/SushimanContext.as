@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.services.FacebookExternalInterfaceService;
 	import com.crowdpark.core.rpc.JsonRpcClient;
 	import com.crowdpark.sushiman.services.LeaderboardService;
 	import com.crowdpark.sushiman.services.UserService;
@@ -29,6 +30,7 @@ package com.crowdpark.sushiman
 			
 			this.injector.mapSingleton(UserService);
 			this.injector.mapSingleton(LeaderboardService);
+			this.injector.mapSingleton(FacebookExternalInterfaceService);
 			this.injector.mapSingleton(JsonRpcClient);
 			
 			super.startup();

@@ -12,5 +12,14 @@ package com.crowdpark.core.rpc
 		{
 			super(target);
 		}
+
+		protected function initRpc() : void
+		{
+		}
+
+		public function send() : void
+		{
+			
+		}
 	}
 }
