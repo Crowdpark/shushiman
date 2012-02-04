@@ -7,7 +7,7 @@
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	[SWF (backgroundColor="0xff0000")]
+	[SWF(backgroundColor="#FFFFFF", frameRate="36", width="640", height="480")]
 	public class Main extends Sprite
 	{
 	
