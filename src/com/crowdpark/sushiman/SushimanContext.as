@@ -1,13 +1,13 @@
 package com.crowdpark.sushiman
 {
-	import com.crowdpark.sushiman.services.FacebookExternalInterfaceService;
+	import starling.display.DisplayObjectContainer;
+
 	import com.crowdpark.core.rpc.JsonRpcClient;
+	import com.crowdpark.sushiman.commands.StartupCommand;
 	import com.crowdpark.sushiman.services.LeaderboardService;
 	import com.crowdpark.sushiman.services.UserService;
-	import starling.display.DisplayObjectContainer;
-	import com.crowdpark.sushiman.commands.StartupCommand;
-	import com.crowdpark.sushiman.views.main.MainContainerView;
 	import com.crowdpark.sushiman.views.main.MainContainerMediator;
+	import com.crowdpark.sushiman.views.main.MainContainerView;
 
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingContext;
@@ -27,12 +27,11 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(MainContainerView, MainContainerMediator);
 
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
-			
+
 			this.injector.mapSingleton(UserService);
 			this.injector.mapSingleton(LeaderboardService);
-			this.injector.mapSingleton(FacebookExternalInterfaceService);
 			this.injector.mapSingleton(JsonRpcClient);
-			
+
 			super.startup();
 		}
 	}
