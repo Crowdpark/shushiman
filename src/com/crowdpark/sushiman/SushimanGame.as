@@ -4,12 +4,15 @@ package com.crowdpark.sushiman
 	import starling.display.Sprite;
 	import starling.events.Event;
 
+	import com.crowdpark.sushiman.views.main.MainContainerView;
+
 	/**
 	 * @author sandberg
 	 */
 	public class SushimanGame extends Sprite
 	{
 		private var _context:SushimanContext;
+		private var _mainView:MainContainerView; 
 		
 		public function SushimanGame() 
 		{
@@ -19,7 +22,8 @@ package com.crowdpark.sushiman
 
         private function onAddedToStage(event:Event):void
         {
-            
+            _mainView = new MainContainerView();
+            addChild(_mainView);
         }
 
 	}
