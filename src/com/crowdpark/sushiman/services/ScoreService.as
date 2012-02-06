@@ -9,15 +9,15 @@ package com.crowdpark.sushiman.services
 	 */
 	public class ScoreService extends Actor implements IScoreService
 	{
-		private var rawService:JsonRpcClient = new JsonRpcClient();
+		private var _rawService:JsonRpcClient = new JsonRpcClient();
 		
 		public function setScore(score:int):void
 		{
-			rawService.url = "";
-			rawService.addEventListener(JsonRpcClientEvent.FAULT, faultHandler);
-			rawService.addEventListener(JsonRpcClientEvent.RESULT, resultHandler);
-			rawService.params = [{score:score}]; //TODO: Verify that the signature of these params are correct
-			rawService.send();
+			_rawService.url = "";
+			_rawService.addEventListener(JsonRpcClientEvent.FAULT, faultHandler);
+			_rawService.addEventListener(JsonRpcClientEvent.RESULT, resultHandler);
+			_rawService.params = [{score:score}]; //TODO: Verify that the signature of these params are correct
+			_rawService.send();
 		}
 
 		/*
@@ -32,6 +32,7 @@ package com.crowdpark.sushiman.services
 		 */
 		private function faultHandler(event : JsonRpcClientEvent) : void
 		{
+			
 		}
 	}
 }
