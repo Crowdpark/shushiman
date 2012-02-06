@@ -14,14 +14,11 @@ package com.crowdpark.sushiman.views.main
 	{
 		public function MainContainerView()
 		{
-			
 			var n:int = 10;
-			
-			
-			var im:Image;
+
 			for (var i:int = 0;i<n;i++) 
 			{
-				im = new Image(Assets.getTexture("Test"));
+				var im:Image = new Image(Assets.getTexture("Test"));
 				im.x = 50 * i;
 				im.y = 50 * i;
 				this.addChild(im);	

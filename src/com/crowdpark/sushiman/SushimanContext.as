@@ -1,15 +1,14 @@
 package com.crowdpark.sushiman
 {
-	import starling.display.DisplayObjectContainer;
-
-	import com.crowdpark.core.rpc.JsonRpcClient;
-	import com.crowdpark.sushiman.commands.StartupCommand;
-	import com.crowdpark.sushiman.model.ISushimanModel;
+	import com.crowdpark.sushiman.views.hud.HudMediator;
+	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.model.SushimanModel;
-	import com.crowdpark.sushiman.services.LeaderboardService;
+	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.services.UserService;
-	import com.crowdpark.sushiman.views.main.MainContainerMediator;
+	import starling.display.DisplayObjectContainer;
+	import com.crowdpark.sushiman.commands.StartupCommand;
 	import com.crowdpark.sushiman.views.main.MainContainerView;
+	import com.crowdpark.sushiman.views.main.MainContainerMediator;
 
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingContext;
@@ -26,14 +25,13 @@ package com.crowdpark.sushiman
 
 		override public function startup() : void
 		{
-			this.mediatorMap.mapView(MainContainerView, MainContainerMediator);
-
-			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
-			
 			this.injector.mapSingletonOf(ISushimanModel, SushimanModel);
 			this.injector.mapSingleton(UserService);
-			this.injector.mapSingleton(LeaderboardService);
-			this.injector.mapSingleton(JsonRpcClient);
+			
+			this.mediatorMap.mapView(MainContainerView, MainContainerMediator);
+			this.mediatorMap.mapView(HudView, HudMediator);
+
+			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 
 			super.startup();
 		}

@@ -1,10 +1,10 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.views.hud.HudView;
+	import com.crowdpark.sushiman.views.main.MainContainerView;
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Sprite;
 	import starling.events.Event;
-
-	import com.crowdpark.sushiman.views.main.MainContainerView;
 
 	/**
 	 * @author sandberg
@@ -13,6 +13,7 @@ package com.crowdpark.sushiman
 	{
 		private var _context:SushimanContext;
 		private var _mainView:MainContainerView; 
+		private var _hudView:HudView;
 		
 		public function SushimanGame() 
 		{
@@ -24,6 +25,9 @@ package com.crowdpark.sushiman
         {
             _mainView = new MainContainerView();
             addChild(_mainView);
+			
+			_hudView = new HudView();
+			addChild(_hudView);
         }
 
 	}
