@@ -5,9 +5,9 @@ package com.crowdpark.sushiman.views.components
 	/**
 	 * @author sandberg
 	 */
-	public class Pill extends Sprite
+	public class SimplePill extends Sprite
 	{
-		public function Pill()
+		public function SimplePill()
 		{
 		}
 	}
