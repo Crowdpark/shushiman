@@ -9,7 +9,6 @@ package com.crowdpark.sushiman.views.hud
 	 */
 	public class HudView extends Sprite
 	{
-
 		private var _tfNumOctopussies:TextField = new TextField(100, 80,"10","Verdana",36);
 		private var _tfScore:TextField = new TextField(100, 80,"0","Verdana",36);
 		private var _tfNumLives:TextField = new TextField(100, 80,"3","Verdana",36);
