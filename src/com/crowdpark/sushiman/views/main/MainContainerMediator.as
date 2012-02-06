@@ -1,10 +1,10 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.views.player.Player;
 	import flash.ui.Keyboard;
-	import starling.events.KeyboardEvent;
-	import com.crowdpark.sushiman.views.components.Player;
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingMediator;
+	import starling.events.KeyboardEvent;
 
 	/**
 	 * @author francis
@@ -27,19 +27,28 @@ package com.crowdpark.sushiman.views.main
 		}
 
 		/*
-		 * TODO: Move the player and check for collision
+		 * TODO: 
+		 * Check if movement could be allowed(no walls, not outside board)
+		 * Move - improve the quality of movement
+		 * Check for collission between other objects and decide what to do.
 		 */
 		private function keyUpHandler(event : KeyboardEvent) : void
 		{
+			var speed:int = 5;
+			
 			switch(event.keyCode)
 			{
 				case Keyboard.RIGHT:
+					view.player.x += speed;
 					break;
 				case Keyboard.LEFT:
+					view.player.x -= speed;
 					break;
 				case Keyboard.UP:
+					view.player.y -= speed;
 					break;
 				case Keyboard.DOWN:
+					view.player.y =+ speed;
 					break;
 				
 			}
@@ -51,6 +60,7 @@ package com.crowdpark.sushiman.views.main
 		 */
 		private function checkCollision():void
 		{
+			// for now we just say we eat a pill in order to trigger the scoring system
 			
 		}
 
