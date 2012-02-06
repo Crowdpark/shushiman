@@ -31,6 +31,7 @@ package com.crowdpark.sushiman.model
 		public function set score(score : int) : void
 		{
 			_score = score;
+			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_SCORE));
 		}
 
 		public function get numLives() : int
@@ -41,6 +42,7 @@ package com.crowdpark.sushiman.model
 		public function set numLives(numLives : int) : void
 		{
 			_numLives = numLives;
+			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_NUM_LIVES));
 		}
 
 		public function get numOctopussies() : int
@@ -51,6 +53,7 @@ package com.crowdpark.sushiman.model
 		public function set numOctopussies(numOctopussies : int) : void
 		{
 			_numOctopussies = numOctopussies;
+			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_NUM_OCTOPUSSIES));
 		}
 	}
 }
