@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.commands
 {
+	import com.crowdpark.sushiman.views.hud.HudEvent;
 	import com.crowdpark.sushiman.views.main.MainContainerEvent;
 	import org.robotlegs.mvcs.StarlingCommand;
 
@@ -13,6 +14,7 @@ package com.crowdpark.sushiman.commands
 		override public function execute():void
 		{
 			this.dispatch(new MainContainerEvent(MainContainerEvent.INIT));
+			this.dispatch(new HudEvent(HudEvent.INIT));
 		}
 	}
 }
