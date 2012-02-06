@@ -13,5 +13,7 @@ package com.crowdpark.sushiman.model
 		function set numLives(value:int):void;
 		function get numOctopussies():int;
 		function set numOctopussies(value:int):void;
+		function get currentGameLevel():int;
+		function set currentGameLevel(value:int):void;
 	}
 }
