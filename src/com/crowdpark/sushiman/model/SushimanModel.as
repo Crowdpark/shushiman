@@ -13,6 +13,7 @@ package com.crowdpark.sushiman.model
 		public static const INIT_NUM_LIVES:int = 3;
 		public static const INIT_NUM_OCTOPUSSIES:int = 10;
 		
+		private var _currentGameLevel:int;
 		private var _score : int;
 		private var _numLives: int;
 		private var _numOctopussies:int;
@@ -68,5 +69,16 @@ package com.crowdpark.sushiman.model
 			_numOctopussies = numOctopussies;
 			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_NUM_OCTOPUSSIES));
 		}
+
+		public function get currentGameLevel() : int
+		{
+			return _currentGameLevel;
+		}
+
+		public function set currentGameLevel(currentGameLevel : int) : void
+		{
+			_currentGameLevel = currentGameLevel;
+		}
+
 	}
 }
