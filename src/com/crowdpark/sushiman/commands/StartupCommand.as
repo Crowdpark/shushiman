@@ -13,10 +13,6 @@ package com.crowdpark.sushiman.commands
 		[Inject]
 		public var model:ISushimanModel;
 		
-		public function StartupCommand() 
-		{
-		}
-		
 		override public function execute():void
 		{
 			model.resetAllValues();
