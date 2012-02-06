@@ -1,4 +1,4 @@
-package com.crowdpark.sushiman.views.player
+package com.crowdpark.sushiman.views.components
 {
 	import com.crowdpark.sushiman.utils.Assets;
 	import starling.display.Image;
