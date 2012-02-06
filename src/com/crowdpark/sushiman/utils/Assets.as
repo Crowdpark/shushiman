@@ -12,21 +12,21 @@ package com.crowdpark.sushiman.utils
 		[Embed(source = "../../../../../assets/test.png")]
 		private static const Test : Class;
 		// Texture cache
-		private static var sTextures : Dictionary = new Dictionary();
+		private static var _sTextures : Dictionary = new Dictionary();
 
 		public static function getTexture(name : String) : Texture
 		{
-			if (sTextures[name] == undefined)
+			if (_sTextures[name] == undefined)
 			{
 				var data : Object = new Assets[name]();
 
 				if (data is Bitmap)
-					sTextures[name] = Texture.fromBitmap(data as Bitmap);
+					_sTextures[name] = Texture.fromBitmap(data as Bitmap);
 				else if (data is ByteArray)
-					sTextures[name] = Texture.fromAtfData(data as ByteArray);
+					_sTextures[name] = Texture.fromAtfData(data as ByteArray);
 			}
 
-			return sTextures[name];
+			return _sTextures[name];
 		}
 	}
 }
