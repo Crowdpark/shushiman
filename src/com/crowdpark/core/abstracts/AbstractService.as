@@ -15,7 +15,7 @@ package com.crowdpark.core.abstracts
 	public class AbstractService extends Actor implements IJsonRpcClient
 	{
 		protected var _url : String;
-		protected var _eventDispatcher : EventDispatcher;
+		protected var _serviceEventDispatcher : EventDispatcher = new EventDispatcher();
 		protected var _onResultCallback : Function;
 		protected var _onFaultCallback : Function;
 		protected var _method : String;
@@ -74,12 +74,12 @@ package com.crowdpark.core.abstracts
 
 		public function addEventListener(type : String, listener : Function, useCapture : Boolean = false, priority : int = 0, useWeakReference : Boolean = false) : void
 		{
-			this._eventDispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
+			this._serviceEventDispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
 
 		public function dispatchEvent(event : Event) : Boolean
 		{
-			return this._eventDispatcher.dispatchEvent(event);
+			return this._serviceEventDispatcher.dispatchEvent(event);
 		}
 
 		public function hasEventListener(type : String) : Boolean
