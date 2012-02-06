@@ -5,6 +5,7 @@ package com.crowdpark.sushiman.model
 	 */
 	public interface ISushimanModel
 	{
+		function updateScoreByCollisionObject(collisionObject:Class):void;
 		function resetAllValues():void;
 		function get score():int;
 		function set score(value:int):void;
