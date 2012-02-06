@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.model
 {
+	import com.crowdpark.sushiman.views.components.SimplePill;
 	import org.robotlegs.mvcs.Actor;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 
@@ -22,6 +23,16 @@ package com.crowdpark.sushiman.model
 			this.score = INIT_SCORE;
 			this.numLives = INIT_NUM_LIVES;
 			this.numOctopussies = INIT_NUM_OCTOPUSSIES;
+		}
+		
+		public function updateScoreByCollisionObject(collisionObject:Class):void
+		{
+			switch(collisionObject)
+			{
+				case SimplePill:
+					this.score++;
+					break;
+			}
 		}
 		public function get score() : int
 		{
