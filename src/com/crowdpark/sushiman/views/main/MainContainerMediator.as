@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.views.components.SimplePill;
+	import com.crowdpark.sushiman.events.ScoreEvent;
 	import com.crowdpark.sushiman.views.player.Player;
 	import flash.ui.Keyboard;
 	import org.robotlegs.base.ContextEvent;
@@ -52,6 +54,7 @@ package com.crowdpark.sushiman.views.main
 					break;
 				
 			}
+			checkCollision();
 		}
 		
 		/*
@@ -60,8 +63,8 @@ package com.crowdpark.sushiman.views.main
 		 */
 		private function checkCollision():void
 		{
-			// for now we just say we eat a pill in order to trigger the scoring system
-			
+			// for now we just pretend to eat a pill in order to trigger the scoring system
+			dispatch(new ScoreEvent(ScoreEvent.UPDATE, SimplePill));
 		}
 
 		private function onStartupComplete(event : ContextEvent) : void
