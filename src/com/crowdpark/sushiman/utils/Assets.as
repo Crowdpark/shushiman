@@ -13,14 +13,12 @@ package com.crowdpark.sushiman.utils {
     public class Assets
     {
         // Bitmaps
-        
         [Embed(source = "../../../../../assets/test.png")]
         private static const Test:Class;
         
 
         
         // Texture cache
-        
         private static var sTextures:Dictionary = new Dictionary();
 
         
