@@ -21,9 +21,13 @@ package com.crowdpark.sushiman.utils
 				var data : Object = new Assets[name]();
 
 				if (data is Bitmap)
+				{
 					_sTextures[name] = Texture.fromBitmap(data as Bitmap);
+				}
 				else if (data is ByteArray)
+				{
 					_sTextures[name] = Texture.fromAtfData(data as ByteArray);
+				}
 			}
 
 			return _sTextures[name];
