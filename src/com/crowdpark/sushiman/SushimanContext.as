@@ -32,6 +32,7 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(HudView, HudMediator);
 
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
+			
 
 			super.startup();
 		}
