@@ -32,6 +32,8 @@ package com.crowdpark.sushiman.model
 				case SimplePill:
 					this.score++;
 					break;
+				default:
+					break;
 			}
 		}
 		public function get score() : int
