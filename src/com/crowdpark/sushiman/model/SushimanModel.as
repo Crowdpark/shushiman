@@ -39,6 +39,20 @@ package com.crowdpark.sushiman.model
 					break;
 			}
 		}
+		
+		private function sortUsersByHighscore(firstUser:User, secondUser:User):Number 
+		{
+			if (firstUser.score > secondUser.score)
+			{
+				return -1;
+			} else if (firstUser.score< secondUser.score)
+			{
+				return 1;
+			} else
+			{
+				return 0;
+			}
+		}
 		public function get score() : int
 		{
 			return _score;
@@ -93,6 +107,7 @@ package com.crowdpark.sushiman.model
 
 		public function set leaderboardFriends(leaderboardFriends : Vector.<User>) : void
 		{
+			leaderboardFriends.sort(sortUsersByHighscore);
 			_leaderboardFriends = leaderboardFriends;
 			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_LEADERBOARD_FRIENDS));
 		}
@@ -104,9 +119,9 @@ package com.crowdpark.sushiman.model
 
 		public function set leaderboardAll(leaderboardAll : Vector.<User>) : void
 		{
+			leaderboardAll.sort(sortUsersByHighscore);
 			_leaderboardAll = leaderboardAll;
 			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_LEADERBOARD_ALL));
 		}
-
 	}
 }
