@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardMediator;
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.commands.ScoreCommand;
 	import com.crowdpark.sushiman.events.ScoreEvent;
 	import com.crowdpark.sushiman.services.ScoreService;
@@ -35,6 +37,7 @@ package com.crowdpark.sushiman
 
 			this.mediatorMap.mapView(MainContainerView, MainContainerMediator);
 			this.mediatorMap.mapView(HudView, HudMediator);
+			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
 
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			this.commandMap.mapEvent(ScoreEvent.UPDATE, ScoreCommand);
