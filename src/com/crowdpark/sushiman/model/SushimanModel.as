@@ -1,6 +1,7 @@
 package com.crowdpark.sushiman.model
 {
-	import com.crowdpark.sushiman.views.components.SimplePill;
+	import com.crowdpark.sushiman.views.components.CollisionObject;
+	import com.crowdpark.sushiman.views.components.PillSmall;
 	import org.robotlegs.mvcs.Actor;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 
@@ -28,11 +29,11 @@ package com.crowdpark.sushiman.model
 			this.numOctopussies = INIT_NUM_OCTOPUSSIES;
 		}
 		
-		public function updateScoreByCollisionObject(collisionObject:Class):void
+		public function updateScoreByCollisionObject(collisionObject:CollisionObject):void
 		{
 			switch(collisionObject)
 			{
-				case SimplePill:
+				case PillSmall:
 					this.score++;
 					break;
 				default:
