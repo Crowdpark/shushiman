@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.services.MockLeaderboardService;
+	import com.crowdpark.sushiman.services.ILeaderboardService;
 	import com.crowdpark.sushiman.services.LeaderboardService;
 	import com.crowdpark.sushiman.commands.LeaderboardCommand;
 	import com.crowdpark.sushiman.events.LeaderboardEvent;
@@ -36,8 +38,8 @@ package com.crowdpark.sushiman
 		{
 			this.injector.mapSingletonOf(ISushimanModel, SushimanModel);
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
+			this.injector.mapSingletonOf(ILeaderboardService, MockLeaderboardService);
 			this.injector.mapSingleton(UserService);
-			this.injector.mapSingleton(LeaderboardService);
 
 			this.mediatorMap.mapView(MainContainerView, MainContainerMediator);
 			this.mediatorMap.mapView(HudView, HudMediator);
