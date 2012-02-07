@@ -1,12 +1,14 @@
 package com.crowdpark.sushiman.views.main
 {
+	import starling.events.KeyboardEvent;
+
 	import com.crowdpark.sushiman.events.ScoreEvent;
-	import com.crowdpark.sushiman.views.components.Player;
 	import com.crowdpark.sushiman.views.components.SimplePill;
-	import flash.ui.Keyboard;
+
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingMediator;
-	import starling.events.KeyboardEvent;
+
+	import flash.ui.Keyboard;
 
 	/**
 	 * @author francis

@@ -1,8 +1,7 @@
 package com.crowdpark.sushiman.views.hud
 {
-	import flash.geom.Point;
-	import starling.text.TextField;
 	import starling.display.Sprite;
+	import starling.text.TextField;
 
 	/**
 	 * @author sandberg

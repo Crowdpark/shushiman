@@ -1,32 +1,30 @@
 package com.crowdpark.sushiman.model
 {
 	import com.crowdpark.sushiman.views.components.SimplePill;
+
 	import org.robotlegs.mvcs.Actor;
-	import com.crowdpark.sushiman.model.ISushimanModel;
 
 	/**
 	 * @author sandberg
 	 */
 	public class SushimanModel extends Actor implements ISushimanModel
 	{
-		public static const INIT_SCORE:int = 0;
-		public static const INIT_NUM_LIVES:int = 3;
-		public static const INIT_NUM_OCTOPUSSIES:int = 10;
-		
-		private var _currentGameLevel:int;
+		public static const INIT_SCORE : int = 0;
+		public static const INIT_NUM_LIVES : int = 3;
+		public static const INIT_NUM_OCTOPUSSIES : int = 10;
+		private var _currentGameLevel : int;
 		private var _score : int;
-		private var _numLives: int;
-		private var _numOctopussies:int;
-		
+		private var _numLives : int;
+		private var _numOctopussies : int;
 
-		public function resetAllValues():void
+		public function resetAllValues() : void
 		{
 			this.score = INIT_SCORE;
 			this.numLives = INIT_NUM_LIVES;
 			this.numOctopussies = INIT_NUM_OCTOPUSSIES;
 		}
-		
-		public function updateScoreByCollisionObject(collisionObject:Class):void
+
+		public function updateScoreByCollisionObject(collisionObject : Class) : void
 		{
 			switch(collisionObject)
 			{
@@ -37,6 +35,7 @@ package com.crowdpark.sushiman.model
 					break;
 			}
 		}
+
 		public function get score() : int
 		{
 			return _score;
@@ -79,6 +78,5 @@ package com.crowdpark.sushiman.model
 		{
 			_currentGameLevel = currentGameLevel;
 		}
-
 	}
 }

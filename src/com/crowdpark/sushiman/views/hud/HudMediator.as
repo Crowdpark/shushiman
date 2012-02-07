@@ -1,8 +1,8 @@
 package com.crowdpark.sushiman.views.hud
 {
-	import com.crowdpark.sushiman.model.SushimanModelEvent;
 	import com.crowdpark.sushiman.model.ISushimanModel;
-	import com.crowdpark.sushiman.model.SushimanModel;
+	import com.crowdpark.sushiman.model.SushimanModelEvent;
+
 	import org.robotlegs.mvcs.StarlingMediator;
 
 	/**
