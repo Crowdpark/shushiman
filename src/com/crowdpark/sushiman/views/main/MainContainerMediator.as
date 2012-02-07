@@ -131,6 +131,9 @@ package com.crowdpark.sushiman.views.main
 				var pill:PillSmall = view.pills[0];
 				dispatch(new PlayerEvent(PlayerEvent.UPDATE, pill));
 				view.removePillSmall(pill);
+			} else
+			{
+				dispatch(new PlayerEvent(PlayerEvent.LEVEL_COMPLETE));
 			}
 		}
 
