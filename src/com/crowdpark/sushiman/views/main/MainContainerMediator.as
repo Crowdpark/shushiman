@@ -1,6 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
-	import com.crowdpark.sushiman.events.ScoreEvent;
+	import com.crowdpark.sushiman.events.PlayerEvent;
 	import com.crowdpark.sushiman.views.components.Player;
 	import com.crowdpark.sushiman.views.components.SimplePill;
 	import flash.ui.Keyboard;
@@ -64,7 +64,7 @@ package com.crowdpark.sushiman.views.main
 		private function checkCollision():void
 		{
 			// for now we just pretend to eat a pill in order to trigger the scoring system
-			dispatch(new ScoreEvent(ScoreEvent.UPDATE, SimplePill));
+			dispatch(new PlayerEvent(PlayerEvent.UPDATE, SimplePill));
 		}
 
 		private function onStartupComplete(event : ContextEvent) : void
