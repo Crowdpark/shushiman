@@ -27,14 +27,21 @@ package com.crowdpark.sushiman.views.main
 		override public function onRegister() : void
 		{
 			addContextListener(ContextEvent.STARTUP_COMPLETE, onStartupComplete);
-			addKeyListeners();
+			addPlayerListeners();
 		}
 
-		private function addKeyListeners() : void
+		private function addPlayerListeners() : void
 		{
 			this.view.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
 			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 			this.view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+		}
+		
+		private function removePlayerListeners() : void
+		{
+			this.view.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			this.view.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
+			this.view.stage.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 
 		private function enterFrameHandler(event : Event) : void
@@ -90,7 +97,7 @@ package com.crowdpark.sushiman.views.main
 			switch(event.keyCode)
 			{
 				case Keyboard.RIGHT:
-					_moveRight= false;
+					_moveRight = false;
 					break;
 				case Keyboard.LEFT:
 					_moveLeft = false;
