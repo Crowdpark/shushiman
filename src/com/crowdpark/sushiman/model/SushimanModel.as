@@ -17,6 +17,8 @@ package com.crowdpark.sushiman.model
 		private var _score : int;
 		private var _numLives: int;
 		private var _numOctopussies:int;
+		private var _leaderboardFriends:Vector.<User>;
+		private var _leaderboardAll:Vector.<User>;
 		
 
 		public function resetAllValues():void
@@ -82,6 +84,28 @@ package com.crowdpark.sushiman.model
 		public function set currentGameLevel(currentGameLevel : int) : void
 		{
 			_currentGameLevel = currentGameLevel;
+		}
+
+		public function get leaderboardFriends() : Vector.<User>
+		{
+			return _leaderboardFriends;
+		}
+
+		public function set leaderboardFriends(leaderboardFriends : Vector.<User>) : void
+		{
+			_leaderboardFriends = leaderboardFriends;
+			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_LEADERBOARD_FRIENDS));
+		}
+
+		public function get leaderboardAll() : Vector.<User>
+		{
+			return _leaderboardAll;
+		}
+
+		public function set leaderboardAll(leaderboardAll : Vector.<User>) : void
+		{
+			_leaderboardAll = leaderboardAll;
+			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_LEADERBOARD_ALL));
 		}
 
 	}
