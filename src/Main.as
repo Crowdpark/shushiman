@@ -11,7 +11,7 @@
 
 	import org.robotlegs.mvcs.StarlingContext;
 	
-	[SWF (backgroundColor="0xff0000")]
+	[SWF(width="760", height="650", frameRate="60", backgroundColor="#000000")]
 	public class Main extends Sprite
 	{
 	
