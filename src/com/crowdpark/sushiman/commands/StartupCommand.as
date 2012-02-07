@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.commands
 {
+	import com.crowdpark.sushiman.services.UserService;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.views.hud.HudEvent;
 	import com.crowdpark.sushiman.views.main.MainContainerEvent;
@@ -13,8 +14,14 @@ package com.crowdpark.sushiman.commands
 		[Inject]
 		public var model:ISushimanModel;
 		
+		[Inject]
+		public var service : UserService;
+		
 		override public function execute():void
 		{
+			
+			service.getInitialData();
+			
 			model.resetAllValues();
 			this.dispatch(new MainContainerEvent(MainContainerEvent.INIT));
 			this.dispatch(new HudEvent(HudEvent.INIT));
