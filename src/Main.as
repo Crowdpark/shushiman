@@ -1,15 +1,12 @@
 ﻿package 
 {
+	import starling.core.Starling;
 
 	import com.crowdpark.sushiman.SushimanContext;
 	import com.crowdpark.sushiman.SushimanGame;
 
-	import starling.core.Starling;
-
-	import flash.events.Event;
 	import flash.display.Sprite;
-
-	import org.robotlegs.mvcs.StarlingContext;
+	import flash.events.Event;
 	
 	[SWF (backgroundColor="0xff0000")]
 	public class Main extends Sprite

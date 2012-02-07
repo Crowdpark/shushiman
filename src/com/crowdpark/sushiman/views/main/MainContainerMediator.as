@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman.views.main
 {
+	import starling.core.Starling;
+	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.views.components.SimplePill;
 	import com.crowdpark.sushiman.events.ScoreEvent;
 	import com.crowdpark.sushiman.views.player.Player;
@@ -17,15 +19,21 @@ package com.crowdpark.sushiman.views.main
 		[Inject]
 		public var view:MainContainerView;
 		
+		[Inject]
+		public var assets:AssetsModel;
+		
 		override public function onRegister() : void
 		{
+			view.player = new Player(assets.getTextures("hero/kife_walking_right/"),24);
+			view.addChild(view.player);
+			Starling.juggler.add(view.player);
 			addContextListener(ContextEvent.STARTUP_COMPLETE, onStartupComplete);
 			addKeyListeners();
 		}
 
 		private function addKeyListeners() : void
 		{
-			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler)
+			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 		}
 
 		/*

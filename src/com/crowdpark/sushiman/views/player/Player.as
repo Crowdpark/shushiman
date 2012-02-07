@@ -1,17 +1,17 @@
 package com.crowdpark.sushiman.views.player
 {
-	import com.crowdpark.sushiman.utils.Assets;
-	import starling.display.Image;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
+	import starling.textures.Texture;
 
 	/**
 	 * @author sandberg
 	 */
-	public class Player extends Image
+	public class Player extends MovieClip
 	{
-		public function Player()
+		public function Player(textures:Vector.<Texture>,fps:Number)
 		{
-			super(Assets.getTexture("Test"));
+			super(textures,fps);
 		}
 	}
 }
