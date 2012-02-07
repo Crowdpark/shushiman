@@ -1,12 +1,11 @@
 package com.crowdpark.sushiman.views.leaderboard
 {
-	import utils.display.addChild;
-	import com.crowdpark.sushiman.views.components.LeaderboardField;
-	import com.crowdpark.sushiman.model.User;
 	import com.crowdpark.sushiman.model.ISushimanModel;
-	import com.crowdpark.sushiman.events.LeaderboardEvent;
 	import com.crowdpark.sushiman.model.SushimanModelEvent;
+	import com.crowdpark.sushiman.model.User;
+	import com.crowdpark.sushiman.views.components.LeaderboardField;
 	import org.robotlegs.mvcs.StarlingMediator;
+	import utils.display.addChild;
 
 	/**
 	 * @author sandberg
