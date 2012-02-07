@@ -15,5 +15,9 @@ package com.crowdpark.sushiman.model
 		function set numOctopussies(value:int):void;
 		function get currentGameLevel():int;
 		function set currentGameLevel(value:int):void;
+		function get leaderboardFriends() : Vector.<User>;
+		function set leaderboardFriends(leaderboardFriends : Vector.<User>) : void;
+		function get leaderboardAll() : Vector.<User>;
+		function set leaderboardAll(leaderboardAll : Vector.<User>) : void;
 	}
 }
