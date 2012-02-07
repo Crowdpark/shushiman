@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.commands
 {
+	import com.crowdpark.sushiman.services.ILeaderboardService;
 	import com.crowdpark.sushiman.events.LeaderboardEvent;
 	import com.crowdpark.sushiman.services.LeaderboardService;
 	import org.robotlegs.mvcs.StarlingCommand;
@@ -10,7 +11,7 @@ package com.crowdpark.sushiman.commands
 	public class LeaderboardCommand extends StarlingCommand
 	{
 		[Inject]
-		public var service:LeaderboardService;
+		public var service:ILeaderboardService;
 		[Inject]
 		public var event:LeaderboardEvent;
 		
