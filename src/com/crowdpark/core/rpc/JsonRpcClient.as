@@ -16,7 +16,6 @@ package com.crowdpark.core.rpc
 	 */
 	public class JsonRpcClient extends Actor implements IJsonRpcClient
 	{
-		
 		protected var _url : String;
 		protected var _serviceEventDispatcher : EventDispatcher = new EventDispatcher();
 		protected var _onResultCallback : Function;
@@ -24,7 +23,7 @@ package com.crowdpark.core.rpc
 		protected var _method : String;
 		protected var _params : Array;
 		protected var _httpService : HTTPService;
-		
+
 		public function send() : void
 		{
 			_httpService = new HTTPService();
@@ -32,10 +31,16 @@ package com.crowdpark.core.rpc
 			_httpService.addEventListener(ResultEvent.RESULT, this._onResultCallback ||= this._onResult);
 
 			_httpService.method = "POST";
+			
+			if (this.url.length < 5)
+			{
+				throw new Error("Url not available");
+			}
+			
 			_httpService.url = this.url;
 			_httpService.contentType = "application/json";
 			_httpService.resultFormat = HTTPService.RESULT_FORMAT_TEXT;
-			_httpService.request = JSON.stringify({"id":"1", "method":this.method, "params":this.params});
+			_httpService.request = JSON.stringify({"id":"1", "method":this.method ||= "App.User.getInitialData", "params":this.params ||= []});
 			_httpService.send();
 		}
 
@@ -52,7 +57,7 @@ package com.crowdpark.core.rpc
 			newEvent.dataProvider = event.fault;
 			dispatchEvent(newEvent);
 		}
-		
+
 		public function get url() : String
 		{
 			return this._url;
@@ -127,7 +132,5 @@ package com.crowdpark.core.rpc
 		{
 			return this.willTrigger(type);
 		}
-		
-		
 	}
 }
