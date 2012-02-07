@@ -5,7 +5,7 @@ package com.crowdpark.sushiman.services
 	/**
 	 * @author francis
 	 */
-	public class LeaderboardService extends Actor
+	public class LeaderboardService extends Actor implements ILeaderboardService
 	{
 		public function getFriendsLeaderboard() : void
 		{
