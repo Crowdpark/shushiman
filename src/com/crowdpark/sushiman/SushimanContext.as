@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.commands.LevelCommand;
 	import com.crowdpark.sushiman.services.IUserService;
 	import starling.display.DisplayObjectContainer;
 
@@ -55,6 +56,7 @@ package com.crowdpark.sushiman
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			this.commandMap.mapEvent(PlayerEvent.UPDATE, ScoreCommand);
+			this.commandMap.mapEvent(PlayerEvent.LEVEL_COMPLETE, LevelCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_ALL_USERS_LEADERBOARD, LeaderboardCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_FRIENDS_LEADERBOARD, LeaderboardCommand);
 
