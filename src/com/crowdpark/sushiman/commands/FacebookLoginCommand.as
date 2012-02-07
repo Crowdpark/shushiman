@@ -7,7 +7,7 @@ package com.crowdpark.sushiman.commands
 	/**
 	 * @author Francis Varga
 	 */
-	public class FacebookLogin extends StarlingCommand
+	public class FacebookLoginCommand extends StarlingCommand
 	{
 		override public function execute() : void
 		{

@@ -1,9 +1,7 @@
-package com.crowdpark.sushiman.views.player
+package com.crowdpark.sushiman.views.components
 {
 	import starling.display.MovieClip;
-	import starling.display.Sprite;
 	import starling.textures.Texture;
-
 	/**
 	 * @author sandberg
 	 */
