@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.main.MainContainerView;
 	import starling.display.DisplayObjectContainer;
@@ -28,6 +29,8 @@ package com.crowdpark.sushiman
 			
 			_hudView = new HudView();
 			addChild(_hudView);
+			
+			addChild(new LeaderboardView());
         }
 
 	}
