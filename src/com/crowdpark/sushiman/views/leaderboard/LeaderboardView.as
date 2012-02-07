@@ -7,6 +7,7 @@ package com.crowdpark.sushiman.views.leaderboard
 	 */
 	public class LeaderboardView extends Sprite
 	{
+		
 		public function LeaderboardView()
 		{
 		}
