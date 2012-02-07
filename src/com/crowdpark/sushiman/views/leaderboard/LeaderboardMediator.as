@@ -1,5 +1,8 @@
 package com.crowdpark.sushiman.views.leaderboard
 {
+	import utils.display.addChild;
+	import com.crowdpark.sushiman.views.components.LeaderboardField;
+	import com.crowdpark.sushiman.model.User;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.events.LeaderboardEvent;
 	import com.crowdpark.sushiman.model.SushimanModelEvent;
@@ -24,7 +27,14 @@ package com.crowdpark.sushiman.views.leaderboard
 
 		private function leaderboardUpdateHandler(event:SushimanModelEvent) : void
 		{
-			
+			var counter:int = 0;
+			for each (var user:User in model.leaderboardAll)
+			{
+				counter++;
+				var field:LeaderboardField = new LeaderboardField(user);
+				field.y = (counter * field.height) + 10;
+				view.addChild(field);
+			}
 		}
 	}
 }
