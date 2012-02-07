@@ -24,7 +24,6 @@ package com.crowdpark.sushiman
 
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingContext;
-	
 
 	/**
 	 * @author sandberg

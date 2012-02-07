@@ -1,8 +1,5 @@
 package com.crowdpark.sushiman.views.main
 {
-
-
-
 	import starling.core.Starling;
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
@@ -16,27 +13,25 @@ package com.crowdpark.sushiman.views.main
 	import org.robotlegs.mvcs.StarlingMediator;
 
 	import flash.ui.Keyboard;
+
 	/**
 	 * @author francis
 	 */
 	public class MainContainerMediator extends StarlingMediator
 	{
-		public static const SPEED:int = 5;
+		public static const SPEED : int = 5;
+		[Inject]
+		public var view : MainContainerView;
+		[Inject]
+		public var assets : AssetsModel;
+		private var _moveLeft : Boolean;
+		private var _moveRight : Boolean;
+		private var _moveUp : Boolean;
+		private var _moveDown : Boolean;
 
-		[Inject]
-		public var view:MainContainerView;
-		
-		[Inject]
-		public var assets:AssetsModel;
-		
-		private var _moveLeft:Boolean;
-		private var _moveRight:Boolean;
-		private var _moveUp:Boolean;
-		private var _moveDown:Boolean;
-		
 		override public function onRegister() : void
 		{
-			view.player = new Player(assets.getTextures("hero/knife_right/"),24);
+			view.player = new Player(assets.getTextures("hero/knife_right/"), 24);
 			view.addChild(view.player);
 			Starling.juggler.add(view.player);
 			addContextListener(ContextEvent.STARTUP_COMPLETE, onStartupComplete);
@@ -50,7 +45,7 @@ package com.crowdpark.sushiman.views.main
 			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 			this.view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
-		
+
 		private function removePlayerListeners() : void
 		{
 			this.view.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
@@ -64,7 +59,7 @@ package com.crowdpark.sushiman.views.main
 			{
 				view.player.x -= SPEED;
 			}
-			
+
 			if (_moveRight)
 			{
 				view.player.x += SPEED;
@@ -77,15 +72,14 @@ package com.crowdpark.sushiman.views.main
 			{
 				view.player.y += SPEED;
 			}
-			
 		}
-		
-		private function keyDownHandler(event:KeyboardEvent):void
+
+		private function keyDownHandler(event : KeyboardEvent) : void
 		{
 			switch(event.keyCode)
 			{
 				case Keyboard.RIGHT:
-					_moveRight= true;
+					_moveRight = true;
 					break;
 				case Keyboard.LEFT:
 					_moveLeft = true;
@@ -96,7 +90,7 @@ package com.crowdpark.sushiman.views.main
 				case Keyboard.DOWN:
 					_moveDown = true;
 					break;
-			}			
+			}
 		}
 
 		/*
@@ -124,12 +118,12 @@ package com.crowdpark.sushiman.views.main
 			}
 			checkCollision();
 		}
-		
+
 		/*
 		 * TODO: Detect if collision between player and other object has occured.
 		 * Handling based on what kind of object.
 		 */
-		private function checkCollision():void
+		private function checkCollision() : void
 		{
 			// for now we just pretend to eat a pill in order to trigger the scoring system
 			dispatch(new PlayerEvent(PlayerEvent.UPDATE, new PillSmall()));
