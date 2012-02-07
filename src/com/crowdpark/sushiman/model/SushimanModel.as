@@ -29,13 +29,9 @@ package com.crowdpark.sushiman.model
 
 		public function updateScoreByCollisionObject(collisionObject : CollisionObject) : void
 		{
-			switch(collisionObject)
+			if (collisionObject is PillSmall)
 			{
-				case PillSmall:
-					this.score++;
-					break;
-				default:
-					break;
+				this.score++;
 			}
 		}
 
