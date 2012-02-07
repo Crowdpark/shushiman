@@ -1,11 +1,11 @@
 package com.crowdpark.sushiman.views.main
 {
-	import flash.events.Event;
+	import com.crowdpark.core.abstracts.AbstractEvent;
 
 	/**
 	 * @author francis
 	 */
-	public class MainContainerEvent extends Event
+	public class MainContainerEvent extends AbstractEvent
 	{
 		public static var INIT : String = "MainContainerEvent.INIT";
 		
