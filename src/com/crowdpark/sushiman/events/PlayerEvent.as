@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.events
 {
+	import com.crowdpark.sushiman.views.components.CollisionObject;
 	import flash.events.Event;
 
 	/**
@@ -9,21 +10,21 @@ package com.crowdpark.sushiman.events
 	{
 		public static const UPDATE:String = "ScoreEvent.UPDATE";
 
-		private var _collisionObject:Class;
+		private var _collisionObject:CollisionObject;
 		
-		public function PlayerEvent(type : String, collisionObject:Class)
+		public function PlayerEvent(type : String, collisionObject:CollisionObject)
 		{
 			this.collisionObject = collisionObject;
 			
 			super(type);
 		}
 
-		public function get collisionObject() : Class
+		public function get collisionObject() :CollisionObject
 		{
 			return _collisionObject;
 		}
 
-		public function set collisionObject(collisionObject : Class) : void
+		public function set collisionObject(collisionObject : CollisionObject ): void
 		{
 			_collisionObject = collisionObject;
 		}
