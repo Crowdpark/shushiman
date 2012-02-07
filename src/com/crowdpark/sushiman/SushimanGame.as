@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman
 {
+	import fr.kouma.starling.utils.Stats;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.main.MainContainerView;
@@ -15,6 +16,7 @@ package com.crowdpark.sushiman
 		private var _context:SushimanContext;
 		private var _mainView:MainContainerView; 
 		private var _hudView:HudView;
+		private var _stats:Stats;
 		
 		public function SushimanGame() 
 		{
@@ -24,6 +26,11 @@ package com.crowdpark.sushiman
 
         private function onAddedToStage(event:Event):void
         {
+			// Remove Stats inst prior to deployment
+			_stats = new Stats();
+			_stats.x = stage.stageWidth - 100;
+			addChild(_stats);
+			
             _mainView = new MainContainerView();
             addChild(_mainView);
 			
@@ -31,6 +38,7 @@ package com.crowdpark.sushiman
 			addChild(_hudView);
 			
 			addChild(new LeaderboardView());
+
         }
 
 	}
