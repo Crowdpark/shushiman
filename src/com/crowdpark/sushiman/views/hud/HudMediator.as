@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.hud
 {
+	import com.crowdpark.sushiman.model.SushimanModelEvent;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.SushimanModel;
 	import org.robotlegs.mvcs.StarlingMediator;
@@ -13,7 +14,7 @@ package com.crowdpark.sushiman.views.hud
 		public var view:HudView;
 		
 		[Inject]
-		public var model:ISushimanModel;
+		public var model : ISushimanModel;
 		
 		public function HudMediator()
 		{
@@ -21,14 +22,25 @@ package com.crowdpark.sushiman.views.hud
 
 		override public function onRegister():void
 		{
-			initTextFields();
+			this.eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_SCORE, scoreUpdateHandler);
+			this.eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_NUM_LIVES, numLivesUpdateHandler);
+			this.eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_NUM_OCTOPUSSIES, numOctopussiesUpdateHandler);
 		}
 
-		private function initTextFields() : void 
+		private function numLivesUpdateHandler(event:SushimanModelEvent) : void
 		{
-			view.tfNumOctopussies.text = "10";
-			view.tfScore.text = "0";
-			view.tfNumLives.text = "3";
+			view.tfNumLives.text = model.numLives.toString();
 		}
+
+		private function scoreUpdateHandler(event:SushimanModelEvent) : void
+		{
+			view.tfScore.text = model.score.toString();
+		}
+
+		private function numOctopussiesUpdateHandler(event:SushimanModelEvent) : void
+		{
+			view.tfNumOctopussies.text = model.numOctopussies.toString();
+		}
+
 	}
 }
