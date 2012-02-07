@@ -126,7 +126,12 @@ package com.crowdpark.sushiman.views.main
 		private function checkCollision() : void
 		{
 			// for now we just pretend to eat a pill in order to trigger the scoring system
-			dispatch(new PlayerEvent(PlayerEvent.UPDATE, new PillSmall()));
+			if (view.pills.length > 0) 
+			{
+				var pill:PillSmall = view.pills[0];
+				dispatch(new PlayerEvent(PlayerEvent.UPDATE, pill));
+				view.removePillSmall(pill);
+			}
 		}
 
 		private function onStartupComplete(event : ContextEvent) : void
