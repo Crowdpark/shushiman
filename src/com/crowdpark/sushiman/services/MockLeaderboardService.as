@@ -43,7 +43,7 @@ package com.crowdpark.sushiman.services
 			{
 				fname = StringGenerator.generateString(10);
 				lname = StringGenerator.generateString(10);
-				score = Math.random() * 10;
+				score = Math.random() * 1000;
 				users.push(new User(fname,lname,score));
 			}
 			return users;
