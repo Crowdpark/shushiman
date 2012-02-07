@@ -35,9 +35,9 @@ package com.crowdpark.sushiman
 			_mainView = new MainContainerView();
 			addChild(_mainView);
 	
-			//addChild(_stats);
-			//addChild(_hudView);
-			//addChild(new LeaderboardView());
+			addChild(_stats);
+			addChild(_hudView);
+			addChild(new LeaderboardView());
 		}
 	}
 }
