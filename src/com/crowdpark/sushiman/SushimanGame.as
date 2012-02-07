@@ -1,7 +1,11 @@
 package com.crowdpark.sushiman
 {
+	import fr.kouma.starling.utils.Stats;
+
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.main.MainContainerView;
+
 	import starling.display.DisplayObjectContainer;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -11,24 +15,31 @@ package com.crowdpark.sushiman
 	 */
 	public class SushimanGame extends Sprite
 	{
-		private var _context:SushimanContext;
-		private var _mainView:MainContainerView; 
-		private var _hudView:HudView;
-		
-		public function SushimanGame() 
+		private var _context : SushimanContext;
+		private var _mainView : MainContainerView;
+		private var _hudView : HudView;
+		private var _stats : Stats;
+
+		public function SushimanGame()
 		{
 			_context = new SushimanContext(this as DisplayObjectContainer);
-            addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
-        }
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+		}
 
-        private function onAddedToStage(event:Event):void
-        {
-            _mainView = new MainContainerView();
-            addChild(_mainView);
-			
+		private function onAddedToStage(event : Event) : void
+		{
+			// Remove Stats inst prior to deployment
+			_stats = new Stats();
+			_stats.x = stage.stageWidth - 100;
+			addChild(_stats);
+
+			_mainView = new MainContainerView();
+			addChild(_mainView);
+
 			_hudView = new HudView();
 			addChild(_hudView);
-        }
 
+			addChild(new LeaderboardView());
+		}
 	}
 }

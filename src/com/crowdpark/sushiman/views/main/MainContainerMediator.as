@@ -1,33 +1,92 @@
 package com.crowdpark.sushiman.views.main
 {
+	import starling.events.Event;
 	import starling.events.KeyboardEvent;
 
-	import com.crowdpark.sushiman.events.ScoreEvent;
-	import com.crowdpark.sushiman.views.components.SimplePill;
+	import com.crowdpark.sushiman.events.PlayerEvent;
+	import com.crowdpark.sushiman.views.components.PillSmall;
 
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingMediator;
 
 	import flash.ui.Keyboard;
 
+
 	/**
 	 * @author francis
 	 */
 	public class MainContainerMediator extends StarlingMediator
 	{
+		public static const SPEED:int = 5;
 
 		[Inject]
 		public var view:MainContainerView;
 		
+		private var _moveLeft:Boolean;
+		private var _moveRight:Boolean;
+		private var _moveUp:Boolean;
+		private var _moveDown:Boolean;
+		
 		override public function onRegister() : void
 		{
 			addContextListener(ContextEvent.STARTUP_COMPLETE, onStartupComplete);
-			addKeyListeners();
+			addPlayerListeners();
 		}
 
-		private function addKeyListeners() : void
+		private function addPlayerListeners() : void
 		{
-			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler)
+			this.view.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
+			this.view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+		}
+		
+		private function removePlayerListeners() : void
+		{
+			this.view.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			this.view.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
+			this.view.stage.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
+		}
+
+		private function enterFrameHandler(event : Event) : void
+		{
+			if (_moveLeft)
+			{
+				view.player.x -= SPEED;
+			}
+			
+			if (_moveRight)
+			{
+				view.player.x += SPEED;
+			}
+			if (_moveUp)
+			{
+				view.player.y -= SPEED;
+			}
+			if (_moveDown)
+			{
+				view.player.y += SPEED;
+			}
+			
+		}
+		
+		private function keyDownHandler(event:KeyboardEvent):void
+		{
+			switch(event.keyCode)
+			{
+				case Keyboard.RIGHT:
+					_moveRight= true;
+					break;
+				case Keyboard.LEFT:
+					_moveLeft = true;
+					break;
+				case Keyboard.UP:
+					_moveUp = true;
+					break;
+				case Keyboard.DOWN:
+					_moveDown = true;
+					break;
+			}
+			
 		}
 
 		/*
@@ -38,23 +97,20 @@ package com.crowdpark.sushiman.views.main
 		 */
 		private function keyUpHandler(event : KeyboardEvent) : void
 		{
-			var speed:int = 5;
-			
 			switch(event.keyCode)
 			{
 				case Keyboard.RIGHT:
-					view.player.x += speed;
+					_moveRight = false;
 					break;
 				case Keyboard.LEFT:
-					view.player.x -= speed;
+					_moveLeft = false;
 					break;
 				case Keyboard.UP:
-					view.player.y -= speed;
+					_moveUp = false;
 					break;
 				case Keyboard.DOWN:
-					view.player.y =+ speed;
+					_moveDown = false;
 					break;
-				
 			}
 			checkCollision();
 		}
@@ -66,7 +122,7 @@ package com.crowdpark.sushiman.views.main
 		private function checkCollision():void
 		{
 			// for now we just pretend to eat a pill in order to trigger the scoring system
-			dispatch(new ScoreEvent(ScoreEvent.UPDATE, SimplePill));
+			dispatch(new PlayerEvent(PlayerEvent.UPDATE, new PillSmall()));
 		}
 
 		private function onStartupComplete(event : ContextEvent) : void
