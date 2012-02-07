@@ -8,11 +8,12 @@ package com.crowdpark.sushiman.events
 	 */
 	public class PlayerEvent extends Event
 	{
-		public static const UPDATE:String = "ScoreEvent.UPDATE";
+		public static const UPDATE:String = "PlayerEvent.UPDATE";
+		public static const LEVEL_COMPLETE:String = "PlayerEvent.LEVEL_COMPLETE";
 
 		private var _collisionObject:CollisionObject;
 		
-		public function PlayerEvent(type : String, collisionObject:CollisionObject)
+		public function PlayerEvent(type : String, collisionObject:CollisionObject=null)
 		{
 			this.collisionObject = collisionObject;
 			
