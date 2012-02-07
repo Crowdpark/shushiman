@@ -1,5 +1,8 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.services.LeaderboardService;
+	import com.crowdpark.sushiman.commands.LeaderboardCommand;
+	import com.crowdpark.sushiman.events.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardMediator;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.commands.ScoreCommand;
@@ -34,6 +37,7 @@ package com.crowdpark.sushiman
 			this.injector.mapSingletonOf(ISushimanModel, SushimanModel);
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
 			this.injector.mapSingleton(UserService);
+			this.injector.mapSingleton(LeaderboardService);
 
 			this.mediatorMap.mapView(MainContainerView, MainContainerMediator);
 			this.mediatorMap.mapView(HudView, HudMediator);
@@ -41,6 +45,8 @@ package com.crowdpark.sushiman
 
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			this.commandMap.mapEvent(ScoreEvent.UPDATE, ScoreCommand);
+			this.commandMap.mapEvent(LeaderboardEvent.GET_ALL_USERS_LEADERBOARD, LeaderboardCommand);
+			this.commandMap.mapEvent(LeaderboardEvent.GET_FRIENDS_LEADERBOARD, LeaderboardCommand);
 
 			super.startup();
 		}
