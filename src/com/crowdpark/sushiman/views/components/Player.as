@@ -1,8 +1,8 @@
 package com.crowdpark.sushiman.views.components
 {
-	import com.crowdpark.sushiman.utils.Assets;
 	import starling.display.Image;
-	import starling.display.Sprite;
+
+	import com.crowdpark.sushiman.utils.Assets;
 
 	/**
 	 * @author sandberg

@@ -1,10 +1,10 @@
 package com.crowdpark.sushiman.commands
 {
-	import org.robotlegs.mvcs.StarlingCommand;
-	import com.crowdpark.sushiman.services.IScoreService;
 	import com.crowdpark.sushiman.events.ScoreEvent;
 	import com.crowdpark.sushiman.model.ISushimanModel;
-	import org.robotlegs.mvcs.Command;
+	import com.crowdpark.sushiman.services.IScoreService;
+
+	import org.robotlegs.mvcs.StarlingCommand;
 
 	/**
 	 * @author sandberg
