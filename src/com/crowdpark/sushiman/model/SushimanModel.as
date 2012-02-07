@@ -57,6 +57,10 @@ package com.crowdpark.sushiman.model
 		{
 			_numLives = numLives;
 			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_NUM_LIVES));
+			if (numLives<=0)
+			{
+				dispatch(new SushimanModelEvent(SushimanModelEvent.GAME_OVER));
+			}
 		}
 
 		public function get numOctopussies() : int
