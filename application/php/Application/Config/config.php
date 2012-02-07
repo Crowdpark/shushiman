@@ -93,7 +93,7 @@ return array(
                         'host'           => 'localhost',
                         'username'       => 'root',
                         'password'       => 'root',
-                        'dbname'         => 'shakeonitapp',
+                        'dbname'         => 'suhsihackman',
                         'driver_options' => array(
                             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"
                         )
@@ -151,8 +151,8 @@ return array(
     // ++++++++++++++ fb: osapi ++++++++++++++++++++++++++++++++++++++
 
     'Facebook'       => array(
-        "appId"  => "", //"APIKEY",
-        "secret" => "" //"APISECRET",
+        "appId"  => "219863614774631", //"APIKEY",
+        "secret" => "f1f4b8d7b3d07d8f4f8d5daf63bf6460" //"APISECRET",
     ),
 
     // ++++++++++++++ fb: osapi ++++++++++++++++++++++++++++++++++++++
