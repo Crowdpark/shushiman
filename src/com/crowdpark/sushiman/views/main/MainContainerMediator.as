@@ -4,7 +4,7 @@ package com.crowdpark.sushiman.views.main
 	import starling.events.KeyboardEvent;
 	import com.crowdpark.sushiman.events.PlayerEvent;
 	import com.crowdpark.sushiman.views.components.Player;
-	import com.crowdpark.sushiman.views.components.SimplePill;
+	import com.crowdpark.sushiman.views.components.PillSmall;
 	import flash.ui.Keyboard;
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingMediator;
@@ -119,7 +119,7 @@ package com.crowdpark.sushiman.views.main
 		private function checkCollision():void
 		{
 			// for now we just pretend to eat a pill in order to trigger the scoring system
-			dispatch(new PlayerEvent(PlayerEvent.UPDATE, SimplePill));
+			dispatch(new PlayerEvent(PlayerEvent.UPDATE, new PillSmall()));
 		}
 
 		private function onStartupComplete(event : ContextEvent) : void
