@@ -38,7 +38,7 @@ package com.crowdpark.sushiman.views.main
 
 		private function playerMovingHandler(event:PlayerEvent) : void
 		{
-			checkCollision();
+			checkCollision(); 
 		}
 		
 		/*

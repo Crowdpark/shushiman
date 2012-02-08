@@ -8,19 +8,23 @@ package com.crowdpark.sushiman.views.hud
 	 */
 	public class HudView extends Sprite
 	{
+		public static const PREFIX_SCORE:String = "SCORE:";
 		/*
 		 * TODO: load  and use flash graphics
 		 */
 		private var _tfNumOctopussies:TextField = new TextField(100, 80,"10","Verdana",36);
-		private var _tfScore:TextField = new TextField(100, 80,"0","Verdana",36);
+		private var _tfScore:TextField = new TextField(200, 80,"0","Verdana",36);
 		private var _tfNumLives:TextField = new TextField(100, 80,"3","Verdana",36);
 		
 		public function HudView()
 		{
 			//temporary positions
-			_tfNumOctopussies.y = 100;
-			_tfScore.y = 200;
-			_tfNumLives.y = 300;
+			this.y = 556;
+			this.height = 93;
+			
+			_tfNumOctopussies.x = 100;
+			_tfScore.x = 250;
+			_tfNumLives.x = 500;
 			 
 			addChild(_tfNumOctopussies);
 			addChild(_tfScore);

@@ -34,7 +34,7 @@ package com.crowdpark.sushiman.views.hud
 
 		private function scoreUpdateHandler(event:SushimanModelEvent) : void
 		{
-			view.tfScore.text = model.score.toString();
+			view.tfScore.text = HudView.PREFIX_SCORE + model.score.toString();
 		}
 
 		private function numOctopussiesUpdateHandler(event:SushimanModelEvent) : void

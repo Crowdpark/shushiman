@@ -55,7 +55,7 @@ package com.crowdpark.sushiman.model
 		}
 		
 		
-		private function createImage(bitmap):Image
+		private function createImage(bitmap:Bitmap):Image
 		{
 			var texture:Texture = Texture.fromBitmap(bitmap);
 			return new Image(texture);			
