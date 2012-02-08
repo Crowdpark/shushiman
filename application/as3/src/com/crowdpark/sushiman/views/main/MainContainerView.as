@@ -1,5 +1,8 @@
 package com.crowdpark.sushiman.views.main
 {
+	import starling.core.Starling;
+	import starling.textures.Texture;
+	import starling.display.Image;
 	import com.crowdpark.sushiman.views.components.PillSmall;
 	import com.crowdpark.sushiman.views.player.PlayerView;
 	import starling.display.Sprite;
@@ -11,6 +14,8 @@ package com.crowdpark.sushiman.views.main
 	 
 	public class MainContainerView extends Sprite
 	{
+		private var _background:Image;
+		public var _logo:Image;
 		public var player:PlayerView;
 		public var pills:Vector.<PillSmall>;
 		
@@ -20,6 +25,27 @@ package com.crowdpark.sushiman.views.main
 			var pill:PillSmall = new PillSmall();
 			this.addChild(pill);
 			pills.push(pill);
+		}
+		
+		public function addBackgroundImage(image:Image):void
+		{
+			_background = image;
+			addChild(_background);
+		}	
+		
+		public function addLogo(image:Image):void
+		{
+			_logo = image;
+			_logo.x = 545;
+			_logo.y = 32;
+			addChild(_logo);
+		}
+		
+		public function addPlayer(textures:Vector.<Texture>):void
+		{
+			player = new PlayerView(textures, 24);
+			addChild(player);
+			Starling.juggler.add(player);			
 		}
 		
 		/*

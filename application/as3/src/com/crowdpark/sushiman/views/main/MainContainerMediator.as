@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
+	import utils.display.addChild;
 	import com.crowdpark.sushiman.views.player.PlayerView;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.views.components.PillSmall;
@@ -28,12 +29,11 @@ package com.crowdpark.sushiman.views.main
 
 		override public function onRegister() : void
 		{
-			view.player = new PlayerView(assets.getTextures("hero/knife_right/"), 24);
-			view.addChild(view.player);
-			Starling.juggler.add(view.player);
-			
+			view.addBackgroundImage(assets.getBackgroundImage());
+			view.addLogo(assets.getCrowdparkLogo());
+			view.addPlayer(assets.getTextures("hero/knife_right/"));
+
 			this.eventMap.mapListener(this.eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
-			addContextListener(ContextEvent.STARTUP_COMPLETE, onStartupComplete);
 		}
 
 		private function playerMovingHandler(event:PlayerEvent) : void
@@ -59,10 +59,5 @@ package com.crowdpark.sushiman.views.main
 			}
 		}
 
-
-		private function onStartupComplete(event : ContextEvent) : void
-		{
-			trace("Hello i'm in mediator");
-		}
 	}
 }
