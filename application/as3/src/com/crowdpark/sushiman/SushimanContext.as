@@ -23,11 +23,11 @@ package com.crowdpark.sushiman
 	import com.crowdpark.sushiman.views.main.MainContainerMediator;
 	import com.crowdpark.sushiman.views.main.MainContainerView;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
+
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingContext;
+
 	import starling.display.DisplayObjectContainer;
-
-
 
 	/**
 	 * @author sandberg
@@ -44,7 +44,7 @@ package com.crowdpark.sushiman
 			// model
 			this.injector.mapSingletonOf(ISushimanModel, SushimanModel);
 			this.injector.mapSingleton(AssetsModel);
-			
+
 			// services
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
 			this.injector.mapSingletonOf(ILeaderboardService, MockLeaderboardService);
@@ -55,7 +55,7 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(HudView, HudMediator);
 			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
 			this.mediatorMap.mapView(PlayerView, PlayerMediator);
-		
+
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			this.commandMap.mapEvent(PlayerEvent.UPDATE, ScoreCommand);

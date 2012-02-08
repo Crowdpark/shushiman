@@ -6,6 +6,7 @@ package com.crowdpark.sushiman.services
 	public interface ILeaderboardService
 	{
 		function getFriendsLeaderboard() : void;
+
 		function getAllUserLeaderboard() : void;
 	}
 }

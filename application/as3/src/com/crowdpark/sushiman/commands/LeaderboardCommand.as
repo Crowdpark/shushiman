@@ -11,11 +11,11 @@ package com.crowdpark.sushiman.commands
 	public class LeaderboardCommand extends StarlingCommand
 	{
 		[Inject]
-		public var service:ILeaderboardService;
+		public var service : ILeaderboardService;
 		[Inject]
-		public var event:LeaderboardEvent;
-		
-		override public function execute():void
+		public var event : LeaderboardEvent;
+
+		override public function execute() : void
 		{
 			switch(event.type)
 			{
@@ -26,7 +26,6 @@ package com.crowdpark.sushiman.commands
 					service.getFriendsLeaderboard();
 					break;
 			}
-			
 		}
 	}
 }

@@ -21,7 +21,6 @@ package com.crowdpark.sushiman.services
 
 		private function onGetInitialDataComplete(event : JsonRpcClientEvent) : void
 		{
-			
 		}
 	}
 }

@@ -3,33 +3,21 @@ package com.crowdpark.sushiman.views.main
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
-	import com.crowdpark.sushiman.model.SushimanModelEvent;
-	import utils.display.addChild;
-	import com.crowdpark.sushiman.views.player.PlayerView;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.views.components.PillSmall;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
-	import flash.ui.Keyboard;
-	import org.robotlegs.base.ContextEvent;
+
 	import org.robotlegs.mvcs.StarlingMediator;
-	import starling.core.Starling;
-	import starling.events.Event;
-	import starling.events.KeyboardEvent;
-
-
-
 
 	/**
 	 * @author francis
 	 */
 	public class MainContainerMediator extends StarlingMediator
 	{
-		
 		[Inject]
 		public var view : MainContainerView;
 		[Inject]
 		public var assets : AssetsModel;
-
 
 		override public function onRegister() : void
 		{
@@ -41,7 +29,7 @@ package com.crowdpark.sushiman.views.main
 			eventMap.mapListener(this.eventDispatcher, GameStateEvent.CHANGE, gamestateChangeHandler);
 		}
 
-		private function gamestateChangeHandler(event:GameStateEvent) : void
+		private function gamestateChangeHandler(event : GameStateEvent) : void
 		{
 			switch(event.state)
 			{
@@ -56,36 +44,36 @@ package com.crowdpark.sushiman.views.main
 					break;
 			}
 		}
-		
-		private function configureInitState():void
+
+		private function configureInitState() : void
 		{
 			removeLeaderboard();
 		}
-		
-		private function configurePlayState():void
+
+		private function configurePlayState() : void
 		{
 			removeLeaderboard();
 		}
-		
-		private function configureGameOverState():void
+
+		private function configureGameOverState() : void
 		{
 			view.leaderBoard = new LeaderboardView();
 			view.addChild(view.leaderBoard);
 		}
 
-		private function removeLeaderboard():void
+		private function removeLeaderboard() : void
 		{
 			if (view.leaderBoard != null && view.contains(view.leaderBoard))
 			{
 				view.removeChild(view.leaderBoard);
-			}			
+			}
 		}
 
-		private function playerMovingHandler(event:PlayerEvent) : void
+		private function playerMovingHandler(event : PlayerEvent) : void
 		{
-			checkCollision(); 
+			checkCollision();
 		}
-		
+
 		/*
 		 * TODO: Detect if collision between player and other object has occured.
 		 * Handling based on what kind of object.
@@ -93,16 +81,16 @@ package com.crowdpark.sushiman.views.main
 		private function checkCollision() : void
 		{
 			// for now we just pretend to eat a pill in order to trigger the scoring system
-			if (view.pills.length > 0) 
+			if (view.pills.length > 0)
 			{
-				var pill:PillSmall = view.pills[0];
+				var pill : PillSmall = view.pills[0];
 				dispatch(new PlayerEvent(PlayerEvent.UPDATE, pill));
 				view.removePillSmall(pill);
-			} else
+			}
+			else
 			{
 				dispatch(new PlayerEvent(PlayerEvent.LEVEL_COMPLETE));
 			}
 		}
-
 	}
 }

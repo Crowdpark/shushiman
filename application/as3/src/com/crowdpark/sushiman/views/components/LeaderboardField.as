@@ -1,6 +1,7 @@
 package com.crowdpark.sushiman.views.components
 {
 	import com.crowdpark.sushiman.model.User;
+
 	import starling.text.TextField;
 
 	/**
@@ -8,9 +9,9 @@ package com.crowdpark.sushiman.views.components
 	 */
 	public class LeaderboardField extends TextField
 	{
-		private var _user:User;
-		
-		public function LeaderboardField(user:User)
+		private var _user : User;
+
+		public function LeaderboardField(user : User)
 		{
 			super(400, 60, "", "Verdana", 16);
 			this.user = user;

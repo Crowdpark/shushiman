@@ -4,8 +4,8 @@ package com.crowdpark.sushiman.model
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.views.components.CollisionObject;
 	import com.crowdpark.sushiman.views.components.PillSmall;
-	import org.robotlegs.mvcs.Actor;
 
+	import org.robotlegs.mvcs.Actor;
 
 	/**
 	 * @author sandberg
@@ -15,8 +15,7 @@ package com.crowdpark.sushiman.model
 		public static const INIT_SCORE : int = 0;
 		public static const INIT_NUM_LIVES : int = 3;
 		public static const INIT_NUM_OCTOPUSSIES : int = 10;
-
-		private var _currentGameState:String = GameState.INIT;
+		private var _currentGameState : String = GameState.INIT;
 		private var _currentGameLevel : int;
 		private var _score : int;
 		private var _numLives : int;
@@ -134,7 +133,7 @@ package com.crowdpark.sushiman.model
 		public function set currentGameState(currentGameState : String) : void
 		{
 			_currentGameState = currentGameState;
-			
+
 			switch(currentGameState)
 			{
 				case GameState.INIT:

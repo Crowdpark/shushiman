@@ -2,11 +2,12 @@ package com.crowdpark.sushiman.views.player
 {
 	import com.crowdpark.sushiman.model.gamestate.GameStateEvent;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
-	import com.crowdpark.sushiman.model.SushimanModelEvent;
-	import com.crowdpark.sushiman.views.components.PillSmall;
+
 	import flash.ui.Keyboard;
+
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
+
 	import org.robotlegs.mvcs.StarlingMediator;
 
 	/**
@@ -15,21 +16,20 @@ package com.crowdpark.sushiman.views.player
 	public class PlayerMediator extends StarlingMediator
 	{
 		[Inject]
-		public var view:PlayerView;
-		
-		private var _isActive:Boolean;
+		public var view : PlayerView;
+		private var _isActive : Boolean;
 		private var _moveLeft : Boolean;
 		private var _moveRight : Boolean;
 		private var _moveUp : Boolean;
 		private var _moveDown : Boolean;
-		
-		override public function onRegister():void
+
+		override public function onRegister() : void
 		{
 			eventMap.mapListener(this.eventDispatcher, GameStateEvent.CHANGE, gamestateChangeHandler);
 			isActive = true;
 		}
 
-		private function gamestateChangeHandler(event:GameStateEvent) : void
+		private function gamestateChangeHandler(event : GameStateEvent) : void
 		{
 			switch(event.state)
 			{
@@ -44,7 +44,7 @@ package com.crowdpark.sushiman.views.player
 					break;
 			}
 		}
-		
+
 		private function addPlayerListeners() : void
 		{
 			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
@@ -71,15 +71,17 @@ package com.crowdpark.sushiman.views.player
 			{
 				view.x += PlayerView.SPEED;
 			}
+
 			if (_moveUp)
 			{
 				view.y -= PlayerView.SPEED;
 			}
+
 			if (_moveDown)
 			{
 				view.y += PlayerView.SPEED;
 			}
-			
+
 			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
 		}
 
@@ -138,11 +140,11 @@ package com.crowdpark.sushiman.views.player
 			if (isActive)
 			{
 				addPlayerListeners();
-			} else
+			}
+			else
 			{
 				removePlayerListeners();
 			}
 		}
-		
 	}
 }

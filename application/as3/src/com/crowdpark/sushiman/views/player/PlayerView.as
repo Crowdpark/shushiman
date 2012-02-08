@@ -9,7 +9,7 @@ package com.crowdpark.sushiman.views.player
 	{
 		public static const SPEED : int = 5;
 		
-		public function PlayerView(textures:Vector.<Texture>,fps:Number)
+		public function PlayerView(textures : Vector.<Texture>, fps : Number)
 		{
 			super(textures, fps);
 		}

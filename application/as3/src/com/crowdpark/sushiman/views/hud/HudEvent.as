@@ -7,8 +7,8 @@ package com.crowdpark.sushiman.views.hud
 	 */
 	public class HudEvent extends Event
 	{
-		public static const INIT:String = "HudEvent.INIT";
-		
+		public static const INIT : String = "HudEvent.INIT";
+
 		public function HudEvent(type : String, bubbles : Boolean = false, cancelable : Boolean = false)
 		{
 			super(type, bubbles, cancelable);
