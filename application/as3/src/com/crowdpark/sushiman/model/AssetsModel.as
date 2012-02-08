@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.model
 {
+
 	import flash.display.Bitmap;
 
 	import starling.display.Image;
@@ -18,6 +19,8 @@ package com.crowdpark.sushiman.model
 		public var Background : Class;
 		[Embed(source="../assets/crowdpark.png")]
 		public var CrowdparkLogo : Class;
+		[Embed(source="../assets/btn_play.png")]
+		public var PlayButton : Class;
 		private var _atlas : TextureAtlas;
 		private var _xml : XML;
 		private var _texture : Texture;
@@ -39,6 +42,12 @@ package com.crowdpark.sushiman.model
 		{
 			var bitmap : Bitmap = new CrowdparkLogo();
 			return createImage(bitmap);
+		}
+		
+		public function getPlayButtonTexture():Texture
+		{
+			var bitmap:Bitmap = new PlayButton();
+			return Texture.fromBitmap(bitmap);
 		}
 
 		public function getTexture(string : String) : Texture

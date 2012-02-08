@@ -7,7 +7,7 @@ package com.crowdpark.sushiman.commands
 	/**
 	 * @author sandberg
 	 */
-	public class LevelCommand extends StarlingCommand
+	public class LevelCompleteCommand extends StarlingCommand
 	{
 		[Inject]
 		public var model : ISushimanModel;

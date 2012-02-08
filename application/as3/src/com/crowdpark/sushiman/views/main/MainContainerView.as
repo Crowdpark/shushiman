@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman.views.main
 {
+
+	import starling.display.Button;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 
 	import starling.core.Starling;
@@ -19,15 +21,25 @@ package com.crowdpark.sushiman.views.main
 		public var player : PlayerView;
 		public var pills : Vector.<PillSmall>;
 		public var leaderBoard : LeaderboardView;
+		public var playButton:Button;
 		private var _background : Image;
 		private var _logo : Image;
+		
 
 		public function MainContainerView()
 		{
 			pills = new Vector.<PillSmall>();
-			var pill : PillSmall = new PillSmall();
-			this.addChild(pill);
-			pills.push(pill);
+			
+			var n:int = 10;
+			for (var i:int = 0;i<n;i++)
+			{
+				var pill : PillSmall = new PillSmall();
+				pill.x = Math.random() * 600;
+				pill.y = Math.random() * 500;
+				this.addChild(pill);
+				pills.push(pill);				
+			}
+
 		}
 
 		public function addBackgroundImage(image : Image) : void
@@ -42,6 +54,12 @@ package com.crowdpark.sushiman.views.main
 			_logo.x = 545;
 			_logo.y = 32;
 			addChild(_logo);
+		}
+		
+		public function addPlayButton(texture:Texture):void
+		{
+			playButton = new Button(texture, "PLAY");
+			addChild(playButton)
 		}
 
 		public function addPlayer(textures : Vector.<Texture>) : void
@@ -64,7 +82,7 @@ package com.crowdpark.sushiman.views.main
 				pill = pills[i];
 				if (pill == pillToRemove)
 				{
-					pills.splice(i, 1);
+					pills.splice(i,1);
 					if (contains(pill))
 					{
 						removeChild(pill);

@@ -1,7 +1,7 @@
 package com.crowdpark.sushiman.model
 {
 	import com.crowdpark.core.robotlogger.RobotLoggerEvent;
-	import com.crowdpark.sushiman.model.gamestate.GameStateEvent;
+	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.views.components.CollisionObject;
 	import com.crowdpark.sushiman.views.components.PillSmall;
@@ -139,7 +139,12 @@ package com.crowdpark.sushiman.model
 			{
 				case GameState.INIT:
 					break;
-				case GameState.PLAY:
+				case GameState.PLAYING:
+					break;
+				case GameState.LEVEL_COMPLETE:
+					break;
+				case GameState.LIFE_LOST:
+					numLives--;
 					break;
 				case GameState.GAME_OVER:
 					break;
@@ -147,7 +152,7 @@ package com.crowdpark.sushiman.model
 					break;
 			}
 			var msg:String = "Current gamestate changed to " + currentGameState;
-			dispatch(new GameStateEvent(GameStateEvent.CHANGE, currentGameState));
+			dispatch(new GameStateChangedEvent(GameStateChangedEvent.CHANGE, currentGameState));
 			dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_INFO, SushimanModel, msg));
 		}
 	}

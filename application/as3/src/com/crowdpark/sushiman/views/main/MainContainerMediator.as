@@ -1,10 +1,11 @@
 package com.crowdpark.sushiman.views.main
 {
+	import starling.events.Event;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.SushimanModel;
 	import com.crowdpark.core.robotlogger.RobotLoggerEvent;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
-	import com.crowdpark.sushiman.model.gamestate.GameStateEvent;
+	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.views.components.PillSmall;
@@ -29,27 +30,49 @@ package com.crowdpark.sushiman.views.main
 			view.addBackgroundImage(assets.getBackgroundImage());
 			view.addLogo(assets.getCrowdparkLogo());
 			view.addPlayer(assets.getTextures("hero/knife_right/"));
+			view.addPlayButton(assets.getPlayButtonTexture());
 
 			this.eventMap.mapListener(this.eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
-			eventMap.mapListener(this.eventDispatcher, GameStateEvent.CHANGE, gamestateChangeHandler);
-			
-			model.currentGameState = GameState.PLAY;
+			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
+
+			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
+
 		}
 
-		private function gamestateChangeHandler(event : GameStateEvent) : void
+		private function playButtonTriggerHandler(event : Event) : void
+		{
+			dispatch(new MainContainerEvent(MainContainerEvent.PLAY));
+		}
+
+		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
 		{
 			switch(event.state)
 			{
 				case GameState.INIT:
 					configureInitState();
 					break;
-				case GameState.PLAY:
+				case GameState.PLAYING:
 					configurePlayState();
 					break;
+				case GameState.LIFE_LOST:
+					configureLifeLost();
+					break;				
+				case GameState.LEVEL_COMPLETE:
+					configureLevelComplete();
 				case GameState.GAME_OVER:
 					configureGameOverState();
 					break;
 			}
+		}
+
+		private function configureLifeLost() : void
+		{
+			removeLeaderboard();
+		}
+
+		private function configureLevelComplete() : void
+		{
+			removeLeaderboard();
 		}
 
 		private function configureInitState() : void
@@ -78,7 +101,7 @@ package com.crowdpark.sushiman.views.main
 
 		private function playerMovingHandler(event : PlayerEvent) : void
 		{
-			checkCollision();
+			//checkCollision();
 		}
 
 		/*
@@ -91,13 +114,15 @@ package com.crowdpark.sushiman.views.main
 			if (view.pills.length > 0)
 			{
 				var pill : PillSmall = view.pills[0];
-				dispatch(new PlayerEvent(PlayerEvent.UPDATE, pill));
+				dispatch(new PlayerEvent(PlayerEvent.COLLISION, pill));
 				view.removePillSmall(pill);
 			}
 			else
 			{
-				dispatch(new PlayerEvent(PlayerEvent.LEVEL_COMPLETE));
+				model.currentGameState = GameState.LEVEL_COMPLETE;
 			}
+			
+			// if the 
 		}
 	}
 }

@@ -10,8 +10,8 @@ package com.crowdpark.sushiman.views.player
 	public class PlayerEvent extends Event
 	{
 		public static const MOVING : String = "PlayerEvent.MOVING";
-		public static const UPDATE : String = "PlayerEvent.UPDATE";
-		public static const LEVEL_COMPLETE : String = "PlayerEvent.LEVEL_COMPLETE";
+		public static const COLLISION : String = "PlayerEvent.COLLISION";
+
 		private var _collisionObject : CollisionObject;
 
 		public function PlayerEvent(type : String, collisionObject : CollisionObject = null)

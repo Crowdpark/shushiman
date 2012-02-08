@@ -1,6 +1,6 @@
 package com.crowdpark.sushiman.views.player
 {
-	import com.crowdpark.sushiman.model.gamestate.GameStateEvent;
+	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 
 	import flash.ui.Keyboard;
@@ -25,22 +25,21 @@ package com.crowdpark.sushiman.views.player
 
 		override public function onRegister() : void
 		{
-			eventMap.mapListener(this.eventDispatcher, GameStateEvent.CHANGE, gamestateChangeHandler);
-			isActive = true;
+			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 		}
 
-		private function gamestateChangeHandler(event : GameStateEvent) : void
+		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
 		{
 			switch(event.state)
 			{
 				case GameState.INIT:
-					isActive = false;
-					break;
-				case GameState.PLAY:
-					isActive = true;
-					break;
+				case GameState.LEVEL_COMPLETE:
 				case GameState.GAME_OVER:
+				case GameState.LIFE_LOST:
 					isActive = false;
+					break;
+				case GameState.PLAYING:
+					isActive = true;
 					break;
 			}
 		}

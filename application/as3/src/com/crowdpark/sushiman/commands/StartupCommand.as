@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.commands
 {
+	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.services.IUserService;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.views.hud.HudEvent;
@@ -20,10 +21,9 @@ package com.crowdpark.sushiman.commands
 		override public function execute() : void
 		{
 			service.getInitialData();
-
-			model.resetAllValues();
 			this.dispatch(new MainContainerEvent(MainContainerEvent.INIT));
 			this.dispatch(new HudEvent(HudEvent.INIT));
+			model.currentGameState = GameState.INIT;
 		}
 	}
 }

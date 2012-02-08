@@ -5,12 +5,12 @@ package com.crowdpark.sushiman.model.gamestate
 	/**
 	 * @author sandberg
 	 */
-	public class GameStateEvent extends Event
+	public class GameStateChangedEvent extends Event
 	{
 		public static const CHANGE : String = "GameStateEvent.CHANGE";
 		private var _state : String;
 
-		public function GameStateEvent(type : String, state : String)
+		public function GameStateChangedEvent(type : String, state : String)
 		{
 			this.state = state;
 			super(type);
