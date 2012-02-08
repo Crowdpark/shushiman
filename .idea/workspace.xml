@@ -22,9 +22,7 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88294790-7d70-4c8c-a3b5-d11a33b3c141" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/php/Application/Config/config.php" afterPath="$PROJECT_DIR$/application/php/Application/Config/config.php" />
-    </list>
+    <list default="true" id="88294790-7d70-4c8c-a3b5-d11a33b3c141" name="Default" comment="" />
     <ignored path="shushiman.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -57,7 +55,7 @@
       <file leaf-file-name="config.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/php/Application/Config/config.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="154" column="53" selection-start="5376" selection-end="5376" vertical-scroll-proportion="3.5466666">
+            <state line="154" column="53" selection-start="5376" selection-end="5376" vertical-scroll-proportion="3.4545455">
               <folding />
             </state>
           </provider>
@@ -336,7 +334,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/php/Application/Config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="53" selection-start="5376" selection-end="5376" vertical-scroll-proportion="3.5466666">
+        <state line="154" column="53" selection-start="5376" selection-end="5376" vertical-scroll-proportion="3.4545455">
           <folding />
         </state>
       </provider>
