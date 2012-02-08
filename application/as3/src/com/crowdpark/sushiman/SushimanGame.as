@@ -37,7 +37,6 @@ package com.crowdpark.sushiman
 	
 			addChild(_stats);
 			addChild(_hudView);
-			addChild(new LeaderboardView());
 		}
 	}
 }

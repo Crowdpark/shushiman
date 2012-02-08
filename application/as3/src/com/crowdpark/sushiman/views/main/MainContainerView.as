@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import starling.core.Starling;
 	import starling.textures.Texture;
 	import starling.display.Image;
@@ -14,10 +15,14 @@ package com.crowdpark.sushiman.views.main
 	 
 	public class MainContainerView extends Sprite
 	{
-		private var _background:Image;
-		public var _logo:Image;
+
 		public var player:PlayerView;
 		public var pills:Vector.<PillSmall>;
+		public var leaderBoard:LeaderboardView;
+		
+		private var _background:Image;
+		private var _logo:Image;
+		
 		
 		public function MainContainerView()
 		{

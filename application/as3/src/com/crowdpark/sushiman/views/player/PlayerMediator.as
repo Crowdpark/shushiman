@@ -1,5 +1,8 @@
 package com.crowdpark.sushiman.views.player
 {
+	import com.crowdpark.sushiman.model.gamestate.GameStateEvent;
+	import com.crowdpark.sushiman.model.gamestate.GameState;
+	import com.crowdpark.sushiman.model.SushimanModelEvent;
 	import com.crowdpark.sushiman.views.components.PillSmall;
 	import flash.ui.Keyboard;
 	import starling.events.Event;
@@ -22,7 +25,24 @@ package com.crowdpark.sushiman.views.player
 		
 		override public function onRegister():void
 		{
+			eventMap.mapListener(this.eventDispatcher, GameStateEvent.CHANGE, gamestateChangeHandler);
 			isActive = true;
+		}
+
+		private function gamestateChangeHandler(event:GameStateEvent) : void
+		{
+			switch(event.state)
+			{
+				case GameState.INIT:
+					isActive = false;
+					break;
+				case GameState.PLAY:
+					isActive = true;
+					break;
+				case GameState.GAME_OVER:
+					isActive = false;
+					break;
+			}
 		}
 		
 		private function addPlayerListeners() : void
