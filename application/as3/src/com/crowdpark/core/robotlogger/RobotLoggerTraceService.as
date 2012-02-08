@@ -12,13 +12,13 @@ package com.crowdpark.core.robotlogger
 		public function log(level : int, sender : Class, message : String):void
 		{
 			var out:String  = "";
-			out += "[" + new Date().toLocaleTimeString() + "] ";
+			out += new Date().toDateString() + " " + new Date().toTimeString()+ " ";
 			out += "=> ";
-			out += "[" + event.getLevelName(level) + "] ";
+			out += event.getLevelName(level) + " ";
 			out += "=> ";
 			out += String(sender) +" ";
 			out += "=> ";
-			out += "['" + message + "'] ";
+			out += message + " ";
 			
 			trace (out);
 
