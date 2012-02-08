@@ -30,12 +30,11 @@ package com.crowdpark.sushiman
 		{
 			// Remove Stats inst prior to deployment
 			_stats = new Stats();
-			_stats.x = stage.stageWidth - 100;
+			_stats.x = 0;
 			_hudView = new HudView();
 			_mainView = new MainContainerView();
 			addChild(_mainView);
-	
-			//addChild(_stats);
+			addChild(_stats);
 			//addChild(_hudView);
 			//addChild(new LeaderboardView());
 		}

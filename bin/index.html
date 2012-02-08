@@ -11,7 +11,7 @@
     Learn more about Flex at http://flex.org 
     // -->
     <head>
-        <title>Test2</title>
+        <title>Sushiman Game</title>
         <meta name="google" value="notranslate">         
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <!-- Include CSS to eliminate any default margins/padding and set the height of the html element and 
@@ -23,7 +23,7 @@
         <style type="text/css" media="screen"> 
             html, body  { height:100%; }
             body { margin:0; padding:0; overflow:auto; text-align:center; 
-                   background-color: #ffffff; }   
+                   background-color: #FFFFFF; }   
             object:focus { outline:none; }
             #flashContent { display:none; }
         </style>
@@ -37,13 +37,13 @@
         <script type="text/javascript" src="swfobject.js"></script>
         <script type="text/javascript">
             // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection. 
-            var swfVersionStr = "10.1.0";
+            var swfVersionStr = "11.1.0";
             // To use express install, set to playerProductInstall.swf, otherwise the empty string. 
             var xiSwfUrlStr = "playerProductInstall.swf";
             var flashvars = {};
             var params = {};
             params.quality = "high";
-            params.bgcolor = "#ffffff";
+            params.bgcolor = "#000000";
             params.allowscriptaccess = "sameDomain";
             params.allowfullscreen = "true";
             params.wmode ="direct";
@@ -58,7 +58,7 @@
                 swfVersionStr, xiSwfUrlStr, 
                 flashvars, params, attributes);
             // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
-            swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+            swfobject.createCSS("#flashContent", "display:block;text-align:left;"); 
         </script>
     </head>
     <body>
