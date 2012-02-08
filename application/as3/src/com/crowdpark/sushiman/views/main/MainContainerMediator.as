@@ -1,5 +1,8 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.model.ISushimanModel;
+	import com.crowdpark.sushiman.model.SushimanModel;
+	import com.crowdpark.core.robotlogger.RobotLoggerEvent;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
@@ -18,6 +21,8 @@ package com.crowdpark.sushiman.views.main
 		public var view : MainContainerView;
 		[Inject]
 		public var assets : AssetsModel;
+		[Inject]
+		public var model:ISushimanModel;
 
 		override public function onRegister() : void
 		{
@@ -27,6 +32,8 @@ package com.crowdpark.sushiman.views.main
 
 			this.eventMap.mapListener(this.eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 			eventMap.mapListener(this.eventDispatcher, GameStateEvent.CHANGE, gamestateChangeHandler);
+			
+			model.currentGameState = GameState.PLAY;
 		}
 
 		private function gamestateChangeHandler(event : GameStateEvent) : void

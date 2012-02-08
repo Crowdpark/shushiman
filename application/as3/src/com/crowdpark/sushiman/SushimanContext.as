@@ -1,7 +1,9 @@
 package com.crowdpark.sushiman
 {
-	import com.crowdpark.sushiman.views.player.PlayerMediator;
-	import com.crowdpark.sushiman.views.player.PlayerView;
+	import com.crowdpark.core.robotlogger.RobotLoggerCommand;
+	import com.crowdpark.core.robotlogger.RobotLoggerEvent;
+	import com.crowdpark.core.robotlogger.IRobotLoggerService;
+	import com.crowdpark.core.robotlogger.RobotLoggerTraceService;
 	import com.crowdpark.sushiman.commands.LeaderboardCommand;
 	import com.crowdpark.sushiman.commands.LevelCommand;
 	import com.crowdpark.sushiman.commands.ScoreCommand;
@@ -23,11 +25,13 @@ package com.crowdpark.sushiman
 	import com.crowdpark.sushiman.views.main.MainContainerMediator;
 	import com.crowdpark.sushiman.views.main.MainContainerView;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
-
+	import com.crowdpark.sushiman.views.player.PlayerMediator;
+	import com.crowdpark.sushiman.views.player.PlayerView;
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingContext;
-
 	import starling.display.DisplayObjectContainer;
+
+
 
 	/**
 	 * @author sandberg
@@ -49,6 +53,7 @@ package com.crowdpark.sushiman
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
 			this.injector.mapSingletonOf(ILeaderboardService, MockLeaderboardService);
 			this.injector.mapSingletonOf(IUserService, UserService);
+			this.injector.mapSingletonOf(IRobotLoggerService, RobotLoggerTraceService);
 
 			// view & mediatorsr
 			this.mediatorMap.mapView(MainContainerView, MainContainerMediator);
@@ -62,6 +67,7 @@ package com.crowdpark.sushiman
 			this.commandMap.mapEvent(PlayerEvent.LEVEL_COMPLETE, LevelCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_ALL_USERS_LEADERBOARD, LeaderboardCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_FRIENDS_LEADERBOARD, LeaderboardCommand);
+			this.commandMap.mapEvent(RobotLoggerEvent.LOG, RobotLoggerCommand);
 
 			super.startup();
 		}

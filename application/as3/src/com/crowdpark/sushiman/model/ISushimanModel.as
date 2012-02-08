@@ -11,6 +11,10 @@ package com.crowdpark.sushiman.model
 
 		function resetAllValues() : void;
 
+		function get currentGameState() : String;
+
+		function set currentGameState(value : String) : void;
+		
 		function get score() : int;
 
 		function set score(value : int) : void;
