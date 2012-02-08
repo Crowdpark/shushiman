@@ -1,18 +1,17 @@
 package com.crowdpark.sushiman
 {
-	import com.crowdpark.sushiman.commands.LevelCommand;
-	import com.crowdpark.sushiman.services.IUserService;
-	import starling.display.DisplayObjectContainer;
-
+	import com.crowdpark.sushiman.views.player.PlayerMediator;
+	import com.crowdpark.sushiman.views.player.PlayerView;
 	import com.crowdpark.sushiman.commands.LeaderboardCommand;
+	import com.crowdpark.sushiman.commands.LevelCommand;
 	import com.crowdpark.sushiman.commands.ScoreCommand;
 	import com.crowdpark.sushiman.commands.StartupCommand;
-	import com.crowdpark.sushiman.events.PlayerEvent;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.SushimanModel;
 	import com.crowdpark.sushiman.services.ILeaderboardService;
 	import com.crowdpark.sushiman.services.IScoreService;
+	import com.crowdpark.sushiman.services.IUserService;
 	import com.crowdpark.sushiman.services.MockLeaderboardService;
 	import com.crowdpark.sushiman.services.ScoreService;
 	import com.crowdpark.sushiman.services.UserService;
@@ -23,9 +22,12 @@ package com.crowdpark.sushiman
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.main.MainContainerMediator;
 	import com.crowdpark.sushiman.views.main.MainContainerView;
-
+	import com.crowdpark.sushiman.views.player.PlayerEvent;
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingContext;
+	import starling.display.DisplayObjectContainer;
+
+
 
 	/**
 	 * @author sandberg
@@ -52,7 +54,8 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(MainContainerView, MainContainerMediator);
 			this.mediatorMap.mapView(HudView, HudMediator);
 			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
-
+			this.mediatorMap.mapView(PlayerView, PlayerMediator);
+		
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			this.commandMap.mapEvent(PlayerEvent.UPDATE, ScoreCommand);

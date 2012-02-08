@@ -1,4 +1,4 @@
-package com.crowdpark.sushiman.events
+package com.crowdpark.sushiman.views.player
 {
 	import com.crowdpark.sushiman.views.components.CollisionObject;
 	import flash.events.Event;
@@ -8,6 +8,7 @@ package com.crowdpark.sushiman.events
 	 */
 	public class PlayerEvent extends Event
 	{
+		public static const MOVING:String = "PlayerEvent.MOVING";
 		public static const UPDATE:String = "PlayerEvent.UPDATE";
 		public static const LEVEL_COMPLETE:String = "PlayerEvent.LEVEL_COMPLETE";
 

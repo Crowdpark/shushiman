@@ -1,9 +1,9 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.views.components.PillSmall;
+	import com.crowdpark.sushiman.views.player.PlayerView;
 	import starling.display.Sprite;
 
-	import com.crowdpark.sushiman.views.components.PillSmall;
-	import com.crowdpark.sushiman.views.components.Player;
 	
 	/**
 	 * @author francis
@@ -11,7 +11,7 @@ package com.crowdpark.sushiman.views.main
 	 
 	public class MainContainerView extends Sprite
 	{
-		public var player:Player;
+		public var player:PlayerView;
 		public var pills:Vector.<PillSmall>;
 		
 		public function MainContainerView()

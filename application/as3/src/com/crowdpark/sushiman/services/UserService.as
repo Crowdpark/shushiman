@@ -8,7 +8,7 @@ package com.crowdpark.sushiman.services
 	/**
 	 * @author francis
 	 */
-	public class UserService extends Actor
+	public class UserService extends Actor implements IUserService
 	{
 		public function getInitialData() : void
 		{

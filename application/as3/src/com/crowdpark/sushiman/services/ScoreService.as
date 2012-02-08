@@ -17,7 +17,7 @@ package com.crowdpark.sushiman.services
 			_rawService.addEventListener(JsonRpcClientEvent.FAULT, faultHandler);
 			_rawService.addEventListener(JsonRpcClientEvent.RESULT, resultHandler);
 			_rawService.params = [{score:score}]; //TODO: Verify that the signature of these params are correct
-			_rawService.send();
+			//_rawService.send();
 		}
 
 		/*
