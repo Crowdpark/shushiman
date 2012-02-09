@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.tiles
 {
+	import com.crowdpark.sushiman.model.level.LevelModelEvent;
 	import com.crowdpark.sushiman.model.level.LevelModel;
 	import org.robotlegs.mvcs.StarlingMediator;
 
@@ -15,6 +16,11 @@ package com.crowdpark.sushiman.views.tiles
 		public var levelModel:LevelModel;
 		
 		override public function onRegister():void
+		{
+			this.eventMap.mapListener(this.eventDispatcher, LevelModelEvent.UPDATED, levelUpdatedHandler);
+		}
+
+		private function levelUpdatedHandler(event: LevelModelEvent ) : void
 		{
 			
 		}
