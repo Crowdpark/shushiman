@@ -2,7 +2,7 @@ package com.crowdpark.sushiman.views.leaderboard
 {
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.SushimanModelEvent;
-	import com.crowdpark.sushiman.model.User;
+	import com.crowdpark.sushiman.model.user.UserVo;
 	import com.crowdpark.sushiman.views.components.LeaderboardField;
 	import org.robotlegs.mvcs.StarlingMediator;
 	import utils.display.addChild;
@@ -27,7 +27,7 @@ package com.crowdpark.sushiman.views.leaderboard
 		private function leaderboardUpdateHandler(event:SushimanModelEvent) : void
 		{
 			var counter:int = 0;
-			for each (var user:User in model.leaderboardAll)
+			for each (var user:UserVo in model.leaderboardAll)
 			{
 				counter++;
 				var field:LeaderboardField = new LeaderboardField(user);
