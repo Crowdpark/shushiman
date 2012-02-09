@@ -42,7 +42,7 @@ package com.crowdpark.sushiman.services
 						tile.id = field.id;
 						tile.type = field.type;
 						tile.x = tile.x;
-						tile.y = tile.y
+						tile.y = tile.y;
 						level.fields.push(tile);
 					}
 
