@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.model.level.LevelModel;
 	import com.crowdpark.sushiman.services.LevelService;
 	import com.crowdpark.sushiman.services.ILevelService;
 	import com.crowdpark.sushiman.commands.LoadLevelCommand;
@@ -60,6 +61,7 @@ package com.crowdpark.sushiman
 			this.injector.mapSingleton(AssetsModel);
 			this.injector.mapSingleton(UserVo);
 			this.injector.mapSingleton(UserAppFriendsModel);
+			this.injector.mapSingleton(LevelModel);
 
 			// services
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
