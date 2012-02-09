@@ -6,7 +6,8 @@
  * Time: 1:09 AM
  * To change this template use File | Settings | File Templates.
  */
-class Response
+namespace Application\JsonRpc\V1\App;
+class Response extends  \Processus\Abstracts\JsonRpc\AbstractJsonRpcResponse
 {
 
 }
