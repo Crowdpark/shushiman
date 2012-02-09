@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.commands.LoadLevelCommand;
+	import com.crowdpark.sushiman.events.LevelEvent;
 	import com.crowdpark.core.robotlogger.IRobotLoggerService;
 	import com.crowdpark.core.robotlogger.RobotLoggerCommand;
 	import com.crowdpark.core.robotlogger.RobotLoggerEvent;
@@ -78,6 +80,7 @@ package com.crowdpark.sushiman
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			this.commandMap.mapEvent(PlayerEvent.COLLISION, ScoreCommand);
+			this.commandMap.mapEvent(LevelEvent.LOAD, LoadLevelCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_ALL_USERS_LEADERBOARD, LeaderboardCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_FRIENDS_LEADERBOARD, LeaderboardCommand);
 			this.commandMap.mapEvent(MainContainerEvent.PLAY, PlayGameCommand);

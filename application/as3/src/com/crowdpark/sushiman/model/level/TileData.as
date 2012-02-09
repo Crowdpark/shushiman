@@ -3,12 +3,16 @@ package com.crowdpark.sushiman.model.level
 	/**
 	 * @author sandberg
 	 */
-	public class Tile
+	public class TileData
 	{
+		public static const TYPE_YELLOW_POINT:String = "YellowPoint";
+		public static const TYPE_WHITE_POINT:String = "WhitePoint";
+		public static const TYPE_WALLBRICK:String = "WallBrick";
+		
 		private var _id : int;
 		private var _type : String;
-		private var _x : Number;
-		private var _y : Number;
+		private var _x : int;
+		private var _y :  int;
 
 		public function get id() : int
 		{
@@ -30,22 +34,22 @@ package com.crowdpark.sushiman.model.level
 			this._type = type;
 		}
 
-		public function get x() : Number
+		public function get x() : int
 		{
 			return _x;
 		}
 
-		public function set x(x : Number) : void
+		public function set x(x : int) : void
 		{
 			_x = x;
 		}
 
-		public function get y() : Number
+		public function get y() : int
 		{
 			return _y;
 		}
 
-		public function set y(y : Number) : void
+		public function set y(y : int) : void
 		{
 			_y = y;
 		}

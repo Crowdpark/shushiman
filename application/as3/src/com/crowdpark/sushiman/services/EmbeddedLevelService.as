@@ -2,7 +2,7 @@ package com.crowdpark.sushiman.services
 {
 	import com.crowdpark.sushiman.model.level.Level;
 	import com.crowdpark.sushiman.model.level.LevelModel;
-	import com.crowdpark.sushiman.model.level.Tile;
+	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.services.interfaces.ILevelService;
 
 	import flash.utils.ByteArray;
@@ -34,16 +34,16 @@ package com.crowdpark.sushiman.services
 				if (obj.level.fields != null && obj.level.fields is Array)
 				{
 					var level : Level = new Level();
-					level.fields = new Vector.<Tile>();
+					level.tiles = new Vector.<TileData>();
 
 					for each (var field:Object in obj.level.fields)
 					{
-						var tile : Tile = new Tile();
-						tile.id = field.id;
+						var tile : TileData = new TileData();
+						tile.id = int(field.id);
 						tile.type = field.type;
-						tile.x = tile.x;
-						tile.y = tile.y;
-						level.fields.push(tile);
+						tile.x = int(field.x);
+						tile.y = (field.y);
+						level.tiles.push(tile);
 					}
 
 					if (obj.level.id != null)

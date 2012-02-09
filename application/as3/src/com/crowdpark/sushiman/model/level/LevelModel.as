@@ -18,7 +18,7 @@ package com.crowdpark.sushiman.model.level
 				_levels = new Vector.<Level>();
 			}
 			_levels.push(level);
-			var msg : String = "Level data received";
+			var msg : String = "Level data received, including num tiles: " + level.tiles.length.toString();
 			dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_INFO, LevelModel, msg));
 			dispatch(new LevelModelEvent(LevelModelEvent.UPDATED));
 		}

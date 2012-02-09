@@ -26,10 +26,11 @@ package com.crowdpark.sushiman.views.main
 
 		override public function onRegister() : void
 		{
-			view.addBackgroundImage(assets.getBackgroundImage());
-			view.addLogo(assets.getCrowdparkLogo());
-			view.addPlayer(assets.getTextures("hero/knife_right/"));
+			//view.addBackgroundImage(assets.getBackgroundImage());
+			//view.addLogo(assets.getCrowdparkLogo());
+			//view.addPlayer(assets.getTextures("hero/knife_right/"));
 			view.addPlayButton(assets.getPlayButtonTexture());
+			view.addTilesView();
 
 			this.eventMap.mapListener(this.eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
