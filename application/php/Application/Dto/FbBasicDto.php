@@ -2,21 +2,47 @@
 
 namespace Application\Dto
 {
-    
-    use Processus\Abstracts\Vo\AbstractDTO;
 
-    class FbBasicDto extends AbstractDTO
+    class FbBasicDto extends \Processus\Abstracts\Vo\AbstractDTO
     {
         /**
-         * @see Processus\Abstracts\Vo.AbstractDTO::getMapping()
+         * @return array
          */
-        protected function getMapping ()
+        protected function getMapping()
         {
             return array(
-                
-                "id" => "userId", 
-                "name" => "fullName", 
-                "locale" => "language"
+                "id"        => array(
+                    'match'   => "id",
+                    'default' => 0,
+                ),
+                "userId"    => array(
+                    'match'   => "id",
+                    'default' => 0,
+                ),
+                "firstName" => array(
+                    'match'   => "first_name",
+                    'default' => "FirstName",
+                ),
+                "lastName"  => array(
+                    'match'   => "last_name",
+                    'default' => "LastName",
+                ),
+                "fullName"  => array(
+                    'match'   => "name",
+                    'default' => "Name",
+                ),
+                "locale"    => array(
+                    'match'   => "locale",
+                    'default' => "Locale",
+                ),
+                "username"  => array(
+                    'match'   => "id",
+                    'default' => "UserName",
+                ),
+                "isAppUser" => array(
+                    'match'   => 'isAppUser',
+                    'default' => 0
+                ),
             );
         }
     }
