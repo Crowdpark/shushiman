@@ -1,7 +1,5 @@
 package com.crowdpark.sushiman
 {
-	import starling.display.DisplayObjectContainer;
-
 	import com.crowdpark.core.robotlogger.IRobotLoggerService;
 	import com.crowdpark.core.robotlogger.RobotLoggerCommand;
 	import com.crowdpark.core.robotlogger.RobotLoggerEvent;
@@ -18,14 +16,14 @@ package com.crowdpark.sushiman
 	import com.crowdpark.sushiman.model.level.LevelModel;
 	import com.crowdpark.sushiman.model.user.UserAppFriendsModel;
 	import com.crowdpark.sushiman.model.user.UserVo;
-	import com.crowdpark.sushiman.services.ILeaderboardService;
-	import com.crowdpark.sushiman.services.ILevelService;
-	import com.crowdpark.sushiman.services.IScoreService;
-	import com.crowdpark.sushiman.services.IUserService;
-	import com.crowdpark.sushiman.services.LevelService;
+	import com.crowdpark.sushiman.services.EmbeddedLevelService;
 	import com.crowdpark.sushiman.services.MockLeaderboardService;
 	import com.crowdpark.sushiman.services.ScoreService;
 	import com.crowdpark.sushiman.services.UserService;
+	import com.crowdpark.sushiman.services.interfaces.ILeaderboardService;
+	import com.crowdpark.sushiman.services.interfaces.ILevelService;
+	import com.crowdpark.sushiman.services.interfaces.IScoreService;
+	import com.crowdpark.sushiman.services.interfaces.IUserService;
 	import com.crowdpark.sushiman.views.hud.HudMediator;
 	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
@@ -37,9 +35,13 @@ package com.crowdpark.sushiman
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
 	import com.crowdpark.sushiman.views.player.PlayerMediator;
 	import com.crowdpark.sushiman.views.player.PlayerView;
-
+	import com.crowdpark.sushiman.views.tiles.TilesMediator;
+	import com.crowdpark.sushiman.views.tiles.TilesView;
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingContext;
+	import starling.display.DisplayObjectContainer;
+
+
 
 	/**
 	 * @author sandberg
@@ -63,7 +65,7 @@ package com.crowdpark.sushiman
 			// services
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
 			this.injector.mapSingletonOf(ILeaderboardService, MockLeaderboardService);
-			this.injector.mapSingletonOf(ILevelService, LevelService);
+			this.injector.mapSingletonOf(ILevelService, EmbeddedLevelService);
 			this.injector.mapSingletonOf(IUserService, UserService);
 			this.injector.mapSingletonOf(IRobotLoggerService, RobotLoggerTraceService);
 
@@ -72,6 +74,7 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(HudView, HudMediator);
 			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
 			this.mediatorMap.mapView(PlayerView, PlayerMediator);
+			this.mediatorMap.mapView(TilesView, TilesMediator)
 
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);

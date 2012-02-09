@@ -1,9 +1,10 @@
 package com.crowdpark.sushiman.services
 {
-	import com.crowdpark.core.rpc.JsonRpcClientEvent;
 	import com.crowdpark.core.rpc.JsonRpcClient;
-
+	import com.crowdpark.core.rpc.JsonRpcClientEvent;
+	import com.crowdpark.sushiman.services.interfaces.IScoreService;
 	import org.robotlegs.mvcs.Actor;
+
 
 	/**
 	 * @author sandberg

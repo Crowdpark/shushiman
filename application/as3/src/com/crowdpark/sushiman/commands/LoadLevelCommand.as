@@ -1,9 +1,9 @@
 package com.crowdpark.sushiman.commands
 {
-	import com.crowdpark.sushiman.services.ILevelService;
 	import com.crowdpark.sushiman.events.LevelEvent;
-
+	import com.crowdpark.sushiman.services.interfaces.ILevelService;
 	import org.robotlegs.mvcs.StarlingCommand;
+
 
 	/**
 	 * @author sandberg

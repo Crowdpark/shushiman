@@ -1,4 +1,4 @@
-package com.crowdpark.sushiman.services
+package com.crowdpark.sushiman.services.interfaces
 {
 	/**
 	 * @author sandberg

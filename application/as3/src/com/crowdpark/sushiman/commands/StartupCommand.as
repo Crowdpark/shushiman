@@ -3,11 +3,11 @@ package com.crowdpark.sushiman.commands
 	import com.crowdpark.sushiman.events.LevelEvent;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
-	import com.crowdpark.sushiman.services.IUserService;
+	import com.crowdpark.sushiman.services.interfaces.IUserService;
 	import com.crowdpark.sushiman.views.hud.HudEvent;
 	import com.crowdpark.sushiman.views.main.MainContainerEvent;
-
 	import org.robotlegs.mvcs.StarlingCommand;
+
 
 	/**
 	 * @author sandberg
