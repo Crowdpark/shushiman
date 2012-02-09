@@ -63,6 +63,10 @@ package com.crowdpark.sushiman.views.main
 		public function addTilesView():void
 		{
 			tilesView = new TilesView();
+			tilesView.x = 0;
+			tilesView.y = 0;
+			tilesView.width = 760;
+			tilesView.height = 650;
 			this.addChild(tilesView);			
 		}
 
