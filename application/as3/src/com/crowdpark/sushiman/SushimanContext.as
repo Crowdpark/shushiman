@@ -6,13 +6,11 @@ package com.crowdpark.sushiman
 	import com.crowdpark.core.robotlogger.RobotLoggerCommand;
 	import com.crowdpark.core.robotlogger.RobotLoggerEvent;
 	import com.crowdpark.core.robotlogger.RobotLoggerTraceService;
-	import com.crowdpark.sushiman.commands.FacebookLoginCommand;
 	import com.crowdpark.sushiman.commands.LeaderboardCommand;
 	import com.crowdpark.sushiman.commands.LoadLevelCommand;
 	import com.crowdpark.sushiman.commands.PlayGameCommand;
 	import com.crowdpark.sushiman.commands.ScoreCommand;
 	import com.crowdpark.sushiman.commands.StartupCommand;
-	import com.crowdpark.sushiman.events.FacebookEvent;
 	import com.crowdpark.sushiman.events.LevelEvent;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
@@ -61,7 +59,7 @@ package com.crowdpark.sushiman
 			this.injector.mapSingleton(UserVo);
 			this.injector.mapSingleton(UserAppFriendsModel);
 			this.injector.mapSingleton(LevelModel);
-
+			
 			// services
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
 			this.injector.mapSingletonOf(ILeaderboardService, MockLeaderboardService);
@@ -78,7 +76,6 @@ package com.crowdpark.sushiman
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			this.commandMap.mapEvent(PlayerEvent.COLLISION, ScoreCommand);
-			this.commandMap.mapEvent(FacebookEvent.LOGIN, FacebookLoginCommand);
 			this.commandMap.mapEvent(LevelEvent.LOAD, LoadLevelCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_ALL_USERS_LEADERBOARD, LeaderboardCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_FRIENDS_LEADERBOARD, LeaderboardCommand);

@@ -1,7 +1,6 @@
 package com.crowdpark.sushiman.commands
 {
 	import com.crowdpark.sushiman.events.LevelEvent;
-	import com.crowdpark.sushiman.events.FacebookEvent;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.services.IUserService;
@@ -22,7 +21,6 @@ package com.crowdpark.sushiman.commands
 
 		override public function execute() : void
 		{
-			this.dispatch(new FacebookEvent(FacebookEvent.LOGIN));
 			this.dispatch(new LevelEvent(LevelEvent.LOAD, 1));
 			service.getInitialData();
 			this.dispatch(new MainContainerEvent(MainContainerEvent.INIT));
