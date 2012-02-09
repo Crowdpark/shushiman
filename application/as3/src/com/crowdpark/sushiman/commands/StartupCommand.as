@@ -1,6 +1,6 @@
 package com.crowdpark.sushiman.commands
 {
-	import com.crowdpark.sushiman.events.LevelEvent;
+	import com.crowdpark.sushiman.services.interfaces.ILevelService;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.services.interfaces.IUserService;
@@ -17,14 +17,18 @@ package com.crowdpark.sushiman.commands
 		[Inject]
 		public var model : ISushimanModel;
 		[Inject]
-		public var service : IUserService;
+		public var userService : IUserService;
+		[Inject]
+		public var levelService: ILevelService;
 
 		override public function execute() : void
 		{
-			this.dispatch(new LevelEvent(LevelEvent.LOAD, 1));
-			service.getInitialData();
+			userService.getInitialData();
+			levelService.getLevelById(1);
+			
 			this.dispatch(new MainContainerEvent(MainContainerEvent.INIT));
 			this.dispatch(new HudEvent(HudEvent.INIT));
+			
 			model.currentGameState = GameState.INIT;
 		}
 	}
