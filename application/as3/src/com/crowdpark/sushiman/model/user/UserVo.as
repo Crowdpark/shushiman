@@ -1,9 +1,9 @@
-package com.crowdpark.sushiman.model
+package com.crowdpark.sushiman.model.user
 {
 	/**
 	 * @author sandberg
 	 */
-	public class UserModel
+	public class UserVo
 	{
 		private var _firstName:String;
 		private var _lastName : String;
