@@ -6,7 +6,8 @@
  * Time: 2:19 AM
  * To change this template use File | Settings | File Templates.
  */
-class AppUserMvo
+namespace Application\Mvo;
+class AppUserMvo extends \Processus\Lib\Mvo\FacebookUserMvo
 {
 
 }
