@@ -1,18 +1,15 @@
 <?php
 
-namespace Application\JsonRpc\V1\App
+namespace Application\JsonRpc\V1\App;
+class Server extends \Processus\Abstracts\JsonRpc\AbstractJsonRpcServer
 {
-    use Processus\Abstracts\JsonRpc\AbstractJsonRpcServer;
-
-    class Server extends AbstractJsonRpcServer
-    {
-
-        protected $_config = array(
-            'validClasses' => array(
-                'User'
-            )
-        );
-    }
+    protected $_config = array(
+        'namespace'    => __NAMESPACE__,
+        'validClasses' => array(
+            'User'
+        )
+    );
 }
+
 
 ?>

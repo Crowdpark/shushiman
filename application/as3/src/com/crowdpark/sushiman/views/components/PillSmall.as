@@ -5,6 +5,7 @@ package com.crowdpark.sushiman.views.components
 
 	import flash.display.BitmapData;
 	import flash.display.Sprite;
+
 	/**
 	 * @author sandberg
 	 */

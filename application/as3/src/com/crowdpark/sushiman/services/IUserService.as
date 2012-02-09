@@ -5,5 +5,6 @@ package com.crowdpark.sushiman.services
 	 */
 	public interface IUserService
 	{
+		function getInitialData() : void;
 	}
 }

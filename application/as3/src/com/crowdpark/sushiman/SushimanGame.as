@@ -2,7 +2,6 @@ package com.crowdpark.sushiman
 {
 	import fr.kouma.starling.utils.Stats;
 
-	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.main.MainContainerView;
 
@@ -34,12 +33,9 @@ package com.crowdpark.sushiman
 			_hudView = new HudView();
 			_mainView = new MainContainerView();
 			addChild(_mainView);
-			addChild(_stats);
-			//addChild(_hudView);
-			//addChild(new LeaderboardView());	
+			
 			addChild(_stats);
 			addChild(_hudView);
-			addChild(new LeaderboardView());
 		}
 	}
 }

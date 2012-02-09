@@ -31,23 +31,38 @@ package com.crowdpark.core.rpc
 			_httpService.addEventListener(ResultEvent.RESULT, this._onResultCallback ||= this._onResult);
 
 			_httpService.method = "POST";
-			
+
 			if (this.url.length < 5)
 			{
 				throw new Error("Url not available");
 			}
-			
+
 			_httpService.url = this.url;
 			_httpService.contentType = "application/json";
 			_httpService.resultFormat = HTTPService.RESULT_FORMAT_TEXT;
-			_httpService.request = JSON.stringify({"id":"1", "method":this.method ||= "App.User.getInitialData", "params":this.params ||= []});
-			_httpService.send();
+			_httpService.send(JSON.stringify({"id":"1", "method":this.method ||= "App.User.getInitialData", "params":this.params ||= []}));
 		}
 
 		protected function _onResult(event : ResultEvent) : void
 		{
-			var newEvent : JsonRpcClientEvent = new JsonRpcClientEvent(JsonRpcClientEvent.RESULT);
-			newEvent.dataProvider = event.result;
+			var result : Object = JSON.parse((event.result as String));
+			var eventDataProvider : Object;
+			var eventType : String;
+
+			if (result['error'])
+			{
+				eventDataProvider = result['error'];
+				eventType = JsonRpcClientEvent.FAULT;
+			}
+			else
+			{
+				eventDataProvider = result['result'];
+				eventType = JsonRpcClientEvent.RESULT;
+			}
+
+			var newEvent : JsonRpcClientEvent = new JsonRpcClientEvent(eventType);
+			newEvent.dataProvider = eventDataProvider;
+			
 			dispatchEvent(newEvent);
 		}
 
