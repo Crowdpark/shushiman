@@ -6,10 +6,12 @@ assets/sushiman_5.swf
 .settings/com.powerflasher.fdt.core.prefs
 .settings/launch
 .settings/org.eclipse.core.resources.prefs
-bin/
+.settings/*
 assets/RECOVER_sushiman_5.fla
+bin/*
 bin/Main.swf
 *.swf
+.idea/*
 .idea/encodings.xml
 .idea/misc.xml
 .idea/modules.xml

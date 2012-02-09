@@ -23,16 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88294790-7d70-4c8c-a3b5-d11a33b3c141" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/php/Application/Commands/FacebookLoginCommand.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/Processus" afterPath="$PROJECT_DIR$/library/Processus" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/SushimanContext.as" afterPath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/SushimanContext.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/model/ISushimanModel.as" afterPath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/model/ISushimanModel.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/model/SushimanModel.as" afterPath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/model/SushimanModel.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/services/IUserService.as" afterPath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/services/IUserService.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/services/MockLeaderboardService.as" afterPath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/services/MockLeaderboardService.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/services/UserService.as" afterPath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/services/UserService.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/views/components/LeaderboardField.as" afterPath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/views/components/LeaderboardField.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/views/leaderboard/LeaderboardMediator.as" afterPath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/views/leaderboard/LeaderboardMediator.as" />
     </list>
     <ignored path="shushiman.iws" />
     <ignored path=".idea/workspace.xml" />
