@@ -1,9 +1,10 @@
 package com.crowdpark.sushiman.model
 {
+	import com.crowdpark.sushiman.model.user.UserVo;
 	import com.crowdpark.sushiman.views.components.CollisionObject;
 	import com.crowdpark.sushiman.views.components.PillSmall;
-
 	import org.robotlegs.mvcs.Actor;
+
 
 	/**
 	 * @author sandberg
@@ -17,8 +18,8 @@ package com.crowdpark.sushiman.model
 		private var _score : int;
 		private var _numLives : int;
 		private var _numOctopussies : int;
-		private var _leaderboardFriends : Vector.<User>;
-		private var _leaderboardAll : Vector.<User>;
+		private var _leaderboardFriends : Vector.<UserVo>;
+		private var _leaderboardAll : Vector.<UserVo>;
 
 		public function resetAllValues() : void
 		{
@@ -35,7 +36,7 @@ package com.crowdpark.sushiman.model
 			}
 		}
 
-		private function sortUsersByHighscore(firstUser : User, secondUser : User) : Number
+		private function sortUsersByHighscore(firstUser : UserVo, secondUser : UserVo) : Number
 		{
 			if (firstUser.score > secondUser.score)
 			{
@@ -98,24 +99,24 @@ package com.crowdpark.sushiman.model
 			_currentGameLevel = currentGameLevel;
 		}
 
-		public function get leaderboardFriends() : Vector.<User>
+		public function get leaderboardFriends() : Vector.<UserVo>
 		{
 			return _leaderboardFriends;
 		}
 
-		public function set leaderboardFriends(leaderboardFriends : Vector.<User>) : void
+		public function set leaderboardFriends(leaderboardFriends : Vector.<UserVo>) : void
 		{
 			leaderboardFriends.sort(sortUsersByHighscore);
 			_leaderboardFriends = leaderboardFriends;
 			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_LEADERBOARD_FRIENDS));
 		}
 
-		public function get leaderboardAll() : Vector.<User>
+		public function get leaderboardAll() : Vector.<UserVo>
 		{
 			return _leaderboardAll;
 		}
 
-		public function set leaderboardAll(leaderboardAll : Vector.<User>) : void
+		public function set leaderboardAll(leaderboardAll : Vector.<UserVo>) : void
 		{
 			leaderboardAll.sort(sortUsersByHighscore);
 			_leaderboardAll = leaderboardAll;
