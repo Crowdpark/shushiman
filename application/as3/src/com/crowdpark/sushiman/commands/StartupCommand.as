@@ -1,9 +1,10 @@
 package com.crowdpark.sushiman.commands
 {
-	import com.crowdpark.sushiman.services.UserService;
 	import com.crowdpark.sushiman.model.ISushimanModel;
+	import com.crowdpark.sushiman.services.IUserService;
 	import com.crowdpark.sushiman.views.hud.HudEvent;
 	import com.crowdpark.sushiman.views.main.MainContainerEvent;
+
 	import org.robotlegs.mvcs.StarlingCommand;
 
 	/**
@@ -15,7 +16,7 @@ package com.crowdpark.sushiman.commands
 		public var model:ISushimanModel;
 		
 		[Inject]
-		public var service : UserService;
+		public var service : IUserService;
 		
 		override public function execute():void
 		{
