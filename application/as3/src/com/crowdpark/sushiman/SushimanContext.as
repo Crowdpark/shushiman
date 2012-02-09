@@ -1,18 +1,20 @@
 package com.crowdpark.sushiman
 {
-	import com.crowdpark.sushiman.commands.LevelCommand;
-	import com.crowdpark.sushiman.services.IUserService;
+	import com.crowdpark.sushiman.model.user.UserAppFriendsModel;
 	import starling.display.DisplayObjectContainer;
 
 	import com.crowdpark.sushiman.commands.LeaderboardCommand;
+	import com.crowdpark.sushiman.commands.LevelCommand;
 	import com.crowdpark.sushiman.commands.ScoreCommand;
 	import com.crowdpark.sushiman.commands.StartupCommand;
 	import com.crowdpark.sushiman.events.PlayerEvent;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.SushimanModel;
+	import com.crowdpark.sushiman.model.user.UserVo;
 	import com.crowdpark.sushiman.services.ILeaderboardService;
 	import com.crowdpark.sushiman.services.IScoreService;
+	import com.crowdpark.sushiman.services.IUserService;
 	import com.crowdpark.sushiman.services.MockLeaderboardService;
 	import com.crowdpark.sushiman.services.ScoreService;
 	import com.crowdpark.sushiman.services.UserService;
@@ -26,6 +28,8 @@ package com.crowdpark.sushiman
 
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.StarlingContext;
+
+
 
 	/**
 	 * @author sandberg
@@ -42,6 +46,8 @@ package com.crowdpark.sushiman
 			// model
 			this.injector.mapSingletonOf(ISushimanModel, SushimanModel);
 			this.injector.mapSingleton(AssetsModel);
+			this.injector.mapSingleton(UserVo);
+			this.injector.mapSingleton(UserAppFriendsModel);
 			
 			// services
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
