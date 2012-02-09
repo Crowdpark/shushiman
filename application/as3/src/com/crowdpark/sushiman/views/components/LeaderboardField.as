@@ -1,8 +1,8 @@
 package com.crowdpark.sushiman.views.components
 {
-	import com.crowdpark.sushiman.model.user.UserVo;
 	import starling.text.TextField;
 
+	import com.crowdpark.sushiman.model.user.UserVo;
 	/**
 	 * @author sandberg
 	 */

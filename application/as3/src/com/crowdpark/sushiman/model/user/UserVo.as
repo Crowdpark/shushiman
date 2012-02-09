@@ -5,7 +5,7 @@ package com.crowdpark.sushiman.model.user
 	 */
 	public class UserVo
 	{
-		private var _firstName:String;
+		private var _firstName : String;
 		private var _lastName : String;
 		private var _score : int;
 

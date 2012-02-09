@@ -5,6 +5,6 @@ package com.crowdpark.sushiman.services
 	 */
 	public interface IScoreService
 	{
-		function setScore(score:int):void;
+		function setScore(score : int) : void;
 	}
 }

@@ -1,11 +1,13 @@
 package com.crowdpark.sushiman.model
 {
+	import com.crowdpark.core.robotlogger.RobotLoggerEvent;
+	import com.crowdpark.sushiman.model.gamestate.GameState;
+	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.user.UserVo;
 	import com.crowdpark.sushiman.views.components.CollisionObject;
 	import com.crowdpark.sushiman.views.components.PillSmall;
+
 	import org.robotlegs.mvcs.Actor;
-
-
 	/**
 	 * @author sandberg
 	 */
@@ -14,6 +16,7 @@ package com.crowdpark.sushiman.model
 		public static const INIT_SCORE : int = 0;
 		public static const INIT_NUM_LIVES : int = 3;
 		public static const INIT_NUM_OCTOPUSSIES : int = 10;
+		private var _currentGameState : String = GameState.INIT;
 		private var _currentGameLevel : int;
 		private var _score : int;
 		private var _numLives : int;
@@ -74,7 +77,7 @@ package com.crowdpark.sushiman.model
 			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_NUM_LIVES));
 			if (numLives <= 0)
 			{
-				dispatch(new SushimanModelEvent(SushimanModelEvent.GAME_OVER));
+				this.currentGameState = GameState.GAME_OVER;
 			}
 		}
 
@@ -121,6 +124,36 @@ package com.crowdpark.sushiman.model
 			leaderboardAll.sort(sortUsersByHighscore);
 			_leaderboardAll = leaderboardAll;
 			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_LEADERBOARD_ALL));
+		}
+
+		public function get currentGameState() : String
+		{
+			return _currentGameState;
+		}
+
+		public function set currentGameState(currentGameState : String) : void
+		{
+			_currentGameState = currentGameState;
+
+			switch(currentGameState)
+			{
+				case GameState.INIT:
+					break;
+				case GameState.PLAYING:
+					break;
+				case GameState.LEVEL_COMPLETE:
+					break;
+				case GameState.LIFE_LOST:
+					numLives--;
+					break;
+				case GameState.GAME_OVER:
+					break;
+				default:
+					break;
+			}
+			var msg:String = "Current gamestate changed to " + currentGameState;
+			dispatch(new GameStateChangedEvent(GameStateChangedEvent.CHANGE, currentGameState));
+			dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_INFO, SushimanModel, msg));
 		}
 	}
 }

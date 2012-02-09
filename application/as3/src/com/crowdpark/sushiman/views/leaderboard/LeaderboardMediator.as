@@ -4,8 +4,8 @@ package com.crowdpark.sushiman.views.leaderboard
 	import com.crowdpark.sushiman.model.SushimanModelEvent;
 	import com.crowdpark.sushiman.model.user.UserVo;
 	import com.crowdpark.sushiman.views.components.LeaderboardField;
+
 	import org.robotlegs.mvcs.StarlingMediator;
-	import utils.display.addChild;
 
 	/**
 	 * @author sandberg
@@ -13,24 +13,24 @@ package com.crowdpark.sushiman.views.leaderboard
 	public class LeaderboardMediator extends StarlingMediator
 	{
 		[Inject]
-		public var model:ISushimanModel;
+		public var model : ISushimanModel;
 		[Inject]
-		public var view:LeaderboardView;
-		
-		override public function onRegister():void
+		public var view : LeaderboardView;
+
+		override public function onRegister() : void
 		{
-			this.eventMap.mapListener(this.eventDispatcher,SushimanModelEvent.UPDATED_LEADERBOARD_ALL, leaderboardUpdateHandler);
-			this.eventMap.mapListener(this.eventDispatcher,SushimanModelEvent.UPDATED_LEADERBOARD_FRIENDS, leaderboardUpdateHandler);
+			this.eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_LEADERBOARD_ALL, leaderboardUpdateHandler);
+			this.eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_LEADERBOARD_FRIENDS, leaderboardUpdateHandler);
 			this.dispatch(new LeaderboardEvent(LeaderboardEvent.GET_ALL_USERS_LEADERBOARD));
 		}
 
-		private function leaderboardUpdateHandler(event:SushimanModelEvent) : void
+		private function leaderboardUpdateHandler(event : SushimanModelEvent) : void
 		{
-			var counter:int = 0;
+			var counter : int = 0;
 			for each (var user:UserVo in model.leaderboardAll)
 			{
 				counter++;
-				var field:LeaderboardField = new LeaderboardField(user);
+				var field : LeaderboardField = new LeaderboardField(user);
 				field.y = (counter * field.height) + 10;
 				view.addChild(field);
 			}

@@ -3,17 +3,16 @@ package com.crowdpark.sushiman.services
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.user.UserVo;
 	import com.crowdpark.sushiman.utils.StringGenerator;
+
 	import org.robotlegs.mvcs.Actor;
-
-
 	/**
 	 * @author sandberg
 	 */
 	public class MockLeaderboardService extends Actor implements ILeaderboardService
 	{
 		[Inject]
-		public var model:ISushimanModel;
-		
+		public var model : ISushimanModel;
+
 		public function MockLeaderboardService()
 		{
 		}
@@ -44,12 +43,12 @@ package com.crowdpark.sushiman.services
 				lname = StringGenerator.generateString(10);
 				score = Math.random() * 1000;
 				
-				var userModel : UserVo = new UserVo();
-				userModel.firstName = fname;
-				userModel.lastName = lname;
-				userModel.score = score;
+				var userVo : UserVo = new UserVo();
+				userVo.firstName = fname;
+				userVo.lastName = lname;
+				userVo.score = score;
 				
-				users.push(userModel);
+				users.push(userVo);
 			}
 			return users;
 		}
