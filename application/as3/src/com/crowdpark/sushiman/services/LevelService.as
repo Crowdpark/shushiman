@@ -14,12 +14,12 @@ package com.crowdpark.sushiman.services
 		public var model:LevelModel;
 		
 	    //[Embed(source="data.json",mimeType="application/octet-stream")]
-	    private const JsonData : Class;
+	    //private const JsonData : Class;
 		
 		
 		public function getLevelById(levelNum : int) : void
 		{
-			onResult(new JsonData());
+			//onResult(new JsonData());
 		}
 
 		public function onResult(data:Object) : void
