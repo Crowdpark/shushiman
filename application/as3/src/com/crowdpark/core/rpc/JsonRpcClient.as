@@ -40,14 +40,25 @@ package com.crowdpark.core.rpc
 			_httpService.url = this.url;
 			_httpService.contentType = "application/json";
 			_httpService.resultFormat = HTTPService.RESULT_FORMAT_TEXT;
-			_httpService.request = JSON.stringify({"id":"1", "method":this.method ||= "App.User.getInitialData", "params":this.params ||= []});
-			_httpService.send();
+			_httpService.send(JSON.stringify({"id":"1", "method":this.method ||= "App.User.getInitialData", "params":this.params ||= []}));
 		}
 
 		protected function _onResult(event : ResultEvent) : void
 		{
-			var newEvent : JsonRpcClientEvent = new JsonRpcClientEvent(JsonRpcClientEvent.RESULT);
-			newEvent.dataProvider = event.result;
+			
+			var result : Object = JSON.parse((event.result as String));
+			
+			if(result['error'])
+			{
+				var newEvent : JsonRpcClientEvent = new JsonRpcClientEvent(JsonRpcClientEvent.FAULT);
+				newEvent.dataProvider = result['error'];
+			}
+			else
+			{
+				var newEvent : JsonRpcClientEvent = new JsonRpcClientEvent(JsonRpcClientEvent.RESULT);
+				newEvent.dataProvider = result['result'];
+			}
+			
 			dispatchEvent(newEvent);
 		}
 
