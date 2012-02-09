@@ -1,11 +1,10 @@
 package com.crowdpark.sushiman.services
 {
 	import com.crowdpark.sushiman.model.ISushimanModel;
+	import com.crowdpark.sushiman.model.user.UserVo;
 	import com.crowdpark.sushiman.utils.StringGenerator;
-	import com.crowdpark.sushiman.model.User;
 	import org.robotlegs.mvcs.Actor;
 
-	import com.crowdpark.sushiman.services.ILeaderboardService;
 
 	/**
 	 * @author sandberg
@@ -21,20 +20,20 @@ package com.crowdpark.sushiman.services
 
 		public function getFriendsLeaderboard() : void
 		{
-			var users:Vector.<User> = generateUsers(); 
+			var users:Vector.<UserVo> = generateUsers(); 
 			model.leaderboardFriends = users;
 		}
 
 		public function getAllUserLeaderboard() : void
 		{
-			var users:Vector.<User> = generateUsers(); 
+			var users:Vector.<UserVo> = generateUsers(); 
 			model.leaderboardAll = users;
 		}
 		
-		private function generateUsers():Vector.<User>
+		private function generateUsers():Vector.<UserVo>
 		{
 			var n:int = 10;
-			var users:Vector.<User> = new Vector.<User>();
+			var users:Vector.<UserVo> = new Vector.<UserVo>();
 			var fname:String;
 			var lname:String;
 			var score:int;
@@ -44,7 +43,13 @@ package com.crowdpark.sushiman.services
 				fname = StringGenerator.generateString(10);
 				lname = StringGenerator.generateString(10);
 				score = Math.random() * 1000;
-				users.push(new User(fname,lname,score));
+				
+				var userModel : UserVo = new UserVo();
+				userModel.firstName = fname;
+				userModel.lastName = lname;
+				userModel.score = score;
+				
+				users.push(userModel);
 			}
 			return users;
 		}
