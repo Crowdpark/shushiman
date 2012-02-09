@@ -3,18 +3,11 @@ package com.crowdpark.sushiman.model
 	/**
 	 * @author sandberg
 	 */
-	public class User
+	public class UserModel
 	{
 		private var _firstName:String;
 		private var _lastName : String;
 		private var _score : int;
-		
-		public function User(firstName:String, lastName:String, score:int)
-		{
-			this.firstName = firstName;
-			this.lastName = lastName;
-			this.score = score;
-		}
 
 		public function get firstName() : String
 		{
