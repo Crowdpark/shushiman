@@ -6,7 +6,7 @@ package com.crowdpark.sushiman.model.level
 	public class Level
 	{
 		private var _id : String;
-		private var _fields :Vector.<Tile>;
+		private var _fields : Vector.<Tile>;
 
 		public function get id() : String
 		{
@@ -27,7 +27,5 @@ package com.crowdpark.sushiman.model.level
 		{
 			_fields = fields;
 		}
-
-
 	}
 }

@@ -5,9 +5,8 @@ package com.crowdpark.sushiman.model.level
 	 */
 	public class Tile
 	{
-		
-		private var _id:int;
-		private var _type:String;
+		private var _id : int;
+		private var _type : String;
 		private var _x : Number;
 		private var _y : Number;
 
