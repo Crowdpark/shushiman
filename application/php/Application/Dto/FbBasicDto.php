@@ -43,6 +43,10 @@ namespace Application\Dto
                     'match'   => 'isAppUser',
                     'default' => 0
                 ),
+                "score" => array(
+                    'match'   => 'score',
+                    'default' => 1110
+                ),
             );
         }
     }
