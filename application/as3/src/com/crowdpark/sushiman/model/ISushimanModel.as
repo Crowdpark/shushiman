@@ -11,6 +11,10 @@ package com.crowdpark.sushiman.model
 		function updateScoreByCollisionObject(collisionObject : CollisionObject) : void;
 
 		function resetAllValues() : void;
+		
+		function get user():UserVo;
+		
+		function set user(user:UserVo):void;
 
 		function get currentGameState() : String;
 

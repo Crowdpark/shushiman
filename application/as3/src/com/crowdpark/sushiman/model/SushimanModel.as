@@ -8,14 +8,18 @@ package com.crowdpark.sushiman.model
 	import com.crowdpark.sushiman.views.components.PillSmall;
 
 	import org.robotlegs.mvcs.Actor;
+	
 	/**
 	 * @author sandberg
 	 */
+	 
 	public class SushimanModel extends Actor implements ISushimanModel
 	{
 		public static const INIT_SCORE : int = 0;
 		public static const INIT_NUM_LIVES : int = 3;
 		public static const INIT_NUM_OCTOPUSSIES : int = 10;
+		
+		private var _user:UserVo;
 		private var _currentGameState : String = GameState.INIT;
 		private var _currentGameLevel : int;
 		private var _score : int;
@@ -154,6 +158,16 @@ package com.crowdpark.sushiman.model
 			var msg:String = "Current gamestate changed to " + currentGameState;
 			dispatch(new GameStateChangedEvent(GameStateChangedEvent.CHANGE, currentGameState));
 			dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_INFO, SushimanModel, msg));
+		}
+
+		public function get user() : UserVo
+		{
+			return _user;
+		}
+
+		public function set user(user : UserVo) : void
+		{
+			_user = user;
 		}
 	}
 }

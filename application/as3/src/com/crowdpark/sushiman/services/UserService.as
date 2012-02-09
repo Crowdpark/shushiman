@@ -5,6 +5,7 @@ package com.crowdpark.sushiman.services
 	import com.crowdpark.core.rpc.JsonRpcClientEvent;
 	import com.crowdpark.sushiman.model.user.UserAppFriendsModel;
 	import com.crowdpark.sushiman.model.user.UserVo;
+	import com.crowdpark.sushiman.services.interfaces.IUserService;
 
 	/**
 	 * @author francis

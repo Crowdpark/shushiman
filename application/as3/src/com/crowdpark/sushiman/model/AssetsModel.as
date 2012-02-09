@@ -10,16 +10,20 @@ package com.crowdpark.sushiman.model
 
 	public class AssetsModel extends Actor
 	{
-		[Embed(source="../assets/character/character.xml",mimeType="application/octet-stream")]
-		public var AtlasXML : Class;
-		[Embed(source="../assets/character/character.png")]
-		public var AtlasTexture : Class;
+		
+		[Embed(source="../assets/spritesheets/character.xml",mimeType="application/octet-stream")]
+		public var AtlasXML:Class;
+		
+		[Embed(source="../assets/spritesheets/character.png")]
+		public var AtlasTexture:Class;
+		
 		[Embed(source="../assets/background.png")]
 		public var Background : Class;
 		[Embed(source="../assets/crowdpark.png")]
 		public var CrowdparkLogo : Class;
 		[Embed(source="../assets/btn_play.png")]
 		public var PlayButton : Class;
+
 		private var _atlas : TextureAtlas;
 		private var _xml : XML;
 		private var _texture : Texture;

@@ -2,9 +2,10 @@ package com.crowdpark.sushiman.services
 {
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.user.UserVo;
+	import com.crowdpark.sushiman.services.interfaces.ILeaderboardService;
 	import com.crowdpark.sushiman.utils.StringGenerator;
-
 	import org.robotlegs.mvcs.Actor;
+
 	/**
 	 * @author sandberg
 	 */

@@ -2,7 +2,7 @@ package com.crowdpark.sushiman.commands
 {
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
-	import com.crowdpark.sushiman.services.IUserService;
+	import com.crowdpark.sushiman.services.interfaces.IUserService;
 	import com.crowdpark.sushiman.views.hud.HudEvent;
 	import com.crowdpark.sushiman.views.main.MainContainerEvent;
 
@@ -16,13 +16,15 @@ package com.crowdpark.sushiman.commands
 		[Inject]
 		public var model : ISushimanModel;
 		[Inject]
-		public var service : IUserService;
+		public var userService : IUserService;
 
 		override public function execute() : void
 		{
-			service.getInitialData();
+			userService.getInitialData();
+
 			this.dispatch(new MainContainerEvent(MainContainerEvent.INIT));
 			this.dispatch(new HudEvent(HudEvent.INIT));
+
 			model.currentGameState = GameState.INIT;
 		}
 	}
