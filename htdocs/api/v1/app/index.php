@@ -1,7 +1,5 @@
 <?php
 
-    use Application\JsonRpc\V1\App\Gateway;
-
     $processusCorePath = '../../../../library/Processus/core/';
     $applicationPath = '../../../../application/php/Application/';
 
@@ -13,7 +11,7 @@
     $bootstrap = \Application\ApplicationBootstrap::getInstance();
     $bootstrap->init();
 
-    $gtw = new Gateway();
+    $gtw = new \Application\JsonRpc\V1\App\Gateway();
     $gtw->run();
 
  ?>
