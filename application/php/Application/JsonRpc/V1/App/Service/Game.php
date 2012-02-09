@@ -6,7 +6,8 @@
  * Time: 1:29 AM
  * To change this template use File | Settings | File Templates.
  */
-class Game
+namespace Application\JsonRpc\V1\App\Service;
+class Game extends \Processus\Abstracts\JsonRpc\AbstractJsonRpcService
 {
 
 }
