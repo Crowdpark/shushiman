@@ -4,11 +4,10 @@ package com.crowdpark.sushiman.services
 	import com.crowdpark.sushiman.model.level.LevelModel;
 	import com.crowdpark.sushiman.model.level.Tile;
 	import com.crowdpark.sushiman.services.interfaces.ILevelService;
+
 	import flash.utils.ByteArray;
+
 	import org.robotlegs.mvcs.Actor;
-
-
-
 
 	/**
 	 * @author sandberg

@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.services.LevelService;
 	import com.crowdpark.core.robotlogger.IRobotLoggerService;
 	import com.crowdpark.core.robotlogger.RobotLoggerCommand;
 	import com.crowdpark.core.robotlogger.RobotLoggerEvent;
@@ -65,6 +66,7 @@ package com.crowdpark.sushiman
 			// services
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
 			this.injector.mapSingletonOf(ILeaderboardService, MockLeaderboardService);
+			//this.injector.mapSingletonOf(ILevelService, LevelService);
 			this.injector.mapSingletonOf(ILevelService, EmbeddedLevelService);
 			this.injector.mapSingletonOf(IUserService, UserService);
 			this.injector.mapSingletonOf(IRobotLoggerService, RobotLoggerTraceService);
@@ -74,7 +76,7 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(HudView, HudMediator);
 			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
 			this.mediatorMap.mapView(PlayerView, PlayerMediator);
-			this.mediatorMap.mapView(TilesView, TilesMediator)
+			this.mediatorMap.mapView(TilesView, TilesMediator);
 
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
