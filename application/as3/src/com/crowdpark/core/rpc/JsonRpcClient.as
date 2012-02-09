@@ -46,11 +46,23 @@ package com.crowdpark.core.rpc
 		protected function _onResult(event : ResultEvent) : void
 		{
 			var result : Object = JSON.parse((event.result as String));
-			var eventDataProvider : Object = result['error'] ||= result['result'];
+			var eventDataProvider : Object;
+			var eventType : String;
 
-			var newEvent : JsonRpcClientEvent = new JsonRpcClientEvent(JsonRpcClientEvent.FAULT);
+			if (result['error'])
+			{
+				eventDataProvider = result['error'];
+				eventType = JsonRpcClientEvent.FAULT;
+			}
+			else
+			{
+				eventDataProvider = result['result'];
+				eventType = JsonRpcClientEvent.RESULT;
+			}
+
+			var newEvent : JsonRpcClientEvent = new JsonRpcClientEvent(eventType);
 			newEvent.dataProvider = eventDataProvider;
-
+			
 			dispatchEvent(newEvent);
 		}
 
