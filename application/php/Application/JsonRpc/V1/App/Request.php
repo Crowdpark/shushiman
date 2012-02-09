@@ -1,14 +1,10 @@
 <?php
 
-namespace Application\JsonRpc\V1\App
+namespace Application\JsonRpc\V1\App;
+class Request extends \Processus\Abstracts\JsonRpc\AbstractJsonRpcRequest
 {
-    
-    use Processus\Abstracts\JsonRpc\AbstractJsonRpcRequest;
 
-    class Request extends AbstractJsonRpcRequest
-    {
-    
-    }
 }
+
 
 ?>
