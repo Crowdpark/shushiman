@@ -1,4 +1,4 @@
-package com.crowdpark.sushiman.commands.events
+package com.crowdpark.sushiman.events
 {
 	import flash.events.Event;
 
