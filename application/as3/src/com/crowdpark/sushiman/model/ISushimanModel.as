@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.model
 {
+	import com.crowdpark.sushiman.model.user.UserVo;
 	import com.crowdpark.sushiman.views.components.CollisionObject;
 	/**
 	 * @author sandberg
@@ -16,9 +17,9 @@ package com.crowdpark.sushiman.model
 		function set numOctopussies(value:int):void;
 		function get currentGameLevel():int;
 		function set currentGameLevel(value:int):void;
-		function get leaderboardFriends() : Vector.<User>;
-		function set leaderboardFriends(leaderboardFriends : Vector.<User>) : void;
-		function get leaderboardAll() : Vector.<User>;
-		function set leaderboardAll(leaderboardAll : Vector.<User>) : void;
+		function get leaderboardFriends() : Vector.<UserVo>;
+		function set leaderboardFriends(leaderboardFriends : Vector.<UserVo>) : void;
+		function get leaderboardAll() : Vector.<UserVo>;
+		function set leaderboardAll(leaderboardAll : Vector.<UserVo>) : void;
 	}
 }
