@@ -3,7 +3,7 @@ return array(
     'application'    => array(
         'state'       => 'development',
         'host'        => '',
-        'name'        => 'shakeonitapp',
+        'name'        => 'sushihackman',
         'expiredTime' => array(
             'default'    => 10,
             'mysqlCache' => 10,
@@ -93,7 +93,7 @@ return array(
                         'host'           => 'localhost',
                         'username'       => 'root',
                         'password'       => 'root',
-                        'dbname'         => 'suhsihackman',
+                        'dbname'         => 'shushihackman',
                         'driver_options' => array(
                             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"
                         )
