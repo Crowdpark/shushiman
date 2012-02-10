@@ -1,6 +1,5 @@
 package com.crowdpark.sushiman.views.player
 {
-	import com.crowdpark.sushiman.views.components.CollisionObject;
 
 	import flash.events.Event;
 
@@ -12,23 +11,23 @@ package com.crowdpark.sushiman.views.player
 		public static const MOVING : String = "PlayerEvent.MOVING";
 		public static const COLLISION : String = "PlayerEvent.COLLISION";
 
-		private var _collisionObject : CollisionObject;
+		private var _assetType:String;
 
-		public function PlayerEvent(type : String, collisionObject : CollisionObject = null)
+		public function PlayerEvent(type : String, assetType:String="")
 		{
-			this.collisionObject = collisionObject;
-
+			this.assetType = assetType;
 			super(type);
 		}
 
-		public function get collisionObject() : CollisionObject
+		public function get assetType() : String 
 		{
-			return _collisionObject;
+			return _assetType;
 		}
 
-		public function set collisionObject(collisionObject : CollisionObject) : void
+		public function set assetType(assetType : String) : void 
 		{
-			_collisionObject = collisionObject;
+			_assetType = assetType;
 		}
+
 	}
 }

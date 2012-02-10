@@ -4,7 +4,6 @@ package com.crowdpark.sushiman.views.components
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.fnicollet.BitmapDataCacher;
 	import flash.display.BitmapData;
-	import starling.display.Sprite;
 	import starling.display.Image;
 	import starling.textures.Texture;
 	import com.crowdpark.sushiman.model.level.TileData;
@@ -12,20 +11,20 @@ package com.crowdpark.sushiman.views.components
 	/**
 	 * @author sandberg
 	 */
-	public class Tile extends CollisionImage
+	public class Tile extends Image
 	{
 		private var _tileData:TileData;
 		private var _texture:Texture;
-		private var _textureId:String;
+		private var _textureType:String;
 		private var _bmd:BitmapData;
 		
-		public function Tile(textureId:String, texture:Texture, tileData:TileData)
+		public function Tile(textureType:String, texture:Texture, tileData:TileData)
 		{
-			this.textureId = textureId;
+			this.textureType = textureType;
 			this._texture = texture;
 			this.tileData = tileData;
 
-			this.bmd = BitmapDataCacher.getBitmapData(AssetsModel.CACHE_ID, textureId);
+			this.bmd = BitmapDataCacher.getBitmapData(AssetsModel.CACHE_ID, textureType);
 			
 			super(texture);
 			
@@ -43,14 +42,14 @@ package com.crowdpark.sushiman.views.components
 			_tileData = tileData;
 		}
 
-		public function get textureId() : String
+		public function get textureType() : String
 		{
-			return _textureId;
+			return _textureType;
 		}
 
-		public function set textureId(textureId : String) : void
+		public function set textureType(textureId : String) : void
 		{
-			_textureId = textureId;
+			_textureType = textureId;
 		}
 
 		public function get bmd() : BitmapData

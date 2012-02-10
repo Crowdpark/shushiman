@@ -1,14 +1,13 @@
 package com.crowdpark.sushiman.model
 {
 	import com.crowdpark.sushiman.model.user.UserVo;
-	import com.crowdpark.sushiman.views.components.CollisionObject;
 
 	/**
 	 * @author sandberg
 	 */
 	public interface ISushimanModel
 	{
-		function updateScoreByCollisionObject(collisionObject : CollisionObject) : void;
+		function updateScoreByCollisionObject(assetType:String) : void;
 
 		function resetAllValues() : void;
 		

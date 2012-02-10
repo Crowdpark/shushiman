@@ -1,7 +1,6 @@
-package com.crowdpark.sushiman.views.tiles {
-	import starling.display.Image;
+package com.crowdpark.sushiman.views.tiles 
+{
 
-	import flash.display.BitmapData;
 
 	import starling.textures.Texture;
 

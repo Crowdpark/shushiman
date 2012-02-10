@@ -7,7 +7,6 @@ package com.crowdpark.sushiman.views.main
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 
-	import com.crowdpark.sushiman.views.components.PillSmall;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.player.PlayerView;
 
@@ -17,7 +16,6 @@ package com.crowdpark.sushiman.views.main
 	public class MainContainerView extends Sprite
 	{
 		public var player : PlayerView;
-		public var pills : Vector.<PillSmall>;
 		public var leaderBoard : LeaderboardView;
 		public var tilesView:TilesView;
 		
@@ -70,27 +68,5 @@ package com.crowdpark.sushiman.views.main
 			this.addChild(tilesView);			
 		}
 
-		/*
-		 * Remove pills from stage and returns num of pills left
-		 */
-		public function removePillSmall(pillToRemove : PillSmall) : int
-		{
-			var n : int = pills.length;
-			var pill : PillSmall;
-
-			for (var i : int = 0; i < n;i++)
-			{
-				pill = pills[i];
-				if (pill == pillToRemove)
-				{
-					pills.splice(i,1);
-					if (contains(pill))
-					{
-						removeChild(pill);
-					}
-				}
-			}
-			return pills.length;
-		}
 	}
 }

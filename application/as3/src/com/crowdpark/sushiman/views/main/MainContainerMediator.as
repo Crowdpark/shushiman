@@ -1,9 +1,5 @@
 package com.crowdpark.sushiman.views.main
 {
-	import starling.display.Sprite;
-	import flash.display.Sprite;
-	import flash.display.BitmapData;
-	import com.fnicollet.BitmapDataCacher;
 	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.views.components.Tile;
 	import starling.events.Event;
@@ -12,7 +8,6 @@ package com.crowdpark.sushiman.views.main
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
-	import com.crowdpark.sushiman.views.components.PillSmall;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
 
@@ -126,7 +121,7 @@ package com.crowdpark.sushiman.views.main
 				if (this.view.tilesView.getChildAt(i) is Tile)
 				{
 					var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
-					if (tile.textureId == AssetsModel.PATH_WHITE )
+					if (tile.textureType == AssetsModel.PATH_WHITE )
 					{
 						tileRect = tile.getBounds(this.view.tilesView);
 						if (playerRect.intersects(tileRect))
@@ -134,6 +129,7 @@ package com.crowdpark.sushiman.views.main
 							trace ("Hit" + playerRect.x + ":" + playerRect.y + ":" + tile.tileData.id);
 							//we should now remove the object from stage & report scoring
 							view.tilesView.removeChild(tile);
+							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}
 					}
