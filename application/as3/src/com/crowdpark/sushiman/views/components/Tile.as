@@ -31,7 +31,6 @@ package com.crowdpark.sushiman.views.components
 			
 			this.x = tileData.colId * Level.TILE_WIDTH;
 			this.y = tileData.rowId * Level.TILE_HEIGHT;
-
 		}
 
 		public function get tileData() : TileData

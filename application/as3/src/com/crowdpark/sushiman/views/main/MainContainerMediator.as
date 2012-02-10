@@ -119,41 +119,27 @@ package com.crowdpark.sushiman.views.main
 		{
 			var playerRect:Rectangle = view.player.getBounds(this.view);
 			var tileRect:Rectangle;
-			
-//			var playerSprite:flash.display.Sprite = new flash.display.Sprite();
-//			
-//			playerSprite.width = playerRect.width;
-//			playerSprite.height = playerRect.height;
-//			playerSprite.x = view.player.x;
-//			playerSprite.y = view.player.y;
 
-			
-			
-			for each(var tile:Tile in this.view.tilesView.tiles)
+			var n:int = this.view.tilesView.numChildren;
+			for(var i:int = 0; i<n;i++)
 			{
-
-				//tile.bitmap.hitTestObject(playerSprite);
-				
-//				tileRect = tile.getBounds(this.view);
-//				if (playerRect.intersects(tileRect))
-//				{
-//					trace (tile.tileData.id);
-//				}
+				if (this.view.tilesView.getChildAt(i) is Tile)
+				{
+					var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
+					if (tile.textureId == AssetsModel.PATH_WHITE )
+					{
+						tileRect = tile.getBounds(this.view.tilesView);
+						if (playerRect.intersects(tileRect))
+						{
+							trace ("Hit" + playerRect.x + ":" + playerRect.y + ":" + tile.tileData.id);
+							//we should now remove the object from stage & report scoring
+							view.tilesView.removeChild(tile);
+							break;
+						}
+					}
+				}
 			}
-			
-			// for now we just pretend to eat a pill in order to trigger the scoring system
-//			if (view.pills.length > 0)
-//			{
-//				var pill : PillSmall = view.pills[0];
-//				dispatch(new PlayerEvent(PlayerEvent.COLLISION, pill));
-//				view.removePillSmall(pill);
-//			}
-//			else
-//			{
-//				model.currentGameState = GameState.LEVEL_COMPLETE;
-//			}
-			
-			// if the 
+
 		}
 	}
 }
