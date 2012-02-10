@@ -44,7 +44,6 @@ package com.crowdpark.sushiman.views.tiles
 						view.addTile(AssetsModel.PATH_YELLOW, assets.getTexture(AssetsModel.PATH_YELLOW),data);
 						break;
 					default:
-						trace(data.type);
 						break;
 				}
 			}
