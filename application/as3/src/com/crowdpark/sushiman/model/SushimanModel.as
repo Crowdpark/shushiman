@@ -4,8 +4,6 @@ package com.crowdpark.sushiman.model
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.user.UserVo;
-	import com.crowdpark.sushiman.views.components.CollisionObject;
-	import com.crowdpark.sushiman.views.components.PillSmall;
 
 	import org.robotlegs.mvcs.Actor;
 	
@@ -35,11 +33,18 @@ package com.crowdpark.sushiman.model
 			this.numOctopussies = INIT_NUM_OCTOPUSSIES;
 		}
 
-		public function updateScoreByCollisionObject(collisionObject : CollisionObject) : void
+		public function updateScoreByCollisionObject(assetType:String) : void
 		{
-			if (collisionObject is PillSmall)
+			
+			switch(assetType)
 			{
-				this.score++;
+				case AssetsModel.PATH_WHITE:
+					this.score++;
+					break;
+				case AssetsModel.PATH_YELLOW:
+					this.score += 2;
+					break;
+
 			}
 		}
 

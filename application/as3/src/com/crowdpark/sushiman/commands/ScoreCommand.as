@@ -20,7 +20,7 @@ package com.crowdpark.sushiman.commands
 
 		override public function execute() : void
 		{
-			model.updateScoreByCollisionObject(event.collisionObject);
+			model.updateScoreByCollisionObject(event.assetType);
 			service.setScore(model.score);
 		}
 	}
