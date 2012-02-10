@@ -7,7 +7,7 @@ package com.crowdpark.sushiman.views.player
 	 */
 	public class PlayerView extends MovieClip
 	{
-		public static const SPEED : int = 5;
+		public static const SPEED : int = 2;
 		
 		public function PlayerView(textures : Vector.<Texture>, fps : Number)
 		{

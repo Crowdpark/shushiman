@@ -1,9 +1,9 @@
 package com.crowdpark.sushiman.commands
 {
-	import com.crowdpark.sushiman.services.ILeaderboardService;
+	import com.crowdpark.sushiman.services.interfaces.ILeaderboardService;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
-
 	import org.robotlegs.mvcs.StarlingCommand;
+
 
 	/**
 	 * @author sandberg

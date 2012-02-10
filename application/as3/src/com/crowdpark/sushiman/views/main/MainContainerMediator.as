@@ -1,5 +1,11 @@
 package com.crowdpark.sushiman.views.main
 {
+	import starling.display.Sprite;
+	import flash.display.Sprite;
+	import flash.display.BitmapData;
+	import com.fnicollet.BitmapDataCacher;
+	import flash.geom.Rectangle;
+	import com.crowdpark.sushiman.views.components.Tile;
 	import starling.events.Event;
 
 	import com.crowdpark.sushiman.model.AssetsModel;
@@ -26,9 +32,11 @@ package com.crowdpark.sushiman.views.main
 
 		override public function onRegister() : void
 		{
+			view.x = 0;
 			view.addBackgroundImage(assets.getBackgroundImage());
 			view.addLogo(assets.getCrowdparkLogo());
 			view.addPlayer(assets.getTextures("hero/knife_right/"));
+			view.addTilesView();
 			view.addPlayButton(assets.getPlayButtonTexture());
 
 			this.eventMap.mapListener(this.eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
@@ -100,7 +108,7 @@ package com.crowdpark.sushiman.views.main
 
 		private function playerMovingHandler(event : PlayerEvent) : void
 		{
-			//checkCollision();
+			checkCollision();
 		}
 
 		/*
@@ -109,17 +117,41 @@ package com.crowdpark.sushiman.views.main
 		 */
 		private function checkCollision() : void
 		{
+			var playerRect:Rectangle = view.player.getBounds(this.view);
+			var tileRect:Rectangle;
+			
+//			var playerSprite:flash.display.Sprite = new flash.display.Sprite();
+//			
+//			playerSprite.width = playerRect.width;
+//			playerSprite.height = playerRect.height;
+//			playerSprite.x = view.player.x;
+//			playerSprite.y = view.player.y;
+
+			
+			
+			for each(var tile:Tile in this.view.tilesView.tiles)
+			{
+
+				//tile.bitmap.hitTestObject(playerSprite);
+				
+//				tileRect = tile.getBounds(this.view);
+//				if (playerRect.intersects(tileRect))
+//				{
+//					trace (tile.tileData.id);
+//				}
+			}
+			
 			// for now we just pretend to eat a pill in order to trigger the scoring system
-			if (view.pills.length > 0)
-			{
-				var pill : PillSmall = view.pills[0];
-				dispatch(new PlayerEvent(PlayerEvent.COLLISION, pill));
-				view.removePillSmall(pill);
-			}
-			else
-			{
-				model.currentGameState = GameState.LEVEL_COMPLETE;
-			}
+//			if (view.pills.length > 0)
+//			{
+//				var pill : PillSmall = view.pills[0];
+//				dispatch(new PlayerEvent(PlayerEvent.COLLISION, pill));
+//				view.removePillSmall(pill);
+//			}
+//			else
+//			{
+//				model.currentGameState = GameState.LEVEL_COMPLETE;
+//			}
 			
 			// if the 
 		}

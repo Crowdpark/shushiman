@@ -24,6 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="88294790-7d70-4c8c-a3b5-d11a33b3c141" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/library/Processus" afterPath="$PROJECT_DIR$/library/Processus" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/services/ScoreService.as" afterPath="$PROJECT_DIR$/application/as3/src/com/crowdpark/sushiman/services/ScoreService.as" />
     </list>
     <ignored path="shushiman.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,7 +68,7 @@
       <file leaf-file-name="AppUserMvo.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/php/Application/Mvo/AppUserMvo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="252" selection-end="252" vertical-scroll-proportion="0.25333333">
+            <state line="10" column="1" selection-start="251" selection-end="251" vertical-scroll-proportion="0.23030303">
               <folding />
             </state>
           </provider>
@@ -717,7 +719,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="971" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -730,7 +732,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="DatabaseBrowser" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -893,7 +895,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/php/Application/Mvo/AppUserMvo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="252" selection-end="252" vertical-scroll-proportion="0.25333333">
+        <state line="10" column="1" selection-start="251" selection-end="251" vertical-scroll-proportion="0.23030303">
           <folding />
         </state>
       </provider>

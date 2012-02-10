@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.services
 {
+	import com.crowdpark.sushiman.services.interfaces.ILeaderboardService;
 	import org.robotlegs.mvcs.Actor;
 
 	/**

@@ -1,8 +1,7 @@
 package com.crowdpark.sushiman.commands
 {
-	import com.crowdpark.sushiman.services.ILevelService;
+	import com.crowdpark.sushiman.services.interfaces.ILevelService;
 	import com.crowdpark.sushiman.events.LevelEvent;
-
 	import org.robotlegs.mvcs.StarlingCommand;
 
 	/**
@@ -11,11 +10,11 @@ package com.crowdpark.sushiman.commands
 	public class LoadLevelCommand extends StarlingCommand
 	{
 		[Inject]
-		public var event : LevelEvent;
+		public var service:ILevelService;
 		[Inject]
-		public var service : ILevelService;
-
-		override public function execute() : void
+		public var event:LevelEvent;
+		
+		override public function execute():void
 		{
 			service.getLevelById(event.levelNum);
 		}

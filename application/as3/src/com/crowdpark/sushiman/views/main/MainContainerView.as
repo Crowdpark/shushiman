@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.views.tiles.TilesView;
 	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;
@@ -18,6 +19,8 @@ package com.crowdpark.sushiman.views.main
 		public var player : PlayerView;
 		public var pills : Vector.<PillSmall>;
 		public var leaderBoard : LeaderboardView;
+		public var tilesView:TilesView;
+		
 		public var playButton:Button;
 		private var _background : Image;
 		private var _logo : Image;
@@ -25,17 +28,7 @@ package com.crowdpark.sushiman.views.main
 
 		public function MainContainerView()
 		{
-			pills = new Vector.<PillSmall>();
-			
-			var n:int = 10;
-			for (var i:int = 0;i<n;i++)
-			{
-				var pill : PillSmall = new PillSmall();
-				pill.x = Math.random() * 600;
-				pill.y = Math.random() * 500;
-				this.addChild(pill);
-				pills.push(pill);				
-			}
+
 
 		}
 
@@ -64,6 +57,17 @@ package com.crowdpark.sushiman.views.main
 			player = new PlayerView(textures, 24);
 			addChild(player);
 			Starling.juggler.add(player);
+		}
+		
+		
+		public function addTilesView():void
+		{
+			tilesView = new TilesView();
+			tilesView.x = 0;
+			tilesView.y = 0;
+			tilesView.width = 760;
+			tilesView.height = 650;
+			this.addChild(tilesView);			
 		}
 
 		/*
