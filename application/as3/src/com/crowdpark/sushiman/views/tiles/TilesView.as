@@ -42,8 +42,6 @@ package com.crowdpark.sushiman.views.tiles
 			var tile:Tile = new Tile(textureId, tileTexture, data);
 			_tiles.push(tile);
 			addChild(tile);
-			
-			
 		}
 
 		public function get tiles() : Vector.<Tile>

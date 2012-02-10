@@ -11,8 +11,8 @@ package com.crowdpark.sushiman.model.level
 		
 		private var _id : int;
 		private var _type : String;
-		private var _x : int;
-		private var _y :  int;
+		private var _rowId:int;
+		private var _colId:int;
 
 		public function get id() : int
 		{
@@ -34,24 +34,21 @@ package com.crowdpark.sushiman.model.level
 			this._type = type;
 		}
 
-		public function get x() : int
-		{
-			return _x;
+		public function get rowId() : int {
+			return _rowId;
 		}
 
-		public function set x(x : int) : void
-		{
-			_x = x;
+		public function set rowId(rowId : int) : void {
+			_rowId = rowId;
 		}
 
-		public function get y() : int
-		{
-			return _y;
+		public function get colId() : int {
+			return _colId;
 		}
 
-		public function set y(y : int) : void
-		{
-			_y = y;
+		public function set colId(colId : int) : void {
+			_colId = colId;
 		}
+
 	}
 }

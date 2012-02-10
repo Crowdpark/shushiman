@@ -36,14 +36,22 @@ package com.crowdpark.sushiman.services
 					var level : Level = new Level();
 					level.tiles = new Vector.<TileData>();
 
-					for each (var field:Object in obj.level.fields)
+					var rowLength:int = (obj.level.fields as Array).length;
+					for (var i:int = 0; i<rowLength;i++)
 					{
-						var tile : TileData = new TileData();
-						tile.id = int(field.id);
-						tile.type = field.type;
-						tile.x = int(field.x);
-						tile.y = (field.y);
-						level.tiles.push(tile);
+						var field:Array = (obj.level.fields as Array)[i];
+						var colLength:int = field.length;
+						for(var j:int = 0;j<colLength;j++)
+						{
+							var tileData:Object = field[j];
+							var tile : TileData = new TileData();
+							tile.id = tileData.id;
+							tile.type = tileData.type;
+							tile.rowId = i+1;
+							tile.colId = j+1;
+							level.tiles.push(tile);
+							trace (tile.id + ":" + tile.rowId + ":" + tile.colId);
+						}
 					}
 
 					if (obj.level.id != null)

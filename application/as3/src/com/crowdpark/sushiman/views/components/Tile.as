@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.components
 {
+	import com.crowdpark.sushiman.model.level.Level;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.fnicollet.BitmapDataCacher;
 	import flash.display.BitmapData;
@@ -23,16 +24,13 @@ package com.crowdpark.sushiman.views.components
 			this.textureId = textureId;
 			this._texture = texture;
 			this.tileData = tileData;
-			
-			
+
 			this.bmd = BitmapDataCacher.getBitmapData(AssetsModel.CACHE_ID, textureId);
 			
-
 			super(texture);
 			
-			this.x = tileData.x;
-			this.y = tileData.y;
-
+			this.x = tileData.colId * Level.TILE_WIDTH;
+			this.y = tileData.rowId * Level.TILE_HEIGHT;
 
 		}
 
