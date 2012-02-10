@@ -6,7 +6,7 @@ package com.crowdpark.sushiman.model.gamestate
 	public class GameState
 	{
 		public static const INIT : String = "init";
-		public static const PLAYING : String = "play";
+		public static const PLAYING : String = "playing";
 		public static const PAUSED:String = "paused";
 		public static const LIFE_LOST: String = "lifeLost";
 		public static const LEVEL_COMPLETE: String = "levelComplete";

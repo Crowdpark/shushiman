@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.views.components.Tile;
 	import starling.events.Event;
@@ -30,8 +31,6 @@ package com.crowdpark.sushiman.views.main
 			view.x = 0;
 			view.addBackgroundImage(assets.getBackgroundImage());
 			view.addLogo(assets.getCrowdparkLogo());
-			view.addPlayer(assets.getTextures("hero/knife_right/"));
-			view.addTilesView();
 			view.addPlayButton(assets.getPlayButtonTexture());
 
 			this.eventMap.mapListener(this.eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
@@ -79,12 +78,17 @@ package com.crowdpark.sushiman.views.main
 
 		private function configureInitState() : void
 		{
-			removeLeaderboard();
+
+			
 		}
 
 		private function configurePlayState() : void
 		{
 			removeLeaderboard();
+			view.removePlayButton();
+			view.addTilesView();
+			view.addPlayer(assets.getTextures("hero/knife_right/"));
+			view.addHudView();
 		}
 
 		private function configureGameOverState() : void
@@ -113,6 +117,7 @@ package com.crowdpark.sushiman.views.main
 		private function checkCollision() : void
 		{
 			var playerRect:Rectangle = view.player.getBounds(this.view);
+			var playerPt:Point = new Point(playerRect.x, playerRect.y);
 			var tileRect:Rectangle;
 
 			var n:int = this.view.tilesView.numChildren;
@@ -121,10 +126,18 @@ package com.crowdpark.sushiman.views.main
 				if (this.view.tilesView.getChildAt(i) is Tile)
 				{
 					var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
-					if (tile.textureType == AssetsModel.PATH_WHITE )
+					if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
 					{
 						tileRect = tile.getBounds(this.view.tilesView);
-						if (playerRect.intersects(tileRect))
+						
+						// Method below for doing a pixel perfect collision detection
+						// The texture atlas should position the objhects correctly first
+						// with the use of BitmapDataCacher
+						var ptPlayer:Point = new Point(view.player.x + (view.player.width/2),view.player.y + (view.player.height/2));
+						
+						if(tile.bmd.hitTest(new Point(view.player.x,view.player.y), 255, tile.bmd, new Point(tile.x,tile.y), 255))
+						
+						//if (playerRect.intersects(tileRect))
 						{
 							trace ("Hit" + playerRect.x + ":" + playerRect.y + ":" + tile.tileData.id);
 							//we should now remove the object from stage & report scoring

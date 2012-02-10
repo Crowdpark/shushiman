@@ -26,6 +26,7 @@ package com.crowdpark.sushiman.views.player
 		override public function onRegister() : void
 		{
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
+			this.isActive = true;
 		}
 
 		private function gamestateChangeHandler(event : GameStateChangedEvent) : void

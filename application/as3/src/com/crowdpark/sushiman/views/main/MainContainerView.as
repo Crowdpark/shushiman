@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.tiles.TilesView;
 	import starling.core.Starling;
 	import starling.display.Button;
@@ -18,6 +19,7 @@ package com.crowdpark.sushiman.views.main
 		public var player : PlayerView;
 		public var leaderBoard : LeaderboardView;
 		public var tilesView:TilesView;
+		public var hudView:HudView = new HudView();
 		
 		public var playButton:Button;
 		private var _background : Image;
@@ -46,13 +48,33 @@ package com.crowdpark.sushiman.views.main
 		
 		public function addPlayButton(texture:Texture):void
 		{
-			playButton = new Button(texture, "PLAY");
+			if (playButton == null)
+			{
+				playButton = new Button(texture, "PLAY");
+			}
+			playButton.x = this.stage.stageWidth/2 - playButton.width;
+			playButton.y = this.stage.stageHeight/2 - playButton.height;
 			addChild(playButton);
+		}
+		
+		public function removePlayButton():void
+		{
+			if(playButton != null && this.contains(playButton))
+			{
+				removeChild(playButton);
+			}
+		}
+		
+		public function addHudView():void
+		{
+			addChild(hudView);
 		}
 
 		public function addPlayer(textures : Vector.<Texture>) : void
 		{
 			player = new PlayerView(textures, 24);
+			player.x = -200;
+			player.y = -160;
 			addChild(player);
 			Starling.juggler.add(player);
 		}
@@ -61,8 +83,8 @@ package com.crowdpark.sushiman.views.main
 		public function addTilesView():void
 		{
 			tilesView = new TilesView();
-			tilesView.x = 0;
-			tilesView.y = 0;
+			tilesView.x = -180;
+			tilesView.y = -160;
 			tilesView.width = 760;
 			tilesView.height = 650;
 			this.addChild(tilesView);			
