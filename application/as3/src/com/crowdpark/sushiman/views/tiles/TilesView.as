@@ -33,17 +33,28 @@ package com.crowdpark.sushiman.views.tiles
 		}
 		
 		
-		public function addTile(tileTexture:Texture, data:TileData):void
+		public function addTile(textureId:String, tileTexture:Texture, data:TileData):void
 		{
 			if (_tiles == null)
 			{
 				_tiles = new Vector.<Tile>();
 			}
-			var tile:Tile = new Tile(tileTexture, data);
+			var tile:Tile = new Tile(textureId, tileTexture, data);
 			_tiles.push(tile);
 			addChild(tile);
 			
 			
 		}
+
+		public function get tiles() : Vector.<Tile>
+		{
+			return _tiles;
+		}
+
+		public function set tiles(tiles : Vector.<Tile>) : void
+		{
+			_tiles = tiles;
+		}
+		
 	}
 }

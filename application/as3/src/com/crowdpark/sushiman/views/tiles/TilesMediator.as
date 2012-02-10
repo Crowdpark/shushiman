@@ -35,13 +35,13 @@ package com.crowdpark.sushiman.views.tiles
 				switch(data.type)
 				{
 					case TileData.TYPE_WALLBRICK:
-						view.addTile(assets.getTexture("others/others.swf/0001"),data);
+						view.addTile(AssetsModel.PATH_WALL, assets.getTexture(AssetsModel.PATH_WALL),data);
 						break;
 					case TileData.TYPE_WHITE_POINT:
-						view.addTile(assets.getTexture("others/others.swf/0000"),data);
+						view.addTile(AssetsModel.PATH_WHITE, assets.getTexture(AssetsModel.PATH_WHITE),data);
 						break;
 					case TileData.TYPE_YELLOW_POINT:
-						view.addTile(assets.getTexture("others/others.swf/0004"),data);
+						view.addTile(AssetsModel.PATH_YELLOW, assets.getTexture(AssetsModel.PATH_YELLOW),data);
 						break;
 				}
 			}
