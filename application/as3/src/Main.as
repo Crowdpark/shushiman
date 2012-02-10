@@ -1,5 +1,5 @@
-﻿package
-{
+﻿package {
+	import flash.geom.Rectangle;
 	import flash.display.StageScaleMode;
 	import flash.display.StageAlign;
 
@@ -11,6 +11,10 @@
 	import flash.display.Sprite;
 	import flash.events.Event;
 
+	/*
+	 * TODO: Understand why the swf metadata does not work.
+	 * Is it because of fdt, wmode, Starling?
+	 */
 	[SWF(width="760", height="650", frameRate="60", backgroundColor="#000000")]
 	public class Main extends Sprite
 	{
@@ -28,6 +32,14 @@
 		{
 			_starling = new Starling(SushimanGame, stage);
 			_starling.start();
+			
+			var viewPortRectangle:Rectangle = new Rectangle();
+			viewPortRectangle.width = stage.stageWidth;
+			viewPortRectangle.height = stage.stageHeight;
+			Starling.current.viewPort = viewPortRectangle;
+ 
+			_starling.stage.stageWidth = stage.stageWidth;
+			_starling.stage.stageHeight = stage.stageHeight;
 		}
 	}
 }

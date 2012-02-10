@@ -52,6 +52,9 @@ package com.crowdpark.sushiman.views.main
 			{
 				playButton = new Button(texture, "PLAY");
 			}
+			/* TODO: Find out why stageWidth is 1440 & stageHeight: 838
+			 * 
+			 */
 			playButton.x = this.stage.stageWidth/2 - playButton.width;
 			playButton.y = this.stage.stageHeight/2 - playButton.height;
 			addChild(playButton);
