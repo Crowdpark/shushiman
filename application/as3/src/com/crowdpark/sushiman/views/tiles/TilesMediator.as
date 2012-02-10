@@ -43,6 +43,9 @@ package com.crowdpark.sushiman.views.tiles
 					case TileData.TYPE_YELLOW_POINT:
 						view.addTile(AssetsModel.PATH_YELLOW, assets.getTexture(AssetsModel.PATH_YELLOW),data);
 						break;
+					default:
+						trace(data.type);
+						break;
 				}
 			}
 		}

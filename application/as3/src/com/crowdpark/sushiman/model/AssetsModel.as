@@ -12,6 +12,7 @@ package com.crowdpark.sushiman.model
 	public class AssetsModel extends Actor
 	{
 		public static const CACHE_ID:String = "TILES";
+		public static const PATH_OCTOPUS:String = "octopus/walk_left/output/walking_left0001";
 		public static const PATH_WALL:String = "others/others.swf/0001";
 		public static const PATH_YELLOW:String = "others/others.swf/0004";
 		public static const PATH_WHITE:String = "others/others.swf/0000";
@@ -38,10 +39,13 @@ package com.crowdpark.sushiman.model
 		public function AssetsModel()
 		{
 			_bmpCharacters = new AtlasTexture();
-			BitmapDataCacher.cacheBitmap(CACHE_ID, _bmpCharacters);
+			_xml = XML(new AtlasXML());
+			
+			// BitmapDataCacher is for collision detection
+			BitmapDataCacher.cacheBitmap(CACHE_ID, _bmpCharacters,_xml);
 			
 			_texture = Texture.fromBitmap(_bmpCharacters);
-			_xml = XML(new AtlasXML());
+			
 			_atlas = new TextureAtlas(_texture, _xml);
 		}
 
