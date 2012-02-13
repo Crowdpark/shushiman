@@ -12,8 +12,11 @@
 	import flash.events.Event;
 
 	/*
-	 * TODO: Understand why the swf metadata does not work.
+	 * TODO: 
+	 * Understand why the swf metadata does not work.
 	 * Is it because of fdt, wmode, Starling?
+	 * Position of player + octopussies is not in the json
+	 * Do a test with collsion, with just one object
 	 */
 	[SWF(width="760", height="650", frameRate="60", backgroundColor="#000000")]
 	public class Main extends Sprite

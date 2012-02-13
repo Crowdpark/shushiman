@@ -28,6 +28,8 @@ package com.crowdpark.sushiman.views.components
 			
 			super(texture);
 			
+			this.width = Level.TILE_WIDTH;
+			this.height = Level.TILE_HEIGHT;
 			this.x = tileData.colId * Level.TILE_WIDTH;
 			this.y = tileData.rowId * Level.TILE_HEIGHT;
 		}

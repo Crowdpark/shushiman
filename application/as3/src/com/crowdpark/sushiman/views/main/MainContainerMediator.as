@@ -126,22 +126,23 @@ package com.crowdpark.sushiman.views.main
 				if (this.view.tilesView.getChildAt(i) is Tile)
 				{
 					var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
+					tileRect = tile.getBounds(this.view);
+					
 					if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
 					{
-						tileRect = tile.getBounds(this.view.tilesView);
 						
-						// Method below for doing a pixel perfect collision detection
-						// The texture atlas should position the objhects correctly first
-						// with the use of BitmapDataCacher
-						var ptPlayer:Point = new Point(view.player.x + (view.player.width/2),view.player.y + (view.player.height/2));
+						//if(tile.bmd.hitTest(new Point(view.player.x,view.player.y), 255, tile.bmd, new Point(tile.x,tile.y), 255))
 						
-						if(tile.bmd.hitTest(new Point(view.player.x,view.player.y), 255, tile.bmd, new Point(tile.x,tile.y), 255))
-						
-						//if (playerRect.intersects(tileRect))
+						if (playerRect.intersects(tileRect))
 						{
-							trace ("Hit" + playerRect.x + ":" + playerRect.y + ":" + tile.tileData.id);
-							//we should now remove the object from stage & report scoring
 							view.tilesView.removeChild(tile);
+							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+							break;
+						}
+					} else if (tile.textureType == AssetsModel.PATH_WALL)
+					{
+						if (playerRect.intersects(tileRect))
+						{
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}

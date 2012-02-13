@@ -9,6 +9,7 @@ package com.crowdpark.sushiman.views.main
 	{
 		public static var INIT : String = "MainContainerEvent.INIT";
 		public static const PLAY : String = "MainContainerEvent.PLAY";
+
 		
 		public function MainContainerEvent(type : String, bubbles : Boolean = false)
 		{

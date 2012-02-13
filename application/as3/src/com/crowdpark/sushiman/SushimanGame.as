@@ -29,6 +29,8 @@ package com.crowdpark.sushiman
 			_stats.x = 0;
 			
 			_mainView = new MainContainerView();
+			_mainView.x = 0;//(stage.stageWidth - _mainView.width >> 1 ) + (_mainView.width >> 1); 
+			_mainView.y = 0;//(stage.stageHeight - _mainView.height >> 1) + (_mainView.height >> 1);
 			addChild(_mainView);
 			
 			//addChild(_stats);

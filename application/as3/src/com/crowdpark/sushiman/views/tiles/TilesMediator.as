@@ -30,6 +30,19 @@ package com.crowdpark.sushiman.views.tiles
 
 		private function levelUpdatedHandler(event: LevelModelEvent ) : void
 		{
+			
+//			var whiteData:TileData = new TileData();
+//			whiteData.type = TileData.TYPE_WHITE_POINT;
+//			whiteData.colId = 10;
+//			whiteData.rowId = 10;
+//			view.addTile(AssetsModel.PATH_WHITE, assets.getTexture(AssetsModel.PATH_WHITE),whiteData);
+//			
+//			var wallData:TileData = new TileData();
+//			wallData.type = TileData.TYPE_WALLBRICK;
+//			wallData.colId = 15;
+//			wallData.rowId = 6;
+//			view.addTile(AssetsModel.PATH_WALL, assets.getTexture(AssetsModel.PATH_WALL),wallData);
+			
 			for each (var data:TileData in levelModel.levels[0].tiles)
 			{
 				switch(data.type)
