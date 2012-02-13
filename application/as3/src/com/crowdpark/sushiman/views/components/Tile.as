@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.components
 {
+	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.model.level.Level;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.fnicollet.BitmapDataCacher;
@@ -32,6 +33,8 @@ package com.crowdpark.sushiman.views.components
 			this.height = Level.TILE_HEIGHT;
 			this.x = tileData.colId * Level.TILE_WIDTH;
 			this.y = tileData.rowId * Level.TILE_HEIGHT;
+			
+
 		}
 
 		public function get tileData() : TileData
