@@ -1,6 +1,6 @@
 package com.crowdpark.sushiman.views.components
 {
-	import flash.geom.Rectangle;
+	import flash.geom.Point;
 	import com.crowdpark.sushiman.model.level.Level;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.fnicollet.BitmapDataCacher;
@@ -31,8 +31,10 @@ package com.crowdpark.sushiman.views.components
 			
 			this.width = Level.TILE_WIDTH;
 			this.height = Level.TILE_HEIGHT;
-			this.x = tileData.colId * Level.TILE_WIDTH;
-			this.y = tileData.rowId * Level.TILE_HEIGHT;
+			
+			var pos:Point = Level.calculateTilePosition(tileData.colId, tileData.rowId);
+			this.x = pos.x;
+			this.y = pos.y;
 			
 
 		}

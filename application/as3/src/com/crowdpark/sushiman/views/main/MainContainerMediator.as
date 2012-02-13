@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.model.level.Level;
+	import com.crowdpark.sushiman.model.level.LevelModel;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.views.components.Tile;
@@ -25,6 +27,8 @@ package com.crowdpark.sushiman.views.main
 		public var assets : AssetsModel;
 		[Inject]
 		public var model:ISushimanModel;
+		[Inject]
+		public var levelModel:LevelModel;
 
 		override public function onRegister() : void
 		{
@@ -79,15 +83,15 @@ package com.crowdpark.sushiman.views.main
 		private function configureInitState() : void
 		{
 
-			
 		}
 
 		private function configurePlayState() : void
 		{
+
 			removeLeaderboard();
 			view.removePlayButton();
 			view.addTilesView();
-			view.addPlayer(assets.getTextures("hero/knife_right/"));
+			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
 			view.addHudView();
 		}
 
@@ -131,16 +135,18 @@ package com.crowdpark.sushiman.views.main
 						//if(tile.bmd.hitTest(new Point(view.player.x,view.player.y), 255, tile.bmd, new Point(tile.x,tile.y), 255))
 						if (playerRect.intersects(tileRect))
 						{
-							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW) 
 							{
 								this.view.tilesView.removeTile(tile);
 							}
+							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}
 				}
 			}
 
 		}
+		
+
 	}
 }

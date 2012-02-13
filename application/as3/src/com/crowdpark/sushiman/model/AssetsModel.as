@@ -12,6 +12,7 @@ package com.crowdpark.sushiman.model
 	public class AssetsModel extends Actor
 	{
 		public static const CACHE_ID:String = "TILES";
+		public static const PATH_PLAYER:String = "hero/knife_right/";
 		public static const PATH_OCTOPUS:String = "octopus/walk_left/output/walking_left0001";
 		public static const PATH_WALL:String = "others/output/others.swf/0001";
 		public static const PATH_YELLOW:String = "others/output/others.swf/0003";
