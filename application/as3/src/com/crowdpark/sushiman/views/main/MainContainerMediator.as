@@ -1,19 +1,21 @@
 package com.crowdpark.sushiman.views.main
 {
-	import com.crowdpark.sushiman.model.level.LevelModel;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	import com.crowdpark.sushiman.views.components.Tile;
+
 	import starling.events.Event;
 
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
+	import com.crowdpark.sushiman.model.level.LevelModel;
+	import com.crowdpark.sushiman.views.components.Tile;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
 
 	import org.robotlegs.mvcs.StarlingMediator;
+
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 
 	/**
 	 * @author francis

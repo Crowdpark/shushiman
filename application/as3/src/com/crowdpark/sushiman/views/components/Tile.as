@@ -25,7 +25,7 @@ package com.crowdpark.sushiman.views.components
 		{
 			if (textureType == AssetsModel.PATH_WHITE || textureType == AssetsModel.PATH_YELLOW)
 			{
-				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,80,80));
+				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,40,40));
 				//texture.
 			} else
 			{
@@ -46,8 +46,6 @@ package com.crowdpark.sushiman.views.components
 			var pos:Point = Level.calculateTilePosition(tileData.colId, tileData.rowId);
 			this.x = pos.x;
 			this.y = pos.y;
-			
-
 		}
 
 		public function get tileData() : TileData

@@ -17,6 +17,11 @@ package com.crowdpark.sushiman.model
 		public static const PATH_WALL:String = "others/output/others.swf/0001";
 		public static const PATH_YELLOW:String = "others/output/others.swf/0003";
 		public static const PATH_WHITE:String = "others/output/others.swf/0000";
+
+//		public static const PATH_OCTOPUS:String = "octopus/walk_left/output/walking_left0001";
+//		public static const PATH_WALL:String = "others/others";
+//		public static const PATH_YELLOW:String = "others/others";
+//		public static const PATH_WHITE:String = "others/others";
 		
 		[Embed(source="../assets/spritesheets/character.xml",mimeType="application/octet-stream")]
 		public var AtlasXML:Class;

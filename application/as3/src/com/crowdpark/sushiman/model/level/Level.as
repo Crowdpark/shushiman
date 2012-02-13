@@ -8,8 +8,8 @@ package com.crowdpark.sushiman.model.level
 	{
 		private var _id : String;
 		private var _tiles : Vector.<TileData>;
-		public static const TILE_WIDTH:int = 40;
-		public static const TILE_HEIGHT:int = 40;
+		public static const TILE_WIDTH:int = 45;
+		public static const TILE_HEIGHT:int = 45;
 
 
 		
