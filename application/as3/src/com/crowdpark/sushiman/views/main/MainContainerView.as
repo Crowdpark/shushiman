@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.model.level.TileData;
+	import com.crowdpark.sushiman.views.components.AIHunterTile;
 	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.tiles.TilesView;
 	import starling.core.Starling;
@@ -84,6 +86,29 @@ package com.crowdpark.sushiman.views.main
 		{
 			tilesView = new TilesView();
 			this.addChild(tilesView);			
+		}
+		
+		
+		public function addAITile(textures : Vector.<Texture>, data:TileData):void
+		{
+			var hunter:AIHunterTile = new AIHunterTile(textures, data);
+			addChild(hunter);
+			Starling.juggler.add(hunter);
+		}
+		
+		
+		public function get hunters():Vector.<AIHunterTile>
+		{
+			var hunters:Vector.<AIHunterTile> = new Vector.<AIHunterTile>();
+			var n:int = this.numChildren;
+			for (var i:int = 0; i<n;i++)
+			{
+				if (this.getChildAt(i) is AIHunterTile)
+				{
+					hunters.push(this.getChildAt(i));
+				}
+			}
+			return hunters;
 		}
 
 	}

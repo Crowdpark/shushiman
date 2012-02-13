@@ -8,7 +8,7 @@ package com.crowdpark.sushiman.model.level
 		public static const TYPE_YELLOW_POINT:String = "YellowPoint";
 		public static const TYPE_WHITE_POINT:String = "WhitePoint";
 		public static const TYPE_WALLBRICK:String = "WallBrick";
-		public static const TYPE_OCTOPUSSY:String = "Octopussy";
+		public static const TYPE_OCTOPUSSY:String = "Octopus";
 		
 		private var _id : int;
 		private var _type : String;

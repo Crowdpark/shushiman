@@ -1,6 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
-
+	import com.crowdpark.sushiman.model.level.TileData;
 	import starling.events.Event;
 
 	import com.crowdpark.sushiman.model.AssetsModel;
@@ -93,6 +93,16 @@ package com.crowdpark.sushiman.views.main
 			view.removePlayButton();
 			view.addTilesView();
 			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
+			
+			var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
+			for each (var data:TileData in aiTiles)
+			{
+				if (data.type == TileData.TYPE_OCTOPUSSY)
+				{
+					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY),data);
+				}
+			}
+			
 			view.addHudView();
 		}
 

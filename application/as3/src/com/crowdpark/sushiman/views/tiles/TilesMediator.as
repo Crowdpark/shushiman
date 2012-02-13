@@ -52,15 +52,6 @@ package com.crowdpark.sushiman.views.tiles
 				}
 			}
 
-			// Doing this afterwards since it is important to add the ai objects on top of fixed positioned objects
-			var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
-			for each (data in aiTiles)
-			{
-				if (data.type == TileData.TYPE_OCTOPUSSY)
-				{
-					view.addTile(AssetsModel.PATH_OCTOPUSSY, assets.getTexture(AssetsModel.PATH_OCTOPUSSY),data);
-				}
-			}
 		}
 	}
 }

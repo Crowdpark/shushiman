@@ -25,11 +25,11 @@ package com.crowdpark.sushiman.views.components
 		{
 			if (textureType == AssetsModel.PATH_WHITE || textureType == AssetsModel.PATH_YELLOW)
 			{
-				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,40,40));
+				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,50,50));
 				//texture.
 			} else
 			{
-				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,40,40));
+				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,50,50));
 			}
 
 			this.textureType = textureType;
