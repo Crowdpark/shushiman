@@ -175,17 +175,6 @@ package com.crowdpark.sushiman.views.main
 				
 				}
 			}
-			
-//			var hunters:Vector.<AIHunterTile> = view.hunters;
-//			for each (var hunter:AIHunterTile in hunters)
-//			{
-//				var hunterRect:Rectangle = hunter.getBounds(this.view);
-//				if (playerRect.intersects(hunterRect))
-//				{
-//					dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-//					break;
-//				}
-//			}
 
 		}
 		
