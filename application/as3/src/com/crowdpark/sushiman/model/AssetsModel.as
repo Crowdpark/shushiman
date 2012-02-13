@@ -12,10 +12,11 @@ package com.crowdpark.sushiman.model
 	public class AssetsModel extends Actor
 	{
 		public static const CACHE_ID:String = "TILES";
+		public static const PATH_PLAYER:String = "hero/knife_right/";
 		public static const PATH_OCTOPUS:String = "octopus/walk_left/output/walking_left0001";
-		public static const PATH_WALL:String = "others/others.swf/0001";
-		public static const PATH_YELLOW:String = "others/others.swf/0004";
-		public static const PATH_WHITE:String = "others/others.swf/0000";
+		public static const PATH_WALL:String = "others/others";
+		public static const PATH_YELLOW:String = "others/others";
+		public static const PATH_WHITE:String = "others/others";
 		
 		[Embed(source="../assets/spritesheets/character.xml",mimeType="application/octet-stream")]
 		public var AtlasXML:Class;
@@ -70,7 +71,8 @@ package com.crowdpark.sushiman.model
 		public function getTexture(string : String) : Texture
 		{
 			//_atlas.
-			return _atlas.getTexture(string);
+			var texture:Texture = _atlas.getTexture(string);
+			return texture;
 		}
 
 		public function getTextures(string : String) : Vector.<Texture>

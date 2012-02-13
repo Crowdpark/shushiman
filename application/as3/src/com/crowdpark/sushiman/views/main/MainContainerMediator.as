@@ -1,18 +1,20 @@
 package com.crowdpark.sushiman.views.main
 {
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	import com.crowdpark.sushiman.views.components.Tile;
 	import starling.events.Event;
 
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
+	import com.crowdpark.sushiman.model.level.LevelModel;
+	import com.crowdpark.sushiman.views.components.Tile;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
 
 	import org.robotlegs.mvcs.StarlingMediator;
+
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 
 	/**
 	 * @author francis
@@ -25,6 +27,8 @@ package com.crowdpark.sushiman.views.main
 		public var assets : AssetsModel;
 		[Inject]
 		public var model:ISushimanModel;
+		[Inject]
+		public var levelModel:LevelModel;
 
 		override public function onRegister() : void
 		{
@@ -79,15 +83,15 @@ package com.crowdpark.sushiman.views.main
 		private function configureInitState() : void
 		{
 
-			
 		}
 
 		private function configurePlayState() : void
 		{
+
 			removeLeaderboard();
 			view.removePlayButton();
 			view.addTilesView();
-			view.addPlayer(assets.getTextures("hero/knife_right/"));
+			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
 			view.addHudView();
 		}
 
@@ -126,29 +130,23 @@ package com.crowdpark.sushiman.views.main
 				if (this.view.tilesView.getChildAt(i) is Tile)
 				{
 					var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
-					if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
-					{
-						tileRect = tile.getBounds(this.view.tilesView);
-						
-						// Method below for doing a pixel perfect collision detection
-						// The texture atlas should position the objhects correctly first
-						// with the use of BitmapDataCacher
-						var ptPlayer:Point = new Point(view.player.x + (view.player.width/2),view.player.y + (view.player.height/2));
-						
-						if(tile.bmd.hitTest(new Point(view.player.x,view.player.y), 255, tile.bmd, new Point(tile.x,tile.y), 255))
-						
-						//if (playerRect.intersects(tileRect))
+					tileRect = tile.getBounds(this.view);
+					
+						//if(tile.bmd.hitTest(new Point(view.player.x,view.player.y), 255, tile.bmd, new Point(tile.x,tile.y), 255))
+						if (playerRect.intersects(tileRect))
 						{
-							trace ("Hit" + playerRect.x + ":" + playerRect.y + ":" + tile.tileData.id);
-							//we should now remove the object from stage & report scoring
-							view.tilesView.removeChild(tile);
+							if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW) 
+							{
+								this.view.tilesView.removeTile(tile);
+							}
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}
-					}
 				}
 			}
 
 		}
+		
+
 	}
 }

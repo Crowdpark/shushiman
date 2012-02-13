@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman.views.player
 {
+	import com.crowdpark.sushiman.model.AssetsModel;
+	import flash.geom.Point;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 
@@ -22,11 +24,25 @@ package com.crowdpark.sushiman.views.player
 		private var _moveRight : Boolean;
 		private var _moveUp : Boolean;
 		private var _moveDown : Boolean;
+		
+		private var _lastPosition:Point;
 
 		override public function onRegister() : void
 		{
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
+			eventMap.mapListener(this.eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
 			this.isActive = true;
+			
+			trace(view.width + ':' + view.height);
+		}
+
+		private function collisionHandler(event:PlayerEvent) : void
+		{
+			if (event.assetType == AssetsModel.PATH_WALL)
+			{
+				this.view.x = _lastPosition.x;
+				this.view.y = _lastPosition.y;
+			}
 		}
 
 		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
@@ -62,6 +78,7 @@ package com.crowdpark.sushiman.views.player
 
 		private function enterFrameHandler(event : Event) : void
 		{
+			_lastPosition = new Point(view.x, view.y);
 			if (_moveLeft)
 			{
 				view.x -= PlayerView.SPEED;
@@ -81,7 +98,6 @@ package com.crowdpark.sushiman.views.player
 			{
 				view.y += PlayerView.SPEED;
 			}
-
 			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
 		}
 

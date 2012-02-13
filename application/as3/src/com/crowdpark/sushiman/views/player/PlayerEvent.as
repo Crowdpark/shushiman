@@ -1,6 +1,5 @@
 package com.crowdpark.sushiman.views.player
 {
-
 	import flash.events.Event;
 
 	/**
@@ -10,24 +9,23 @@ package com.crowdpark.sushiman.views.player
 	{
 		public static const MOVING : String = "PlayerEvent.MOVING";
 		public static const COLLISION : String = "PlayerEvent.COLLISION";
-
+		
 		private var _assetType:String;
-
+		
 		public function PlayerEvent(type : String, assetType:String="")
 		{
 			this.assetType = assetType;
 			super(type);
 		}
 
-		public function get assetType() : String 
+		public function get assetType() : String
 		{
 			return _assetType;
 		}
 
-		public function set assetType(assetType : String) : void 
+		public function set assetType(assetType : String) : void
 		{
 			_assetType = assetType;
 		}
-
 	}
 }
