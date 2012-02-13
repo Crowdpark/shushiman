@@ -1,5 +1,8 @@
 package com.crowdpark.sushiman.views.main
 {
+
+	import com.crowdpark.sushiman.views.components.ITile;
+	import starling.display.DisplayObject;
 	import com.crowdpark.sushiman.model.level.TileData;
 	import starling.events.Event;
 
@@ -99,7 +102,7 @@ package com.crowdpark.sushiman.views.main
 			{
 				if (data.type == TileData.TYPE_OCTOPUSSY)
 				{
-					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY),data);
+					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
 				}
 			}
 			
@@ -138,11 +141,10 @@ package com.crowdpark.sushiman.views.main
 			var n:int = this.view.tilesView.numChildren;
 			for(var i:int = 0; i<n;i++)
 			{
-				if (this.view.tilesView.getChildAt(i) is Tile)
+				if(this.view.tilesView.getChildAt(i) is ITile)
 				{
-					var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
-					tileRect = tile.getBounds(this.view);
-					
+					var tile:ITile = this.view.tilesView.getChildAt(i) as ITile;
+					tileRect = (tile as DisplayObject).getBounds(this.view);
 						
 					if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
 					{
@@ -151,7 +153,7 @@ package com.crowdpark.sushiman.views.main
 
 						if (playerRect.intersects(tileRect))
 						{
-							view.tilesView.removeChild(tile);
+							view.tilesView.removeChild(tile as Tile);
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}
@@ -162,9 +164,28 @@ package com.crowdpark.sushiman.views.main
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}
+					} else if(tile.textureType == AssetsModel.PATH_OCTOPUSSY)
+					{
+						if (playerRect.intersects(tileRect))
+						{
+							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+							break;
+						}			
 					}
+				
 				}
 			}
+			
+//			var hunters:Vector.<AIHunterTile> = view.hunters;
+//			for each (var hunter:AIHunterTile in hunters)
+//			{
+//				var hunterRect:Rectangle = hunter.getBounds(this.view);
+//				if (playerRect.intersects(hunterRect))
+//				{
+//					dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+//					break;
+//				}
+//			}
 
 		}
 		
