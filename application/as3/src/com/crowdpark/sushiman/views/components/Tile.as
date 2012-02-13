@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.components
 {
+	import flash.geom.Rectangle;
 	import flash.geom.Point;
 	import com.crowdpark.sushiman.model.level.Level;
 	import com.crowdpark.sushiman.model.AssetsModel;
@@ -19,8 +20,18 @@ package com.crowdpark.sushiman.views.components
 		private var _textureType:String;
 		private var _bmd:BitmapData;
 		
+		
 		public function Tile(textureType:String, texture:Texture, tileData:TileData)
 		{
+			if (textureType == AssetsModel.PATH_WHITE || textureType == AssetsModel.PATH_YELLOW)
+			{
+				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,80,80));
+				//texture.
+			} else
+			{
+				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,40,40));
+			}
+
 			this.textureType = textureType;
 			this._texture = texture;
 			this.tileData = tileData;
@@ -68,5 +79,6 @@ package com.crowdpark.sushiman.views.components
 		{
 			_bmd = bmd;
 		}
+
 	}
 }

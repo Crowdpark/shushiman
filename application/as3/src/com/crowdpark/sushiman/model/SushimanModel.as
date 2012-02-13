@@ -19,7 +19,6 @@ package com.crowdpark.sushiman.model
 		
 		private var _user:UserVo;
 		private var _currentGameState : String = GameState.INIT;
-		private var _currentGameLevel : int;
 		private var _score : int;
 		private var _numLives : int;
 		private var _numOctopussies : int;
@@ -101,15 +100,6 @@ package com.crowdpark.sushiman.model
 			dispatch(new SushimanModelEvent(SushimanModelEvent.UPDATED_NUM_OCTOPUSSIES));
 		}
 
-		public function get currentGameLevel() : int
-		{
-			return _currentGameLevel;
-		}
-
-		public function set currentGameLevel(currentGameLevel : int) : void
-		{
-			_currentGameLevel = currentGameLevel;
-		}
 
 		public function get leaderboardFriends() : Vector.<UserVo>
 		{

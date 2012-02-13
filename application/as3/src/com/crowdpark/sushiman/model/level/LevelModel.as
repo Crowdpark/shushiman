@@ -10,6 +10,7 @@ package com.crowdpark.sushiman.model.level
 	public class LevelModel extends Actor
 	{
 		private var _levels : Vector.<Level>;
+		private var _currentLevelNum:int = 0;
 
 		public function addLevel(level : Level) : void
 		{
@@ -27,10 +28,31 @@ package com.crowdpark.sushiman.model.level
 		{
 			return _levels;
 		}
+		
+		public function get currentLevel():Level
+		{
+			return this.levels[this.currentLevelNum];
+		}
 
 		public function set levels(levels : Vector.<Level>) : void
 		{
 			_levels = levels;
+		}
+
+		public function get currentLevelNum() : int
+		{
+			return _currentLevelNum;
+		}
+
+		public function set currentLevelNum(currentLevelNum : int) : void
+		{
+			if (currentLevelNum <= this.levels.length -1)
+			{
+				_currentLevelNum = currentLevelNum;
+			} else
+			{
+				dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_FATAL, LevelModel, "No more levels!"));
+			}
 		}
 	}
 }

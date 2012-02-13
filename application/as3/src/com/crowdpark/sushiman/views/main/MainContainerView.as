@@ -29,7 +29,6 @@ package com.crowdpark.sushiman.views.main
 		public function MainContainerView()
 		{
 
-
 		}
 
 		public function addBackgroundImage(image : Image) : void
