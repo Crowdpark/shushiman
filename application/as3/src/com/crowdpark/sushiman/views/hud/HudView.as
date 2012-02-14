@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.hud
 {
+	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.text.TextField;
 
@@ -9,23 +10,24 @@ package com.crowdpark.sushiman.views.hud
 	public class HudView extends Sprite
 	{
 		public static const PREFIX_SCORE : String = "SCORE:";
+		
 		/*
 		 * TODO: load  and use flash graphics
 		 */
 		private var _tfNumOctopussies : TextField = new TextField(100, 80, "10", "Verdana", 36, 0xffffff);
 		private var _tfScore : TextField = new TextField(200, 80, "0", "Verdana", 36, 0xffffff);
 		private var _tfNumLives : TextField = new TextField(100, 80, "3", "Verdana", 36, 0xffffff);
+		private var _background:Image;
 
-		public function HudView()
+		public function HudView(background:Image)
 		{
-			// temporary positions
-			this.y = 556;
-			this.height = 93;
-
+			_background = background;
+			_background.alpha = 0.5;
 			_tfNumOctopussies.x = 100;
 			_tfScore.x = 250;
 			_tfNumLives.x = 500;
 
+			addChild(background);
 			addChild(_tfNumOctopussies);
 			addChild(_tfScore);
 			addChild(_tfNumLives);

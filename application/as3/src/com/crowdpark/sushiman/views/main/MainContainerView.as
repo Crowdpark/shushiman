@@ -22,7 +22,7 @@ package com.crowdpark.sushiman.views.main
 		public var player : PlayerView;
 		public var leaderBoard : LeaderboardView;
 		public var tilesView:TilesView;
-		public var hudView:HudView = new HudView();
+		public var hudView:HudView;
 		public var friendsView:FriendsListView = new FriendsListView();
 		
 		public var playButton:Button;
@@ -71,8 +71,12 @@ package com.crowdpark.sushiman.views.main
 			}
 		}
 		
-		public function addHudView():void
+		public function addHudView(background:Image):void
 		{
+			if (hudView == null)
+			{
+				hudView = new HudView(background);
+			}
 			addChild(hudView);
 		}
 
