@@ -1,7 +1,6 @@
 package com.crowdpark.sushiman.views.player
 {
 
-	import flash.geom.Rectangle;
 	import starling.display.MovieClip;
 	import starling.textures.Texture;
 	/**
@@ -13,24 +12,22 @@ package com.crowdpark.sushiman.views.player
 		
 		public function PlayerView(textures : Vector.<Texture>, fps : Number)
 		{
-			var adjusted:Vector.<Texture> = adjustTextureFrames(textures);
 			super(textures, fps);
 			
-			this.scaleX = 0.8;
-			this.scaleY = 0.8;
-		}
-		
-		
-		public function adjustTextureFrames(textures : Vector.<Texture>):Vector.<Texture>
-		{
-			var coll:Vector.<Texture> = new Vector.<Texture>();
+			this.scaleX = 0.5;
+			this.scaleY = 0.5;
 			
+<<<<<<< HEAD
 			for each (var texture:Texture in textures)
 			{
 				coll.push(Texture.fromTexture(texture, null, new Rectangle(0,0,50,50)));
 			}
 			return coll;
+=======
+			this.x = 100;
+>>>>>>> 010fef347a88e75c4c3010efa4009b43acf79315
 		}
+
 		
 	}
 }

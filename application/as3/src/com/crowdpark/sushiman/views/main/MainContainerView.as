@@ -89,8 +89,9 @@ package com.crowdpark.sushiman.views.main
 		}
 		
 		
-		public function addAITile(textures : Vector.<Texture>, data:TileData):void
+		public function addAITile(textures : Vector.<Texture>, texturePath:String,data:TileData):void
 		{
+<<<<<<< HEAD
 			var hunter:AIHunterTileView = new AIHunterTileView(textures, data);
 			addChild(hunter);
 			Starling.juggler.add(hunter);
@@ -107,8 +108,14 @@ package com.crowdpark.sushiman.views.main
 				{
 					hunters.push(this.getChildAt(i));
 				}
+=======
+			if (tilesView !=null)
+			{
+				var hunter:AIHunterTile = new AIHunterTile(textures, texturePath, data);
+				tilesView.addChild(hunter);
+				Starling.juggler.add(hunter);
+>>>>>>> 010fef347a88e75c4c3010efa4009b43acf79315
 			}
-			return hunters;
 		}
 
 	}

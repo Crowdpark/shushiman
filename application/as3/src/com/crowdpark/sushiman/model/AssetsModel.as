@@ -12,11 +12,12 @@ package com.crowdpark.sushiman.model
 	public class AssetsModel extends Actor
 	{
 		public static const CACHE_ID:String = "TILES";
-		public static const PATH_PLAYER:String = "hero_knife_left";
-		public static const PATH_OCTOPUS:String = "octopus_angry_left";
-		public static const PATH_WALL:String = "others0001";
-		public static const PATH_YELLOW:String = "others0002";
-		public static const PATH_WHITE:String = "others0003";
+		public static const PATH_PLAYER:String = "hero/knife_right/";
+		public static const PATH_OCTOPUSSY:String = "octopus/walk_left/";
+		public static const PATH_WALL:String = "others/output/others0002";
+		public static const PATH_YELLOW:String = "others/output/others0004";
+		public static const PATH_WHITE:String = "others/output/others0001";
+
 
 		[Embed(source="../assets/spritesheets/character.xml",mimeType="application/octet-stream")]
 		public var AtlasXML:Class;

@@ -15,7 +15,6 @@ package com.crowdpark.sushiman.views.tiles
 	public class TilesView extends Sprite 
 	{
 
-
 		public function addTile(textureId : String, tileTexture : Texture, data : TileData) : void 
 		{
 			var tile : Tile = new Tile(textureId, tileTexture, data);

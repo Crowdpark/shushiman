@@ -43,6 +43,10 @@ package com.crowdpark.sushiman.model
 				case AssetsModel.PATH_YELLOW:
 					this.score += 2;
 					break;
+				case AssetsModel.PATH_OCTOPUSSY:
+					this.currentGameState = GameState.LIFE_LOST;
+					this.numLives--;
+					break;
 
 			}
 		}
