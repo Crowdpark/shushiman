@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.tiles
 {
+	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.events.LevelEvent;
 	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.model.AssetsModel;
@@ -16,6 +17,9 @@ package com.crowdpark.sushiman.views.tiles
 		public var view:TilesView;
 		
 		[Inject]
+		public var model:ISushimanModel;
+		
+		[Inject]
 		public var levelModel:LevelModel;
 		
 		[Inject]
@@ -25,25 +29,12 @@ package com.crowdpark.sushiman.views.tiles
 		{
 			this.eventMap.mapListener(this.eventDispatcher, LevelModelEvent.UPDATED, levelUpdatedHandler);
 			
-			this.dispatch(new LevelEvent(LevelEvent.LOAD, 1));
+			this.dispatch(new LevelEvent(LevelEvent.LOAD, levelModel.currentLevelNum));
 		}
 
 		private function levelUpdatedHandler(event: LevelModelEvent ) : void
 		{
-			
-//			var whiteData:TileData = new TileData();
-//			whiteData.type = TileData.TYPE_WHITE_POINT;
-//			whiteData.colId = 10;
-//			whiteData.rowId = 10;
-//			view.addTile(AssetsModel.PATH_WHITE, assets.getTexture(AssetsModel.PATH_WHITE),whiteData);
-//			
-//			var wallData:TileData = new TileData();
-//			wallData.type = TileData.TYPE_WALLBRICK;
-//			wallData.colId = 15;
-//			wallData.rowId = 6;
-//			view.addTile(AssetsModel.PATH_WALL, assets.getTexture(AssetsModel.PATH_WALL),wallData);
-			
-			for each (var data:TileData in levelModel.levels[0].tiles)
+			for each (var data:TileData in levelModel.currentLevel.tiles)
 			{
 				switch(data.type)
 				{
@@ -60,6 +51,7 @@ package com.crowdpark.sushiman.views.tiles
 						break;
 				}
 			}
+
 		}
 	}
 }

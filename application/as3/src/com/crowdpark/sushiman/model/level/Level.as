@@ -70,6 +70,20 @@ package com.crowdpark.sushiman.model.level
 			}
 			return numRows;
 		}
+		
+		
+		public function get aiTiles():Vector.<TileData>
+		{
+			var aiTiles:Vector.<TileData> = new Vector.<TileData>();
+			for each (var tile:TileData in this.tiles)
+			{
+				if (tile.type == TileData.TYPE_OCTOPUSSY)
+				{
+					aiTiles.push(tile);
+				}
+			}
+			return aiTiles;
+		}
 
 	}
 }

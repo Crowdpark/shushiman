@@ -12,12 +12,12 @@ package com.crowdpark.sushiman.model
 	public class AssetsModel extends Actor
 	{
 		public static const CACHE_ID:String = "TILES";
-		public static const PATH_PLAYER:String = "knife_left/output/";
-		public static const PATH_OCTOPUS:String = "octopus/walk_left/output/walking_left0001";
+		public static const PATH_PLAYER:String = "hero_knife_left";
+		public static const PATH_OCTOPUS:String = "octopus_angry_left";
 		public static const PATH_WALL:String = "others0001";
 		public static const PATH_YELLOW:String = "others0002";
 		public static const PATH_WHITE:String = "others0003";
-		
+
 		[Embed(source="../assets/spritesheets/character.xml",mimeType="application/octet-stream")]
 		public var AtlasXML:Class;
 		
@@ -82,7 +82,8 @@ package com.crowdpark.sushiman.model
 
 		private function createImage(bitmap : Bitmap) : Image
 		{
-			var texture : Texture = Texture.fromBitmap(bitmap);
+			
+			var texture : Texture = Texture.fromBitmap(bitmap,true);
 			return new Image(texture);
 		}
 	}

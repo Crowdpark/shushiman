@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.views.aihunter.AIHunterTileMediator;
+	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
 	import com.crowdpark.sushiman.commands.LoadLevelCommand;
 	import com.crowdpark.sushiman.events.LevelEvent;
 	import com.crowdpark.core.robotlogger.IRobotLoggerService;
@@ -76,6 +78,7 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
 			this.mediatorMap.mapView(PlayerView, PlayerMediator);
 			this.mediatorMap.mapView(TilesView, TilesMediator);
+			this.mediatorMap.mapView(AIHunterTileView,AIHunterTileMediator)
 
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);

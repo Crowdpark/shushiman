@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.model.level.TileData;
 	import starling.events.Event;
 
 	import com.crowdpark.sushiman.model.AssetsModel;
@@ -92,6 +93,16 @@ package com.crowdpark.sushiman.views.main
 			view.removePlayButton();
 			view.addTilesView();
 			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
+			
+			var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
+			for each (var data:TileData in aiTiles)
+			{
+				if (data.type == TileData.TYPE_OCTOPUSSY)
+				{
+					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUS),data);
+				}
+			}
+			
 			view.addHudView();
 		}
 
@@ -132,16 +143,26 @@ package com.crowdpark.sushiman.views.main
 					var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
 					tileRect = tile.getBounds(this.view);
 					
+						
+					if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
+					{
+
 						//if(tile.bmd.hitTest(new Point(view.player.x,view.player.y), 255, tile.bmd, new Point(tile.x,tile.y), 255))
+
 						if (playerRect.intersects(tileRect))
 						{
-							if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW) 
-							{
-								this.view.tilesView.removeTile(tile);
-							}
+							view.tilesView.removeChild(tile);
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}
+					} else if (tile.textureType == AssetsModel.PATH_WALL)
+					{
+						if (playerRect.intersects(tileRect))
+						{
+							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+							break;
+						}
+					}
 				}
 			}
 

@@ -1,6 +1,10 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.model.level.TileData;
+	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
 	import com.crowdpark.sushiman.views.hud.HudView;
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
+	import com.crowdpark.sushiman.views.player.PlayerView;
 	import com.crowdpark.sushiman.views.tiles.TilesView;
 	import starling.core.Starling;
 	import starling.display.Button;
@@ -8,8 +12,6 @@ package com.crowdpark.sushiman.views.main
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 
-	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
-	import com.crowdpark.sushiman.views.player.PlayerView;
 
 	/**
 	 * @author francis
@@ -28,7 +30,6 @@ package com.crowdpark.sushiman.views.main
 
 		public function MainContainerView()
 		{
-
 
 		}
 
@@ -85,6 +86,29 @@ package com.crowdpark.sushiman.views.main
 		{
 			tilesView = new TilesView();
 			this.addChild(tilesView);			
+		}
+		
+		
+		public function addAITile(textures : Vector.<Texture>, data:TileData):void
+		{
+			var hunter:AIHunterTileView = new AIHunterTileView(textures, data);
+			addChild(hunter);
+			Starling.juggler.add(hunter);
+		}
+		
+		
+		public function get hunters():Vector.<AIHunterTileView>
+		{
+			var hunters:Vector.<AIHunterTileView> = new Vector.<AIHunterTileView>();
+			var n:int = this.numChildren;
+			for (var i:int = 0; i<n;i++)
+			{
+				if (this.getChildAt(i) is AIHunterTileView)
+				{
+					hunters.push(this.getChildAt(i));
+				}
+			}
+			return hunters;
 		}
 
 	}

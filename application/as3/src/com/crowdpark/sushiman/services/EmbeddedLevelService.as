@@ -50,6 +50,7 @@ package com.crowdpark.sushiman.services
 							tile.rowId = i + 1;
 							tile.colId = j + 1;
 							level.tiles.push(tile);
+							trace(tile.type);
 						}
 					}
 
