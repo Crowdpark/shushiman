@@ -14,8 +14,8 @@ package com.crowdpark.sushiman.views.player
 		{
 			super(textures, fps);
 			
-			this.scaleX = 0.8;
-			this.scaleY = 0.8;
+			this.scaleX = 0.5;
+			this.scaleY = 0.5;
 			
 			this.x = 100;
 		}
