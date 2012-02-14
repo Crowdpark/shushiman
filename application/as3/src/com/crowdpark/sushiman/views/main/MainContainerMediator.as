@@ -106,6 +106,7 @@ package com.crowdpark.sushiman.views.main
 			}
 
 			view.addHudView();
+			view.addFriendsListView();
 		}
 
 		private function configureGameOverState() : void
