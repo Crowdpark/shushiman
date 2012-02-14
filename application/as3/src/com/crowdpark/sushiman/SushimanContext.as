@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.commands.ShowLeaderboardCommand;
 	import com.crowdpark.sushiman.views.friends.FriendsListMediator;
 	import com.crowdpark.sushiman.views.friends.FriendsListView;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileMediator;
@@ -92,6 +93,7 @@ package com.crowdpark.sushiman
 			this.commandMap.mapEvent(LeaderboardEvent.GET_FRIENDS_LEADERBOARD, LeaderboardCommand);
 			this.commandMap.mapEvent(MainContainerEvent.PLAY, PlayGameCommand);
 			this.commandMap.mapEvent(RobotLoggerEvent.LOG, RobotLoggerCommand);
+			this.commandMap.mapEvent(LeaderboardEvent.SHOW_LEADERBOARD, ShowLeaderboardCommand);
 
 			super.startup();
 		}

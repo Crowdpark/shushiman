@@ -1,6 +1,7 @@
 package com.crowdpark.sushiman.views.main
 {
 
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.components.ITile;
 	import starling.display.DisplayObject;
 	import com.crowdpark.sushiman.model.level.TileData;
@@ -43,6 +44,8 @@ package com.crowdpark.sushiman.views.main
 
 			this.eventMap.mapListener(this.eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
+			eventMap.mapListener(this.eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);
+		
 
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
 
@@ -72,6 +75,13 @@ package com.crowdpark.sushiman.views.main
 					configureGameOverState();
 					break;
 			}
+		}
+		
+		
+		private function configureLeaderBoard():void
+		{
+			view.leaderBoard = new LeaderboardView();
+			view.addChild(view.leaderBoard);
 		}
 
 		private function configureLifeLost() : void
@@ -121,6 +131,11 @@ package com.crowdpark.sushiman.views.main
 			{
 				view.removeChild(view.leaderBoard);
 			}
+		}
+
+		private function openLeaderBoardHandler(event:LeaderboardEvent):void
+		{
+			configureLeaderBoard();		
 		}
 
 		private function playerMovingHandler(event : PlayerEvent) : void

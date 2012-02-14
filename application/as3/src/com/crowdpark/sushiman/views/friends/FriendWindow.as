@@ -9,6 +9,7 @@ package com.crowdpark.sushiman.views.friends
 	 */
 	public class FriendWindow extends Sprite
 	{
+		
 		public function FriendWindow(window:Image)
 		{
 			this.addChild(window);

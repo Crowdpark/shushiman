@@ -14,6 +14,7 @@ package com.crowdpark.sushiman.views.friends
 		public var background:Image;
 		public var arrowLeft:Button;
 		public var arrowRight:Button;
+		public var btnPopupScores:Button;
 		
 		public function FriendsListView()
 		{

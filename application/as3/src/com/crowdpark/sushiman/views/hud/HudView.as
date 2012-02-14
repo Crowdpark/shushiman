@@ -11,9 +11,6 @@ package com.crowdpark.sushiman.views.hud
 	{
 		public static const PREFIX_SCORE : String = "SCORE:";
 		
-		/*
-		 * TODO: load  and use flash graphics
-		 */
 		private var _tfNumOctopussies : TextField = new TextField(100, 80, "10", "Verdana", 36, 0xffffff);
 		private var _tfScore : TextField = new TextField(200, 80, "0", "Verdana", 36, 0xffffff);
 		private var _tfNumLives : TextField = new TextField(100, 80, "3", "Verdana", 36, 0xffffff);

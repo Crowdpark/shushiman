@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.friends
 {
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import starling.display.Image;
 	import starling.events.Event;
 	import starling.display.Button;
@@ -50,8 +51,31 @@ package com.crowdpark.sushiman.views.friends
 			view.arrowRight.y = (view.background.height/2) - (view.arrowRight.height/2);
 			
 			
+			view.btnPopupScores = new Button(assetsModel.getPlayButtonTexture(),"SCORES");
+			view.addChild(view.btnPopupScores);
+			view.btnPopupScores.x = view.arrowRight.x + view.arrowRight.width + FriendsListView.COMPONENTS_MARGIN;
+			view.btnPopupScores.y = (view.background.height/2) - (view.btnPopupScores.height/2);
+			
+			addListeners();
+		}
+
+		private function addListeners():void
+		{
 			view.arrowLeft.addEventListener(Event.TRIGGERED, triggerArrowHandler);
 			view.arrowRight.addEventListener(Event.TRIGGERED, triggerArrowHandler);	
+			view.btnPopupScores.addEventListener(Event.TRIGGERED, triggerScoresHandler);			
+		}
+		
+		private function removeListeners():void
+		{
+			view.arrowLeft.addEventListener(Event.TRIGGERED, triggerArrowHandler);
+			view.arrowRight.addEventListener(Event.TRIGGERED, triggerArrowHandler);	
+			view.btnPopupScores.addEventListener(Event.TRIGGERED, triggerScoresHandler);			
+		}
+
+		private function triggerScoresHandler(event : Event) : void
+		{
+			dispatch(new LeaderboardEvent(LeaderboardEvent.SHOW_LEADERBOARD));
 		}
 
 		private function triggerArrowHandler(event : Event) : void
