@@ -5,9 +5,9 @@ package com.crowdpark.sushiman.views.friends
 	/**
 	 * @author sandberg
 	 */
-	public class FriendsView extends Sprite
+	public class FriendsListView extends Sprite
 	{
-		public function FriendsView()
+		public function FriendsListView()
 		{
 		}
 	}
