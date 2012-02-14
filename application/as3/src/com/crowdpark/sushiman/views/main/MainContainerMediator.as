@@ -91,22 +91,20 @@ package com.crowdpark.sushiman.views.main
 
 		private function configurePlayState() : void
 		{
-
 			removeLeaderboard();
 			view.removePlayButton();
 			view.addTilesView();
 			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
-			
+
 			var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
 			for each (var data:TileData in aiTiles)
 			{
 				if (data.type == TileData.TYPE_OCTOPUSSY)
 				{
-					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY),data);
-
+					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
 				}
 			}
-			
+
 			view.addHudView();
 		}
 

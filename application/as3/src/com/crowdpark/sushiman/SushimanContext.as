@@ -78,7 +78,7 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
 			this.mediatorMap.mapView(PlayerView, PlayerMediator);
 			this.mediatorMap.mapView(TilesView, TilesMediator);
-			this.mediatorMap.mapView(AIHunterTileView,AIHunterTileMediator)
+			this.mediatorMap.mapView(AIHunterTileView,AIHunterTileMediator);
 
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);

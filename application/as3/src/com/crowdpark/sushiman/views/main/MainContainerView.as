@@ -96,25 +96,6 @@ package com.crowdpark.sushiman.views.main
 			Starling.juggler.add(hunter);
 		}
 		
-		
-		public function get hunters():Vector.<AIHunterTileView>
-		{
-			var hunters:Vector.<AIHunterTileView> = new Vector.<AIHunterTileView>();
-			var n:int = this.numChildren;
-			for (var i:int = 0; i<n;i++)
-			{
-				if (this.getChildAt(i) is AIHunterTileView)
-				{
-					hunters.push(this.getChildAt(i));
-				}
-				
-			if (tilesView !=null)
-			{
-				var hunter:AIHunterTile = new AIHunterTile(textures, texturePath, data);
-				tilesView.addChild(hunter);
-				Starling.juggler.add(hunter);
-			}
-		}
 
 	}
 }
