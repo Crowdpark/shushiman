@@ -102,11 +102,8 @@ package com.crowdpark.sushiman.views.main
 			{
 				if (data.type == TileData.TYPE_OCTOPUSSY)
 				{
-<<<<<<< HEAD
-					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUS),data);
-=======
-					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
->>>>>>> 010fef347a88e75c4c3010efa4009b43acf79315
+					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY),data);
+
 				}
 			}
 			
