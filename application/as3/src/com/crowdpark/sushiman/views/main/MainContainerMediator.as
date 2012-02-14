@@ -23,6 +23,7 @@ package com.crowdpark.sushiman.views.main
 
 	/**
 	 * @author francis
+	 * TODO: add something to pause the game when pause state is entered
 	 */
 	public class MainContainerMediator extends StarlingMediator
 	{
