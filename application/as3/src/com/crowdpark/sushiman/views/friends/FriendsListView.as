@@ -10,6 +10,7 @@ package com.crowdpark.sushiman.views.friends
 	public class FriendsListView extends Sprite
 	{
 		public static const DISPLAY_NUM:int = 5;
+		public static const COMPONENTS_MARGIN:int = 10;
 		public var background:Image;
 		public var arrowLeft:Button;
 		public var arrowRight:Button;

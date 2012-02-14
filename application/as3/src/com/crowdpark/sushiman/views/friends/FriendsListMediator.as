@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman.views.friends
 {
+	import starling.display.Image;
+	import starling.events.Event;
 	import starling.display.Button;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import org.robotlegs.mvcs.StarlingMediator;
@@ -24,20 +26,37 @@ package com.crowdpark.sushiman.views.friends
 		
 		public function addComponents():void
 		{
-			view.arrowLeft = new Button(assetsModel.getArrowButtonTexture(),"",assetsModel.getArrowButtonTexture(true));
-			view.addChild(view.arrowLeft);
+			view.background = assetsModel.getBackgroundHud();
+			view.addChild(view.background);
 			
+			view.arrowLeft = new Button(assetsModel.getArrowButtonTexture(),"",assetsModel.getArrowButtonTexture(true));
+			view.arrowLeft.y = (view.background.height/2) - (view.arrowLeft.height/2);
+			view.addChild(view.arrowLeft);
+
+			var fWindow:FriendWindow;
+			var fImage:Image;
+			
+			for (var i:int = 0; i<FriendsListView.DISPLAY_NUM; i++)
+			{
+				fImage = assetsModel.getFriendWindow();
+				fWindow = new FriendWindow(fImage);
+				fWindow.x = view.arrowLeft.x + view.arrowLeft.width + (FriendsListView.COMPONENTS_MARGIN * i) + (fImage.width * i);
+				view.addChild(fWindow);
+			}
 			
 			view.arrowRight = new Button(assetsModel.getArrowButtonTexture(false, AssetsModel.ARROW_DIRECTION_RIGHT),"",assetsModel.getArrowButtonTexture(true, AssetsModel.ARROW_DIRECTION_RIGHT));
 			view.addChild(view.arrowRight);
-			view.x = 400;
+			view.arrowRight.x = fWindow.x + fWindow.width;
+			view.arrowRight.y = (view.background.height/2) - (view.arrowRight.height/2);
 			
-//			var fWindow:FriendWindow;
-//			for (var i:int = 0; i<FriendsListView.DISPLAY_NUM; i++)
-//			{
-//				fWindow = new FriendWindow(assetsModel.getFriendWindow());
-//				view.addChild(fWindow);
-//			}	
+			
+			view.arrowLeft.addEventListener(Event.TRIGGERED, triggerArrowHandler);
+			view.arrowRight.addEventListener(Event.TRIGGERED, triggerArrowHandler);	
+		}
+
+		private function triggerArrowHandler(event : Event) : void
+		{
+			
 		}
 	}
 }

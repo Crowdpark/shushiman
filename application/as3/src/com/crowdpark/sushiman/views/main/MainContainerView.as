@@ -101,6 +101,8 @@ package com.crowdpark.sushiman.views.main
 		
 		public function addFriendsListView():void
 		{
+			friendsView.x = 0;
+			friendsView.y = _background.height - friendsView.height;
 			addChild(friendsView);
 		}
 		
