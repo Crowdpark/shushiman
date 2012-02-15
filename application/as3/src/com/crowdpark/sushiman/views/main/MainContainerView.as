@@ -35,7 +35,7 @@ package com.crowdpark.sushiman.views.main
 
 		}
 
-		public function addBackgroundImage(image : Image) : void
+		public function addBackgroundImage(image : Image, mask:Image=null) : void
 		{
 			_background = image;
 			addChild(_background);
