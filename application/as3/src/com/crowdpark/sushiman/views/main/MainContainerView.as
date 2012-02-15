@@ -19,6 +19,8 @@ package com.crowdpark.sushiman.views.main
 	 
 	public class MainContainerView extends Sprite
 	{
+		public static const TRANSITION_SPEED:int = 2;
+		
 		public var player : PlayerView;
 		public var leaderBoard : LeaderboardView;
 		public var tilesView:TilesView;
@@ -28,7 +30,6 @@ package com.crowdpark.sushiman.views.main
 		public var playButton:Button;
 		public var background : Image;
 		public var logo : Image;
-		
 
 		public function MainContainerView()
 		{

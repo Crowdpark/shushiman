@@ -1,5 +1,9 @@
 package com.crowdpark.sushiman.views.main 
 {
+
+	import starling.core.Starling;
+	import starling.animation.Transitions;
+	import starling.animation.Tween;
 	import starling.events.Event;
 
 	import com.crowdpark.sushiman.model.AssetsModel;
@@ -50,12 +54,39 @@ package com.crowdpark.sushiman.views.main
 		
 		private function configureLeaderBoard():void
 		{
-			view.leaderBoard = new LeaderboardView();
-			if (view.hudView != null)
+			if (view.leaderBoard == null)
 			{
-				view.leaderBoard.y = view.hudView.background.height;
+				view.leaderBoard = new LeaderboardView();
 			}
-			view.addChild(view.leaderBoard);
+			if (!view.contains(view.leaderBoard))
+			{
+				view.addChild(view.leaderBoard);
+			}
+
+			view.leaderBoard.x = -view.background.width;
+			view.leaderBoard.y = view.hudView.background.height;
+
+			var t:Tween = new Tween(view.leaderBoard, MainContainerView.TRANSITION_SPEED, Transitions.EASE_IN_OUT);
+			t.moveTo(0, view.leaderBoard.y);
+			Starling.juggler.add(t);
+		}
+		
+		private function removeLeaderboard() : void
+		{
+			if (view.leaderBoard != null && view.contains(view.leaderBoard))
+			{
+				var t:Tween = new Tween(view.leaderBoard, MainContainerView.TRANSITION_SPEED, Transitions.EASE_IN_OUT);
+				t.moveTo(-view.background.width, view.leaderBoard.y);
+				Starling.juggler.add(t);
+			}
+		}
+
+		private function configureLifeLost() : void
+		{
+		}
+
+		private function configureLevelComplete() : void
+		{
 		}
 
 		private function configureInitState() : void
@@ -94,23 +125,16 @@ package com.crowdpark.sushiman.views.main
 
 		private function configureGameOverState():void
 		{
-			view.leaderBoard = new LeaderboardView();
-			view.addChild(view.leaderBoard);
+
 		}
 
-		private function removeLeaderboard() : void
-		{
-			if (view.leaderBoard != null && view.contains(view.leaderBoard))
-			{
-				view.removeChild(view.leaderBoard);
-			}
-		}
+
 
 		private function openLeaderBoardHandler(event:LeaderboardEvent):void
 		{
 			if (view.leaderBoard != null && view.contains(view.leaderBoard))
 			{
-				view.removeChild(view.leaderBoard);
+				removeLeaderboard();
 			} else
 			{
 				if (model.currentGameState == GameState.PAUSED)

@@ -12,6 +12,9 @@ package com.crowdpark.sushiman.views.friends
 		
 		public function FriendWindow(window:Image)
 		{
+			/*
+			 * NOTE: Facebook image should be added behind window image
+			 */
 			this.addChild(window);
 		}
 	}
