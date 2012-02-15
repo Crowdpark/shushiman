@@ -11,11 +11,9 @@ package com.crowdpark.sushiman.views.main
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.level.LevelProxy;
 	import com.crowdpark.sushiman.model.level.TileData;
-	import com.crowdpark.sushiman.views.components.Tile;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import org.robotlegs.mvcs.StarlingMediator;
-	import flash.geom.Point;
 
 	/**
 	 * @author francis
