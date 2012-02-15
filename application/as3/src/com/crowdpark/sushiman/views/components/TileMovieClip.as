@@ -16,9 +16,6 @@ package com.crowdpark.sushiman.views.components
 		{
 			super(textures, fps);
 			
-			this.width = Level.TILE_WIDTH;
-			this.height = Level.TILE_HEIGHT;
-			
 			var pos:Point = Level.calculateTilePosition(data.colId, data.rowId);
 			this.x = pos.x;
 			this.y = pos.y;
