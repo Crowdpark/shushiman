@@ -35,14 +35,7 @@ package com.crowdpark.sushiman.views.player
 
 		private function collisionHandler(event:PlayerEvent) : void
 		{
-//			if (event.assetType == AssetsModel.PATH_WALL)
-//			{
-//				if (_lastPosition)
-//				{
-//					this.view.x = _lastPosition.x;
-//					this.view.y = _lastPosition.y;
-//				}
-//			}
+
 		}
 
 		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
@@ -54,10 +47,10 @@ package com.crowdpark.sushiman.views.player
 				case GameState.GAME_OVER:
 				case GameState.LIFE_LOST:
 					isActive = false;
-					break;
+				break;
 				case GameState.PLAYING:
 					isActive = true;
-					break;
+				break;
 			}
 		}
 
@@ -65,7 +58,6 @@ package com.crowdpark.sushiman.views.player
 		{
 			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 			this.view.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
-			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 			this.view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 

@@ -107,7 +107,7 @@ package com.crowdpark.sushiman.views.main
 				}
 			} 
 			
-			view.addHudView(assets.getBackgroundHud());
+			//view.addHudView(assets.getBackgroundHud());
 			view.addFriendsListView();
 		}
 
