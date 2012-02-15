@@ -8,8 +8,10 @@ package com.crowdpark.sushiman.views.main
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.level.LevelModel;
 	import com.crowdpark.sushiman.model.level.TileData;
+	import com.crowdpark.sushiman.views.components.Tile;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
+
 	import org.robotlegs.mvcs.StarlingMediator;
 
 	/**
@@ -29,10 +31,10 @@ package com.crowdpark.sushiman.views.main
 
 		override public function onRegister() : void
 		{
-			view.x = 0;
-			view.addBackgroundImage(assets.getBackgroundImage());
+			view.addBackgroundImage(assets.getBackground());
 			view.addLogo(assets.getCrowdparkLogo());
 			view.addPlayButton(assets.getPlayButtonTexture());
+			
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(this.eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
@@ -73,6 +75,10 @@ package com.crowdpark.sushiman.views.main
 		private function configureLeaderBoard():void
 		{
 			view.leaderBoard = new LeaderboardView();
+			if (view.hudView != null)
+			{
+				view.leaderBoard.y = view.hudView.background.height;
+			}
 			view.addChild(view.leaderBoard);
 		}
 
@@ -95,6 +101,7 @@ package com.crowdpark.sushiman.views.main
 		{
 			removeLeaderboard();
 			view.removePlayButton();
+			
 			view.addTilesView();
 			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
 
@@ -103,12 +110,14 @@ package com.crowdpark.sushiman.views.main
 			{
 				if (data.type == TileData.TYPE_OCTOPUSSY)
 				{
-					//view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
 				}
 			} 
 			
-			//view.addHudView(assets.getBackgroundHud());
-			view.addFriendsListView();
+
+			view.addBackgroundMask(assets.getBackgroundMask());
+			view.addHudView(assets.getBackgroundHud());
+			view.addFriendsListView(assets.getBackgroundHud());
 		}
 
 		private function configureGameOverState() : void
@@ -127,13 +136,23 @@ package com.crowdpark.sushiman.views.main
 
 		private function openLeaderBoardHandler(event:LeaderboardEvent):void
 		{
-			configureLeaderBoard();		
+			if (view.leaderBoard != null && view.contains(view.leaderBoard))
+			{
+				view.removeChild(view.leaderBoard);
+			} else
+			{
+				configureLeaderBoard();	
+			}
 		}
 		 
 		private function checkCollision() : void
 		{
-			trace(Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns));
-			trace(Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows));
+			if (view.player)
+			{
+				var x:int = Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns);
+				var y:int = Math.floor((view.player.x + view.player.height/2) / levelModel.currentLevel.numRows); 
+				
+			}
 		}
 	}
 }

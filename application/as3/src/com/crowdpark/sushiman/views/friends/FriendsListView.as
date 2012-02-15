@@ -16,8 +16,10 @@ package com.crowdpark.sushiman.views.friends
 		public var arrowRight:Button;
 		public var btnPopupScores:Button;
 		
-		public function FriendsListView()
+		public function FriendsListView(background:Image)
 		{
+			this.background = background;
+			addChild(background);
 		}
 
 		public function get friendWindows():Vector.<FriendWindow>

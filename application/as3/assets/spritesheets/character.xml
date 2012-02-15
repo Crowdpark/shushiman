@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://texturepacker.com-->
-<!-- $TexturePacker:SmartUpdate:ab34868eb198f93b268192d300074e28$ -->
+<!-- $TexturePacker:SmartUpdate:a75f99c13a526bc657b783ad94de81de$ -->
 <TextureAtlas imagePath="character.png">
     <SubTexture name="hero_knife_left/knife_walking_left0001" x="800" y="1300" width="100" height="100"/>
     <SubTexture name="hero_knife_left/knife_walking_left0002" x="700" y="1230" width="100" height="100"/>

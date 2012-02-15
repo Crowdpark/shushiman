@@ -16,6 +16,7 @@ package com.crowdpark.sushiman.services
 	{
 		[Inject]
 		public var model : LevelModel;
+		
 		[Embed(source="../assets/levels/output/level001.json",mimeType="application/octet-stream")]
 		private const JsonData : Class;
 
@@ -37,7 +38,7 @@ package com.crowdpark.sushiman.services
 					level.tiles = new Vector.<TileData>();
 
 					var rowLength : int = (obj.level.fields as Array).length;
-					for (var i : int = 0; i < rowLength;i++) 
+					for (var i : int = 0; i < rowLength;i++)
 					{
 						var field : Array = (obj.level.fields as Array)[i];
 						var colLength : int = field.length;

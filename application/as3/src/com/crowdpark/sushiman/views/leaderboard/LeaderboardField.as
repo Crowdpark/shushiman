@@ -1,4 +1,4 @@
-package com.crowdpark.sushiman.views.components
+package com.crowdpark.sushiman.views.leaderboard
 {
 	import starling.text.TextField;
 
@@ -12,7 +12,7 @@ package com.crowdpark.sushiman.views.components
 		
 		public function LeaderboardField(user:UserVo)
 		{
-			super(400, 60, "", "Verdana", 16);
+			super(400, 20, "", "Verdana", 16, 0xffffff);
 			this.user = user;
 		}
 

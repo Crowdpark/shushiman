@@ -20,6 +20,17 @@ package com.crowdpark.sushiman.views.tiles
 			var tile : Tile = new Tile(textureId, tileTexture, data);
 			addChild(tile);
 		}
+		
+		public function get tiles():Vector.<Tile>
+		{
+			var tiles:Vector.<Tile> = new Vector.<Tile>();
+			for (var i : int = 0 ; i < numChildren ; i++) 
+			{
+				var tile : Tile = this.getChildAt(i) as Tile;
+				tiles.push(tile);			
+			}
+			return tiles;
+		}
 
 		public function removeTile(tile : Tile) : void 
 		{

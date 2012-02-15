@@ -29,9 +29,7 @@ package com.crowdpark.sushiman.views.friends
 		
 		public function addComponents():void
 		{
-			view.background = assetsModel.getBackgroundHud();
-			view.addChild(view.background);
-			
+
 			view.arrowLeft = new Button(assetsModel.getArrowButtonTexture(),"",assetsModel.getArrowButtonTexture(true));
 			view.arrowLeft.y = (view.background.height/2) - (view.arrowLeft.height/2);
 			view.addChild(view.arrowLeft);
