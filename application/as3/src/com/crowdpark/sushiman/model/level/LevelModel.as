@@ -31,7 +31,12 @@ package com.crowdpark.sushiman.model.level
 		
 		public function get currentLevel():Level
 		{
-			return this.levels[this.currentLevelNum];
+			if (levels != null && levels.length > 0)
+			{
+				return this.levels[this.currentLevelNum];
+			}
+			return null;
+			
 		}
 
 		public function set levels(levels : Vector.<Level>) : void

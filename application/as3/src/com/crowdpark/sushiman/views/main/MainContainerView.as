@@ -35,7 +35,7 @@ package com.crowdpark.sushiman.views.main
 
 		}
 
-		public function addBackgroundImage(image : Image, mask:Image=null) : void
+		public function addBackgroundImage(image : Image) : void
 		{
 			background = image;
 			addChild(background);
@@ -112,8 +112,7 @@ package com.crowdpark.sushiman.views.main
 			}
 			addChild(friendsView);
 			friendsView.x = 0;
-			friendsView.y = background.height - friendsView.background.height;
-			
+			friendsView.y = this.background.height - friendsView.background.height;
 		}
 		
 		public function addBackgroundMask(image:Image):void

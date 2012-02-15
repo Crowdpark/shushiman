@@ -106,18 +106,22 @@ package com.crowdpark.sushiman.views.main
 			view.addTilesView();
 			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
 
-			var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
-			for each (var data:TileData in aiTiles)
+			if (levelModel.currentLevel != null)
 			{
-				if (data.type == TileData.TYPE_OCTOPUSSY)
+				var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
+				for each (var data:TileData in aiTiles)
 				{
-					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+					if (data.type == TileData.TYPE_OCTOPUSSY)
+					{
+						view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+					}
 				}
-			} 
-			
+			}
+		
 			view.addBackgroundMask(assets.getBackgroundMask());
 			view.addHudView(assets.getBackgroundHud());
-			view.addFriendsListView(assets.getBackgroundHud());
+			view.addFriendsListView(assets.getBackgroundFriendsView());	
+
 		}
 
 		private function configureGameOverState() : void
