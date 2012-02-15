@@ -1,7 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
 	import com.crowdpark.sushiman.views.components.Tile;
-	import flash.geom.Rectangle;
 	import flash.geom.Point;
 	import starling.events.Event;
 
@@ -38,49 +37,59 @@ package com.crowdpark.sushiman.views.main
 			
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(this.eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);
+			
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
+		}
+		
+		private function addGameloopListener():void
+		{
 			view.stage.addEventListener(Event.ENTER_FRAME, gameLoop);
 		}
-
-		private function gameLoop(event : Event) : void
+		
+		private function removeGameloopListener():void
 		{
-			checkCollision();
+			view.stage.removeEventListener(Event.ENTER_FRAME, gameLoop);
 		}
-
-		private function playButtonTriggerHandler(event : Event) : void
+		
+		private function checkCollision() : void
 		{
-			dispatch(new MainContainerEvent(MainContainerEvent.PLAY));
-		}
-
-		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
-		{
-			switch(event.state)
+			if (view.player)
 			{
-				case GameState.INIT:
-					configureInitState();
-					break;
-				case GameState.PLAYING:
-					configurePlayState();
-					break;
-				case GameState.LIFE_LOST:
-					configureLifeLost();
-					break;				
-				case GameState.LEVEL_COMPLETE:
-					configureLevelComplete();
-				case GameState.GAME_OVER:
-					configureGameOverState();
-					break;
+				//trace(Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns));
+				//trace(Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows));
 			}
+		}
+		
+		private function getTileTypeByPosition(gridPosition:Point):Tile
+		{
+			var tiles:Vector.<Tile> = view.tilesView.tiles;
+			for each (var tile:Tile in tiles)
+			{
+				if (gridPosition.x == tile.tileData.rowId && gridPosition.y == tile.tileData.colId)
+				{
+					return tile;
+					break;
+				}
+			}
+			return null;
+		}
+
+		private function configurePauseState() : void
+		{
+			removeGameloopListener();
 		}
 		
 		private function configureLeaderBoard():void
 		{
-			view.leaderBoard = new LeaderboardView();
-			if (view.hudView != null)
+			if (model.currentGameState == GameState.PAUSED)
 			{
-				view.leaderBoard.y = view.hudView.background.height;
+				view.leaderBoard = new LeaderboardView();
+				if (view.hudView != null)
+				{
+					view.leaderBoard.y = view.hudView.background.height;
+				}
+				view.addChild(view.leaderBoard);
 			}
-			view.addChild(view.leaderBoard);
 		}
 
 		private function configureLifeLost() : void
@@ -98,29 +107,34 @@ package com.crowdpark.sushiman.views.main
 
 		}
 
-		private function configurePlayState() : void
+		private function configurePlayState(previousState:String) : void
 		{
+
 			removeLeaderboard();
 			view.removePlayButton();
-			
-			view.addTilesView();
-			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
-
-			if (levelModel.currentLevel != null)
-			{
-				var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
-				for each (var data:TileData in aiTiles)
+			if (previousState != GameState.PAUSED)
+			{			
+				view.addTilesView();
+				view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
+	
+				if (levelModel.currentLevel != null)
 				{
-					if (data.type == TileData.TYPE_OCTOPUSSY)
+					var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
+					for each (var data:TileData in aiTiles)
 					{
-						view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+						if (data.type == TileData.TYPE_OCTOPUSSY)
+						{
+							view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+						}
 					}
 				}
+			
+				view.addBackgroundMask(assets.getBackgroundMask());
+				view.addHudView(assets.getBackgroundHud());
+				view.addFriendsListView(assets.getBackgroundFriendsView());	
 			}
-		
-			view.addBackgroundMask(assets.getBackgroundMask());
-			view.addHudView(assets.getBackgroundHud());
-			view.addFriendsListView(assets.getBackgroundFriendsView());	
+			
+			addGameloopListener();
 
 		}
 
@@ -148,28 +162,40 @@ package com.crowdpark.sushiman.views.main
 				configureLeaderBoard();	
 			}
 		}
-		 
-		private function checkCollision() : void
-		{
-			if (view.player)
-			{
-				//trace(Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns));
-				//trace(Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows));
-			}
-		}
 		
-		private function getTileTypeByPosition(gridPosition:Point):Tile
+		private function gameLoop(event : Event) : void
 		{
-			var tiles:Vector.<Tile> = view.tilesView.tiles;
-			for each (var tile:Tile in tiles)
-			{
-				if (gridPosition.x == tile.tileData.rowId && gridPosition.y == tile.tileData.colId)
-				{
-					return tile;
-					break;
-				}
-			}
-			return null;
+			checkCollision();
 		}
+
+		private function playButtonTriggerHandler(event : Event) : void
+		{
+			dispatch(new MainContainerEvent(MainContainerEvent.PLAY));
+		}
+
+		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
+		{
+			switch(event.newState)
+			{
+				case GameState.INIT:
+					configureInitState();
+					break;
+				case GameState.PLAYING:
+					configurePlayState(event.previousState);
+					break;
+				case GameState.PAUSED:
+					configurePauseState();
+					break;
+				case GameState.LIFE_LOST:
+					configureLifeLost();
+					break;				
+				case GameState.LEVEL_COMPLETE:
+					configureLevelComplete();
+				case GameState.GAME_OVER:
+					configureGameOverState();
+					break;
+			}
+		}
+
 	}
 }

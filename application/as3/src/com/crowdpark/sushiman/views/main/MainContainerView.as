@@ -77,22 +77,43 @@ package com.crowdpark.sushiman.views.main
 			{
 				hudView = new HudView(background);
 			}
-			addChild(hudView);
+			if (!this.contains(hudView))
+			{
+				addChild(hudView);
+			}
+			
 		}
 
 		public function addPlayer(textures : Vector.<Texture>) : void
 		{
-			player = new PlayerView(textures, 24);
-			addChild(player);
-			Starling.juggler.add(player);
+			if (player == null)
+			{
+				player = new PlayerView(textures, 24);
+			}
+			
+			if (!this.contains(player))
+			{
+				addChild(player);
+				Starling.juggler.add(player);
+			}
+			
+			
 		}
 		
 		
 		public function addTilesView():void
 		{
-			tilesView = new TilesView();
-			tilesView.y = 70;//this.hudView.background.height;
-			this.addChild(tilesView);			
+			if (tilesView == null)
+			{
+				tilesView = new TilesView();
+				tilesView.y = 70;//this.hudView.background.height;
+			}
+			
+			if (!this.contains(tilesView))
+			{
+				this.addChild(tilesView);
+			}
+						
 		}
 		
 		
@@ -110,14 +131,22 @@ package com.crowdpark.sushiman.views.main
 			{
 				friendsView = new FriendsListView(background);
 			}
-			addChild(friendsView);
-			friendsView.x = 0;
-			friendsView.y = this.background.height - friendsView.background.height;
+			if (!this.contains(friendsView))
+			{
+				addChild(friendsView);
+				friendsView.x = 0;
+				friendsView.y = this.background.height - friendsView.background.height;				
+			}
+
 		}
 		
 		public function addBackgroundMask(image:Image):void
 		{
-			addChild(image);
+			if (!this.contains(image))
+			{
+				addChild(image);
+			}
+			
 		}
 		
 

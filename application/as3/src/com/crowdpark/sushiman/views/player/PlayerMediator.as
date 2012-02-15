@@ -39,12 +39,15 @@ package com.crowdpark.sushiman.views.player
 
 		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
 		{
-			switch(event.state)
+			switch(event.newState)
 			{
 				case GameState.INIT:
 				case GameState.LEVEL_COMPLETE:
 				case GameState.GAME_OVER:
 				case GameState.LIFE_LOST:
+					isActive = false;
+					break;
+				case GameState.PAUSED:
 					isActive = false;
 					break;
 				case GameState.PLAYING:

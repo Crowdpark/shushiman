@@ -8,22 +8,34 @@ package com.crowdpark.sushiman.model.gamestate
 	public class GameStateChangedEvent extends Event
 	{
 		public static const CHANGE : String = "GameStateEvent.CHANGE";
-		private var _state : String;
+		private var _newState : String;
+		private var _previousState:String;
 
-		public function GameStateChangedEvent(type : String, state : String)
+		public function GameStateChangedEvent(type : String, newState : String, previousState:String)
 		{
-			this.state = state;
+			_newState = newState;
+			_previousState = previousState;
 			super(type);
 		}
 
-		public function get state() : String
+		public function get newState() : String
 		{
-			return _state;
+			return _newState;
 		}
 
-		public function set state(state : String) : void
+		public function set newState(newState : String) : void
 		{
-			_state = state;
+			_newState = newState;
+		}
+
+		public function get previousState() : String
+		{
+			return _previousState;
+		}
+
+		public function set previousState(previousState : String) : void
+		{
+			_previousState = previousState;
 		}
 	}
 }

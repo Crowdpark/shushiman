@@ -14,7 +14,14 @@ package com.crowdpark.sushiman.commands
 		
 		override public function execute():void
 		{
-			model.currentGameState = GameState.PAUSED;
+			if (model.currentGameState == GameState.PLAYING)
+			{
+				model.currentGameState = GameState.PAUSED;
+			} else if(model.currentGameState == GameState.PAUSED)
+			{
+				model.currentGameState = GameState.PLAYING;
+			}
+			
 		}
 	}
 }

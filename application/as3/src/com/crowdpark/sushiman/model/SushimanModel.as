@@ -136,6 +136,7 @@ package com.crowdpark.sushiman.model
 
 		public function set currentGameState(currentGameState : String) : void
 		{
+			var previousState:String = _currentGameState;
 			_currentGameState = currentGameState;
 
 			switch(currentGameState)
@@ -155,7 +156,8 @@ package com.crowdpark.sushiman.model
 					break;
 			}
 			var msg:String = "Current gamestate changed to " + currentGameState;
-			dispatch(new GameStateChangedEvent(GameStateChangedEvent.CHANGE, currentGameState));
+			var event:GameStateChangedEvent = new GameStateChangedEvent(GameStateChangedEvent.CHANGE, currentGameState, previousState)
+			dispatch(event);
 			dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_INFO, SushimanModel, msg));
 		}
 
