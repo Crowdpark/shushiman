@@ -38,10 +38,10 @@ package com.crowdpark.sushiman.views.main
 
 		override public function onRegister() : void
 		{
-			view.x = 0;
 			view.addBackgroundImage(assets.getBackgroundImage());
 			view.addLogo(assets.getCrowdparkLogo());
 			view.addPlayButton(assets.getPlayButtonTexture());
+			
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(this.eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
@@ -82,6 +82,10 @@ package com.crowdpark.sushiman.views.main
 		private function configureLeaderBoard():void
 		{
 			view.leaderBoard = new LeaderboardView();
+			if (view.hudView != null)
+			{
+				view.leaderBoard.y = view.hudView.height;
+			}
 			view.addChild(view.leaderBoard);
 		}
 
@@ -117,7 +121,7 @@ package com.crowdpark.sushiman.views.main
 			} 
 			
 			view.addHudView(assets.getBackgroundHud());
-			view.addFriendsListView();
+			view.addFriendsListView(assets.getBackgroundHud());
 		}
 
 		private function configureGameOverState() : void
@@ -162,7 +166,7 @@ package com.crowdpark.sushiman.views.main
 				{
 					if(this.view.tilesView.getChildAt(i) is ITile)
 					{
-						var tile:ITile = this.view.tilesView.getChildAt(i) as ITile;
+						var tile:ITile = this.view.tilesView.getChildAt(i) as ITile; 
 						tileRect = (tile as DisplayObject).getBounds(this.view);
 							
 						if (playerRect.intersects(tileRect))

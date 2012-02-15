@@ -50,6 +50,9 @@ package com.crowdpark.sushiman.model
 		
 		[Embed(source="../assets/arrow_left_mouseover.png")]
 		public var ArrowLeftMouseOver : Class;
+		
+		[Embed(source="../assets/background_scores.png")]
+		public var BackgroundScores : Class;
 
 		private var _characters:Bitmap;
 		private var _atlas : TextureAtlas;
@@ -87,6 +90,12 @@ package com.crowdpark.sushiman.model
 		{
 			var bitmap:Bitmap = new BackgroundHud();
 			return createImage(bitmap);
+		}
+		
+		public function getBackgroundScores():Image
+		{
+			var bitmap:Bitmap = new BackgroundScores();
+			return createImage(bitmap);			
 		}
 		
 		public function getPlayButtonTexture():Texture

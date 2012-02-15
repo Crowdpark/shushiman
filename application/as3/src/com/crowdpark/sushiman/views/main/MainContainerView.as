@@ -23,7 +23,7 @@ package com.crowdpark.sushiman.views.main
 		public var leaderBoard : LeaderboardView;
 		public var tilesView:TilesView;
 		public var hudView:HudView;
-		public var friendsView:FriendsListView = new FriendsListView();
+		public var friendsView:FriendsListView;
 		
 		public var playButton:Button;
 		private var _background : Image;
@@ -103,11 +103,16 @@ package com.crowdpark.sushiman.views.main
 		}
 		
 		
-		public function addFriendsListView():void
+		public function addFriendsListView(background:Image):void
 		{
-			friendsView.x = 0;
-			friendsView.y = _background.height - friendsView.height;
+			if (friendsView == null)
+			{
+				friendsView = new FriendsListView(background);
+			}
 			addChild(friendsView);
+			friendsView.x = 0;
+			friendsView.y = _background.height - friendsView.background.height;
+			
 		}
 		
 
