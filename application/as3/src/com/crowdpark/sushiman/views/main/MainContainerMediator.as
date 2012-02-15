@@ -1,17 +1,17 @@
 package com.crowdpark.sushiman.views.main 
 {
 	import starling.events.Event;
+
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.level.LevelProxy;
 	import com.crowdpark.sushiman.model.level.TileData;
-	import com.crowdpark.sushiman.views.components.Tile;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
+
 	import org.robotlegs.mvcs.StarlingMediator;
-	import flash.geom.Point;
 
 	/**
 	 * @author francis
@@ -33,21 +33,9 @@ package com.crowdpark.sushiman.views.main
 			view.addBackgroundImage(assets.getBackground());
 			view.addLogo(assets.getCrowdparkLogo());
 			view.addPlayButton(assets.getPlayButtonTexture());
-			
-			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
-			eventMap.mapListener(this.eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);
-			
+			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
+			eventMap.mapListener(eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);	
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
-		}
-		
-		private function addGameloopListener():void
-		{
-			view.stage.addEventListener(Event.ENTER_FRAME, gameLoop);
-		}
-		
-		private function removeGameloopListener():void
-		{
-			view.stage.removeEventListener(Event.ENTER_FRAME, gameLoop);
 		}
 		
 		private function checkCollision() : void
@@ -57,7 +45,7 @@ package com.crowdpark.sushiman.views.main
 
 		private function configurePauseState() : void
 		{
-			removeGameloopListener();
+			view.stage.removeEventListener(Event.ENTER_FRAME, gameLoop);
 		}
 		
 		private function configureLeaderBoard():void
@@ -77,7 +65,6 @@ package com.crowdpark.sushiman.views.main
 
 		private function configurePlayState(previousState:String) : void
 		{
-
 			removeLeaderboard();
 			view.removePlayButton();
 			
@@ -102,7 +89,7 @@ package com.crowdpark.sushiman.views.main
 			view.addBackgroundMask(assets.getBackgroundMask());
 			view.addHudView(assets.getBackgroundHud());
 			view.addFriendsListView(assets.getBackgroundHud());
-			addGameloopListener();
+			view.stage.addEventListener(Event.ENTER_FRAME, gameLoop);
 		}
 
 		private function configureGameOverState():void
@@ -130,7 +117,6 @@ package com.crowdpark.sushiman.views.main
 				{
 					configureLeaderBoard();	
 				}
-				
 			}
 		}
 		
