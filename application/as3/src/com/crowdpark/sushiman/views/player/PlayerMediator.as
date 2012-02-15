@@ -24,7 +24,6 @@ package com.crowdpark.sushiman.views.player
 		private var _moveRight : Boolean;
 		private var _moveUp : Boolean;
 		private var _moveDown : Boolean;
-		
 		private var _lastPosition:Point;
 
 		override public function onRegister() : void
@@ -32,7 +31,6 @@ package com.crowdpark.sushiman.views.player
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(this.eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
 			this.isActive = true;
-			
 			trace(view.width + ':' + view.height);
 		}
 
@@ -40,8 +38,11 @@ package com.crowdpark.sushiman.views.player
 		{
 			if (event.assetType == AssetsModel.PATH_WALL)
 			{
-				this.view.x = _lastPosition.x;
-				this.view.y = _lastPosition.y;
+				if (_lastPosition)
+				{
+					this.view.x = _lastPosition.x;
+					this.view.y = _lastPosition.y;
+				}
 			}
 		}
 
@@ -79,11 +80,12 @@ package com.crowdpark.sushiman.views.player
 		private function enterFrameHandler(event : Event) : void
 		{
 			_lastPosition = new Point(view.x, view.y);
+		
 			if (_moveLeft)
 			{
 				view.x -= PlayerView.SPEED;
 			}
-
+		
 			if (_moveRight)
 			{
 				view.x += PlayerView.SPEED;

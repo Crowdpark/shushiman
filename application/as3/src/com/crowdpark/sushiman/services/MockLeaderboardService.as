@@ -12,7 +12,7 @@ package com.crowdpark.sushiman.services
 	public class MockLeaderboardService extends Actor implements ILeaderboardService
 	{
 		[Inject]
-		public var model : ISushimanModel;
+		private var model : ISushimanModel;
 
 		public function MockLeaderboardService()
 		{

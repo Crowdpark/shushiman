@@ -21,7 +21,7 @@ package com.crowdpark.sushiman.views.aihunter
 		{
 			_data = data;
 			super(textures, 24, data);
-			_lastPosition = new Point(this.x, this.y);
+			//_lastPosition = new Point(this.x, this.y);
 		}
 
 		public function get isActive() : Boolean

@@ -13,41 +13,33 @@ package com.crowdpark.sushiman.model
 	{
 		public static const CACHE_ID:String = "TILES";
 		public static const PATH_PLAYER:String = "hero_knife_right";
-		public static const PATH_OCTOPUSSY:String = "octopus_angry_left";
+		public static const PATH_OCTOPUSSY:String = "hero_knife_right";
 		public static const PATH_WALL:String = "others0002";
 		public static const PATH_YELLOW:String = "others0004";
 		public static const PATH_WHITE:String = "others0001";
 
-
 		[Embed(source="../assets/spritesheets/character.xml",mimeType="application/octet-stream")]
 		public var AtlasXML:Class;
-		
 		[Embed(source="../assets/spritesheets/character.png")]
 		public var AtlasTexture:Class;
-		
-		private var _bmpCharacters:Bitmap;
-		
 		[Embed(source="../assets/background.png")]
 		public var Background : Class;
 		[Embed(source="../assets/crowdpark.png")]
 		public var CrowdparkLogo : Class;
 		[Embed(source="../assets/btn_play.png")]
 		public var PlayButton : Class;
-
+		
+		private var _characters:Bitmap;
 		private var _atlas : TextureAtlas;
 		private var _xml : XML;
 		private var _texture : Texture;
 
 		public function AssetsModel()
 		{
-			_bmpCharacters = new AtlasTexture();
+			_characters = new AtlasTexture();
 			_xml = XML(new AtlasXML());
-			
-			// BitmapDataCacher is for collision detection
-			BitmapDataCacher.cacheBitmap(CACHE_ID, _bmpCharacters,_xml);
-			
-			_texture = Texture.fromBitmap(_bmpCharacters);
-			
+			BitmapDataCacher.cacheBitmap(CACHE_ID, _characters,_xml);			
+			_texture = Texture.fromBitmap(_characters);
 			_atlas = new TextureAtlas(_texture, _xml);
 		}
 
@@ -71,7 +63,6 @@ package com.crowdpark.sushiman.model
 
 		public function getTexture(string : String) : Texture
 		{
-			//_atlas.
 			var texture:Texture = _atlas.getTexture(string);
 			return texture;
 		}
@@ -83,7 +74,6 @@ package com.crowdpark.sushiman.model
 
 		private function createImage(bitmap : Bitmap) : Image
 		{
-			
 			var texture : Texture = Texture.fromBitmap(bitmap,true);
 			return new Image(texture);
 		}

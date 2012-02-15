@@ -13,10 +13,6 @@ package com.crowdpark.sushiman.views.player
 		public function PlayerView(textures : Vector.<Texture>, fps : Number)
 		{
 			super(textures, fps);
-			
-			this.scaleX = 0.5;
-			this.scaleY = 0.5;
-			this.x = 100;
 		}
 	}
 }

@@ -16,21 +16,31 @@ package com.crowdpark.sushiman.views.components
 		private var _isActive:Boolean;
 		private var _lastPosition:Point;
 		private var _textureType:String;
-		
+		private var _lastDirection:String;
+
 		public function AIHunterTile(textures : Vector.<Texture>, textureType:String,data:TileData)
 		{
 			_textureType = textureType;
 			_data = data;
 			super(textures, 24);
-			
-			this.width = Level.TILE_WIDTH;
-			this.height = Level.TILE_HEIGHT;
-			
 			var pos:Point = Level.calculateTilePosition(data.colId, data.rowId);
 			this.x = pos.x;
 			this.y = pos.y;
-			
 			_lastPosition = new Point(this.x, this.y);
+		}
+		
+		public function changeDirection():String
+		{
+			var direction:Array = ["LEFT", "RIGHT", "UP", "DOWN"];
+			var chosen:String;
+			
+			while (!chosen || chosen == _lastDirection)
+			{
+				chosen =  direction[Math.floor(Math.random()*direction.length)];
+			}
+			
+			_lastDirection = chosen;
+			return chosen;
 		}
 
 		public function get isActive() : Boolean
@@ -48,13 +58,13 @@ package com.crowdpark.sushiman.views.components
 		}
 
 		private function enterFrameHandler(event : Event) : void
-		{
+		{ 
+			
 		}
 
 		public function get textureType() : String
 		{
 			return _textureType;
 		}
-
 	}
 }

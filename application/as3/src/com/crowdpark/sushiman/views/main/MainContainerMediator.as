@@ -40,12 +40,14 @@ package com.crowdpark.sushiman.views.main
 			view.addBackgroundImage(assets.getBackgroundImage());
 			view.addLogo(assets.getCrowdparkLogo());
 			view.addPlayButton(assets.getPlayButtonTexture());
-
-			this.eventMap.mapListener(this.eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
-
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
+			view.stage.addEventListener(Event.ENTER_FRAME, gameLoop);
+		}
 
+		private function gameLoop(event : Event) : void
+		{
+			checkCollision();
 		}
 
 		private function playButtonTriggerHandler(event : Event) : void
@@ -104,7 +106,7 @@ package com.crowdpark.sushiman.views.main
 					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
 				}
 			}
-
+ 
 			view.addHudView();
 		}
 
@@ -122,61 +124,44 @@ package com.crowdpark.sushiman.views.main
 			}
 		}
 
-		private function playerMovingHandler(event : PlayerEvent) : void
-		{
-			checkCollision();
-		}
-
-		/*
-		 * TODO: Detect if collision between player and other object has occured.
-		 * Handling based on what kind of object.
-		 */
 		private function checkCollision() : void
 		{
-			var playerRect:Rectangle = view.player.getBounds(this.view);
-			var playerPt:Point = new Point(playerRect.x, playerRect.y);
-			var tileRect:Rectangle;
-
-			var n:int = this.view.tilesView.numChildren;
-			for(var i:int = 0; i<n;i++)
+			if (view.player)
 			{
-				if(this.view.tilesView.getChildAt(i) is ITile)
+				var playerRect:Rectangle = view.player.getBounds(this.view);
+				var playerPt:Point = new Point(playerRect.x, playerRect.y);
+				var tileRect:Rectangle;
+	
+				var n:int = this.view.tilesView.numChildren;
+				for(var i:int = 0; i<n;i++)
 				{
-					var tile:ITile = this.view.tilesView.getChildAt(i) as ITile;
-					tileRect = (tile as DisplayObject).getBounds(this.view);
-						
-					if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
+					if(this.view.tilesView.getChildAt(i) is ITile)
 					{
+						var tile:ITile = this.view.tilesView.getChildAt(i) as ITile;
+						tileRect = (tile as DisplayObject).getBounds(this.view);
+							
+						if (playerRect.intersects(tileRect))
+						{
+							if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
+							{
 
-						//if(tile.bmd.hitTest(new Point(view.player.x,view.player.y), 255, tile.bmd, new Point(tile.x,tile.y), 255))
-
-						if (playerRect.intersects(tileRect))
+								view.tilesView.removeChild(tile as Tile);
+								dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+								break;
+							}
+						} 
+						else if (tile.textureType == AssetsModel.PATH_WALL)
 						{
-							view.tilesView.removeChild(tile as Tile);
-							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-							break;
+								dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+								break;
+						} else if(tile.textureType == AssetsModel.PATH_OCTOPUSSY)
+						{
+								dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+								break;		
 						}
-					} else if (tile.textureType == AssetsModel.PATH_WALL)
-					{
-						if (playerRect.intersects(tileRect))
-						{
-							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-							break;
-						}
-					} else if(tile.textureType == AssetsModel.PATH_OCTOPUSSY)
-					{
-						if (playerRect.intersects(tileRect))
-						{
-							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-							break;
-						}			
 					}
-				
 				}
 			}
-
 		}
-		
-
 	}
 }

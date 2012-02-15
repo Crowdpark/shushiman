@@ -24,14 +24,8 @@ package com.crowdpark.sushiman.views.components
 			this.textureType = textureType;
 			this._texture = texture;
 			this.tileData = tileData;
-
 			this.bmd = BitmapDataCacher.getBitmapData(AssetsModel.CACHE_ID, textureType);
-			
-			super(texture);
-			
-			this.width = Level.TILE_WIDTH;
-			this.height = Level.TILE_HEIGHT;
-			
+			super(texture);			
 			var pos:Point = Level.calculateTilePosition(tileData.colId, tileData.rowId);
 			this.x = pos.x;
 			this.y = pos.y;

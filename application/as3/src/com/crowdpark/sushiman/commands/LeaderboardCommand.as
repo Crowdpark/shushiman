@@ -21,10 +21,10 @@ package com.crowdpark.sushiman.commands
 			{
 				case LeaderboardEvent.GET_ALL_USERS_LEADERBOARD:
 					service.getAllUserLeaderboard();
-					break;
+				break;
 				case LeaderboardEvent.GET_FRIENDS_LEADERBOARD:
 					service.getFriendsLeaderboard();
-					break;
+				break;
 			}
 		}
 	}
