@@ -19,7 +19,6 @@ package com.crowdpark.sushiman.views.hud
 		public function HudView(background:Image)
 		{
 			this.background = background;
-			this.background.alpha = 0.5;
 			_tfNumOctopussies.x = 100;
 			_tfScore.x = 250;
 			_tfNumLives.x = 500;

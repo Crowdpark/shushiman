@@ -24,10 +24,10 @@ package com.crowdpark.sushiman.views.main
 		public var tilesView:TilesView;
 		public var hudView:HudView;
 		public var friendsView:FriendsListView;
-		
+		public var backgroundMask:Image;
 		public var playButton:Button;
-		private var _background : Image;
-		private var _logo : Image;
+		public var background : Image;
+		public var logo : Image;
 		
 
 		public function MainContainerView()
@@ -37,16 +37,16 @@ package com.crowdpark.sushiman.views.main
 
 		public function addBackgroundImage(image : Image, mask:Image=null) : void
 		{
-			_background = image;
-			addChild(_background);
+			background = image;
+			addChild(background);
 		}
 
 		public function addLogo(image : Image) : void
 		{
-			_logo = image;
-			_logo.x = 545;
-			_logo.y = 32;
-			addChild(_logo);
+			logo = image;
+			logo.x = 545;
+			logo.y = 32;
+			addChild(logo);
 		}
 		
 		public function addPlayButton(texture:Texture):void
@@ -91,7 +91,7 @@ package com.crowdpark.sushiman.views.main
 		public function addTilesView():void
 		{
 			tilesView = new TilesView();
-			tilesView.y = this.hudView.background.height;
+			tilesView.y = 70;//this.hudView.background.height;
 			this.addChild(tilesView);			
 		}
 		
@@ -112,8 +112,13 @@ package com.crowdpark.sushiman.views.main
 			}
 			addChild(friendsView);
 			friendsView.x = 0;
-			friendsView.y = _background.height - friendsView.background.height;
+			friendsView.y = background.height - friendsView.background.height;
 			
+		}
+		
+		public function addBackgroundMask(image:Image):void
+		{
+			addChild(image);
 		}
 		
 

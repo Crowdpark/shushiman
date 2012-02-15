@@ -1,5 +1,8 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.views.components.Tile;
+	import flash.geom.Rectangle;
+	import flash.geom.Point;
 	import starling.events.Event;
 
 	import com.crowdpark.sushiman.model.AssetsModel;
@@ -29,7 +32,7 @@ package com.crowdpark.sushiman.views.main
 
 		override public function onRegister() : void
 		{
-			view.addBackgroundImage(assets.getBackgroundImage());
+			view.addBackgroundImage(assets.getBackground());
 			view.addLogo(assets.getCrowdparkLogo());
 			view.addPlayButton(assets.getPlayButtonTexture());
 			
@@ -75,7 +78,7 @@ package com.crowdpark.sushiman.views.main
 			view.leaderBoard = new LeaderboardView();
 			if (view.hudView != null)
 			{
-				view.leaderBoard.y = view.hudView.height;
+				view.leaderBoard.y = view.hudView.background.height;
 			}
 			view.addChild(view.leaderBoard);
 		}
@@ -99,7 +102,7 @@ package com.crowdpark.sushiman.views.main
 		{
 			removeLeaderboard();
 			view.removePlayButton();
-			view.addHudView(assets.getBackgroundHud());
+			
 			view.addTilesView();
 			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
 
@@ -112,7 +115,8 @@ package com.crowdpark.sushiman.views.main
 				}
 			} 
 			
-			
+			view.addBackgroundMask(assets.getBackgroundMask());
+			view.addHudView(assets.getBackgroundHud());
 			view.addFriendsListView(assets.getBackgroundHud());
 		}
 
@@ -132,7 +136,13 @@ package com.crowdpark.sushiman.views.main
 
 		private function openLeaderBoardHandler(event:LeaderboardEvent):void
 		{
-			configureLeaderBoard();		
+			if (view.leaderBoard != null && view.contains(view.leaderBoard))
+			{
+				view.removeChild(view.leaderBoard);
+			} else
+			{
+				configureLeaderBoard();	
+			}
 		}
 		 
 		private function checkCollision() : void
@@ -142,6 +152,20 @@ package com.crowdpark.sushiman.views.main
 				//trace(Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns));
 				//trace(Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows));
 			}
+		}
+		
+		private function getTileTypeByPosition(gridPosition:Point):Tile
+		{
+			var tiles:Vector.<Tile> = view.tilesView.tiles;
+			for each (var tile:Tile in tiles)
+			{
+				if (gridPosition.x == tile.tileData.rowId && gridPosition.y == tile.tileData.colId)
+				{
+					return tile;
+					break;
+				}
+			}
+			return null;
 		}
 	}
 }

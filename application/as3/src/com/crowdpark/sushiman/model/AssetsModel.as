@@ -28,6 +28,8 @@ package com.crowdpark.sushiman.model
 		public var AtlasTexture:Class;
 		[Embed(source="../assets/background.png")]
 		public var Background : Class;
+		[Embed(source="../assets/background_mask.png")]
+		public var BackgroundMask : Class;
 		[Embed(source="../assets/background_hud.png")]
 		public var BackgroundHud : Class;
 		
@@ -68,9 +70,15 @@ package com.crowdpark.sushiman.model
 			_atlas = new TextureAtlas(_texture, _xml);
 		}
 
-		public function getBackgroundImage() : Image
+		public function getBackground() : Image
 		{
 			var bitmap : Bitmap = new Background();
+			return createImage(bitmap);
+		}
+		
+		public function getBackgroundMask() : Image
+		{
+			var bitmap : Bitmap = new BackgroundMask();
 			return createImage(bitmap);
 		}
 

@@ -35,14 +35,6 @@ package com.crowdpark.sushiman.views.player
 
 		private function collisionHandler(event:PlayerEvent) : void
 		{
-//			if (event.assetType == AssetsModel.PATH_WALL)
-//			{
-//				if (_lastPosition)
-//				{
-//					this.view.x = _lastPosition.x;
-//					this.view.y = _lastPosition.y;
-//				}
-//			}
 		}
 
 		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
