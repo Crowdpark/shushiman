@@ -81,15 +81,12 @@ package com.crowdpark.sushiman.views.main
 		
 		private function configureLeaderBoard():void
 		{
-			if (model.currentGameState == GameState.PAUSED)
+			view.leaderBoard = new LeaderboardView();
+			if (view.hudView != null)
 			{
-				view.leaderBoard = new LeaderboardView();
-				if (view.hudView != null)
-				{
-					view.leaderBoard.y = view.hudView.background.height;
-				}
-				view.addChild(view.leaderBoard);
+				view.leaderBoard.y = view.hudView.background.height;
 			}
+			view.addChild(view.leaderBoard);
 		}
 
 		private function configureLifeLost() : void
@@ -112,6 +109,7 @@ package com.crowdpark.sushiman.views.main
 
 			removeLeaderboard();
 			view.removePlayButton();
+			
 			if (previousState != GameState.PAUSED)
 			{			
 				view.addTilesView();
@@ -135,7 +133,6 @@ package com.crowdpark.sushiman.views.main
 			}
 			
 			addGameloopListener();
-
 		}
 
 		private function configureGameOverState() : void
@@ -159,7 +156,11 @@ package com.crowdpark.sushiman.views.main
 				view.removeChild(view.leaderBoard);
 			} else
 			{
-				configureLeaderBoard();	
+				if (model.currentGameState == GameState.PAUSED)
+				{
+					configureLeaderBoard();	
+				}
+				
 			}
 		}
 		
