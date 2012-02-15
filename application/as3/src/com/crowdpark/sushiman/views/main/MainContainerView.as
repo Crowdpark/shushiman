@@ -91,6 +91,7 @@ package com.crowdpark.sushiman.views.main
 		public function addTilesView():void
 		{
 			tilesView = new TilesView();
+			tilesView.y = this.hudView.background.height;
 			this.addChild(tilesView);			
 		}
 		

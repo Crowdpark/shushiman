@@ -14,12 +14,12 @@ package com.crowdpark.sushiman.views.hud
 		private var _tfNumOctopussies : TextField = new TextField(100, 80, "10", "Verdana", 36, 0xffffff);
 		private var _tfScore : TextField = new TextField(200, 80, "0", "Verdana", 36, 0xffffff);
 		private var _tfNumLives : TextField = new TextField(100, 80, "3", "Verdana", 36, 0xffffff);
-		private var _background:Image;
+		public  var background:Image;
 
 		public function HudView(background:Image)
 		{
-			_background = background;
-			_background.alpha = 0.5;
+			this.background = background;
+			this.background.alpha = 0.5;
 			_tfNumOctopussies.x = 100;
 			_tfScore.x = 250;
 			_tfNumLives.x = 500;

@@ -1,9 +1,5 @@
 package com.crowdpark.sushiman.views.main
 {
-	import flash.display.DisplayObject;
-	import com.crowdpark.sushiman.views.components.ITile;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
 	import starling.events.Event;
 
 	import com.crowdpark.sushiman.model.AssetsModel;
@@ -103,6 +99,7 @@ package com.crowdpark.sushiman.views.main
 		{
 			removeLeaderboard();
 			view.removePlayButton();
+			view.addHudView(assets.getBackgroundHud());
 			view.addTilesView();
 			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
 
@@ -111,11 +108,11 @@ package com.crowdpark.sushiman.views.main
 			{
 				if (data.type == TileData.TYPE_OCTOPUSSY)
 				{
-					//view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
 				}
 			} 
 			
-			view.addHudView(assets.getBackgroundHud());
+			
 			view.addFriendsListView(assets.getBackgroundHud());
 		}
 
