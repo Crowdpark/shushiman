@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.model
 {
+
 	import com.fnicollet.BitmapDataCacher;
 	import starling.display.Image;
 	import starling.textures.Texture;
@@ -17,6 +18,9 @@ package com.crowdpark.sushiman.model
 		public static const PATH_WALL:String = "others0002";
 		public static const PATH_YELLOW:String = "others0004";
 		public static const PATH_WHITE:String = "others0001";
+		
+		public static const ARROW_DIRECTION_RIGHT:String = "right";
+		public static const ARROW_DIRECTION_LEFT:String = "left";
 
 		[Embed(source="../assets/spritesheets/character.xml",mimeType="application/octet-stream")]
 		public var AtlasXML:Class;
@@ -24,11 +28,29 @@ package com.crowdpark.sushiman.model
 		public var AtlasTexture:Class;
 		[Embed(source="../assets/background.png")]
 		public var Background : Class;
+		[Embed(source="../assets/background_hud.png")]
+		public var BackgroundHud : Class;
+		
 		[Embed(source="../assets/crowdpark.png")]
 		public var CrowdparkLogo : Class;
 		[Embed(source="../assets/btn_play.png")]
 		public var PlayButton : Class;
 		
+		[Embed(source="../assets/friend_window.png")]
+		public var FriendWindow : Class;
+		
+		[Embed(source="../assets/arrow_right_normal.png")]
+		public var ArrowRightNormal : Class;
+		
+		[Embed(source="../assets/arrow_right_mouseover.png")]
+		public var ArrowRightMouseOver : Class;
+		
+		[Embed(source="../assets/arrow_left_normal.png")]
+		public var ArrowLeftNormal : Class;
+		
+		[Embed(source="../assets/arrow_left_mouseover.png")]
+		public var ArrowLeftMouseOver : Class;
+
 		private var _characters:Bitmap;
 		private var _atlas : TextureAtlas;
 		private var _xml : XML;
@@ -55,9 +77,50 @@ package com.crowdpark.sushiman.model
 			return createImage(bitmap);
 		}
 		
+		public function getFriendWindow():Image
+		{
+			var bitmap:Bitmap = new FriendWindow();
+			return createImage(bitmap);
+		}
+		
+		public function getBackgroundHud():Image
+		{
+			var bitmap:Bitmap = new BackgroundHud();
+			return createImage(bitmap);
+		}
+		
 		public function getPlayButtonTexture():Texture
 		{
 			var bitmap:Bitmap = new PlayButton();
+			return Texture.fromBitmap(bitmap);
+		}
+		
+		
+		public function getArrowButtonTexture(mouseOverType:Boolean=false, direction:String = ARROW_DIRECTION_LEFT):Texture
+		{
+			var bitmap:Bitmap;
+			
+			if (direction == ARROW_DIRECTION_LEFT)
+			{
+				if (mouseOverType)
+				{
+					bitmap = new ArrowLeftMouseOver();
+				} else
+				{
+					bitmap = new ArrowLeftNormal();
+				}
+				
+			} else if (direction == ARROW_DIRECTION_RIGHT)
+			{
+				if (mouseOverType)
+				{
+					bitmap = new ArrowRightMouseOver();
+				} else
+				{
+					bitmap = new ArrowRightNormal();
+				}				
+			}
+			
 			return Texture.fromBitmap(bitmap);
 		}
 

@@ -9,6 +9,7 @@ package com.crowdpark.sushiman.views.leaderboard
 	{
 		public static const GET_FRIENDS_LEADERBOARD : String = "LeaderboardEvent.GET_FRIENDS_LEADERBOARD";
 		public static const GET_ALL_USERS_LEADERBOARD : String = "LeaderboardEvent.GET_ALL_USERS_LEADERBOARD";
+		public static const SHOW_LEADERBOARD : String = "LeaderboardEvent.SHOW_LEADERBOARD";
 
 		public function LeaderboardEvent(type : String)
 		{

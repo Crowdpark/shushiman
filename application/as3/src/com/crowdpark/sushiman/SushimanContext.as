@@ -1,5 +1,8 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.commands.ShowLeaderboardCommand;
+	import com.crowdpark.sushiman.views.friends.FriendsListMediator;
+	import com.crowdpark.sushiman.views.friends.FriendsListView;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileMediator;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
 	import com.crowdpark.sushiman.commands.LoadLevelCommand;
@@ -78,7 +81,9 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
 			this.mediatorMap.mapView(PlayerView, PlayerMediator);
 			this.mediatorMap.mapView(TilesView, TilesMediator);
+			// for the warnings caused by multiple instances of AIHunterTileView, see: http://knowledge.robotlegs.org/discussions/questions/520-multiple-instances-of-the-same-view-causes-warning-message
 			this.mediatorMap.mapView(AIHunterTileView,AIHunterTileMediator);
+			this.mediatorMap.mapView(FriendsListView, FriendsListMediator);
 
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
@@ -88,6 +93,7 @@ package com.crowdpark.sushiman
 			this.commandMap.mapEvent(LeaderboardEvent.GET_FRIENDS_LEADERBOARD, LeaderboardCommand);
 			this.commandMap.mapEvent(MainContainerEvent.PLAY, PlayGameCommand);
 			this.commandMap.mapEvent(RobotLoggerEvent.LOG, RobotLoggerCommand);
+			this.commandMap.mapEvent(LeaderboardEvent.SHOW_LEADERBOARD, ShowLeaderboardCommand);
 
 			super.startup();
 		}

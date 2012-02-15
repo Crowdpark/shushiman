@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.views.friends.FriendsListView;
 	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
 	import com.crowdpark.sushiman.views.hud.HudView;
@@ -21,7 +22,8 @@ package com.crowdpark.sushiman.views.main
 		public var player : PlayerView;
 		public var leaderBoard : LeaderboardView;
 		public var tilesView:TilesView;
-		public var hudView:HudView = new HudView();
+		public var hudView:HudView;
+		public var friendsView:FriendsListView = new FriendsListView();
 		
 		public var playButton:Button;
 		private var _background : Image;
@@ -69,8 +71,12 @@ package com.crowdpark.sushiman.views.main
 			}
 		}
 		
-		public function addHudView():void
+		public function addHudView(background:Image):void
 		{
+			if (hudView == null)
+			{
+				hudView = new HudView(background);
+			}
 			addChild(hudView);
 		}
 
@@ -94,6 +100,14 @@ package com.crowdpark.sushiman.views.main
 			var hunter:AIHunterTileView = new AIHunterTileView(textures, data);
 			addChild(hunter);
 			Starling.juggler.add(hunter);
+		}
+		
+		
+		public function addFriendsListView():void
+		{
+			friendsView.x = 0;
+			friendsView.y = _background.height - friendsView.height;
+			addChild(friendsView);
 		}
 		
 

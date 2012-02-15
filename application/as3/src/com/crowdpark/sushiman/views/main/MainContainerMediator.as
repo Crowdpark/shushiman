@@ -1,6 +1,7 @@
 package com.crowdpark.sushiman.views.main
 {
 
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.components.ITile;
 	import starling.display.DisplayObject;
 	import com.crowdpark.sushiman.model.level.TileData;
@@ -22,6 +23,7 @@ package com.crowdpark.sushiman.views.main
 
 	/**
 	 * @author francis
+	 * TODO: add something to pause the game when pause state is entered
 	 */
 	public class MainContainerMediator extends StarlingMediator
 	{
@@ -41,6 +43,7 @@ package com.crowdpark.sushiman.views.main
 			view.addLogo(assets.getCrowdparkLogo());
 			view.addPlayButton(assets.getPlayButtonTexture());
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
+			eventMap.mapListener(this.eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
 			view.stage.addEventListener(Event.ENTER_FRAME, gameLoop);
 		}
@@ -75,6 +78,12 @@ package com.crowdpark.sushiman.views.main
 					break;
 			}
 		}
+		
+		private function configureLeaderBoard():void
+		{
+			view.leaderBoard = new LeaderboardView();
+			view.addChild(view.leaderBoard);
+		}
 
 		private function configureLifeLost() : void
 		{
@@ -105,9 +114,10 @@ package com.crowdpark.sushiman.views.main
 				{
 					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
 				}
-			}
- 
-			view.addHudView();
+			} 
+			
+			view.addHudView(assets.getBackgroundHud());
+			view.addFriendsListView();
 		}
 
 		private function configureGameOverState() : void
@@ -124,6 +134,21 @@ package com.crowdpark.sushiman.views.main
 			}
 		}
 
+		private function openLeaderBoardHandler(event:LeaderboardEvent):void
+		{
+			configureLeaderBoard();		
+		}
+
+		private function playerMovingHandler(event : PlayerEvent) : void
+		{
+			checkCollision();
+		}
+
+		/*
+		 * TODO: Detect if collision between player and other object has occured.
+		 * Handling based on what kind of object.
+		 */
+		 
 		private function checkCollision() : void
 		{
 			if (view.player)
