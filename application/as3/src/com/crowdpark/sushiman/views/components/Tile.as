@@ -1,14 +1,10 @@
 package com.crowdpark.sushiman.views.components
 {
-	import flash.geom.Rectangle;
-	import flash.geom.Point;
-	import com.crowdpark.sushiman.model.level.Level;
-	import com.crowdpark.sushiman.model.AssetsModel;
-	import com.fnicollet.BitmapDataCacher;
-	import flash.display.BitmapData;
 	import starling.display.Image;
 	import starling.textures.Texture;
+	import com.crowdpark.sushiman.model.level.Level;
 	import com.crowdpark.sushiman.model.level.TileData;
+	import flash.geom.Point;
 
 	/**
 	 * @author sandberg

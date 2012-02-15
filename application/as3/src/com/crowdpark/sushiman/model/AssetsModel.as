@@ -75,7 +75,7 @@ package com.crowdpark.sushiman.model
 		}
 
 		public function getCrowdparkLogo() :Image
-		{
+		{	
 			var bitmap : Bitmap = new CrowdparkLogo();
 			return createImage(bitmap);
 		}

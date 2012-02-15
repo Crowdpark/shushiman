@@ -9,8 +9,8 @@ package com.crowdpark.sushiman.model.level
 		private var _id : String;
 		private var _tiles : Vector.<TileData>;
 
-		public static const TILE_WIDTH:int = 80;
-		public static const TILE_HEIGHT:int = 80;
+		public static const TILE_WIDTH:int = 40;
+		public static const TILE_HEIGHT:int = 40;
 				
 		public static function calculateTilePosition(colId:int, rowId:int):Point
 		{
@@ -18,6 +18,7 @@ package com.crowdpark.sushiman.model.level
 			var posY:int = rowId * TILE_HEIGHT;
 			return new Point(posX, posY);
 		}
+		
 		public function get id() : String
 		{
 			return _id;

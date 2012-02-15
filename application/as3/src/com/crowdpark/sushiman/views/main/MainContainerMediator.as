@@ -1,10 +1,9 @@
 package com.crowdpark.sushiman.views.main
 {
-
-	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
+	import flash.display.DisplayObject;
 	import com.crowdpark.sushiman.views.components.ITile;
-	import starling.display.DisplayObject;
-	import com.crowdpark.sushiman.model.level.TileData;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import starling.events.Event;
 
 	import com.crowdpark.sushiman.model.AssetsModel;
@@ -12,14 +11,10 @@ package com.crowdpark.sushiman.views.main
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.level.LevelModel;
-	import com.crowdpark.sushiman.views.components.Tile;
+	import com.crowdpark.sushiman.model.level.TileData;
+	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
-	import com.crowdpark.sushiman.views.player.PlayerEvent;
-
 	import org.robotlegs.mvcs.StarlingMediator;
-
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
 
 	/**
 	 * @author francis
@@ -116,7 +111,7 @@ package com.crowdpark.sushiman.views.main
 			{
 				if (data.type == TileData.TYPE_OCTOPUSSY)
 				{
-					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+					//view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
 				}
 			} 
 			
@@ -142,54 +137,13 @@ package com.crowdpark.sushiman.views.main
 		{
 			configureLeaderBoard();		
 		}
-
-		private function playerMovingHandler(event : PlayerEvent) : void
-		{
-			checkCollision();
-		}
-
-		/*
-		 * TODO: Detect if collision between player and other object has occured.
-		 * Handling based on what kind of object.
-		 */
 		 
 		private function checkCollision() : void
 		{
 			if (view.player)
 			{
-				var playerRect:Rectangle = view.player.getBounds(this.view);
-				var playerPt:Point = new Point(playerRect.x, playerRect.y);
-				var tileRect:Rectangle;
-	
-				var n:int = this.view.tilesView.numChildren;
-				for(var i:int = 0; i<n;i++)
-				{
-					if(this.view.tilesView.getChildAt(i) is ITile)
-					{
-						var tile:ITile = this.view.tilesView.getChildAt(i) as ITile; 
-						tileRect = (tile as DisplayObject).getBounds(this.view);
-							
-						if (playerRect.intersects(tileRect))
-						{
-							if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
-							{
-
-								view.tilesView.removeChild(tile as Tile);
-								dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-								break;
-							}
-						} 
-						else if (tile.textureType == AssetsModel.PATH_WALL)
-						{
-								dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-								break;
-						} else if(tile.textureType == AssetsModel.PATH_OCTOPUSSY)
-						{
-								dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-								break;		
-						}
-					}
-				}
+				//trace(Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns));
+				//trace(Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows));
 			}
 		}
 	}

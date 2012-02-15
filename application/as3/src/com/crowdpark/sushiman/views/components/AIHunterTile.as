@@ -1,11 +1,10 @@
 package com.crowdpark.sushiman.views.components
 {
 	import starling.display.MovieClip;
-	import com.crowdpark.sushiman.model.level.Level;
-	import flash.events.Event;
-	import flash.geom.Point;
-	import com.crowdpark.sushiman.model.level.TileData;
 	import starling.textures.Texture;
+	import com.crowdpark.sushiman.model.level.Level;
+	import com.crowdpark.sushiman.model.level.TileData;
+	import flash.geom.Point;
 
 	/**
 	 * @author sandberg
@@ -41,25 +40,6 @@ package com.crowdpark.sushiman.views.components
 			
 			_lastDirection = chosen;
 			return chosen;
-		}
-
-		public function get isActive() : Boolean
-		{
-			return _isActive;
-		}
-
-		public function set isActive(isActive : Boolean) : void
-		{
-			_isActive = isActive;
-			if (isActive)
-			{
-				this.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
-			}
-		}
-
-		private function enterFrameHandler(event : Event) : void
-		{ 
-			
 		}
 
 		public function get textureType() : String
