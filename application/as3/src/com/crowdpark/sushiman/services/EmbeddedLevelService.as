@@ -54,11 +54,7 @@ package com.crowdpark.sushiman.services
 						}
 					}
 
-					if (obj.level.id != null) 
-					{
-						level.id = obj.level.id;
-						model.addLevel(level);
-					}
+					model.addLevel(level);
 				}
 			}
 		}
