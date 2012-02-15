@@ -56,9 +56,7 @@ package com.crowdpark.sushiman.views.main
 			{
 				playButton = new Button(texture, "PLAY");
 			}
-			/* TODO: Find out why stageWidth is 1440 & stageHeight 838
-			 * 
-			 */
+
 			playButton.x = this.stage.stageWidth/2 - playButton.width;
 			playButton.y = this.stage.stageHeight/2 - playButton.height;
 			addChild(playButton);
@@ -87,6 +85,11 @@ package com.crowdpark.sushiman.views.main
 
 		public function addPlayer(textures : Vector.<Texture>) : void
 		{
+
+			player = new PlayerView(textures, 24);
+			tilesView.addChild(player);
+			Starling.juggler.add(player);
+
 			if (player == null)
 			{
 				player = new PlayerView(textures, 24);
@@ -97,8 +100,6 @@ package com.crowdpark.sushiman.views.main
 				addChild(player);
 				Starling.juggler.add(player);
 			}
-			
-			
 		}
 		
 		

@@ -1,7 +1,7 @@
 package com.crowdpark.sushiman.services 
 {
 	import com.crowdpark.sushiman.model.level.Level;
-	import com.crowdpark.sushiman.model.level.LevelModel;
+	import com.crowdpark.sushiman.model.level.LevelProxy;
 	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.services.interfaces.ILevelService;
 
@@ -15,7 +15,8 @@ package com.crowdpark.sushiman.services
 	public class EmbeddedLevelService extends Actor implements ILevelService 
 	{
 		[Inject]
-		public var model : LevelModel;
+		public var model : LevelProxy;
+		
 		[Embed(source="../assets/levels/output/level001.json",mimeType="application/octet-stream")]
 		private const JsonData : Class;
 
@@ -37,7 +38,7 @@ package com.crowdpark.sushiman.services
 					level.tiles = new Vector.<TileData>();
 
 					var rowLength : int = (obj.level.fields as Array).length;
-					for (var i : int = 0; i < rowLength;i++) 
+					for (var i : int = 0; i < rowLength;i++)
 					{
 						var field : Array = (obj.level.fields as Array)[i];
 						var colLength : int = field.length;

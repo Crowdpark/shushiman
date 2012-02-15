@@ -1,21 +1,21 @@
-package com.crowdpark.sushiman.views.main
+package com.crowdpark.sushiman.views.main 
 {
+
 	import starling.core.Starling;
 	import starling.animation.Transitions;
 	import starling.animation.Tween;
-	import com.crowdpark.sushiman.views.components.Tile;
-	import flash.geom.Point;
 	import starling.events.Event;
-
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
-	import com.crowdpark.sushiman.model.level.LevelModel;
+	import com.crowdpark.sushiman.model.level.LevelProxy;
 	import com.crowdpark.sushiman.model.level.TileData;
+	import com.crowdpark.sushiman.views.components.Tile;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import org.robotlegs.mvcs.StarlingMediator;
+	import flash.geom.Point;
 
 	/**
 	 * @author francis
@@ -30,7 +30,7 @@ package com.crowdpark.sushiman.views.main
 		[Inject]
 		public var model:ISushimanModel;
 		[Inject]
-		public var levelModel:LevelModel;
+		public var levelModel:LevelProxy;
 
 		override public function onRegister() : void
 		{
@@ -58,8 +58,13 @@ package com.crowdpark.sushiman.views.main
 		{
 			if (view.player)
 			{
-				//trace(Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns));
-				//trace(Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows));
+				var i:uint = Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns);
+				var j:uint = Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows);
+				var tile:Tile = getTileTypeByPosition(new Point(i,j));
+				if (tile)
+				{
+					trace(tile.tileData.colId, tile.tileData.rowId);
+				}
 			}
 		}
 		
@@ -67,11 +72,14 @@ package com.crowdpark.sushiman.views.main
 		{
 			var tiles:Vector.<Tile> = view.tilesView.tiles;
 			for each (var tile:Tile in tiles)
-			{
-				if (gridPosition.x == tile.tileData.rowId && gridPosition.y == tile.tileData.colId)
+			{	
+				if (tile)
 				{
-					return tile;
-					break;
+					if (gridPosition.x == tile.tileData.rowId && gridPosition.y == tile.tileData.colId)
+					{
+						return tile;
+						break;
+					}
 				}
 			}
 			return null;
@@ -146,16 +154,15 @@ package com.crowdpark.sushiman.views.main
 						}
 					}
 				}
-			
-				view.addBackgroundMask(assets.getBackgroundMask());
-				view.addHudView(assets.getBackgroundHud());
-				view.addFriendsListView(assets.getBackgroundFriendsView());	
 			}
-			
+		
+			view.addBackgroundMask(assets.getBackgroundMask());
+			view.addHudView(assets.getBackgroundHud());
+			view.addFriendsListView(assets.getBackgroundHud());
 			addGameloopListener();
 		}
 
-		private function configureGameOverState() : void
+		private function configureGameOverState():void
 		{
 
 		}
@@ -179,37 +186,40 @@ package com.crowdpark.sushiman.views.main
 		
 		private function gameLoop(event : Event) : void
 		{
-			checkCollision();
+//			if (view.player)
+//			{
+//				var x:int = Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns);
+//				var y:int = Math.floor((view.player.x + view.player.height/2) / levelModel.currentLevel.numRows); 
+//				checkCollision();
+//			}
 		}
 
 		private function playButtonTriggerHandler(event : Event) : void
 		{
 			dispatch(new MainContainerEvent(MainContainerEvent.PLAY));
 		}
-
+	
 		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
 		{
 			switch(event.newState)
 			{
 				case GameState.INIT:
 					configureInitState();
-					break;
+				break;
 				case GameState.PLAYING:
 					configurePlayState(event.previousState);
-					break;
+				break;
 				case GameState.PAUSED:
 					configurePauseState();
-					break;
+				break;
 				case GameState.LIFE_LOST:
-					configureLifeLost();
-					break;				
+				break;				
 				case GameState.LEVEL_COMPLETE:
-					configureLevelComplete();
+				break;
 				case GameState.GAME_OVER:
 					configureGameOverState();
-					break;
+				break;
 			}
 		}
-
 	}
 }

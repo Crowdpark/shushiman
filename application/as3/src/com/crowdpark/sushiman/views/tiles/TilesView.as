@@ -21,12 +21,10 @@ package com.crowdpark.sushiman.views.tiles
 			addChild(tile);
 		}
 		
-		
 		public function get tiles():Vector.<Tile>
 		{
-			var tiles:Vector.<Tile>;
-			var n : int = this.numChildren;
-			for (var i : int = 0;i < n;i++) 
+			var tiles:Vector.<Tile> = new Vector.<Tile>();
+			for (var i : int = 0 ; i < numChildren ; i++) 
 			{
 				var tile : Tile = this.getChildAt(i) as Tile;
 				tiles.push(tile);			

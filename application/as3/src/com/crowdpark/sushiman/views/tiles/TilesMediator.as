@@ -5,7 +5,7 @@ package com.crowdpark.sushiman.views.tiles
 	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.level.LevelModelEvent;
-	import com.crowdpark.sushiman.model.level.LevelModel;
+	import com.crowdpark.sushiman.model.level.LevelProxy;
 	import org.robotlegs.mvcs.StarlingMediator;
 
 	/**
@@ -20,7 +20,7 @@ package com.crowdpark.sushiman.views.tiles
 		public var model:ISushimanModel;
 		
 		[Inject]
-		public var levelModel:LevelModel;
+		public var levelModel:LevelProxy;
 		
 		[Inject]
 		public var assets:AssetsModel;

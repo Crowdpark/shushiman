@@ -42,14 +42,11 @@ package com.crowdpark.sushiman.model.level
 		public function get numColumns():int
 		{
 			var numColumns:int = -1;
-			if (tiles != null)
+			for each (var tile:TileData in tiles)
 			{
-				for each (var tile:TileData in tiles)
+				if (tile.colId > numColumns)
 				{
-					if (tile.colId > numColumns)
-					{
-						numColumns = tile.colId;
-					}
+					numColumns = tile.colId;
 				}
 			}
 			return numColumns;
@@ -58,19 +55,15 @@ package com.crowdpark.sushiman.model.level
 		public function get numRows():int
 		{
 			var numRows:int = -1;
-			if (tiles != null)
+			for each (var tile:TileData in tiles)
 			{
-				for each (var tile:TileData in tiles)
+				if (tile.rowId > numRows)
 				{
-					if (tile.rowId > numRows)
-					{
-						numRows = tile.rowId;
-					}
+					numRows = tile.rowId;
 				}
 			}
 			return numRows;
 		}
-		
 		
 		public function get aiTiles():Vector.<TileData>
 		{

@@ -156,7 +156,7 @@ package com.crowdpark.sushiman.model
 					break;
 			}
 			var msg:String = "Current gamestate changed to " + currentGameState;
-			var event:GameStateChangedEvent = new GameStateChangedEvent(GameStateChangedEvent.CHANGE, currentGameState, previousState)
+			var event:GameStateChangedEvent = new GameStateChangedEvent(GameStateChangedEvent.CHANGE, currentGameState, previousState);
 			dispatch(event);
 			dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_INFO, SushimanModel, msg));
 		}

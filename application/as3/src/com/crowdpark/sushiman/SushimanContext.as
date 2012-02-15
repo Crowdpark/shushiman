@@ -18,7 +18,7 @@ package com.crowdpark.sushiman
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.SushimanModel;
-	import com.crowdpark.sushiman.model.level.LevelModel;
+	import com.crowdpark.sushiman.model.level.LevelProxy;
 	import com.crowdpark.sushiman.model.user.UserAppFriendsModel;
 	import com.crowdpark.sushiman.model.user.UserVo;
 	import com.crowdpark.sushiman.services.EmbeddedLevelService;
@@ -65,7 +65,7 @@ package com.crowdpark.sushiman
 			this.injector.mapSingleton(AssetsModel);
 			this.injector.mapSingleton(UserVo);
 			this.injector.mapSingleton(UserAppFriendsModel);
-			this.injector.mapSingleton(LevelModel);
+			this.injector.mapSingleton(LevelProxy);
 			
 			// services
 			this.injector.mapSingletonOf(IScoreService, ScoreService);
