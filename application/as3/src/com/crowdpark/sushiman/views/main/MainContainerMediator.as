@@ -56,33 +56,7 @@ package com.crowdpark.sushiman.views.main
 		
 		private function checkCollision() : void
 		{
-			if (view.player)
-			{
-				var i:uint = Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns);
-				var j:uint = Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows);
-				var tile:Tile = getTileTypeByPosition(new Point(i,j));
-				if (tile)
-				{
-					trace(tile.tileData.colId, tile.tileData.rowId);
-				}
-			}
-		}
-		
-		private function getTileTypeByPosition(gridPosition:Point):Tile
-		{
-			var tiles:Vector.<Tile> = view.tilesView.tiles;
-			for each (var tile:Tile in tiles)
-			{	
-				if (tile)
-				{
-					if (gridPosition.x == tile.tileData.rowId && gridPosition.y == tile.tileData.colId)
-					{
-						return tile;
-						break;
-					}
-				}
-			}
-			return null;
+			
 		}
 
 		private function configurePauseState() : void
@@ -186,12 +160,7 @@ package com.crowdpark.sushiman.views.main
 		
 		private function gameLoop(event : Event) : void
 		{
-//			if (view.player)
-//			{
-//				var x:int = Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns);
-//				var y:int = Math.floor((view.player.x + view.player.height/2) / levelModel.currentLevel.numRows); 
-//				checkCollision();
-//			}
+			checkCollision();
 		}
 
 		private function playButtonTriggerHandler(event : Event) : void
