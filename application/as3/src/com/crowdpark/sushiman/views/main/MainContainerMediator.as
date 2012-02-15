@@ -132,11 +132,8 @@ package com.crowdpark.sushiman.views.main
 		 
 		private function checkCollision() : void
 		{
-			if (view.player)
-			{
-				trace(Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns));
-				trace(Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows));
-			}
+			trace(Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns));
+			trace(Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows));
 		}
 	}
 }
