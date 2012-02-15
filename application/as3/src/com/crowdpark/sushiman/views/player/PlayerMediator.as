@@ -1,16 +1,15 @@
 package com.crowdpark.sushiman.views.player
 {
-	import com.crowdpark.sushiman.model.AssetsModel;
-	import flash.geom.Point;
-	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
-	import com.crowdpark.sushiman.model.gamestate.GameState;
-
-	import flash.ui.Keyboard;
-
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
 
+	import com.crowdpark.sushiman.model.gamestate.GameState;
+	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
+
 	import org.robotlegs.mvcs.StarlingMediator;
+
+	import flash.geom.Point;
+	import flash.ui.Keyboard;
 
 	/**
 	 * @author sandberg
@@ -36,14 +35,14 @@ package com.crowdpark.sushiman.views.player
 
 		private function collisionHandler(event:PlayerEvent) : void
 		{
-			if (event.assetType == AssetsModel.PATH_WALL)
-			{
-				if (_lastPosition)
-				{
-					this.view.x = _lastPosition.x;
-					this.view.y = _lastPosition.y;
-				}
-			}
+//			if (event.assetType == AssetsModel.PATH_WALL)
+//			{
+//				if (_lastPosition)
+//				{
+//					this.view.x = _lastPosition.x;
+//					this.view.y = _lastPosition.y;
+//				}
+//			}
 		}
 
 		private function gamestateChangeHandler(event : GameStateChangedEvent) : void

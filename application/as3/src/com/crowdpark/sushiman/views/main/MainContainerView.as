@@ -13,10 +13,10 @@ package com.crowdpark.sushiman.views.main
 	import starling.display.Sprite;
 	import starling.textures.Texture;
 
-
 	/**
 	 * @author francis
 	 */
+	 
 	public class MainContainerView extends Sprite
 	{
 		public var player : PlayerView;
