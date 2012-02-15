@@ -32,6 +32,8 @@ package com.crowdpark.sushiman.model
 		public var BackgroundMask : Class;
 		[Embed(source="../assets/background_hud.png")]
 		public var BackgroundHud : Class;
+		[Embed(source="../assets/background_friendsview.png")]
+		public var BackgroundFriendsView : Class;
 		
 		[Embed(source="../assets/crowdpark.png")]
 		public var CrowdparkLogo : Class;
@@ -97,6 +99,11 @@ package com.crowdpark.sushiman.model
 		public function getBackgroundHud():Image
 		{
 			var bitmap:Bitmap = new BackgroundHud();
+			return createImage(bitmap);
+		}
+		public function getBackgroundFriendsView():Image
+		{
+			var bitmap:Bitmap = new BackgroundFriendsView();
 			return createImage(bitmap);
 		}
 		

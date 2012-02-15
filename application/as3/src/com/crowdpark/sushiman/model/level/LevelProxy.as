@@ -7,16 +7,16 @@ package com.crowdpark.sushiman.model.level
 	/**
 	 * @author sandberg
 	 */
-	public class LevelModel extends Actor
+	public class LevelProxy extends Actor
 	{
-		private var _levels : Vector.<Level> = new Vector.<Level>();;
+		private var _levels : Vector.<Level> = new Vector.<Level>();
 		private var _number:int = 0;
 
 		public function addLevel(level : Level) : void
 		{
 			_levels.push(level);
 			var msg : String = "Level data received, including num tiles: " + level.tiles.length.toString();
-			dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_INFO, LevelModel, msg));
+			dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_INFO, LevelProxy, msg));
 			dispatch(new LevelModelEvent(LevelModelEvent.UPDATED));
 		}
 
@@ -27,7 +27,12 @@ package com.crowdpark.sushiman.model.level
 		
 		public function get currentLevel():Level
 		{
-			return this.levels[this.currentLevelNum];
+			if (levels != null && levels.length > 0)
+			{
+				return this.levels[this.currentLevelNum];
+			}
+			return null;
+			
 		}
 
 		public function set levels(levels : Vector.<Level>) : void
@@ -48,7 +53,7 @@ package com.crowdpark.sushiman.model.level
 			} 
 			else
 			{
-				dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_FATAL, LevelModel, "No more levels!"));
+				dispatch(new RobotLoggerEvent(RobotLoggerEvent.LOG, RobotLoggerEvent.LEVEL_FATAL, LevelProxy, "No more levels!"));
 			}
 		}
 	}

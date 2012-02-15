@@ -13,6 +13,7 @@ package com.crowdpark.sushiman.views.leaderboard
 		public function LeaderboardField(user:UserVo)
 		{
 			super(400, 20, "", "Verdana", 16, 0xffffff);
+			this.hAlign = "right";
 			this.user = user;
 		}
 

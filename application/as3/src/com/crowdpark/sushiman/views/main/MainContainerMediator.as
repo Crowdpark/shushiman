@@ -1,18 +1,17 @@
-package com.crowdpark.sushiman.views.main
+package com.crowdpark.sushiman.views.main 
 {
 	import starling.events.Event;
-
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
-	import com.crowdpark.sushiman.model.level.LevelModel;
+	import com.crowdpark.sushiman.model.level.LevelProxy;
 	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.views.components.Tile;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
-
 	import org.robotlegs.mvcs.StarlingMediator;
+	import flash.geom.Point;
 
 	/**
 	 * @author francis
@@ -27,7 +26,7 @@ package com.crowdpark.sushiman.views.main
 		[Inject]
 		public var model:ISushimanModel;
 		[Inject]
-		public var levelModel:LevelModel;
+		public var levelModel:LevelProxy;
 
 		override public function onRegister() : void
 		{
@@ -37,39 +36,54 @@ package com.crowdpark.sushiman.views.main
 			
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(this.eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);
+			
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
+		}
+		
+		private function addGameloopListener():void
+		{
 			view.stage.addEventListener(Event.ENTER_FRAME, gameLoop);
 		}
-
-		private function gameLoop(event : Event) : void
+		
+		private function removeGameloopListener():void
 		{
-			checkCollision();
+			view.stage.removeEventListener(Event.ENTER_FRAME, gameLoop);
 		}
-
-		private function playButtonTriggerHandler(event : Event) : void
+		
+		private function checkCollision() : void
 		{
-			dispatch(new MainContainerEvent(MainContainerEvent.PLAY));
-		}
-
-		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
-		{
-			switch(event.state)
+			if (view.player)
 			{
-				case GameState.INIT:
-					configureInitState();
-					break;
-				case GameState.PLAYING:
-					configurePlayState();
-					break;
-				case GameState.LIFE_LOST:
-					configureLifeLost();
-					break;				
-				case GameState.LEVEL_COMPLETE:
-					configureLevelComplete();
-				case GameState.GAME_OVER:
-					configureGameOverState();
-					break;
+				var i:uint = Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns);
+				var j:uint = Math.floor((view.player.y + view.player.height/2) / levelModel.currentLevel.numRows);
+				var tile:Tile = getTileTypeByPosition(new Point(i,j));
+				if (tile)
+				{
+					trace(tile.tileData.colId, tile.tileData.rowId);
+				}
 			}
+		}
+		
+		private function getTileTypeByPosition(gridPosition:Point):Tile
+		{
+			var tiles:Vector.<Tile> = view.tilesView.tiles;
+			for each (var tile:Tile in tiles)
+			{	
+				if (tile)
+				{
+					if (gridPosition.x == tile.tileData.rowId && gridPosition.y == tile.tileData.colId)
+					{
+						return tile;
+						break;
+					}
+				}
+			}
+			return null;
+		}
+
+		private function configurePauseState() : void
+		{
+			removeGameloopListener();
 		}
 		
 		private function configureLeaderBoard():void
@@ -82,45 +96,42 @@ package com.crowdpark.sushiman.views.main
 			view.addChild(view.leaderBoard);
 		}
 
-		private function configureLifeLost() : void
-		{
-			removeLeaderboard();
-		}
-
-		private function configureLevelComplete() : void
-		{
-			removeLeaderboard();
-		}
-
 		private function configureInitState() : void
 		{
 
 		}
 
-		private function configurePlayState() : void
+		private function configurePlayState(previousState:String) : void
 		{
+
 			removeLeaderboard();
 			view.removePlayButton();
 			
-			view.addTilesView();
-			view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
-
-			var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
-			for each (var data:TileData in aiTiles)
-			{
-				if (data.type == TileData.TYPE_OCTOPUSSY)
+			if (previousState != GameState.PAUSED)
+			{			
+				view.addTilesView();
+				view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
+	
+				if (levelModel.currentLevel != null)
 				{
-					view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+					var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
+					for each (var data:TileData in aiTiles)
+					{
+						if (data.type == TileData.TYPE_OCTOPUSSY)
+						{
+							view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+						}
+					}
 				}
-			} 
-			
-
+			}
+		
 			view.addBackgroundMask(assets.getBackgroundMask());
 			view.addHudView(assets.getBackgroundHud());
 			view.addFriendsListView(assets.getBackgroundHud());
+			addGameloopListener();
 		}
 
-		private function configureGameOverState() : void
+		private function configureGameOverState():void
 		{
 			view.leaderBoard = new LeaderboardView();
 			view.addChild(view.leaderBoard);
@@ -141,17 +152,49 @@ package com.crowdpark.sushiman.views.main
 				view.removeChild(view.leaderBoard);
 			} else
 			{
-				configureLeaderBoard();	
+				if (model.currentGameState == GameState.PAUSED)
+				{
+					configureLeaderBoard();	
+				}
+				
 			}
 		}
-		 
-		private function checkCollision() : void
+		
+		private function gameLoop(event : Event) : void
 		{
-			if (view.player)
+//			if (view.player)
+//			{
+//				var x:int = Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns);
+//				var y:int = Math.floor((view.player.x + view.player.height/2) / levelModel.currentLevel.numRows); 
+//				checkCollision();
+//			}
+		}
+
+		private function playButtonTriggerHandler(event : Event) : void
+		{
+			dispatch(new MainContainerEvent(MainContainerEvent.PLAY));
+		}
+	
+		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
+		{
+			switch(event.newState)
 			{
-				var x:int = Math.floor((view.player.x + view.player.width/2) / levelModel.currentLevel.numColumns);
-				var y:int = Math.floor((view.player.x + view.player.height/2) / levelModel.currentLevel.numRows); 
-				
+				case GameState.INIT:
+					configureInitState();
+				break;
+				case GameState.PLAYING:
+					configurePlayState(event.previousState);
+				break;
+				case GameState.PAUSED:
+					configurePauseState();
+				break;
+				case GameState.LIFE_LOST:
+				break;				
+				case GameState.LEVEL_COMPLETE:
+				break;
+				case GameState.GAME_OVER:
+					configureGameOverState();
+				break;
 			}
 		}
 	}
