@@ -14,7 +14,7 @@ package com.crowdpark.sushiman.model.level
 				
 		public static function calculateTilePosition(colId:int, rowId:int):Point
 		{
-			var posX:int = (colId-1) * TILE_WIDTH;
+			var posX:int = (colId-1) * TILE_WIDTH + 40;
 			var posY:int = (rowId-1) * TILE_HEIGHT;
 			return new Point(posX, posY);
 		}
