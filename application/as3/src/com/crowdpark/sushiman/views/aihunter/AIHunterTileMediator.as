@@ -28,7 +28,7 @@ package com.crowdpark.sushiman.views.aihunter
 		
 		public function run():void
 		{
-			this.view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+			//this.view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 		
 

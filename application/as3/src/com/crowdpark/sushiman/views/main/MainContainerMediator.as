@@ -53,7 +53,6 @@ package com.crowdpark.sushiman.views.main
 		private function playerMovingHandler(event:PlayerEvent) : void
 		{
 			checkPlayerCollision();
-			checkAICollision();
 		}
 		
 		private function checkPlayerCollision() : void
@@ -94,51 +93,25 @@ package com.crowdpark.sushiman.views.main
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}			
+					} else
+					{
+						var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
+						for each(var ai:AIHunterTileView in aiList)
+						{
+							var aiPosX:int = view.tilesView.x + ai.x + ai.width/2;
+							var aiPosY:int = view.tilesView.y + ai.y + ai.height/2;
+							var aiBox:Rectangle = new Rectangle(aiPosX -boxHalfSize,aiPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
+							if(boundingBox.intersects(aiBox))
+							{
+								trace("monster hit");
+							}
+						}
 					}
 
 				}
 			}
 
 		}
-		private function checkAICollision() : void
-		{
-			var boxHalfSize:int = 5;
-			var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
-
-			
-			for each(var ai:AIHunterTileView in aiList)
-			{
-				var aiPosX:int = view.tilesView.x + ai.x + ai.width/2;
-				var aiPosY:int = view.tilesView.y + ai.y + ai.height/2;
-				var boundingBox:Rectangle = new Rectangle(aiPosX -boxHalfSize,aiPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
-				var tileRect:Rectangle;
-				
-				var n:int = this.view.tilesView.numChildren;
-				
-				for(var j:int = 0; j<n;j++)
-				{
-					if(this.view.tilesView.getChildAt(j) is Tile)
-					{
-						var tile:Tile = this.view.tilesView.getChildAt(j) as Tile;
-						tileRect = (tile as DisplayObject).getBounds(this.view);
-	
-
-						if (tile.textureType == AssetsModel.PATH_WALL)
-						{
-							if (boundingBox.intersects(tileRect))
-							{
-								//dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-								break;
-							}
-						}
-	
-					}
-				}				
-			}
-
-
-		}
-
 
 		private function configurePauseState() : void
 		{
