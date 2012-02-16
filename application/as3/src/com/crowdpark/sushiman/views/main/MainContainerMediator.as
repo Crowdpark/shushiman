@@ -62,9 +62,11 @@ package com.crowdpark.sushiman.views.main
 			var playerPosX:int = view.tilesView.x + view.player.x + view.player.width/2;
 			var playerPosY:int = view.tilesView.y + view.player.y + view.player.height/2;
 			var boundingBox:Rectangle = new Rectangle(playerPosX -boxHalfSize,playerPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
-			var isHittingAI:Boolean = isHittingAI(boundingBox);
+			var isPlayerHittingAI:Boolean = isHittingAI(boundingBox);
 			
-			if (isHittingAI)
+			checkAIWallCollision();
+			
+			if (isPlayerHittingAI)
 			{
 				dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
 				
@@ -82,6 +84,25 @@ package com.crowdpark.sushiman.views.main
 				}
 			}
 
+		}
+		
+		
+		private function checkAIWallCollision():void
+		{
+			var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
+			var isAIHit:Boolean;
+			var n:int = aiList.length;
+			for(var i:int = 0; i < n; i++)
+			{
+				var ai:AIHunterTileView = aiList[i];
+				var aiBox:Rectangle = ai.getBounds(this.view);
+				var tile:Tile = getHitTile(aiBox);
+				if (tile != null && tile.textureType == AssetsModel.PATH_WALL)
+				{
+					dispatch(new AIHunterTileEvent(AIHunterTileEvent.COLLISION_BORDER));
+					break;
+				}
+			}
 		}
 		
 		
