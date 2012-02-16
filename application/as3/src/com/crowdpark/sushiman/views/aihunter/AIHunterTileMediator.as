@@ -50,6 +50,7 @@ package com.crowdpark.sushiman.views.aihunter
 			} else if (_isLastDirectionForbidden)
 			{
 				newDirection = GameUtil.getRandomDirection(_lastDirection);
+				_isLastDirectionForbidden = false;
 			}else
 			{
 				newDirection = _lastDirection; 
