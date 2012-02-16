@@ -97,7 +97,9 @@ package com.crowdpark.sushiman.views.main
 				var ai:AIHunterTileView = aiList[i];
 				var aiBox:Rectangle = ai.getBounds(this.view);
 				var tile:Tile = getHitTile(aiBox);
-				if (tile != null && tile.textureType == AssetsModel.PATH_WALL)
+				var isInside:Boolean = aiBox.intersects(this.view.tilesView.getBounds(this.view));
+				
+				if (tile != null && tile.textureType == AssetsModel.PATH_WALL || !isInside)
 				{
 					dispatch(new AIHunterTileEvent(AIHunterTileEvent.COLLISION_BORDER));
 					break;
