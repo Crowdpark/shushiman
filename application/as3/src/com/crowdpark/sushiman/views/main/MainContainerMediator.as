@@ -93,21 +93,22 @@ package com.crowdpark.sushiman.views.main
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}			
-					} else
-					{
-						var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
-						for each(var ai:AIHunterTileView in aiList)
-						{
-							var aiPosX:int = view.tilesView.x + ai.x + ai.width/2;
-							var aiPosY:int = view.tilesView.y + ai.y + ai.height/2;
-							var aiBox:Rectangle = new Rectangle(aiPosX -boxHalfSize,aiPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
-							if(boundingBox.intersects(aiBox))
-							{
-								trace("monster hit");
-							}
-						}
 					}
 
+				}
+				
+				var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
+				n = aiList.length;
+				for(i=0;i<n;i++)
+				{
+					var ai:AIHunterTileView = aiList[i];
+					var aiPosX:int = view.tilesView.x + ai.x + ai.width/2;
+					var aiPosY:int = view.tilesView.y + ai.y + ai.height/2;
+					var aiBox:Rectangle = new Rectangle(aiPosX -boxHalfSize,aiPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
+					if(boundingBox.intersects(aiBox))
+					{
+						dispatch(new PlayerEvent(PlayerEvent.COLLISION, "MONSTER"));
+					}
 				}
 			}
 
