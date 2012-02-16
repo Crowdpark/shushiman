@@ -55,12 +55,12 @@ package com.crowdpark.sushiman.views.main
 		
 		private function checkCollision() : void
 		{
-//			var boxHalfSize:int = 5;
-//			var playerPosX:int = view.tilesView.x + view.player.x + view.player.width/2;
-//			var playerPosY:int = view.tilesView.y + view.player.y + view.player.height/2;
-//
-//
-//			var boundingBox:Rectangle = new Rectangle(playerPosX -boxHalfSize,playerPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
+			var boxHalfSize:int = 5;
+			var playerPosX:int = view.tilesView.x + view.player.x + view.player.width/2;
+			var playerPosY:int = view.tilesView.y + view.player.y + view.player.height/2;
+
+
+			var boundingBox:Rectangle = new Rectangle(playerPosX -boxHalfSize,playerPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
 //			var playerRect:Rectangle = view.player.getBounds(this.view.tilesView);
 //
 //			for each (var tile:Tile in this.view.tilesView.tiles)
@@ -94,7 +94,7 @@ package com.crowdpark.sushiman.views.main
 
 						//if(tile.bmd.hitTest(new Point(view.player.x,view.player.y), 255, tile.bmd, new Point(tile.x,tile.y), 255))
 
-						if (playerRect.intersects(tileRect))
+						if (boundingBox.intersects(tileRect))
 						{
 							view.tilesView.removeChild(tile as Tile);
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
@@ -102,14 +102,14 @@ package com.crowdpark.sushiman.views.main
 						}
 					} else if (tile.textureType == AssetsModel.PATH_WALL)
 					{
-						if (playerRect.intersects(tileRect))
+						if (boundingBox.intersects(tileRect))
 						{
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
 						}
 					} else if(tile.textureType == AssetsModel.PATH_OCTOPUSSY)
 					{
-						if (playerRect.intersects(tileRect))
+						if (boundingBox.intersects(tileRect))
 						{
 							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
 							break;
