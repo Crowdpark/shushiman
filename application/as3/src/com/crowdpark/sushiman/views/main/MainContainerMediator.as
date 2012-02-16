@@ -1,6 +1,7 @@
 package com.crowdpark.sushiman.views.main 
 {
 
+	import com.crowdpark.sushiman.views.aihunter.AIHunterTileEvent;
 	import starling.display.DisplayObject;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
 	import com.crowdpark.sushiman.views.components.Tile;
@@ -197,6 +198,7 @@ package com.crowdpark.sushiman.views.main
 			view.addHudView(assets.getBackgroundHud());
 			view.addFriendsListView(assets.getBackgroundHud());
 			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
+			eventMap.mapListener(eventDispatcher, AIHunterTileEvent.MOVING, playerMovingHandler);
 			//view.stage.addEventListener(Event.ENTER_FRAME, gameLoop);
 		}
 

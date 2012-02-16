@@ -40,7 +40,7 @@ package com.crowdpark.sushiman.views.player
 			var direction:int = int(Math.random()* 4);
 			var deviationPt:Point = new Point();
 
-			switch(deviation)
+			switch(direction)
 			{
 				case 0:
 					view.x += deviation;

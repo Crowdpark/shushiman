@@ -14,7 +14,7 @@ package com.crowdpark.sushiman.model
 	{
 		public static const CACHE_ID:String = "TILES";
 		public static const PATH_PLAYER:String = "hero_knife_right";
-		public static const PATH_OCTOPUSSY:String = "hero_knife_right";
+		public static const PATH_OCTOPUSSY:String = "octopus_angry_left";
 		public static const PATH_WALL:String = "others0002";
 		public static const PATH_YELLOW:String = "others0004";
 		public static const PATH_WHITE:String = "others0001";
