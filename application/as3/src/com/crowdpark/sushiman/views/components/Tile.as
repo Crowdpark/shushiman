@@ -18,18 +18,9 @@ package com.crowdpark.sushiman.views.components
 		public function Tile(textureType:String, texture:Texture, tileData:TileData)
 		{
 			
-//			if (textureType == AssetsModel.PATH_WHITE || textureType == AssetsModel.PATH_YELLOW)
-//			{
-//				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,50,50));
-//				//texture.
-//			} else
-//			{
-//				texture = Texture.fromTexture(texture, null, new Rectangle(0,0,50,50));
-//			}
 			this.textureType = textureType;
 			this._texture = texture;
 			this.tileData = tileData;
-			//this.bmd = BitmapDataCacher.getBitmapData(AssetsModel.CACHE_ID, textureType);
 			super(texture);			
 			var pos:Point = Level.calculateTilePosition(tileData.colId, tileData.rowId);
 			this.x = pos.x;

@@ -1,7 +1,5 @@
 package com.crowdpark.sushiman.views.tiles 
 {
-
-
 	import starling.textures.Texture;
 
 	import com.crowdpark.sushiman.model.level.TileData;
@@ -12,6 +10,7 @@ package com.crowdpark.sushiman.views.tiles
 	/**
 	 * @author sandberg
 	 */
+	 
 	public class TilesView extends Sprite 
 	{
 

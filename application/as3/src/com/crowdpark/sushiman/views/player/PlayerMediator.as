@@ -28,11 +28,10 @@ package com.crowdpark.sushiman.views.player
 
 		override public function onRegister() : void
 		{
-			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
-			eventMap.mapListener(this.eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
-			this.isActive = true;
+			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
+			eventMap.mapListener(eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
+			isActive = true;
 		}
-		
 		
 		private function deviateFromPosition():void
 		{
@@ -55,18 +54,16 @@ package com.crowdpark.sushiman.views.player
 					view.y -= deviation;
 					break;
 				default:
-					break;
-					
+					break;			
 			}
-
 		}
 
 		private function collisionHandler(event:PlayerEvent) : void
 		{
 			if (event.assetType == AssetsModel.PATH_WALL)
 			{
-				this.view.x = _lastPosition.x;
-				this.view.y = _lastPosition.y;
+				view.x = _lastPosition.x;
+				view.y = _lastPosition.y;
 				deviateFromPosition();
 			}
 		}
@@ -92,16 +89,16 @@ package com.crowdpark.sushiman.views.player
 
 		private function addPlayerListeners() : void
 		{
-			this.view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
-			this.view.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
-			this.view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+			view.stage.addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
+			view.stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 
 		private function removePlayerListeners() : void
 		{
-			this.view.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
-			this.view.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
-			this.view.stage.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
+			view.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+			view.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
+			view.stage.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 
 		private function enterFrameHandler(event : Event) : void
