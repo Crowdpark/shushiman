@@ -39,7 +39,6 @@
 			viewPortRectangle.width = stage.stageWidth;
 			viewPortRectangle.height = stage.stageHeight;
 			Starling.current.viewPort = viewPortRectangle;
- 
 			_starling.stage.stageWidth = stage.stageWidth;
 			_starling.stage.stageHeight = stage.stageHeight;
 		}
