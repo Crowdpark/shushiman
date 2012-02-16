@@ -85,7 +85,6 @@ package com.crowdpark.sushiman.views.main
 
 		public function addPlayer(textures : Vector.<Texture>) : void
 		{
-
 			player = new PlayerView(textures, 24);
 			tilesView.addChild(player);
 			Starling.juggler.add(player);
@@ -118,14 +117,12 @@ package com.crowdpark.sushiman.views.main
 						
 		}
 		
-		
 		public function addAITile(textures : Vector.<Texture>, texturePath:String,data:TileData):void
 		{
 			var hunter:AIHunterTileView = new AIHunterTileView(textures, data);
 			addChild(hunter);
 			Starling.juggler.add(hunter);
 		}
-		
 		
 		public function addFriendsListView(background:Image):void
 		{
@@ -139,7 +136,6 @@ package com.crowdpark.sushiman.views.main
 				friendsView.x = 0;
 				friendsView.y = this.background.height - friendsView.background.height;				
 			}
-
 		}
 		
 		public function addBackgroundMask(image:Image):void
