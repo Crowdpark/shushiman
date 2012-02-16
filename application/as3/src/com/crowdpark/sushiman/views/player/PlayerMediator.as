@@ -1,6 +1,5 @@
 package com.crowdpark.sushiman.views.player
 {
-	import com.crowdpark.sushiman.views.tiles.TilesView;
 	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import starling.events.Event;
@@ -19,6 +18,9 @@ package com.crowdpark.sushiman.views.player
 	 */
 	public class PlayerMediator extends StarlingMediator
 	{
+		public static const START_X:int = 10;
+		public static const START_Y:int = 200;
+		
 		[Inject]
 		public var view : PlayerView;
 		private var _isActive : Boolean;
@@ -27,12 +29,22 @@ package com.crowdpark.sushiman.views.player
 		private var _moveUp : Boolean;
 		private var _moveDown : Boolean;
 		private var _lastPosition:Point;
+		
 
 		override public function onRegister() : void
 		{
 			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
+			resetPosition();
 			isActive = true;
+			
+		}
+		
+		
+		private function resetPosition():void
+		{
+			view.x = START_X;
+			view.y = START_Y;
 		}
 		
 		private function deviateFromPosition():void
@@ -78,7 +90,7 @@ package com.crowdpark.sushiman.views.player
 				case GameState.LEVEL_COMPLETE:
 				case GameState.GAME_OVER:
 				case GameState.LIFE_LOST:
-					isActive = false;
+					resetPosition();
 				break;
 				case GameState.PAUSED:
 					isActive = false;

@@ -148,7 +148,6 @@ package com.crowdpark.sushiman.model
 				case GameState.LEVEL_COMPLETE:
 					break;
 				case GameState.LIFE_LOST:
-					numLives--;
 					break;
 				case GameState.GAME_OVER:
 					break;
