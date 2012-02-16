@@ -10,24 +10,30 @@ package com.crowdpark.sushiman.utils
 		public static const DIRECTION_UP:String = "up";
 		public static const DIRECTION_DOWN:String = "down";
 		
-		public static function getRandomDirection():String
+		public static function getRandomDirection(exceptDirection:String = ""):String
 		{
-			var deviation:int = 1;
-			var direction:int = int(Math.random()* 4);
+			var directions:Array = [DIRECTION_RIGHT,DIRECTION_LEFT,DIRECTION_UP,DIRECTION_DOWN];
+			var index:int = directions.indexOf(exceptDirection);
+			if (index > -1)
+			{
+				directions.splice(index,1);
+			}
+
+			var direction:int = int(Math.random()* directions.length);
 			
 			switch(direction)
 			{
 				case 0:
-					return DIRECTION_RIGHT;
+					return directions[0];
 					break;
 				case 1:
-					return DIRECTION_LEFT;
+					return directions[1];
 					break;
 				case 2:
-					return DIRECTION_UP;
+					return directions[2];
 					break;
 				case 3:
-					return DIRECTION_DOWN;
+					return directions[3];
 					break;
 				default:
 					break;
