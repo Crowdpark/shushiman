@@ -61,54 +61,62 @@ package com.crowdpark.sushiman.views.main
 			var playerPosX:int = view.tilesView.x + view.player.x + view.player.width/2;
 			var playerPosY:int = view.tilesView.y + view.player.y + view.player.height/2;
 			var boundingBox:Rectangle = new Rectangle(playerPosX -boxHalfSize,playerPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
-			var tileRect:Rectangle;
-			var n:int = this.view.tilesView.numChildren;
 			
-			for(var i:int = 0; i<n;i++)
+			var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
+			var isAIHit:Boolean;
+			var n:int = aiList.length;
+			for(i=0;i<n;i++)
 			{
-				if(this.view.tilesView.getChildAt(i) is Tile)
+				var ai:AIHunterTileView = aiList[i];
+				var aiPosX:int = view.tilesView.x + ai.x + ai.width/2;
+				var aiPosY:int = view.tilesView.y + ai.y + ai.height/2;
+				var aiBox:Rectangle = ai.getBounds(this.view);
+				if(boundingBox.intersects(aiBox))
 				{
-					var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
-					tileRect = (tile as DisplayObject).getBounds(this.view);
-
-					if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
-					{
-						if (boundingBox.intersects(tileRect))
-						{
-							view.tilesView.removeChild(tile as Tile);
-							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-							break;
-						}
-					} else if (tile.textureType == AssetsModel.PATH_WALL)
-					{
-						if (boundingBox.intersects(tileRect))
-						{
-							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-							break;
-						}
-					} else if(tile.textureType == AssetsModel.PATH_OCTOPUSSY)
-					{
-						if (boundingBox.intersects(tileRect))
-						{
-							dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
-							break;
-						}			
-					}
-
+					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
+					isAIHit = true;
 				}
+			}
+			
+			if (!isAIHit)
+			{
+
+				var tileRect:Rectangle;
+				n = this.view.tilesView.numChildren;
 				
-				var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
-				n = aiList.length;
-				for(i=0;i<n;i++)
+				for(var i:int = 0; i<n;i++)
 				{
-					var ai:AIHunterTileView = aiList[i];
-					var aiPosX:int = view.tilesView.x + ai.x + ai.width/2;
-					var aiPosY:int = view.tilesView.y + ai.y + ai.height/2;
-					var aiBox:Rectangle = new Rectangle(aiPosX -boxHalfSize,aiPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
-					if(boundingBox.intersects(aiBox))
+					if(this.view.tilesView.getChildAt(i) is Tile)
 					{
-						dispatch(new PlayerEvent(PlayerEvent.COLLISION, "MONSTER"));
+						var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
+						tileRect = (tile as DisplayObject).getBounds(this.view);
+	
+						if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
+						{
+							if (boundingBox.intersects(tileRect))
+							{
+								view.tilesView.removeChild(tile as Tile);
+								dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+								break;
+							}
+						} else if (tile.textureType == AssetsModel.PATH_WALL)
+						{
+							if (boundingBox.intersects(tileRect))
+							{
+								dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+								break;
+							}
+						} else if(tile.textureType == AssetsModel.PATH_OCTOPUSSY)
+						{
+							if (boundingBox.intersects(tileRect))
+							{
+								dispatch(new PlayerEvent(PlayerEvent.COLLISION, tile.textureType));
+								break;
+							}			
+						}
+	
 					}
+					
 				}
 			}
 
