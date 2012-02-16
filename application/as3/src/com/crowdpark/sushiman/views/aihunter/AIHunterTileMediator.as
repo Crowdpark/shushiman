@@ -1,7 +1,7 @@
 package com.crowdpark.sushiman.views.aihunter
 {
+
 	import com.crowdpark.sushiman.utils.GameUtil;
-	import com.crowdpark.sushiman.views.components.AIHunterTile;
 	import flash.geom.Point;
 	import starling.events.Event;
 	import org.robotlegs.mvcs.StarlingMediator;
@@ -18,20 +18,26 @@ package com.crowdpark.sushiman.views.aihunter
 		public var view:AIHunterTileView;
 		
 		private var _lastPosition:Point;
-		private var _lastDirection:String = "";
+		private var _lastDirection : String = "";
+		private var _isLastDirectionForbidden:Boolean;
+
 		
 		override public function onRegister():void
 		{
+			eventMap.mapListener(eventDispatcher, AIHunterTileEvent.COLLISION_BORDER, borderHandler);
 			run();
 		}
-		
-		
+
 		public function run():void
 		{
-			//this.view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
+			this.view.stage.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
 		
-
+		private function borderHandler(event:AIHunterTileEvent) : void
+		{
+			_isLastDirectionForbidden = true;
+		}
+		
 		private function enterFrameHandler(event : Event) : void
 		{
 			_lastPosition = new Point(view.x, view.y);
@@ -40,7 +46,11 @@ package com.crowdpark.sushiman.views.aihunter
 			if ( _lastDirection.length == 0) 
 			{
 				var newDirection:String = GameUtil.getRandomDirection();
-			} else
+				
+			} else if (_isLastDirectionForbidden)
+			{
+				newDirection = GameUtil.getRandomDirection(_lastDirection);
+			}else
 			{
 				newDirection = _lastDirection; 
 			}
