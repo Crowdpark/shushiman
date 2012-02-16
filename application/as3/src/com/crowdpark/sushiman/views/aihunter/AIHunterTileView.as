@@ -12,7 +12,7 @@ package com.crowdpark.sushiman.views.aihunter
 	 
 	public class AIHunterTileView extends TileMovieClip
 	{
-		public static const SPEED:int = 2;
+		public static const SPEED:int = 5;
 		private var _data:TileData;
 		private var _isActive:Boolean;
 		private var _lastPosition:Point;
