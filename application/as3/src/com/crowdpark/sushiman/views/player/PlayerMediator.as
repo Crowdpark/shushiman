@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman.views.player
 {
+	import com.crowdpark.sushiman.views.tiles.TilesView;
+	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
@@ -103,31 +105,78 @@ package com.crowdpark.sushiman.views.player
 			this.view.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 			this.view.stage.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
+		
+		
+		private function isInTargetSpace(playerRect:Rectangle):Boolean
+		{
+			
+//			if (view.parent is TilesView)
+//			{
+//				
+//				var tilesView:TilesView =  (view.parent as TilesView);
+//				var rect:Rectangle = (view.parent as TilesView).getBounds(tilesView.parent);
+//				playerRect.x = playerRect.x + tilesView.x;
+//				playerRect.y = playerRect.y + tilesView.y;
+//				
+//				if(playerRect.x >= rect.x &&
+//				playerRect.x < (rect.x + rect.height) &&
+//				playerRect.y >= rect.y &&
+//				playerRect.y < rect.y + rect.height)
+//				{
+//					return true;
+//				}
+//				if (playerRect.intersects(rect))
+//				{
+//					return true;
+//				}
+//				
+//			} else
+//			{
+//				throw new Error("Player is not a child of TilesView, which makes the current calculation of borders impossible");
+//			}
+//			return false;
+
+			return true;
+
+		}
 
 		private function enterFrameHandler(event : Event) : void
 		{
+			var newPosition:Point = new Point(view.x,view.y);
+			
 			_lastPosition = new Point(view.x, view.y);
 		
 			if (_moveLeft)
 			{
-				view.x -= PlayerView.SPEED;
+				newPosition.x -= PlayerView.SPEED;
 			}
 		
 			if (_moveRight)
 			{
-				view.x += PlayerView.SPEED;
+				newPosition.x += PlayerView.SPEED;
 			}
 
 			if (_moveUp)
 			{
-				view.y -= PlayerView.SPEED;
+				newPosition.y -= PlayerView.SPEED;
 			}
 
 			if (_moveDown)
 			{
-				view.y += PlayerView.SPEED;
+				newPosition.y += PlayerView.SPEED;
 			}
-			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
+			
+			var playerRect:Rectangle = view.getBounds(view.parent);
+			
+			if (newPosition.x != _lastPosition.x &&
+				newPosition.y != newPosition.y &&
+				 isInTargetSpace(playerRect))
+			{
+				view.x = newPosition.x;
+				view.y = newPosition.y;
+				dispatch(new PlayerEvent((PlayerEvent.MOVING)));
+			}
+			
 		}
 
 		private function keyDownHandler(event : KeyboardEvent) : void

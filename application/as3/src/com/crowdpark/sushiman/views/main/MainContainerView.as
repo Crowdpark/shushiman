@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
+	import com.crowdpark.sushiman.views.components.AIHunterTile;
 	import com.crowdpark.sushiman.views.friends.FriendsListView;
 	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
@@ -149,6 +150,22 @@ package com.crowdpark.sushiman.views.main
 				addChild(image);
 			}
 			
+		}
+		
+		
+		public function get AITiles():Vector.<AIHunterTileView>
+		{
+			var tiles:Vector.<AIHunterTileView> = new Vector.<AIHunterTileView>();
+			var n:int = this.numChildren;
+			
+			for(var i:int = 0; i<n;i++)
+			{
+				if (this.getChildAt(i) is AIHunterTileView)
+				{
+					tiles.push(this.getChildAt(i) as AIHunterTileView);
+				}
+			}
+			return tiles;
 		}
 		
 
