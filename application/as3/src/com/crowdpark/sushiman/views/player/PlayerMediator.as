@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.player
 {
+	import com.crowdpark.sushiman.model.AssetsModel;
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
 
@@ -30,12 +31,44 @@ package com.crowdpark.sushiman.views.player
 			eventMap.mapListener(this.eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(this.eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
 			this.isActive = true;
-			trace(view.width + ':' + view.height);
+		}
+		
+		
+		private function deviateFromPosition():void
+		{
+			var deviation:int = 1;
+			var direction:int = int(Math.random()* 4);
+			var deviationPt:Point = new Point();
+
+			switch(deviation)
+			{
+				case 0:
+					view.x += deviation;
+					break;
+				case 1:
+					view.x -= deviation;
+					break;
+				case 2:
+					view.y += deviation;
+					break;
+				case 3:
+					view.y -= deviation;
+					break;
+				default:
+					break;
+					
+			}
+
 		}
 
 		private function collisionHandler(event:PlayerEvent) : void
 		{
-
+			if (event.assetType == AssetsModel.PATH_WALL)
+			{
+				this.view.x = _lastPosition.x;
+				this.view.y = _lastPosition.y;
+				deviateFromPosition();
+			}
 		}
 
 		private function gamestateChangeHandler(event : GameStateChangedEvent) : void

@@ -15,22 +15,15 @@ package com.crowdpark.sushiman.views.tiles
 	public class TilesView extends Sprite 
 	{
 
+		private var _tiles:Vector.<Tile> = new Vector.<Tile>();
+		
 		public function addTile(textureId : String, tileTexture : Texture, data : TileData) : void 
 		{
 			var tile : Tile = new Tile(textureId, tileTexture, data);
 			addChild(tile);
+			_tiles.push(tile);
 		}
-		
-		public function get tiles():Vector.<Tile>
-		{
-			var tiles:Vector.<Tile> = new Vector.<Tile>();
-			for (var i : int = 0 ; i < numChildren ; i++) 
-			{
-				var tile : Tile = this.getChildAt(i) as Tile;
-				tiles.push(tile);			
-			}
-			return tiles;
-		}
+
 
 		public function removeTile(tile : Tile) : void 
 		{
@@ -47,6 +40,11 @@ package com.crowdpark.sushiman.views.tiles
 					break;
 				}
 			}
+		}
+
+		public function get tiles() : Vector.<Tile>
+		{
+			return _tiles;
 		}
 	}
 }
