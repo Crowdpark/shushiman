@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.utils
 {
+	import flash.geom.Point;
 	/**
 	 * @author sandberg
 	 */
@@ -63,6 +64,32 @@ package com.crowdpark.sushiman.utils
 			}
 			
 			return "";			
+		}
+		
+		
+		public static function getRandomDeviationFromPosition(deviation:int=1):Point
+		{
+			var direction:int = int(Math.random()* 4);
+			var deviationPt:Point = new Point();
+
+			switch(direction)
+			{
+				case 0:
+					deviationPt.x += deviation;
+					break;
+				case 1:
+					deviationPt.x -= deviation;
+					break;
+				case 2:
+					deviationPt.y += deviation;
+					break;
+				case 3:
+					deviationPt.y -= deviation;
+					break;
+				default:
+					break;			
+			}
+			return deviationPt;
 		}
 	}
 }
