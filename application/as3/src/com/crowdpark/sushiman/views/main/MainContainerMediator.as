@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main 
 {
+	import com.crowdpark.sushiman.views.tiles.TilesView;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileEvent;
 	import starling.display.DisplayObject;
@@ -81,21 +82,20 @@ package com.crowdpark.sushiman.views.main
 			var ai:AIHunterTileView;
 			var aiBox:Rectangle;
 			var tile:Tile;
-			var isInside:Boolean;
 			
 			for(var i:uint = 0; i < n; i++)
 			{
 				ai = aiList[i];
 				aiBox = ai.getBounds(this.view);
 				tile = getHitTile(aiBox);
-				isInside = aiBox.intersects(this.view.tilesView.getBounds(this.view));
+
 
 				if(player.intersects(aiBox))
 				{
 					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
 				} 
 				
-				if (tile != null && tile.textureType == AssetsModel.PATH_WALL || !isInside)
+				if (tile != null && tile.textureType == AssetsModel.PATH_WALL)
 				{
 					ai.moveInNewDirection();
 				} else
@@ -194,11 +194,13 @@ package com.crowdpark.sushiman.views.main
 				if (levelModel.currentLevel != null)
 				{
 					var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
+					var stageArea:Rectangle = view.tilesView.getBounds(this.view);
 					for each (var data:TileData in aiTiles)
 					{
 						if (data.type == TileData.TYPE_OCTOPUSSY)
 						{
-							view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data);
+							
+							view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data, stageArea);
 						}
 					}
 				}
