@@ -1,14 +1,11 @@
 package com.crowdpark.sushiman.views.main 
 {
-
-	import org.flexunit.runner.manipulation.IFilter;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileEvent;
 	import starling.display.DisplayObject;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
 	import com.crowdpark.sushiman.views.components.Tile;
 	import flash.geom.Rectangle;
-	import flash.geom.Point;
 	import starling.core.Starling;
 	import starling.animation.Transitions;
 	import starling.animation.Tween;
@@ -91,13 +88,18 @@ package com.crowdpark.sushiman.views.main
 		{
 			var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
 			var isAIHit:Boolean;
-			var n:int = aiList.length;
-			for(var i:int = 0; i < n; i++)
+			var n:uint = aiList.length;
+			var ai:AIHunterTileView;
+			var aiBox:Rectangle;
+			var tile:Tile;
+			var isInside:Boolean;
+			
+			for(var i:uint = 0; i < n; i++)
 			{
-				var ai:AIHunterTileView = aiList[i];
-				var aiBox:Rectangle = ai.getBounds(this.view);
-				var tile:Tile = getHitTile(aiBox);
-				var isInside:Boolean = aiBox.intersects(this.view.tilesView.getBounds(this.view));
+				ai = aiList[i];
+				aiBox = ai.getBounds(this.view);
+				tile = getHitTile(aiBox);
+				isInside = aiBox.intersects(this.view.tilesView.getBounds(this.view));
 				
 				if (tile != null && tile.textureType == AssetsModel.PATH_WALL || !isInside)
 				{
@@ -112,11 +114,14 @@ package com.crowdpark.sushiman.views.main
 		{
 			var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
 			var isAIHit:Boolean;
-			var n:int = aiList.length;
-			for(var i:int = 0; i < n; i++)
+			var n:uint = aiList.length;
+			var ai:AIHunterTileView;
+			var aiBox:Rectangle;
+			
+			for(var i:uint = 0; i < n; i++)
 			{
-				var ai:AIHunterTileView = aiList[i];
-				var aiBox:Rectangle = ai.getBounds(this.view);
+				ai = aiList[i];
+				aiBox = ai.getBounds(this.view);
 				if(boundingBox.intersects(aiBox))
 				{
 					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
@@ -169,7 +174,6 @@ package com.crowdpark.sushiman.views.main
 
 		private function configurePauseState() : void
 		{
-			//view.stage.removeEventListener(Event.ENTER_FRAME, gameLoop);
 			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 		}
 		
