@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.player
 {
+	import com.crowdpark.sushiman.utils.GameUtil;
 	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import starling.events.Event;
@@ -47,38 +48,16 @@ package com.crowdpark.sushiman.views.player
 			view.y = START_Y;
 		}
 		
-		private function deviateFromPosition():void
-		{
-			var deviation:int = 1;
-			var direction:int = int(Math.random()* 4);
-			var deviationPt:Point = new Point();
 
-			switch(direction)
-			{
-				case 0:
-					view.x += deviation;
-					break;
-				case 1:
-					view.x -= deviation;
-					break;
-				case 2:
-					view.y += deviation;
-					break;
-				case 3:
-					view.y -= deviation;
-					break;
-				default:
-					break;			
-			}
-		}
 
 		private function collisionHandler(event:PlayerEvent) : void
 		{
 			if (event.assetType == AssetsModel.PATH_WALL)
 			{
-				view.x = _lastPosition.x;
-				view.y = _lastPosition.y;
-				deviateFromPosition();
+				var deviation:Point = GameUtil.getRandomDeviationFromPosition();
+				view.x = _lastPosition.x + deviation.x;
+				view.y = _lastPosition.y + deviation.y;
+				
 			}
 		}
 
