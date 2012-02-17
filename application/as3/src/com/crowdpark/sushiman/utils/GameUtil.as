@@ -41,5 +41,28 @@ package com.crowdpark.sushiman.utils
 			return "";
 
 		}
+
+		public static function getOppositDirection(direction:String):String
+		{
+			switch(direction)
+			{
+				case DIRECTION_RIGHT:
+					return DIRECTION_LEFT;
+					break;
+				case DIRECTION_LEFT:
+					return DIRECTION_RIGHT;
+					break;
+				case DIRECTION_UP:
+					return DIRECTION_DOWN;
+					break;
+				case DIRECTION_DOWN:
+					return DIRECTION_UP;
+					break;
+				default:
+					break;
+			}
+			
+			return "";			
+		}
 	}
 }
