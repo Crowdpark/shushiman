@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.aihunter
 {
+	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.utils.GameUtil;
 	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.views.components.TileMovieClip;
@@ -15,9 +16,11 @@ package com.crowdpark.sushiman.views.aihunter
 		public static const SPEED:int = 2;
 		private var _data:TileData;
 		private var _lastDirection : String = "";
+		private var _stageArea:Rectangle;
 		
-		public function AIHunterTileView(textures : Vector.<Texture>, data:TileData)
+		public function AIHunterTileView(textures : Vector.<Texture>, data:TileData, stageArea:Rectangle)
 		{
+			_stageArea = stageArea;
 			_data = data;
 			super(textures, 24, data);
 		}
@@ -36,23 +39,36 @@ package com.crowdpark.sushiman.views.aihunter
 		private function move(direction:String):void
 		{
 			var deviation:Point = GameUtil.getRandomDeviationFromPosition();
+			var oldPosition:Point;
+			var newPosition:Point = oldPosition = new Point(x,y);
+			
 			switch(direction)
 			{
 				case GameUtil.DIRECTION_RIGHT:
-					x -= AIHunterTileView.SPEED;
+					newPosition.x -= AIHunterTileView.SPEED;
 					break;
 				case GameUtil.DIRECTION_LEFT:
-					x += AIHunterTileView.SPEED;
+					newPosition.x += AIHunterTileView.SPEED;
 					break;
 				case GameUtil.DIRECTION_UP:
-					y -= AIHunterTileView.SPEED;
+					newPosition.y -= AIHunterTileView.SPEED;
 					break;
 				case GameUtil.DIRECTION_DOWN:
-					y += AIHunterTileView.SPEED;
+					newPosition.y += AIHunterTileView.SPEED;
 					break;
 			}
-			x += deviation.x;
-			y += deviation.y;
+			
+			newPosition.x += deviation.x;
+			newPosition.y += deviation.y;
+			
+			x = newPosition.x;
+			y = newPosition.y;
+			
+			if (!this.getBounds(parent).intersects(_stageArea))
+			{
+				x = oldPosition.x;
+				y = oldPosition.y;
+			}
 			_lastDirection = direction;				
 		}
 
