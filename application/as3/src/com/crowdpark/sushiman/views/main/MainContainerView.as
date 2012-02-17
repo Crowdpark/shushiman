@@ -1,6 +1,6 @@
 package com.crowdpark.sushiman.views.main
 {
-	import com.crowdpark.sushiman.views.components.AIHunterTile;
+	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.views.friends.FriendsListView;
 	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
@@ -118,9 +118,9 @@ package com.crowdpark.sushiman.views.main
 						
 		}
 		
-		public function addAITile(textures : Vector.<Texture>, texturePath:String,data:TileData):void
+		public function addAITile(textures : Vector.<Texture>, texturePath:String,data:TileData, stageArea:Rectangle):void
 		{
-			var hunter:AIHunterTileView = new AIHunterTileView(textures, data);
+			var hunter:AIHunterTileView = new AIHunterTileView(textures, data, stageArea);
 			addChild(hunter);
 			Starling.juggler.add(hunter);
 		}
