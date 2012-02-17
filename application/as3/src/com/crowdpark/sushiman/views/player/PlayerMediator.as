@@ -19,9 +19,7 @@ package com.crowdpark.sushiman.views.player
 	 */
 	public class PlayerMediator extends StarlingMediator
 	{
-		public static const START_X:int = 10;
-		public static const START_Y:int = 200;
-		
+
 		[Inject]
 		public var view : PlayerView;
 		private var _isActive : Boolean;
@@ -36,19 +34,9 @@ package com.crowdpark.sushiman.views.player
 		{
 			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
-			resetPosition();
+			view.resetPosition();
 			isActive = true;
-			
 		}
-		
-		
-		private function resetPosition():void
-		{
-			view.x = START_X;
-			view.y = START_Y;
-		}
-		
-
 
 		private function collisionHandler(event:PlayerEvent) : void
 		{
@@ -57,7 +45,6 @@ package com.crowdpark.sushiman.views.player
 				var deviation:Point = GameUtil.getRandomDeviationFromPosition();
 				view.x = _lastPosition.x + deviation.x;
 				view.y = _lastPosition.y + deviation.y;
-				
 			}
 		}
 
@@ -69,7 +56,6 @@ package com.crowdpark.sushiman.views.player
 				case GameState.LEVEL_COMPLETE:
 				case GameState.GAME_OVER:
 				case GameState.LIFE_LOST:
-					resetPosition();
 				break;
 				case GameState.PAUSED:
 					isActive = false;
@@ -92,40 +78,6 @@ package com.crowdpark.sushiman.views.player
 			view.stage.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
 			view.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 			view.stage.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
-		}
-		
-		
-		private function isInTargetSpace(playerRect:Rectangle):Boolean
-		{
-			
-//			if (view.parent is TilesView)
-//			{
-//				
-//				var tilesView:TilesView =  (view.parent as TilesView);
-//				var rect:Rectangle = (view.parent as TilesView).getBounds(tilesView.parent);
-//				playerRect.x = playerRect.x + tilesView.x;
-//				playerRect.y = playerRect.y + tilesView.y;
-//				
-//				if(playerRect.x >= rect.x &&
-//				playerRect.x < (rect.x + rect.height) &&
-//				playerRect.y >= rect.y &&
-//				playerRect.y < rect.y + rect.height)
-//				{
-//					return true;
-//				}
-//				if (playerRect.intersects(rect))
-//				{
-//					return true;
-//				}
-//				
-//			} else
-//			{
-//				throw new Error("Player is not a child of TilesView, which makes the current calculation of borders impossible");
-//			}
-//			return false;
-
-			return true;
-
 		}
 
 		private function enterFrameHandler(event : Event) : void
