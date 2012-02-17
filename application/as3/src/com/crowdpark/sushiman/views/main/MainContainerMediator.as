@@ -1,6 +1,11 @@
 package com.crowdpark.sushiman.views.main 
 {
-	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
+	import org.hamcrest.mxml.object.Null;
+	import com.crowdpark.sushiman.views.player.PlayerView;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
+	import utils.display.addChild;
+	import com.crowdpark.sushiman.views.aihunter.AIHunter;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileEvent;
 	import starling.display.DisplayObject;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
@@ -36,6 +41,10 @@ package com.crowdpark.sushiman.views.main
 		public var model:ISushimanModel;
 		[Inject]
 		public var levelModel:LevelProxy;
+		
+		
+		private var _currentTimer:Timer;
+		private var _isPausing:Boolean;
 
 		override public function onRegister() : void
 		{
@@ -50,7 +59,11 @@ package com.crowdpark.sushiman.views.main
 
 		private function playerMovingHandler(event:PlayerEvent) : void
 		{
-			checkPlayerCollision();
+			if(!_isPausing)
+			{
+				checkPlayerCollision();
+			}
+			
 		}
 		
 		private function checkPlayerCollision() : void
@@ -75,10 +88,10 @@ package com.crowdpark.sushiman.views.main
 
 		private function moveAI(player:Rectangle):void
 		{
-			var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
+			var aiList:Vector.<AIHunter> = this.view.AITiles;
 			var isAIHit:Boolean;
 			var n:uint = aiList.length;
-			var ai:AIHunterTileView;
+			var ai:AIHunter;
 			var aiBox:Rectangle;
 			var tile:Tile;
 			
@@ -91,6 +104,7 @@ package com.crowdpark.sushiman.views.main
 				if(player.intersects(aiBox))
 				{
 					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
+					break;
 				} 
 				
 				if (tile != null && tile.textureType == AssetsModel.PATH_WALL)
@@ -130,7 +144,6 @@ package com.crowdpark.sushiman.views.main
 			}
 			return null;
 		}
-		
 
 		private function configurePauseState() : void
 		{
@@ -168,6 +181,30 @@ package com.crowdpark.sushiman.views.main
 
 		private function configureLifeLost() : void
 		{
+			if (_currentTimer == null)
+			{
+				_isPausing = true;
+				view.signDead = assets.getSignDead();
+				view.signDead.x = view.tilesView.x + (view.tilesView.width/2 - view.signDead.width/2);
+				view.signDead.y = view.tilesView.y + (view.tilesView.height/2 - view.signDead.height/2);
+				view.addChild(view.signDead);
+				
+				_currentTimer  = new Timer(1000);
+				_currentTimer.addEventListener(TimerEvent.TIMER, signDeadHandler);
+				_currentTimer.start();
+			}
+		}
+
+		private function signDeadHandler(event : TimerEvent) : void
+		{
+			_currentTimer.stop();
+			_currentTimer.removeEventListener(TimerEvent.TIMER, signDeadHandler);
+			_currentTimer = null;
+			
+			view.removeChild(view.signDead);
+			view.player.resetPosition();
+			_isPausing = false;
+
 		}
 
 		private function configureLevelComplete() : void
@@ -178,6 +215,7 @@ package com.crowdpark.sushiman.views.main
 		{
 
 		}
+
 
 		private function configurePlayState(previousState:String) : void
 		{
@@ -245,17 +283,18 @@ package com.crowdpark.sushiman.views.main
 			{
 				case GameState.INIT:
 					configureInitState();
-				break;
+					break;
 				case GameState.PLAYING:
 					configurePlayState(event.previousState);
-				break;
+					break;
 				case GameState.PAUSED:
 					configurePauseState();
-				break;
+					break;
 				case GameState.LIFE_LOST:
-				break;				
+					configureLifeLost();
+					break;				
 				case GameState.LEVEL_COMPLETE:
-				break;
+					break;
 				case GameState.GAME_OVER:
 					configureGameOverState();
 				break;
