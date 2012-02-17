@@ -35,6 +35,7 @@ package com.crowdpark.sushiman.views.aihunter
 
 		private function move(direction:String):void
 		{
+			var deviation:Point = GameUtil.getRandomDeviationFromPosition();
 			switch(direction)
 			{
 				case GameUtil.DIRECTION_RIGHT:
@@ -49,7 +50,9 @@ package com.crowdpark.sushiman.views.aihunter
 				case GameUtil.DIRECTION_DOWN:
 					y += AIHunterTileView.SPEED;
 					break;
-			}	
+			}
+			x += deviation.x;
+			y += deviation.y;
 			_lastDirection = direction;				
 		}
 
