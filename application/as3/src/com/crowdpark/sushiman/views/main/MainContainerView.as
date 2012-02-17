@@ -3,7 +3,7 @@ package com.crowdpark.sushiman.views.main
 	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.views.friends.FriendsListView;
 	import com.crowdpark.sushiman.model.level.TileData;
-	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
+	import com.crowdpark.sushiman.views.aihunter.AIHunter;
 	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.player.PlayerView;
@@ -31,6 +31,7 @@ package com.crowdpark.sushiman.views.main
 		public var playButton:Button;
 		public var background : Image;
 		public var logo : Image;
+		public var signDead:Image;
 
 		public function MainContainerView()
 		{
@@ -120,7 +121,7 @@ package com.crowdpark.sushiman.views.main
 		
 		public function addAITile(textures : Vector.<Texture>, texturePath:String,data:TileData, stageArea:Rectangle):void
 		{
-			var hunter:AIHunterTileView = new AIHunterTileView(textures, data, stageArea);
+			var hunter:AIHunter = new AIHunter(textures, data, stageArea);
 			addChild(hunter);
 			Starling.juggler.add(hunter);
 		}
@@ -149,16 +150,16 @@ package com.crowdpark.sushiman.views.main
 		}
 		
 		
-		public function get AITiles():Vector.<AIHunterTileView>
+		public function get AITiles():Vector.<AIHunter>
 		{
-			var tiles:Vector.<AIHunterTileView> = new Vector.<AIHunterTileView>();
+			var tiles:Vector.<AIHunter> = new Vector.<AIHunter>();
 			var n:int = this.numChildren;
 			
 			for(var i:int = 0; i<n;i++)
 			{
-				if (this.getChildAt(i) is AIHunterTileView)
+				if (this.getChildAt(i) is AIHunter)
 				{
-					tiles.push(this.getChildAt(i) as AIHunterTileView);
+					tiles.push(this.getChildAt(i) as AIHunter);
 				}
 			}
 			return tiles;
