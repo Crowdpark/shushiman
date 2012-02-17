@@ -20,6 +20,7 @@ package com.crowdpark.sushiman.commands
 
 		override public function execute() : void
 		{
+			model.resetAllValues();
 			userService.getInitialData();
 
 			this.dispatch(new MainContainerEvent(MainContainerEvent.INIT));
