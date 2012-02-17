@@ -59,32 +59,22 @@ package com.crowdpark.sushiman.views.main
 			var playerPosX:int = view.tilesView.x + view.player.x + view.player.width/2;
 			var playerPosY:int = view.tilesView.y + view.player.y + view.player.height/2;
 			var boundingBox:Rectangle = new Rectangle(playerPosX -boxHalfSize,playerPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
-			var isPlayerHittingAI:Boolean = isHittingAI(boundingBox);
 			
-			moveAI();
-			
-			if (isPlayerHittingAI)
-			{
-				dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
-				
-			} else
-			{
+			moveAI(boundingBox);
 
-				var hitTile:Tile = getHitTile(boundingBox);
-				if (hitTile != null)
+			var hitTile:Tile = getHitTile(boundingBox);
+			if (hitTile != null)
+			{
+				dispatch(new PlayerEvent(PlayerEvent.COLLISION, hitTile.textureType));
+				if (hitTile.textureType == AssetsModel.PATH_WHITE || hitTile.textureType == AssetsModel.PATH_YELLOW)
 				{
-					dispatch(new PlayerEvent(PlayerEvent.COLLISION, hitTile.textureType));
-					if (hitTile.textureType == AssetsModel.PATH_WHITE || hitTile.textureType == AssetsModel.PATH_YELLOW)
-					{
-						view.tilesView.removeChild(hitTile);
-					}
+					view.tilesView.removeChild(hitTile);
 				}
 			}
 
 		}
-		
-		
-		private function moveAI():void
+
+		private function moveAI(player:Rectangle):void
 		{
 			var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
 			var isAIHit:Boolean;
@@ -100,41 +90,22 @@ package com.crowdpark.sushiman.views.main
 				aiBox = ai.getBounds(this.view);
 				tile = getHitTile(aiBox);
 				isInside = aiBox.intersects(this.view.tilesView.getBounds(this.view));
+
+				if(player.intersects(aiBox))
+				{
+					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
+				} 
 				
 				if (tile != null && tile.textureType == AssetsModel.PATH_WALL || !isInside)
 				{
 					ai.moveInNewDirection();
-					break;
 				} else
 				{
 					ai.moveInOldDirection();
 				}
 			}
 		}
-		
-		
-		private function isHittingAI(boundingBox:Rectangle):Boolean
-		{
-			var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
-			var isAIHit:Boolean;
-			var n:uint = aiList.length;
-			var ai:AIHunterTileView;
-			var aiBox:Rectangle;
-			
-			for(var i:uint = 0; i < n; i++)
-			{
-				ai = aiList[i];
-				aiBox = ai.getBounds(this.view);
-				if(boundingBox.intersects(aiBox))
-				{
-					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
-					return true;
-				} 
-			}
-			return false;			
-		}
-		
-		
+
 		private function getHitTile(boundingBox:Rectangle):Tile
 		{
 			var tileRect:Rectangle;
@@ -169,7 +140,6 @@ package com.crowdpark.sushiman.views.main
 							break;
 						}			
 					}
-
 				}								
 			}
 			return null;
