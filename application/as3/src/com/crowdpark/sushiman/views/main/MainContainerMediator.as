@@ -250,7 +250,11 @@ package com.crowdpark.sushiman.views.main
 
 		private function configureGameOverState():void
 		{
-
+				_isPausing = true;
+				view.signGameOver = assets.getGameOver();
+				view.signGameOver.x = view.tilesView.x + (view.tilesView.width/2 - view.signGameOver.width/2);
+				view.signGameOver.y = view.tilesView.y + (view.tilesView.height/2 - view.signGameOver.height/2);
+				view.addChild(view.signGameOver);			
 		}
 
 		private function openLeaderBoardHandler(event:LeaderboardEvent):void
@@ -291,7 +295,10 @@ package com.crowdpark.sushiman.views.main
 					configurePauseState();
 					break;
 				case GameState.LIFE_LOST:
-					configureLifeLost();
+					if(model.numLives > 1)
+					{
+						configureLifeLost();
+					}
 					break;				
 				case GameState.LEVEL_COMPLETE:
 					break;
