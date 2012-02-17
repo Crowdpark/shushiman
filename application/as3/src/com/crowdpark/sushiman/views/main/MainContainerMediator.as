@@ -71,7 +71,6 @@ package com.crowdpark.sushiman.views.main
 					view.tilesView.removeChild(hitTile);
 				}
 			}
-
 		}
 
 		private function moveAI(player:Rectangle):void
@@ -111,42 +110,29 @@ package com.crowdpark.sushiman.views.main
 			var tileRect:Rectangle;
 			var n:int = this.view.tilesView.numChildren;
 			
-			for(var i:int = 0; i<n;i++)
+			for(var i:uint = 0; i<n;i++)
 			{
 				if(this.view.tilesView.getChildAt(i) is Tile)
 				{
 					var tile:Tile = this.view.tilesView.getChildAt(i) as Tile;
 					tileRect = (tile as DisplayObject).getBounds(this.view);
 
-					if (tile.textureType == AssetsModel.PATH_WHITE || tile.textureType == AssetsModel.PATH_YELLOW)
+					if (tile.textureType == AssetsModel.PATH_WHITE || 
+						tile.textureType == AssetsModel.PATH_YELLOW ||
+						tile.textureType == AssetsModel.PATH_WALL ||
+						tile.textureType == AssetsModel.PATH_OCTOPUSSY)
 					{
 						if (boundingBox.intersects(tileRect))
 						{
 							return tile;
 							break;
 						}
-					} else if (tile.textureType == AssetsModel.PATH_WALL)
-					{
-						if (boundingBox.intersects(tileRect))
-						{
-							return tile;
-							break;
-						}
-					} else if(tile.textureType == AssetsModel.PATH_OCTOPUSSY)
-					{
-						if (boundingBox.intersects(tileRect))
-						{
-							return tile;
-							break;
-						}			
 					}
 				}								
 			}
 			return null;
 		}
 		
-		
-
 
 		private function configurePauseState() : void
 		{
@@ -223,15 +209,12 @@ package com.crowdpark.sushiman.views.main
 			view.addFriendsListView(assets.getBackgroundHud());
 			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 			eventMap.mapListener(eventDispatcher, AIHunterTileEvent.MOVING, playerMovingHandler);
-			//view.stage.addEventListener(Event.ENTER_FRAME, gameLoop);
 		}
 
 		private function configureGameOverState():void
 		{
 
 		}
-
-
 
 		private function openLeaderBoardHandler(event:LeaderboardEvent):void
 		{
