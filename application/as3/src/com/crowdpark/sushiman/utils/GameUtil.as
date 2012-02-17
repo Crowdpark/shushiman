@@ -62,7 +62,6 @@ package com.crowdpark.sushiman.utils
 				default:
 					break;
 			}
-			
 			return "";			
 		}
 		
