@@ -1,6 +1,5 @@
 package com.crowdpark.sushiman.views.main 
 {
-	import com.crowdpark.sushiman.views.tiles.TilesView;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileEvent;
 	import starling.display.DisplayObject;

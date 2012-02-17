@@ -18,11 +18,22 @@ package com.crowdpark.sushiman.services
 		public var model : LevelProxy;
 		
 		[Embed(source="../assets/levels/output/level001.json",mimeType="application/octet-stream")]
-		private const JsonData : Class;
+		private const JsonDataLevel1 : Class;
+		
+		[Embed(source="../assets/levels/output/level002.json",mimeType="application/octet-stream")]
+		private const JsonDataLevel2 : Class;
 
 		public function getLevelById(levelNum : int) : void 
 		{
-			onResult(new JsonData());
+			if (levelNum == 0)
+			{
+				onResult(new JsonDataLevel1());
+				
+			} else if(levelNum == 1)
+			{
+				onResult(new JsonDataLevel2());
+			}
+			
 		}
 
 		public function onResult(data : Object) : void 
