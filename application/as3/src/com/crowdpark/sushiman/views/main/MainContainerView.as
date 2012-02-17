@@ -1,6 +1,5 @@
 package com.crowdpark.sushiman.views.main
 {
-	import com.crowdpark.sushiman.views.components.AIHunterTile;
 	import com.crowdpark.sushiman.views.friends.FriendsListView;
 	import com.crowdpark.sushiman.model.level.TileData;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileView;
