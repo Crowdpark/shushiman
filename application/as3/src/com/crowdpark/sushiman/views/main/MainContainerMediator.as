@@ -89,7 +89,6 @@ package com.crowdpark.sushiman.views.main
 				aiBox = ai.getBounds(this.view);
 				tile = getHitTile(aiBox);
 
-
 				if(player.intersects(aiBox))
 				{
 					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
@@ -199,7 +198,6 @@ package com.crowdpark.sushiman.views.main
 					{
 						if (data.type == TileData.TYPE_OCTOPUSSY)
 						{
-							
 							view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data, stageArea);
 						}
 					}

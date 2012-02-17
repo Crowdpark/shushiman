@@ -38,6 +38,7 @@ package com.crowdpark.sushiman.model.level
 		{
 			_tiles = tiles;
 		}
+
 		
 		public function get numColumns():int
 		{
