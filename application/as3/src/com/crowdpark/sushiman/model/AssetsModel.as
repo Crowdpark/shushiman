@@ -57,6 +57,10 @@ package com.crowdpark.sushiman.model
 		
 		[Embed(source="../assets/background_scores.png")]
 		public var BackgroundScores : Class;
+		
+		
+		[Embed(source="../assets/dead.png")]
+		public var SignDead : Class;
 
 		private var _characters:Bitmap;
 		private var _atlas : TextureAtlas;
@@ -110,6 +114,13 @@ package com.crowdpark.sushiman.model
 		public function getBackgroundScores():Image
 		{
 			var bitmap:Bitmap = new BackgroundScores();
+			return createImage(bitmap);			
+		}
+		
+		
+		public function getSignDead():Image
+		{
+			var bitmap:Bitmap = new SignDead();
 			return createImage(bitmap);			
 		}
 		
