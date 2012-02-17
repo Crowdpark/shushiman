@@ -55,6 +55,7 @@ package com.crowdpark.sushiman.views.player
 				case GameState.INIT:
 				case GameState.LEVEL_COMPLETE:
 				case GameState.GAME_OVER:
+					removePlayerListeners();
 				case GameState.LIFE_LOST:
 				break;
 				case GameState.PAUSED:
