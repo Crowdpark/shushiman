@@ -32,6 +32,7 @@ package com.crowdpark.sushiman.views.main
 		public var background : Image;
 		public var logo : Image;
 		public var signDead:Image;
+		public var signGameOver:Image;
 
 		public function MainContainerView()
 		{
