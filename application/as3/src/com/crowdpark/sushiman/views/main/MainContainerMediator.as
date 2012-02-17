@@ -61,7 +61,7 @@ package com.crowdpark.sushiman.views.main
 			var boundingBox:Rectangle = new Rectangle(playerPosX -boxHalfSize,playerPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
 			var isPlayerHittingAI:Boolean = isHittingAI(boundingBox);
 			
-			checkAIWallCollision();
+			moveAI();
 			
 			if (isPlayerHittingAI)
 			{
@@ -84,7 +84,7 @@ package com.crowdpark.sushiman.views.main
 		}
 		
 		
-		private function checkAIWallCollision():void
+		private function moveAI():void
 		{
 			var aiList:Vector.<AIHunterTileView> = this.view.AITiles;
 			var isAIHit:Boolean;
@@ -103,8 +103,11 @@ package com.crowdpark.sushiman.views.main
 				
 				if (tile != null && tile.textureType == AssetsModel.PATH_WALL || !isInside)
 				{
-					dispatch(new AIHunterTileEvent(AIHunterTileEvent.COLLISION_BORDER));
+					ai.moveInNewDirection();
 					break;
+				} else
+				{
+					ai.moveInOldDirection();
 				}
 			}
 		}
@@ -171,6 +174,9 @@ package com.crowdpark.sushiman.views.main
 			}
 			return null;
 		}
+		
+		
+
 
 		private function configurePauseState() : void
 		{
