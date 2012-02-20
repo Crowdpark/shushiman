@@ -19,11 +19,11 @@ package com.crowdpark.sushiman.views.aihunter
 		override public function onRegister():void
 		{
 			this.view.currentView = this.view.angryLeft;
-			eventMap.mapListener(eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
-			eventMap.mapListener(eventDispatcher, PlayerEvent.NO_COLLISION, collisionHandler);
+			eventMap.mapListener(eventDispatcher, AIHunterEvent.COLLISION_WALL, collisionHandler);
+			eventMap.mapListener(eventDispatcher, AIHunterEvent.NO_COLLISION, collisionHandler);
 		}
 		
-		private function collisionHandler(event:PlayerEvent):void
+		private function collisionHandler(event:AIHunterEvent):void
 		{
 			if (event.type == PlayerEvent.COLLISION)
 			{
