@@ -117,7 +117,6 @@ package com.crowdpark.sushiman.views.player
 				_currentView = currentView;
 				this.addChild(_currentView);
 				Starling.juggler.add(_currentView);
-				configureFightingTimer();
 			}
 		}
 
@@ -129,6 +128,10 @@ package com.crowdpark.sushiman.views.player
 		public function set isFighting(isFighting : Boolean) : void
 		{
 			_isFighting = isFighting;
+			if(_isFighting)
+			{
+				configureFightingTimer();
+			}
 		}
 
 	}
