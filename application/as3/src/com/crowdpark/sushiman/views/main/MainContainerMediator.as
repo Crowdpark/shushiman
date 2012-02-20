@@ -96,9 +96,10 @@ package com.crowdpark.sushiman.views.main
 			for(var i:uint = 0; i < n; i++)
 			{
 				ai = aiList[i];
+				ai.setCurrentViewByPlayerMood(view.player.isFighting);
 				aiBox = ai.getBounds(this.view);
-				
 				tile = getHitTile(aiBox);
+
 
 				if(player.intersects(aiBox))
 				{
@@ -234,40 +235,40 @@ package com.crowdpark.sushiman.views.main
 		}
 		private function setup():void
 		{
-				view.addTilesView();
-				view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
-											assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
-											assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_LEFT),
-											assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_RIGHT)
-											);
-				view.addChild(view.player);
-	
-				if (levelModel.currentLevel != null)
+			view.addTilesView();
+			view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
+										assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
+										assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_LEFT),
+										assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_RIGHT)
+										);
+			view.addChild(view.player);
+
+			if (levelModel.currentLevel != null)
+			{
+				var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
+				var stageArea:Rectangle = view.tilesView.getBounds(this.view);
+				for each (var data:TileData in aiTiles)
 				{
-					var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
-					var stageArea:Rectangle = view.tilesView.getBounds(this.view);
-					for each (var data:TileData in aiTiles)
+					if (data.type == TileData.TYPE_OCTOPUSSY)
 					{
-						if (data.type == TileData.TYPE_OCTOPUSSY)
-						{
-							var hunter:AIHunterView = new AIHunterView( assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), 
-																assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_RIGHT),
-																assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_LEFT),
-																assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_RIGHT),
-																data, 
-																stageArea
-																);
-							view.addChild(hunter);
-							//view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT, data, stageArea);
-						}
+						var hunter:AIHunterView = new AIHunterView( assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), 
+															assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_RIGHT),
+															assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_LEFT),
+															assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_RIGHT),
+															data, 
+															stageArea
+															);
+						view.addChild(hunter);
+						//view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT, data, stageArea);
 					}
 				}
-				view.addBackgroundMask(assets.getBackgroundMask());
-				view.addHudView(assets.getBackgroundHud());
-				view.addFriendsListView(assets.getBackgroundFriendsView());	
-				
-				eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
-				eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);		
+			}
+			view.addBackgroundMask(assets.getBackgroundMask());
+			view.addHudView(assets.getBackgroundHud());
+			view.addFriendsListView(assets.getBackgroundFriendsView());	
+			
+			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
+			eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);		
 		}
 		private function configureGameOverState():void
 		{
