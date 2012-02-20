@@ -247,7 +247,7 @@ package com.crowdpark.sushiman.views.main
 		
 			view.addBackgroundMask(assets.getBackgroundMask());
 			view.addHudView(assets.getBackgroundHud());
-			view.addFriendsListView(assets.getBackgroundHud());
+			view.addFriendsListView(assets.getBackgroundFriendsView());
 			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 			eventMap.mapListener(eventDispatcher, AIHunterTileEvent.MOVING, playerMovingHandler);
 		}
