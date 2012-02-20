@@ -83,28 +83,8 @@ package com.crowdpark.sushiman.views.main
 			{
 				addChild(hudView);
 			}
-			
 		}
 
-		public function addPlayer(textures : Vector.<Texture>) : void
-		{
-			player = new PlayerView(textures, 24);
-			tilesView.addChild(player);
-			Starling.juggler.add(player);
-
-			if (player == null)
-			{
-				player = new PlayerView(textures, 24);
-			}
-			
-			if (!this.contains(player))
-			{
-				addChild(player);
-				Starling.juggler.add(player);
-			}
-		}
-		
-		
 		public function addTilesView():void
 		{
 			if (tilesView == null)
