@@ -22,15 +22,14 @@ package com.crowdpark.sushiman.views.player
 
 		[Inject]
 		public var view : PlayerView;
+		
 		private var _isActive : Boolean;
 		private var _moveLeft : Boolean;
 		private var _moveRight : Boolean;
 		private var _moveUp : Boolean;
 		private var _moveDown : Boolean;
 		private var _lastPosition:Point;
-		private var _isFighting:Boolean;
 		
-
 		override public function onRegister() : void
 		{
 			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
@@ -59,7 +58,7 @@ package com.crowdpark.sushiman.views.player
 		{
 			if (direction == GameUtil.DIRECTION_LEFT)
 			{
-				if (_isFighting)
+				if (view.isFighting)
 				{
 					return view.playerKnifeLeft;
 				} else
@@ -68,7 +67,7 @@ package com.crowdpark.sushiman.views.player
 				}
 			} else if (direction == GameUtil.DIRECTION_RIGHT)
 			{
-				if (_isFighting)
+				if (view.isFighting)
 				{
 					return view.playerKnifeRight;
 				} else
@@ -129,7 +128,7 @@ package com.crowdpark.sushiman.views.player
 					_moveDown = true;
 					break;
 				case Keyboard.SPACE:
-					_isFighting = !_isFighting;
+					view.isFighting = !view.isFighting;
 					break;
 			}
 		}
