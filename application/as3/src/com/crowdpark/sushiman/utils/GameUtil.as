@@ -69,7 +69,8 @@ package com.crowdpark.sushiman.utils
 		public static function getRandomDeviationFromPosition(deviation:int=1):Point
 		{
 			var direction:int = int(Math.random()* 4);
-			var deviationPt:Point = new Point();
+			
+			var deviationPt:Point = new Point(0,0);
 
 			switch(direction)
 			{
