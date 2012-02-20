@@ -22,7 +22,7 @@ package com.crowdpark.sushiman.views.aihunter
 		private var _angryLeft:MovieClip;
 		private var _angryRight:MovieClip;
 		private var _frightenedLeft:MovieClip;
-		private var _frightenedRight:MovieClip;
+		private var _frightenedRight:MovieClip; 
 		
 		private var _currentView:MovieClip;
 		
