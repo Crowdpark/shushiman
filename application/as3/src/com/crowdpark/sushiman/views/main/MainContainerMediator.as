@@ -96,10 +96,9 @@ package com.crowdpark.sushiman.views.main
 			for(var i:uint = 0; i < n; i++)
 			{
 				ai = aiList[i];
-				ai.setCurrentViewByPlayerMood(view.player.isFighting);
+				ai.setCurrentViewByPlayer(view.player.isFighting);
 				aiBox = ai.getBounds(this.view);
 				tile = getHitTile(aiBox);
-
 
 				if(player.intersects(aiBox))
 				{
