@@ -1,6 +1,5 @@
 package com.crowdpark.sushiman.views.aihunter
 {
-	import com.crowdpark.sushiman.views.player.PlayerEvent;
 	import flash.geom.Point;
 	import com.crowdpark.sushiman.utils.GameUtil;
 	import org.robotlegs.mvcs.StarlingMediator;
@@ -10,7 +9,6 @@ package com.crowdpark.sushiman.views.aihunter
 	 */
 	public class AIHunterMediator extends StarlingMediator
 	{
-		
 		[Inject]
 		public var view:AIHunterView;
 		

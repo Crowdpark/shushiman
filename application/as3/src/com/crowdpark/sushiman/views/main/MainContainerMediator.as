@@ -27,7 +27,6 @@ package com.crowdpark.sushiman.views.main
 
 	/**
 	 * @author francis
-	 * TODO: add something to pause the game when pause state is entered
 	 */
 	public class MainContainerMediator extends StarlingMediator
 	{
@@ -120,7 +119,6 @@ package com.crowdpark.sushiman.views.main
 				} else
 				{
 					// move in old direction
-					//dispatch(new PlayerEvent(PlayerEvent.NO_COLLISION));
 					dispatch(new AIHunterEvent(AIHunterEvent.NO_COLLISION));
 				}
 			}

@@ -133,12 +133,7 @@ package com.crowdpark.sushiman.views.player
 			}
 		}
 
-		/*
-		 * TODO: 
-		 * Check if movement could be allowed(no walls, not outside board)
-		 * Move - improve the quality of movement
-		 * Check for collission between other objects and decide what to do.
-		 */
+
 		private function keyUpHandler(event : KeyboardEvent) : void
 		{
 			switch(event.keyCode)
