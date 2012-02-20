@@ -12,13 +12,15 @@ package com.crowdpark.sushiman.views.player
 		public static const SPEED : int = 2;
 		public static const START_X:int = 10;
 		public static const START_Y:int = 200;
-		
+
 		private var _currentView:MovieClip;
 		
 		private var _playerWalkingLeft:MovieClip;
 		private var _playerWalkingRight:MovieClip;
 		private var _playerKnifeLeft:MovieClip;
 		private var _playerKnifeRight:MovieClip;
+		
+		
 		
 		public function PlayerView(walkingLeft:Vector.<Texture>, walkingRight:Vector.<Texture>, knifeLeft:Vector.<Texture>, knifeRight:Vector.<Texture>)
 		{
@@ -82,15 +84,18 @@ package com.crowdpark.sushiman.views.player
 
 		public function set currentView(currentView : MovieClip) : void
 		{
-			if(_currentView != null && this.contains(_currentView))
+			if (_currentView != currentView)
 			{
-				this.removeChild(_currentView);
-				Starling.juggler.remove(_currentView);
+				if(_currentView != null && this.contains(_currentView))
+				{
+					this.removeChild(_currentView);
+					Starling.juggler.remove(_currentView);
+				}
+				_currentView = currentView;
+				this.addChild(_currentView);
+				Starling.juggler.add(_currentView);
 			}
-			_currentView = currentView;
-			this.addChild(_currentView);
-			Starling.juggler.add(_currentView);
-
 		}
+
 	}
 }
