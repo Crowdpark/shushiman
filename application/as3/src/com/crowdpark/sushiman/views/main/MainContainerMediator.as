@@ -1,10 +1,8 @@
 package com.crowdpark.sushiman.views.main 
 {
-	import org.hamcrest.mxml.object.Null;
 	import com.crowdpark.sushiman.views.player.PlayerView;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-	import utils.display.addChild;
 	import com.crowdpark.sushiman.views.aihunter.AIHunter;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileEvent;
 	import starling.display.DisplayObject;
@@ -41,8 +39,7 @@ package com.crowdpark.sushiman.views.main
 		public var model:ISushimanModel;
 		[Inject]
 		public var levelModel:LevelProxy;
-		
-		
+
 		private var _currentTimer:Timer;
 		private var _isPausing:Boolean;
 
@@ -69,9 +66,9 @@ package com.crowdpark.sushiman.views.main
 		private function checkPlayerCollision() : void
 		{
 			var boxHalfSize:int = 5;
-			var playerPosX:int = view.tilesView.x + view.player.x + view.player.width/2;
-			var playerPosY:int = view.tilesView.y + view.player.y + view.player.height/2;
-			var boundingBox:Rectangle = new Rectangle(playerPosX -boxHalfSize,playerPosY-boxHalfSize,boxHalfSize*2,boxHalfSize*2);
+			var playerPosX:int = view.player.x + view.player.width/2;
+			var playerPosY:int = view.player.y + view.player.height/2;
+			var boundingBox:Rectangle = new Rectangle(playerPosX - boxHalfSize, playerPosY - boxHalfSize, boxHalfSize * 2, boxHalfSize * 2);
 			
 			moveAI(boundingBox);
 
@@ -94,16 +91,18 @@ package com.crowdpark.sushiman.views.main
 			var ai:AIHunter;
 			var aiBox:Rectangle;
 			var tile:Tile;
+			var boxHalfSize:int = 20;
 			
 			for(var i:uint = 0; i < n; i++)
 			{
 				ai = aiList[i];
 				aiBox = ai.getBounds(this.view);
+				
 				tile = getHitTile(aiBox);
 
 				if(player.intersects(aiBox))
 				{
-					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY));
+					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT));
 					break;
 				} 
 				
@@ -132,7 +131,7 @@ package com.crowdpark.sushiman.views.main
 					if (tile.textureType == AssetsModel.PATH_WHITE || 
 						tile.textureType == AssetsModel.PATH_YELLOW ||
 						tile.textureType == AssetsModel.PATH_WALL ||
-						tile.textureType == AssetsModel.PATH_OCTOPUSSY)
+						tile.textureType == AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT)
 					{
 						if (boundingBox.intersects(tileRect))
 						{
@@ -225,7 +224,12 @@ package com.crowdpark.sushiman.views.main
 			if (previousState != GameState.PAUSED)
 			{			
 				view.addTilesView();
-				view.addPlayer(assets.getTextures(AssetsModel.PATH_PLAYER));
+				view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
+											assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
+											assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_LEFT),
+											assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_RIGHT)
+											);
+				view.addChild(view.player);
 	
 				if (levelModel.currentLevel != null)
 				{
@@ -235,7 +239,7 @@ package com.crowdpark.sushiman.views.main
 					{
 						if (data.type == TileData.TYPE_OCTOPUSSY)
 						{
-							view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY), AssetsModel.PATH_OCTOPUSSY, data, stageArea);
+							view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT, data, stageArea);
 						}
 					}
 				}
