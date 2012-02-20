@@ -60,7 +60,6 @@ package com.crowdpark.sushiman.views.main
 			{
 				checkPlayerCollision();
 			}
-			
 		}
 		
 		private function checkPlayerCollision() : void
@@ -102,7 +101,14 @@ package com.crowdpark.sushiman.views.main
 
 				if(player.intersects(aiBox))
 				{
-					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT));
+					if(view.player.isFighting)
+					{
+						dispatch(new PlayerEvent(PlayerEvent.AI_KILLED));
+						view.removeChild(ai);
+					} else
+					{
+						dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT));
+					}
 					break;
 				} 
 				
