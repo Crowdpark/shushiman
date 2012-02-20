@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.player
 {
+	import flash.utils.Timer;
 	import starling.core.Starling;
 	import starling.textures.Texture;
 	import starling.display.Sprite;
@@ -21,6 +22,8 @@ package com.crowdpark.sushiman.views.player
 		private var _playerKnifeRight:MovieClip;
 		
 		private var _isFighting:Boolean;
+	
+		private var _fightingTimer:Timer;
 		
 		
 		public function PlayerView(walkingLeft:Vector.<Texture>, walkingRight:Vector.<Texture>, knifeLeft:Vector.<Texture>, knifeRight:Vector.<Texture>)
@@ -95,6 +98,7 @@ package com.crowdpark.sushiman.views.player
 				_currentView = currentView;
 				this.addChild(_currentView);
 				Starling.juggler.add(_currentView);
+
 			}
 		}
 
