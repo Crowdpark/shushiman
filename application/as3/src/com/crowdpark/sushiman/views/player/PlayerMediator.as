@@ -108,15 +108,10 @@ package com.crowdpark.sushiman.views.player
 			}
 			
 			var playerRect:Rectangle = view.getBounds(view.parent);
-			
-//			if (newPosition.x != _lastPosition.x &&
-//				newPosition.y != newPosition.y &&
-//				 isInTargetSpace(playerRect))
-//			{
-				view.x = newPosition.x;
-				view.y = newPosition.y;
-				dispatch(new PlayerEvent((PlayerEvent.MOVING)));
-			//}
+
+			view.x = newPosition.x;
+			view.y = newPosition.y;
+			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
 			
 		}
 
