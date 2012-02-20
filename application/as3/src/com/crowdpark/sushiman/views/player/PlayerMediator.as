@@ -99,11 +99,13 @@ package com.crowdpark.sushiman.views.player
 			if (_moveUp)
 			{
 				newPosition.y -= PlayerView.SPEED;
+				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_LEFT);
 			}
 
 			if (_moveDown)
 			{
 				newPosition.y += PlayerView.SPEED;
+				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
 			}
 			
 			view.x = newPosition.x;

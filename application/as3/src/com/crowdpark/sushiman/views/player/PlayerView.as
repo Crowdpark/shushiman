@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.player
 {
+	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	import starling.core.Starling;
 	import starling.textures.Texture;
@@ -33,12 +34,32 @@ package com.crowdpark.sushiman.views.player
 			_playerKnifeLeft = new MovieClip(knifeLeft, 24);
 			_playerKnifeRight = new MovieClip(knifeRight, 24);
 		}
-		
-		
+
 		public function resetPosition():void
 		{
 			x = START_X;
 			y = START_Y;
+		}
+
+		private function configureFightingTimer() : void
+		{
+			if(_fightingTimer == null)
+			{
+				_fightingTimer = new Timer(1000);
+				_fightingTimer.addEventListener(TimerEvent.TIMER, fightingTimerHandler);
+				_fightingTimer.start();
+			}
+		}
+
+		private function fightingTimerHandler(event : TimerEvent) : void
+		{
+			if(_fightingTimer != null)
+			{
+				_fightingTimer.removeEventListener(TimerEvent.TIMER, fightingTimerHandler);
+				_fightingTimer.stop();
+				_fightingTimer = null;
+				isFighting = false;
+			}
 		}
 
 		public function get playerWalkingLeft() : MovieClip
@@ -98,9 +119,10 @@ package com.crowdpark.sushiman.views.player
 				_currentView = currentView;
 				this.addChild(_currentView);
 				Starling.juggler.add(_currentView);
-
+				configureFightingTimer();
 			}
 		}
+
 
 		public function get isFighting() : Boolean
 		{
