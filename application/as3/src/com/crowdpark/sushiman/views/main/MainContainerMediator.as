@@ -228,6 +228,12 @@ package com.crowdpark.sushiman.views.main
 			
 			if (previousState != GameState.PAUSED && previousState != GameState.LIFE_LOST)
 			{			
+				setup();
+			}
+
+		}
+		private function setup():void
+		{
 				view.addTilesView();
 				view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
 											assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
@@ -258,14 +264,11 @@ package com.crowdpark.sushiman.views.main
 				}
 				view.addBackgroundMask(assets.getBackgroundMask());
 				view.addHudView(assets.getBackgroundHud());
-				view.addFriendsListView(assets.getBackgroundFriendsView());
-			}
-		
-
-			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
-			eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);
+				view.addFriendsListView(assets.getBackgroundFriendsView());	
+				
+				eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
+				eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);		
 		}
-
 		private function configureGameOverState():void
 		{
 				_isPausing = true;
