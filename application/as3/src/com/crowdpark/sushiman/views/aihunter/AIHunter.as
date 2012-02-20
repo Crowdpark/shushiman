@@ -23,6 +23,7 @@ package com.crowdpark.sushiman.views.aihunter
 			_stageArea = stageArea;
 			_data = data;
 			super(textures, 24, data);
+
 		}
 		
 		public function moveInNewDirection() : void
