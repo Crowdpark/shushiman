@@ -65,7 +65,7 @@ package com.crowdpark.sushiman.views.main
 		
 		private function checkPlayerCollision() : void
 		{
-			var boxHalfSize:int = 5;
+			var boxHalfSize:int = 10;
 			var playerPosX:int = view.player.x + view.player.width/2;
 			var playerPosY:int = view.player.y + view.player.height/2;
 			var boundingBox:Rectangle = new Rectangle(playerPosX - boxHalfSize, playerPosY - boxHalfSize, boxHalfSize * 2, boxHalfSize * 2);
