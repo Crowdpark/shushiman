@@ -80,36 +80,34 @@ package com.crowdpark.sushiman.views.player
 
 		private function enterFrameHandler(event : Event) : void
 		{
-			var newPosition:Point = new Point(view.x,view.y);
-			
-			_lastPosition = new Point(view.x, view.y);
-		
+			_lastPosition = new Point(view.x,view.y);
+
 			if (_moveLeft)
 			{
-				newPosition.x -= PlayerView.SPEED;
+				_lastPosition.x -= PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_LEFT);
 			}
 		
 			if (_moveRight)
 			{
-				newPosition.x += PlayerView.SPEED;
+				_lastPosition.x += PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
 			}
 
 			if (_moveUp)
 			{
-				newPosition.y -= PlayerView.SPEED;
+				_lastPosition.y -= PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_LEFT);
 			}
 
 			if (_moveDown)
 			{
-				newPosition.y += PlayerView.SPEED;
+				_lastPosition.y += PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
 			}
 			
-			view.x = newPosition.x;
-			view.y = newPosition.y;
+			view.x = _lastPosition.x;
+			view.y = _lastPosition.y;
 			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
 		}
 

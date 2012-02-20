@@ -264,7 +264,6 @@ package com.crowdpark.sushiman.views.main
 															stageArea
 															);
 						view.addChild(hunter);
-						//view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT, data, stageArea);
 					}
 				}
 			}

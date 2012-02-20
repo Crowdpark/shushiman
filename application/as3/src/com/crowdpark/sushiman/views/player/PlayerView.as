@@ -23,10 +23,8 @@ package com.crowdpark.sushiman.views.player
 		private var _playerKnifeRight:MovieClip;
 		
 		private var _isFighting:Boolean;
-	
 		private var _fightingTimer:Timer;
-		
-		
+
 		public function PlayerView(walkingLeft:Vector.<Texture>, walkingRight:Vector.<Texture>, knifeLeft:Vector.<Texture>, knifeRight:Vector.<Texture>)
 		{
 			_playerWalkingLeft = new MovieClip(walkingLeft, 24);
@@ -122,7 +120,6 @@ package com.crowdpark.sushiman.views.player
 				configureFightingTimer();
 			}
 		}
-
 
 		public function get isFighting() : Boolean
 		{
