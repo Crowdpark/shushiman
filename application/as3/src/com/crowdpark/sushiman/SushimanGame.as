@@ -27,7 +27,7 @@ package com.crowdpark.sushiman
 			_stats = new Stats();
 			_mainView = new MainContainerView();
 			addChild(_mainView);
-			addChild(_stats);
+			//addChild(_stats);
 		}
 	}
 }
