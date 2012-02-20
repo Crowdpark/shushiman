@@ -4,7 +4,7 @@ package com.crowdpark.sushiman.views.main
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterView;
-	import com.crowdpark.sushiman.views.aihunter.AIHunterTileEvent;
+	import com.crowdpark.sushiman.views.aihunter.AIHunterEvent;
 	import starling.display.DisplayObject;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
 	import com.crowdpark.sushiman.views.components.Tile;
@@ -109,12 +109,13 @@ package com.crowdpark.sushiman.views.main
 				if (tile != null && tile.textureType == AssetsModel.PATH_WALL)
 				{
 					// move in new direction
-					//dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_WALL));
+					dispatch(new AIHunterEvent(AIHunterEvent.COLLISION_WALL));
 					
 				} else
 				{
 					// move in old direction
 					//dispatch(new PlayerEvent(PlayerEvent.NO_COLLISION));
+					dispatch(new AIHunterEvent(AIHunterEvent.NO_COLLISION));
 				}
 			}
 		}
@@ -260,7 +261,7 @@ package com.crowdpark.sushiman.views.main
 			view.addHudView(assets.getBackgroundHud());
 			view.addFriendsListView(assets.getBackgroundFriendsView());
 			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
-			eventMap.mapListener(eventDispatcher, AIHunterTileEvent.MOVING, playerMovingHandler);
+			eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);
 		}
 
 		private function configureGameOverState():void
