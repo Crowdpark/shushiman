@@ -9,7 +9,7 @@ package com.crowdpark.sushiman.views.components
 	/**
 	 * @author sandberg
 	 */
-	public class Tile extends Image implements ITile
+	public class Tile extends Image
 	{
 		private var _tileData:TileData;
 		private var _texture:Texture;

@@ -1,7 +1,7 @@
 package com.crowdpark.sushiman.views.player
 {
+	import starling.display.MovieClip;
 	import com.crowdpark.sushiman.utils.GameUtil;
-	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
@@ -19,9 +19,7 @@ package com.crowdpark.sushiman.views.player
 	 */
 	public class PlayerMediator extends StarlingMediator
 	{
-		public static const START_X:int = 10;
-		public static const START_Y:int = 200;
-		
+
 		[Inject]
 		public var view : PlayerView;
 		private var _isActive : Boolean;
@@ -30,54 +28,16 @@ package com.crowdpark.sushiman.views.player
 		private var _moveUp : Boolean;
 		private var _moveDown : Boolean;
 		private var _lastPosition:Point;
+		private var _isFighting:Boolean;
 		
 
 		override public function onRegister() : void
 		{
 			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
-			resetPosition();
+			view.currentView = view.playerWalkingRight;
+			view.resetPosition();
 			isActive = true;
-			
-		}
-		
-		
-		private function resetPosition():void
-		{
-			view.x = START_X;
-			view.y = START_Y;
-		}
-		
-
-
-		private function collisionHandler(event:PlayerEvent) : void
-		{
-			if (event.assetType == AssetsModel.PATH_WALL)
-			{
-				var deviation:Point = GameUtil.getRandomDeviationFromPosition();
-				view.x = _lastPosition.x + deviation.x;
-				view.y = _lastPosition.y + deviation.y;
-				
-			}
-		}
-
-		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
-		{
-			switch(event.newState)
-			{
-				case GameState.INIT:
-				case GameState.LEVEL_COMPLETE:
-				case GameState.GAME_OVER:
-				case GameState.LIFE_LOST:
-					resetPosition();
-				break;
-				case GameState.PAUSED:
-					isActive = false;
-				break;
-				case GameState.PLAYING:
-					isActive = true;
-				break;
-			}
 		}
 
 		private function addPlayerListeners() : void
@@ -95,37 +55,28 @@ package com.crowdpark.sushiman.views.player
 		}
 		
 		
-		private function isInTargetSpace(playerRect:Rectangle):Boolean
+		private function getAnimationByDirection(direction:String):MovieClip
 		{
-			
-//			if (view.parent is TilesView)
-//			{
-//				
-//				var tilesView:TilesView =  (view.parent as TilesView);
-//				var rect:Rectangle = (view.parent as TilesView).getBounds(tilesView.parent);
-//				playerRect.x = playerRect.x + tilesView.x;
-//				playerRect.y = playerRect.y + tilesView.y;
-//				
-//				if(playerRect.x >= rect.x &&
-//				playerRect.x < (rect.x + rect.height) &&
-//				playerRect.y >= rect.y &&
-//				playerRect.y < rect.y + rect.height)
-//				{
-//					return true;
-//				}
-//				if (playerRect.intersects(rect))
-//				{
-//					return true;
-//				}
-//				
-//			} else
-//			{
-//				throw new Error("Player is not a child of TilesView, which makes the current calculation of borders impossible");
-//			}
-//			return false;
-
-			return true;
-
+			if (direction == GameUtil.DIRECTION_LEFT)
+			{
+				if (_isFighting)
+				{
+					return view.playerKnifeLeft;
+				} else
+				{
+					return view.playerWalkingLeft;
+				}
+			} else if (direction == GameUtil.DIRECTION_RIGHT)
+			{
+				if (_isFighting)
+				{
+					return view.playerKnifeRight;
+				} else
+				{
+					return view.playerWalkingRight;
+				}
+			}
+			return null;
 		}
 
 		private function enterFrameHandler(event : Event) : void
@@ -137,11 +88,13 @@ package com.crowdpark.sushiman.views.player
 			if (_moveLeft)
 			{
 				newPosition.x -= PlayerView.SPEED;
+				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_LEFT);
 			}
 		
 			if (_moveRight)
 			{
 				newPosition.x += PlayerView.SPEED;
+				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
 			}
 
 			if (_moveUp)
@@ -154,17 +107,9 @@ package com.crowdpark.sushiman.views.player
 				newPosition.y += PlayerView.SPEED;
 			}
 			
-			var playerRect:Rectangle = view.getBounds(view.parent);
-			
-//			if (newPosition.x != _lastPosition.x &&
-//				newPosition.y != newPosition.y &&
-//				 isInTargetSpace(playerRect))
-//			{
-				view.x = newPosition.x;
-				view.y = newPosition.y;
-				dispatch(new PlayerEvent((PlayerEvent.MOVING)));
-			//}
-			
+			view.x = newPosition.x;
+			view.y = newPosition.y;
+			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
 		}
 
 		private function keyDownHandler(event : KeyboardEvent) : void
@@ -208,6 +153,37 @@ package com.crowdpark.sushiman.views.player
 				case Keyboard.DOWN:
 					_moveDown = false;
 					break;
+				case Keyboard.SPACE:
+					_isFighting = !_isFighting;
+			}
+		}
+		
+		private function collisionHandler(event:PlayerEvent) : void
+		{
+			if (event.assetType == AssetsModel.PATH_WALL)
+			{
+				var deviation:Point = GameUtil.getRandomDeviationFromPosition();
+				view.x = _lastPosition.x + deviation.x;
+				view.y = _lastPosition.y + deviation.y;
+			}
+		}
+
+		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
+		{
+			switch(event.newState)
+			{
+				case GameState.INIT:
+				case GameState.LEVEL_COMPLETE:
+				case GameState.GAME_OVER:
+					removePlayerListeners();
+				case GameState.LIFE_LOST:
+				break;
+				case GameState.PAUSED:
+					isActive = false;
+				break;
+				case GameState.PLAYING:
+					isActive = true;
+				break;
 			}
 		}
 

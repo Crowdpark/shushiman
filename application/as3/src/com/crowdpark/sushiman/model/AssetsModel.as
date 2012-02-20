@@ -13,8 +13,17 @@ package com.crowdpark.sushiman.model
 	public class AssetsModel extends Actor
 	{
 		public static const CACHE_ID:String = "TILES";
-		public static const PATH_PLAYER:String = "hero_knife_right";
-		public static const PATH_OCTOPUSSY:String = "octopus_angry_left";
+		
+		public static const PATH_PLAYER_WALKING_LEFT:String = "hero_walking_left";
+		public static const PATH_PLAYER_WALKING_RIGHT:String = "hero_walking_right";
+		public static const PATH_PLAYER_KNIFE_RIGHT:String = "hero_knife_right";
+		public static const PATH_PLAYER_KNIFE_LEFT:String = "hero_knife_left";
+		
+		public static const PATH_OCTOPUSSY_ANGRY_LEFT:String = "octopus_angry_left";
+		public static const PATH_OCTOPUSSY_ANGRY_RIGHT:String = "octopus_angry_right";
+		public static const PATH_OCTOPUSSY_FRIGHTENED_LEFT:String = "octopus_frightend_left";
+		public static const PATH_OCTOPUSSY_FRIGHTENED_RIGHT:String = "octopus_frightend_left";
+		
 		public static const PATH_WALL:String = "others0002";
 		public static const PATH_YELLOW:String = "others0004";
 		public static const PATH_WHITE:String = "others0001";
@@ -57,6 +66,12 @@ package com.crowdpark.sushiman.model
 		
 		[Embed(source="../assets/background_scores.png")]
 		public var BackgroundScores : Class;
+
+		[Embed(source="../assets/dead.png")]
+		public var SignDead : Class;
+		
+		[Embed(source="../assets/gameover.png")]
+		public var GameOver: Class;
 
 		private var _characters:Bitmap;
 		private var _atlas : TextureAtlas;
@@ -110,6 +125,18 @@ package com.crowdpark.sushiman.model
 		public function getBackgroundScores():Image
 		{
 			var bitmap:Bitmap = new BackgroundScores();
+			return createImage(bitmap);			
+		}
+
+		public function getSignDead():Image
+		{
+			var bitmap:Bitmap = new SignDead();
+			return createImage(bitmap);			
+		}
+		
+		public function getGameOver():Image
+		{
+			var bitmap:Bitmap = new GameOver();
 			return createImage(bitmap);			
 		}
 		

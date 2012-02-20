@@ -62,7 +62,6 @@ package com.crowdpark.sushiman.utils
 				default:
 					break;
 			}
-			
 			return "";			
 		}
 		
@@ -70,26 +69,27 @@ package com.crowdpark.sushiman.utils
 		public static function getRandomDeviationFromPosition(deviation:int=1):Point
 		{
 			var direction:int = int(Math.random()* 4);
-			var deviationPt:Point = new Point();
-
+			var x:Number = 0;
+			var y:Number = 0;
+			
 			switch(direction)
 			{
 				case 0:
-					deviationPt.x += deviation;
+					x += deviation;
 					break;
 				case 1:
-					deviationPt.x -= deviation;
+					x -= deviation;
 					break;
 				case 2:
-					deviationPt.y += deviation;
+					y += deviation;
 					break;
 				case 3:
-					deviationPt.y -= deviation;
+					y -= deviation;
 					break;
 				default:
 					break;			
 			}
-			return deviationPt;
+			return new Point(x, y);
 		}
 	}
 }

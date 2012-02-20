@@ -9,6 +9,7 @@ package com.crowdpark.sushiman.views.player
 	{
 		public static const MOVING : String = "PlayerEvent.MOVING";
 		public static const COLLISION : String = "PlayerEvent.COLLISION";
+		public static const NO_COLLISION : String = "PlayerEvent.NO_COLLISION";
 		
 		private var _assetType:String;
 		

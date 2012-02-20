@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.tiles 
 {
+	import com.crowdpark.sushiman.model.AssetsModel;
 	import starling.textures.Texture;
 
 	import com.crowdpark.sushiman.model.level.TileData;
@@ -23,11 +24,25 @@ package com.crowdpark.sushiman.views.tiles
 			_tiles.push(tile);
 		}
 
+		public function containsMoreScoreTiles():Boolean
+		{
+			var n : int = this.numChildren;
+			for (var i : uint = 0;i < n;i++) 
+			{
+				var t : Tile = this.getChildAt(i) as Tile;
+				if (t.textureType == AssetsModel.PATH_WHITE || t.textureType == AssetsModel.PATH_YELLOW)
+				{
+					return true;	
+				}
+			}
+			return false;
+		}
+
 
 		public function removeTile(tile : Tile) : void 
 		{
 			var n : int = this.numChildren;
-			for (var i : int = 0;i < n;i++) 
+			for (var i : uint = 0;i < n;i++) 
 			{
 				var t : Tile = this.getChildAt(i) as Tile;
 				if (t.tileData.id == tile.tileData.id) 
