@@ -20,6 +20,7 @@ package com.crowdpark.sushiman.views.player
 		private var _playerKnifeLeft:MovieClip;
 		private var _playerKnifeRight:MovieClip;
 		
+		private var _isFighting:Boolean;
 		
 		
 		public function PlayerView(walkingLeft:Vector.<Texture>, walkingRight:Vector.<Texture>, knifeLeft:Vector.<Texture>, knifeRight:Vector.<Texture>)
@@ -95,6 +96,16 @@ package com.crowdpark.sushiman.views.player
 				this.addChild(_currentView);
 				Starling.juggler.add(_currentView);
 			}
+		}
+
+		public function get isFighting() : Boolean
+		{
+			return _isFighting;
+		}
+
+		public function set isFighting(isFighting : Boolean) : void
+		{
+			_isFighting = isFighting;
 		}
 
 	}
