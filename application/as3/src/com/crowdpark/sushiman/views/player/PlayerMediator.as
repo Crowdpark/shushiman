@@ -34,6 +34,7 @@ package com.crowdpark.sushiman.views.player
 		{
 			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
+			view.currentView = view.playerKnifeLeft;
 			view.resetPosition();
 			isActive = true;
 		}
@@ -90,11 +91,13 @@ package com.crowdpark.sushiman.views.player
 			if (_moveLeft)
 			{
 				newPosition.x -= PlayerView.SPEED;
+				view.currentView = view.playerKnifeLeft;
 			}
 		
 			if (_moveRight)
 			{
 				newPosition.x += PlayerView.SPEED;
+				view.currentView = view.playerKnifeRight;
 			}
 
 			if (_moveUp)
