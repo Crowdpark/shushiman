@@ -13,8 +13,17 @@ package com.crowdpark.sushiman.model
 	public class AssetsModel extends Actor
 	{
 		public static const CACHE_ID:String = "TILES";
-		public static const PATH_PLAYER:String = "hero_knife_right";
-		public static const PATH_OCTOPUSSY:String = "octopus_angry_left";
+		
+		public static const PATH_PLAYER_WALKING_LEFT:String = "hero_walking_left";
+		public static const PATH_PLAYER_WALKING_RIGHT:String = "hero_walking_right";
+		public static const PATH_PLAYER_KNIFE_RIGHT:String = "hero_knife_right";
+		public static const PATH_PLAYER_KNIFE_LEFT:String = "hero_knife_left";
+		
+		public static const PATH_OCTOPUSSY_ANGRY_LEFT:String = "octopus_angry_left";
+		public static const PATH_OCTOPUSSY_ANGRY_RIGHT:String = "octopus_angry_right";
+		public static const PATH_OCTOPUSSY_FRIGHTENED_LEFT:String = "octopus_frightened_left";
+		public static const PATH_OCTOPUSSY_FRIGHTENED_RIGHT:String = "octopus_frightened_right";
+		
 		public static const PATH_WALL:String = "others0002";
 		public static const PATH_YELLOW:String = "others0004";
 		public static const PATH_WHITE:String = "others0001";
