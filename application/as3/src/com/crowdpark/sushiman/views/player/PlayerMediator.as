@@ -128,6 +128,9 @@ package com.crowdpark.sushiman.views.player
 				case Keyboard.DOWN:
 					_moveDown = true;
 					break;
+				case Keyboard.SPACE:
+					_isFighting = !_isFighting;
+					break;
 			}
 		}
 
@@ -153,8 +156,8 @@ package com.crowdpark.sushiman.views.player
 				case Keyboard.DOWN:
 					_moveDown = false;
 					break;
-				case Keyboard.SPACE:
-					_isFighting = !_isFighting;
+
+
 			}
 		}
 		
@@ -175,13 +178,15 @@ package com.crowdpark.sushiman.views.player
 				case GameState.INIT:
 				case GameState.LEVEL_COMPLETE:
 				case GameState.GAME_OVER:
-					removePlayerListeners();
+					_isActive = false;
 				case GameState.LIFE_LOST:
+					_isActive = false;
 				break;
 				case GameState.PAUSED:
 					isActive = false;
 				break;
 				case GameState.PLAYING:
+					view.resetPosition();
 					isActive = true;
 				break;
 			}
