@@ -4,8 +4,6 @@
 	import flash.display.StageAlign;
 
 	import starling.core.Starling;
-
-	import com.crowdpark.sushiman.SushimanContext;
 	import com.crowdpark.sushiman.SushimanGame;
 
 	import flash.display.Sprite;
@@ -21,7 +19,6 @@
 	public class Main extends Sprite
 	{
 		private var _starling : Starling;
-		private var _starlingContext : SushimanContext;
 
 		public function Main()
 		{
