@@ -3,7 +3,7 @@ package com.crowdpark.sushiman.views.main
 	import com.crowdpark.sushiman.views.player.PlayerView;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
-	import com.crowdpark.sushiman.views.aihunter.AIHunter;
+	import com.crowdpark.sushiman.views.aihunter.AIHunterView;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterTileEvent;
 	import starling.display.DisplayObject;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
@@ -85,10 +85,10 @@ package com.crowdpark.sushiman.views.main
 
 		private function moveAI(player:Rectangle):void
 		{
-			var aiList:Vector.<AIHunter> = this.view.AITiles;
+			var aiList:Vector.<AIHunterView> = this.view.AITiles;
 			var isAIHit:Boolean;
 			var n:uint = aiList.length;
-			var ai:AIHunter;
+			var ai:AIHunterView;
 			var aiBox:Rectangle;
 			var tile:Tile;
 			var boxHalfSize:int = 20;
@@ -108,10 +108,13 @@ package com.crowdpark.sushiman.views.main
 				
 				if (tile != null && tile.textureType == AssetsModel.PATH_WALL)
 				{
-					ai.moveInNewDirection();
+					// move in new direction
+					//dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_WALL));
+					
 				} else
 				{
-					ai.moveInOldDirection();
+					// move in old direction
+					//dispatch(new PlayerEvent(PlayerEvent.NO_COLLISION));
 				}
 			}
 		}
@@ -239,7 +242,15 @@ package com.crowdpark.sushiman.views.main
 					{
 						if (data.type == TileData.TYPE_OCTOPUSSY)
 						{
-							view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT, data, stageArea);
+							var hunter:AIHunterView = new AIHunterView( assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), 
+																assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_RIGHT),
+																assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_LEFT),
+																assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_RIGHT),
+																data, 
+																stageArea
+																);
+							view.addChild(hunter);
+							//view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT, data, stageArea);
 						}
 					}
 				}
