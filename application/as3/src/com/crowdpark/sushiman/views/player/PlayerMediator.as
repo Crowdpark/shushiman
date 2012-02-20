@@ -1,7 +1,7 @@
 package com.crowdpark.sushiman.views.player
 {
+	import starling.display.MovieClip;
 	import com.crowdpark.sushiman.utils.GameUtil;
-	import flash.geom.Rectangle;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import starling.events.Event;
 	import starling.events.KeyboardEvent;
@@ -28,44 +28,16 @@ package com.crowdpark.sushiman.views.player
 		private var _moveUp : Boolean;
 		private var _moveDown : Boolean;
 		private var _lastPosition:Point;
+		private var _isFighting:Boolean;
 		
 
 		override public function onRegister() : void
 		{
 			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(eventDispatcher, PlayerEvent.COLLISION, collisionHandler);
-			view.currentView = view.playerKnifeLeft;
+			view.currentView = view.playerWalkingRight;
 			view.resetPosition();
 			isActive = true;
-		}
-
-		private function collisionHandler(event:PlayerEvent) : void
-		{
-			if (event.assetType == AssetsModel.PATH_WALL)
-			{
-				var deviation:Point = GameUtil.getRandomDeviationFromPosition();
-				view.x = _lastPosition.x + deviation.x;
-				view.y = _lastPosition.y + deviation.y;
-			}
-		}
-
-		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
-		{
-			switch(event.newState)
-			{
-				case GameState.INIT:
-				case GameState.LEVEL_COMPLETE:
-				case GameState.GAME_OVER:
-					removePlayerListeners();
-				case GameState.LIFE_LOST:
-				break;
-				case GameState.PAUSED:
-					isActive = false;
-				break;
-				case GameState.PLAYING:
-					isActive = true;
-				break;
-			}
 		}
 
 		private function addPlayerListeners() : void
@@ -81,6 +53,31 @@ package com.crowdpark.sushiman.views.player
 			view.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
 			view.stage.removeEventListener(Event.ENTER_FRAME, enterFrameHandler);
 		}
+		
+		
+		private function getAnimationByDirection(direction:String):MovieClip
+		{
+			if (direction == GameUtil.DIRECTION_LEFT)
+			{
+				if (_isFighting)
+				{
+					return view.playerKnifeLeft;
+				} else
+				{
+					return view.playerWalkingLeft;
+				}
+			} else if (direction == GameUtil.DIRECTION_RIGHT)
+			{
+				if (_isFighting)
+				{
+					return view.playerKnifeRight;
+				} else
+				{
+					return view.playerWalkingRight;
+				}
+			}
+			return null;
+		}
 
 		private function enterFrameHandler(event : Event) : void
 		{
@@ -91,13 +88,13 @@ package com.crowdpark.sushiman.views.player
 			if (_moveLeft)
 			{
 				newPosition.x -= PlayerView.SPEED;
-				view.currentView = view.playerKnifeLeft;
+				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_LEFT);
 			}
 		
 			if (_moveRight)
 			{
 				newPosition.x += PlayerView.SPEED;
-				view.currentView = view.playerKnifeRight;
+				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
 			}
 
 			if (_moveUp)
@@ -110,12 +107,9 @@ package com.crowdpark.sushiman.views.player
 				newPosition.y += PlayerView.SPEED;
 			}
 			
-			var playerRect:Rectangle = view.getBounds(view.parent);
-
 			view.x = newPosition.x;
 			view.y = newPosition.y;
 			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
-			
 		}
 
 		private function keyDownHandler(event : KeyboardEvent) : void
@@ -159,6 +153,37 @@ package com.crowdpark.sushiman.views.player
 				case Keyboard.DOWN:
 					_moveDown = false;
 					break;
+				case Keyboard.SPACE:
+					_isFighting = !_isFighting;
+			}
+		}
+		
+		private function collisionHandler(event:PlayerEvent) : void
+		{
+			if (event.assetType == AssetsModel.PATH_WALL)
+			{
+				var deviation:Point = GameUtil.getRandomDeviationFromPosition();
+				view.x = _lastPosition.x + deviation.x;
+				view.y = _lastPosition.y + deviation.y;
+			}
+		}
+
+		private function gamestateChangeHandler(event : GameStateChangedEvent) : void
+		{
+			switch(event.newState)
+			{
+				case GameState.INIT:
+				case GameState.LEVEL_COMPLETE:
+				case GameState.GAME_OVER:
+					removePlayerListeners();
+				case GameState.LIFE_LOST:
+				break;
+				case GameState.PAUSED:
+					isActive = false;
+				break;
+				case GameState.PLAYING:
+					isActive = true;
+				break;
 			}
 		}
 
