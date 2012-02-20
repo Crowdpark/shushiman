@@ -224,8 +224,8 @@ package com.crowdpark.sushiman.views.main
 			if (previousState != GameState.PAUSED)
 			{			
 				view.addTilesView();
-				view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
-											assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
+				view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
+											assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
 											assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_LEFT),
 											assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_RIGHT)
 											);
