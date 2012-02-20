@@ -87,6 +87,7 @@ package com.crowdpark.sushiman
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
 			this.commandMap.mapEvent(PlayerEvent.COLLISION, ScoreCommand);
+			this.commandMap.mapEvent(PlayerEvent.AI_KILLED, ScoreCommand);
 			this.commandMap.mapEvent(LevelEvent.LOAD, LoadLevelCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_ALL_USERS_LEADERBOARD, LeaderboardCommand);
 			this.commandMap.mapEvent(LeaderboardEvent.GET_FRIENDS_LEADERBOARD, LeaderboardCommand);
