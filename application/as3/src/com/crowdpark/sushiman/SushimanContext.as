@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman
 {
+	import com.crowdpark.sushiman.views.aihunter.AIHunterMediator;
+	import com.crowdpark.sushiman.views.aihunter.AIHunterView;
 	import com.crowdpark.sushiman.commands.ShowLeaderboardCommand;
 	import com.crowdpark.sushiman.views.friends.FriendsListMediator;
 	import com.crowdpark.sushiman.views.friends.FriendsListView;
@@ -78,6 +80,7 @@ package com.crowdpark.sushiman
 			this.mediatorMap.mapView(HudView, HudMediator);
 			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
 			this.mediatorMap.mapView(PlayerView, PlayerMediator);
+			this.mediatorMap.mapView(AIHunterView, AIHunterMediator);
 			this.mediatorMap.mapView(TilesView, TilesMediator);
 			this.mediatorMap.mapView(FriendsListView, FriendsListMediator);
 
