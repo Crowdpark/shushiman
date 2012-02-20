@@ -77,8 +77,8 @@ package com.crowdpark.sushiman.views.player
 			}
 			return null;
 		}
-
-		private function enterFrameHandler(event : Event) : void
+		
+		private function move():void
 		{
 			_lastPosition = new Point(view.x,view.y);
 
@@ -104,7 +104,12 @@ package com.crowdpark.sushiman.views.player
 			{
 				view.y += PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
-			}
+			}			
+		}
+
+		private function enterFrameHandler(event : Event) : void
+		{
+			move();
 			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
 		}
 
@@ -124,9 +129,7 @@ package com.crowdpark.sushiman.views.player
 				case Keyboard.DOWN:
 					_moveDown = true;
 					break;
-				case Keyboard.SPACE:
-					view.isFighting = !view.isFighting;
-					break;
+
 			}
 		}
 
@@ -152,8 +155,11 @@ package com.crowdpark.sushiman.views.player
 				case Keyboard.DOWN:
 					_moveDown = false;
 					break;
-
-
+				case Keyboard.SPACE:
+					view.isFighting = !view.isFighting;
+					// just picking one to display
+					view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
+					break;
 			}
 		}
 		
