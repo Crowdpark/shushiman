@@ -84,30 +84,27 @@ package com.crowdpark.sushiman.views.player
 
 			if (_moveLeft)
 			{
-				_lastPosition.x -= PlayerView.SPEED;
+				view.x -= PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_LEFT);
 			}
 		
 			if (_moveRight)
 			{
-				_lastPosition.x += PlayerView.SPEED;
+				view.x += PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
 			}
 
 			if (_moveUp)
 			{
-				_lastPosition.y -= PlayerView.SPEED;
+				view.y -= PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_LEFT);
 			}
 
 			if (_moveDown)
 			{
-				_lastPosition.y += PlayerView.SPEED;
+				view.y += PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
 			}
-			
-			view.x = _lastPosition.x;
-			view.y = _lastPosition.y;
 			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
 		}
 
