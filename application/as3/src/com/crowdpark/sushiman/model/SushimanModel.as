@@ -16,6 +16,7 @@ package com.crowdpark.sushiman.model
 		public static const INIT_SCORE : int = 0;
 		public static const INIT_NUM_LIVES : int = 3;
 		public static const INIT_NUM_OCTOPUSSIES : int = 10;
+		public static const KILLING_AI_SCORE:int = 25;
 		
 		private var _user:UserVo;
 		private var _currentGameState : String = GameState.INIT;
@@ -31,6 +32,7 @@ package com.crowdpark.sushiman.model
 			this.numLives = INIT_NUM_LIVES;
 			this.numOctopussies = INIT_NUM_OCTOPUSSIES;
 		}
+
 
 		public function updateScoreByCollisionObject(assetType:String) : void
 		{
