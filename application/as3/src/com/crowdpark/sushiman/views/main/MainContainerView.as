@@ -93,8 +93,7 @@ package com.crowdpark.sushiman.views.main
 			if (!this.contains(tilesView))
 			{
 				this.addChild(tilesView);
-			}
-						
+			}		
 		}
 
 		public function addFriendsListView(background:Image):void
@@ -117,10 +116,8 @@ package com.crowdpark.sushiman.views.main
 			{
 				addChild(image);
 			}
-			
 		}
-		
-		
+
 		public function get AITiles():Vector.<AIHunterView>
 		{
 			var tiles:Vector.<AIHunterView> = new Vector.<AIHunterView>();
