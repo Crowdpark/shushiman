@@ -205,8 +205,9 @@ package com.crowdpark.sushiman.views.main
 			_currentTimer = null;
 			
 			view.removeChild(view.signDead);
-			view.player.resetPosition();
 			_isPausing = false;
+			
+			this.dispatch(new MainContainerEvent(MainContainerEvent.PLAY));
 
 		}
 
@@ -225,7 +226,7 @@ package com.crowdpark.sushiman.views.main
 			removeLeaderboard();
 			view.removePlayButton();
 			
-			if (previousState != GameState.PAUSED)
+			if (previousState != GameState.PAUSED && previousState != GameState.LIFE_LOST)
 			{			
 				view.addTilesView();
 				view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
@@ -255,11 +256,12 @@ package com.crowdpark.sushiman.views.main
 						}
 					}
 				}
+				view.addBackgroundMask(assets.getBackgroundMask());
+				view.addHudView(assets.getBackgroundHud());
+				view.addFriendsListView(assets.getBackgroundFriendsView());
 			}
 		
-			view.addBackgroundMask(assets.getBackgroundMask());
-			view.addHudView(assets.getBackgroundHud());
-			view.addFriendsListView(assets.getBackgroundFriendsView());
+
 			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 			eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);
 		}
