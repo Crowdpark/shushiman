@@ -48,6 +48,29 @@ package com.crowdpark.sushiman.views.aihunter
 
 		}
 		
+		public function setCurrentViewByPlayer(isPlayerFighting:Boolean):void
+		{
+
+			if (currentView == _angryLeft || currentView == frightenedLeft)
+			{
+				if (isPlayerFighting)
+				{
+					currentView = frightenedLeft;
+				} else
+				{
+					currentView = angryLeft;
+				}
+			} else
+			{
+				if (isPlayerFighting)
+				{
+					currentView = frightenedRight;
+				} else
+				{
+					currentView = angryRight;
+				}
+			}
+		}
 
 
 		public function get angryLeft() : MovieClip
