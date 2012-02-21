@@ -1,29 +1,29 @@
 package com.crowdpark.sushiman.views.main 
 {
-	import com.crowdpark.sushiman.views.player.PlayerView;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
-	import com.crowdpark.sushiman.views.aihunter.AIHunterView;
-	import com.crowdpark.sushiman.views.aihunter.AIHunterEvent;
-	import starling.display.DisplayObject;
-	import com.crowdpark.sushiman.views.player.PlayerEvent;
-	import com.crowdpark.sushiman.views.components.Tile;
-	import flash.geom.Rectangle;
-	import starling.core.Starling;
-	import starling.animation.Transitions;
-	import starling.animation.Tween;
-	import starling.events.Event;
-
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.level.LevelProxy;
 	import com.crowdpark.sushiman.model.level.TileData;
+	import com.crowdpark.sushiman.views.aihunter.AIHunterEvent;
+	import com.crowdpark.sushiman.views.aihunter.AIHunterView;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
-
+	import com.crowdpark.sushiman.views.player.PlayerEvent;
+	import com.crowdpark.sushiman.views.player.PlayerView;
+	import com.crowdpark.sushiman.views.tiles.Tile;
+	import flash.events.TimerEvent;
+	import flash.geom.Rectangle;
+	import flash.utils.Timer;
 	import org.robotlegs.mvcs.StarlingMediator;
+	import starling.animation.Transitions;
+	import starling.animation.Tween;
+	import starling.core.Starling;
+	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+
 
 	/**
 	 * @author francis

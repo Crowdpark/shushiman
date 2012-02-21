@@ -1,4 +1,4 @@
-package com.crowdpark.sushiman.views.components
+package com.crowdpark.sushiman.views.tiles
 {
 	import starling.display.Image;
 	import starling.textures.Texture;

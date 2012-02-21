@@ -12,7 +12,7 @@ package com.crowdpark.sushiman.views.aihunter
 		[Inject]
 		public var view:AIHunterView;
 		
-		private var _lastDirection : String = GameUtil.DIRECTION_DOWN;//"";
+		private var _lastDirection : String = GameUtil.DIRECTION_DOWN;
 		
 		override public function onRegister():void
 		{

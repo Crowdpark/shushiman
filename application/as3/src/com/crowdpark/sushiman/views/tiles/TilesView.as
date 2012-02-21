@@ -1,12 +1,11 @@
 package com.crowdpark.sushiman.views.tiles 
 {
 	import com.crowdpark.sushiman.model.AssetsModel;
+	import com.crowdpark.sushiman.model.level.TileData;
+	import starling.display.Sprite;
 	import starling.textures.Texture;
 
-	import com.crowdpark.sushiman.model.level.TileData;
-	import com.crowdpark.sushiman.views.components.Tile;
 
-	import starling.display.Sprite;
 
 	/**
 	 * @author sandberg
