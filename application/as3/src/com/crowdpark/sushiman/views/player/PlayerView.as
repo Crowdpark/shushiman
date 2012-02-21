@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.player
 {
+	import flash.geom.Rectangle;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	import starling.core.Starling;
@@ -12,7 +13,8 @@ package com.crowdpark.sushiman.views.player
 	public class PlayerView extends Sprite
 	{
 		public static const SPEED : int = 2;
-		public static const START_X:int = 10;
+		public static const FIGHTING_TIMER_DELAY:int = 500;
+		public static const START_X:int = 0;
 		public static const START_Y:int = 200;
 
 		private var _currentView:MovieClip;
@@ -24,13 +26,15 @@ package com.crowdpark.sushiman.views.player
 		
 		private var _isFighting:Boolean;
 		private var _fightingTimer:Timer;
+		private var _stageArea:Rectangle;
 
-		public function PlayerView(walkingLeft:Vector.<Texture>, walkingRight:Vector.<Texture>, knifeLeft:Vector.<Texture>, knifeRight:Vector.<Texture>)
+		public function PlayerView(walkingLeft:Vector.<Texture>, walkingRight:Vector.<Texture>, knifeLeft:Vector.<Texture>, knifeRight:Vector.<Texture>, stageArea:Rectangle)
 		{
 			_playerWalkingLeft = new MovieClip(walkingLeft, 24);
 			_playerWalkingRight = new MovieClip(walkingRight, 24);
 			_playerKnifeLeft = new MovieClip(knifeLeft, 24);
 			_playerKnifeRight = new MovieClip(knifeRight, 24);
+			_stageArea = stageArea;
 		}
 
 		public function resetPosition():void
@@ -132,6 +136,16 @@ package com.crowdpark.sushiman.views.player
 			{
 				configureFightingTimer();
 			}
+		}
+
+		public function get stageArea() : Rectangle
+		{
+			return _stageArea;
+		}
+
+		public function set stageArea(stageArea : Rectangle) : void
+		{
+			_stageArea = stageArea;
 		}
 
 	}
