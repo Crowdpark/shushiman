@@ -37,41 +37,16 @@ package com.crowdpark.sushiman.model
 		public var AtlasTexture:Class;
 		[Embed(source="../assets/background.png")]
 		public var Background : Class;
-		[Embed(source="../assets/background_mask.png")]
-		public var BackgroundMask : Class;
-		[Embed(source="../assets/background_hud.png")]
-		public var BackgroundHud : Class;
-		[Embed(source="../assets/background_friendsview.png")]
-		public var BackgroundFriendsView : Class;
-		
 		[Embed(source="../assets/crowdpark.png")]
 		public var CrowdparkLogo : Class;
 		[Embed(source="../assets/btn_play.png")]
 		public var PlayButton : Class;
-		
-		[Embed(source="../assets/friend_window.png")]
-		public var FriendWindow : Class;
-		
-		[Embed(source="../assets/arrow_right_normal.png")]
-		public var ArrowRightNormal : Class;
-		
-		[Embed(source="../assets/arrow_right_mouseover.png")]
-		public var ArrowRightMouseOver : Class;
-		
-		[Embed(source="../assets/arrow_left_normal.png")]
-		public var ArrowLeftNormal : Class;
-		
-		[Embed(source="../assets/arrow_left_mouseover.png")]
-		public var ArrowLeftMouseOver : Class;
-		
-		[Embed(source="../assets/background_scores.png")]
-		public var BackgroundScores : Class;
-
 		[Embed(source="../assets/dead.png")]
-		public var SignDead : Class;
-		
+		public var SignDead : Class;		
 		[Embed(source="../assets/gameover.png")]
 		public var GameOver: Class;
+		[Embed(source="../assets/background_scores.png")]
+		public var BackgroundScores: Class;
 
 		private var _characters:Bitmap;
 		private var _atlas : TextureAtlas;
@@ -92,40 +67,11 @@ package com.crowdpark.sushiman.model
 			var bitmap : Bitmap = new Background();
 			return createImage(bitmap);
 		}
-		
-		public function getBackgroundMask() : Image
-		{
-			var bitmap : Bitmap = new BackgroundMask();
-			return createImage(bitmap);
-		}
 
 		public function getCrowdparkLogo() :Image
 		{	
 			var bitmap : Bitmap = new CrowdparkLogo();
 			return createImage(bitmap);
-		}
-		
-		public function getFriendWindow():Image
-		{
-			var bitmap:Bitmap = new FriendWindow();
-			return createImage(bitmap);
-		}
-		
-		public function getBackgroundHud():Image
-		{
-			var bitmap:Bitmap = new BackgroundHud();
-			return createImage(bitmap);
-		}
-		public function getBackgroundFriendsView():Image
-		{
-			var bitmap:Bitmap = new BackgroundFriendsView();
-			return createImage(bitmap);
-		}
-		
-		public function getBackgroundScores():Image
-		{
-			var bitmap:Bitmap = new BackgroundScores();
-			return createImage(bitmap);			
 		}
 
 		public function getSignDead():Image
@@ -140,38 +86,15 @@ package com.crowdpark.sushiman.model
 			return createImage(bitmap);			
 		}
 		
+		public function getBackgroundScores():Image
+		{
+			var bitmap:Bitmap = new BackgroundScores();
+			return createImage(bitmap);					
+		}
+		
 		public function getPlayButtonTexture():Texture
 		{
 			var bitmap:Bitmap = new PlayButton();
-			return Texture.fromBitmap(bitmap);
-		}
-		
-		
-		public function getArrowButtonTexture(mouseOverType:Boolean=false, direction:String = ARROW_DIRECTION_LEFT):Texture
-		{
-			var bitmap:Bitmap;
-			
-			if (direction == ARROW_DIRECTION_LEFT)
-			{
-				if (mouseOverType)
-				{
-					bitmap = new ArrowLeftMouseOver();
-				} else
-				{
-					bitmap = new ArrowLeftNormal();
-				}
-				
-			} else if (direction == ARROW_DIRECTION_RIGHT)
-			{
-				if (mouseOverType)
-				{
-					bitmap = new ArrowRightMouseOver();
-				} else
-				{
-					bitmap = new ArrowRightNormal();
-				}				
-			}
-			
 			return Texture.fromBitmap(bitmap);
 		}
 
