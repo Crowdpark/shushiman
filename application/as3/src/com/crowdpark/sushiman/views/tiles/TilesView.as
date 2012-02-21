@@ -13,7 +13,6 @@ package com.crowdpark.sushiman.views.tiles
 	 
 	public class TilesView extends Sprite 
 	{
-
 		private var _tiles:Vector.<Tile> = new Vector.<Tile>();
 		
 		public function addTile(textureId : String, tileTexture : Texture, data : TileData) : void 
