@@ -15,7 +15,7 @@ package com.crowdpark.sushiman.views.aihunter
 	 
 	public class AIHunterView extends Sprite
 	{
-		public static const SPEED:int = 2;
+		public static const SPEED:int = 1;
 		private var _data:TileData;
 		private var _stageArea:Rectangle;
 		
