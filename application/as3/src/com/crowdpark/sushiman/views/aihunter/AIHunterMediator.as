@@ -44,7 +44,7 @@ package com.crowdpark.sushiman.views.aihunter
 
 		private function move(direction:String):void
 		{
-			var deviation:Point = GameUtil.getRandomDeviationFromPosition(1);
+			//var deviation:Point = GameUtil.getRandomDeviationFromPosition(1);
 			var newPosition:Point = new Point(view.x, view.y);
 			
 			switch(direction)
@@ -62,14 +62,13 @@ package com.crowdpark.sushiman.views.aihunter
 					newPosition.y += AIHunterView.SPEED;
 					break;
 			}
+			
 
-			if (newPosition.x > view.stageArea.x &&
-				newPosition.x < view.stageArea.x + view.stageArea.width &&
-				newPosition.y > view.stageArea.y &&
-				newPosition.y < view.stageArea.y + view.stageArea.height)
+			if (newPosition.x >= 0 && newPosition.x <= view.stageArea.width &&
+				newPosition.y >= 0 && newPosition.y <= view.stageArea.width)
 			{
-				view.x = newPosition.x;
-				view.y = newPosition.y;
+				view.x = newPosition.x;// + deviation.x;
+				view.y = newPosition.y;// + deviation.y;
 				_lastDirection = direction;	
 			} else
 			{
