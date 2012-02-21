@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.views.main 
 {
+	import com.crowdpark.sushiman.model.SushimanModelEvent;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
@@ -49,8 +50,24 @@ package com.crowdpark.sushiman.views.main
 			view.addPlayButton(assets.getPlayButtonTexture());
 			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);	
+			eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_SCORE, scoreUpdateHandler);
+			eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_NUM_LIVES, numLivesUpdateHandler);
+			eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_NUM_OCTOPUSSIES, numOctopussiesUpdateHandler);
 			
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
+		}
+
+		private function scoreUpdateHandler(event:SushimanModelEvent):void
+		{
+			view.flashGUI.score =  model.score;
+		}
+		private function numLivesUpdateHandler(event:SushimanModelEvent):void
+		{
+			view.flashGUI.numLives = model.numLives;
+		}
+		private function numOctopussiesUpdateHandler(event:SushimanModelEvent):void
+		{
+			view.flashGUI.numOctoPussies = model.numOctopussies;
 		}
 
 		private function playerMovingHandler(event:PlayerEvent) : void
@@ -173,8 +190,8 @@ package com.crowdpark.sushiman.views.main
 				view.addChild(view.leaderBoard);
 			}
 
-			view.leaderBoard.x = -view.background.width;
-			view.leaderBoard.y = view.hudView.background.height;
+//			view.leaderBoard.x = -view.background.width;
+//			view.leaderBoard.y = view.hudView.background.height;
 
 			var t:Tween = new Tween(view.leaderBoard, MainContainerView.TRANSITION_SPEED, Transitions.EASE_IN_OUT);
 			t.moveTo(0, view.leaderBoard.y);
@@ -277,8 +294,6 @@ package com.crowdpark.sushiman.views.main
 				}
 			}
 			view.addBackgroundMask(assets.getBackgroundMask());
-			view.addHudView(assets.getBackgroundHud());
-			view.addFriendsListView(assets.getBackgroundFriendsView());	
 			
 			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 			eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);		

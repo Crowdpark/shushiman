@@ -3,8 +3,6 @@ package com.crowdpark.sushiman
 	import com.crowdpark.sushiman.views.aihunter.AIHunterMediator;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterView;
 	import com.crowdpark.sushiman.commands.ShowLeaderboardCommand;
-	import com.crowdpark.sushiman.views.friends.FriendsListMediator;
-	import com.crowdpark.sushiman.views.friends.FriendsListView;
 	import com.crowdpark.sushiman.commands.LoadLevelCommand;
 	import com.crowdpark.sushiman.events.LevelEvent;
 	import com.crowdpark.core.robotlogger.IRobotLoggerService;
@@ -29,8 +27,6 @@ package com.crowdpark.sushiman
 	import com.crowdpark.sushiman.services.interfaces.ILevelService;
 	import com.crowdpark.sushiman.services.interfaces.IScoreService;
 	import com.crowdpark.sushiman.services.interfaces.IUserService;
-	import com.crowdpark.sushiman.views.hud.HudMediator;
-	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardMediator;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
@@ -51,9 +47,9 @@ package com.crowdpark.sushiman
 	/**
 	 * @author sandberg
 	 */
-	public class SushimanContext extends StarlingContext
+	public class MainContext extends StarlingContext
 	{
-		public function SushimanContext(contextView : DisplayObjectContainer = null, autoStartup : Boolean = true) : void
+		public function MainContext(contextView : DisplayObjectContainer = null, autoStartup : Boolean = true) : void
 		{
 			super(contextView, autoStartup);
 		}
@@ -77,12 +73,10 @@ package com.crowdpark.sushiman
 
 			// view & mediatorsr
 			this.mediatorMap.mapView(MainContainerView, MainContainerMediator);
-			this.mediatorMap.mapView(HudView, HudMediator);
 			this.mediatorMap.mapView(LeaderboardView, LeaderboardMediator);
 			this.mediatorMap.mapView(PlayerView, PlayerMediator);
 			this.mediatorMap.mapView(AIHunterView, AIHunterMediator);
 			this.mediatorMap.mapView(TilesView, TilesMediator);
-			this.mediatorMap.mapView(FriendsListView, FriendsListMediator);
 
 			// events & commands
 			this.commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, StartupCommand);
