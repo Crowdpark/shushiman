@@ -62,9 +62,6 @@ package com.crowdpark.sushiman.views.aihunter
 					newPosition.y += AIHunterView.SPEED;
 					break;
 			}
-			
-			newPosition.x += deviation.x;
-			newPosition.y += deviation.y;
 
 			if (newPosition.x > view.stageArea.x &&
 				newPosition.x < view.stageArea.x + view.stageArea.width &&
