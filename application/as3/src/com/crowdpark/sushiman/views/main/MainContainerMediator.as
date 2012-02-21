@@ -190,9 +190,6 @@ package com.crowdpark.sushiman.views.main
 				view.addChild(view.leaderBoard);
 			}
 
-//			view.leaderBoard.x = -view.background.width;
-//			view.leaderBoard.y = view.hudView.background.height;
-
 			var t:Tween = new Tween(view.leaderBoard, MainContainerView.TRANSITION_SPEED, Transitions.EASE_IN_OUT);
 			t.moveTo(0, view.leaderBoard.y);
 			Starling.juggler.add(t);
@@ -203,7 +200,7 @@ package com.crowdpark.sushiman.views.main
 			if (view.leaderBoard != null && view.contains(view.leaderBoard))
 			{
 				var t:Tween = new Tween(view.leaderBoard, MainContainerView.TRANSITION_SPEED, Transitions.EASE_IN_OUT);
-				t.moveTo(-view.background.width, view.leaderBoard.y);
+				t.moveTo(-view.leaderBoard.background.width, view.leaderBoard.y);
 				Starling.juggler.add(t);
 			}
 		}
@@ -261,10 +258,8 @@ package com.crowdpark.sushiman.views.main
 		private function setup():void
 		{
 			view.addTilesView();
-						/* 
-			 * TODO: Fix below hack with stage height setting, when background graphics are properly configured
-			 * 
-			 */
+
+			 //TODO: Fix below hack with stage height setting, when background graphics are properly configured
 			var stageArea:Rectangle = new Rectangle(10,10,726,472);
 			view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
 										assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
@@ -293,7 +288,7 @@ package com.crowdpark.sushiman.views.main
 					}
 				}
 			}
-			view.addBackgroundMask(assets.getBackgroundMask());
+			//view.addBackgroundMask(assets.getBackgroundMask());
 			
 			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
 			eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);		

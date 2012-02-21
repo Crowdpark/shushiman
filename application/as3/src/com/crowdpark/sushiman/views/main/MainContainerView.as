@@ -21,7 +21,6 @@ package com.crowdpark.sushiman.views.main
 		public var player : PlayerView;
 		public var leaderBoard : LeaderboardView;
 		public var tilesView:TilesView;
-		public var backgroundMask:Image;
 		public var playButton:Button;
 		public var background : Image;
 		public var logo : Image;
@@ -67,8 +66,6 @@ package com.crowdpark.sushiman.views.main
 				removeChild(playButton);
 			}
 		}
-		
-
 
 		public function addTilesView():void
 		{
@@ -82,15 +79,6 @@ package com.crowdpark.sushiman.views.main
 			{
 				this.addChild(tilesView);
 			}		
-		}
-
-		
-		public function addBackgroundMask(image:Image):void
-		{
-			if (!this.contains(image))
-			{
-				addChild(image);
-			}
 		}
 
 		public function get AITiles():Vector.<AIHunterView>
