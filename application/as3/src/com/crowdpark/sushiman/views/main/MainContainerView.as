@@ -27,7 +27,7 @@ package com.crowdpark.sushiman.views.main
 		public var logo : Image;
 		public var signDead:Image;
 		public var signGameOver:Image;
-		private var  _flashGUI:FlashGUIView;
+		private var _flashGUI:FlashGUIView;
 
 		public function MainContainerView()
 		{
