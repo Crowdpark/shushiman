@@ -244,7 +244,11 @@ package com.crowdpark.sushiman.views.main
 		private function setup():void
 		{
 			view.addTilesView();
-			var stageArea:Rectangle = view.tilesView.getBounds(this.view);
+						/* 
+			 * TODO: Fix below hack with stage height setting, when background graphics are properly configured
+			 * 
+			 */
+			var stageArea:Rectangle = new Rectangle(10,10,726,472);
 			view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
 										assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
 										assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_LEFT),
