@@ -151,7 +151,7 @@ package com.crowdpark.sushiman.views.player
 					_moveDown = false;
 					break;
 				case Keyboard.SPACE:
-					view.isFighting = !view.isFighting;
+					view.isFighting = true;
 					// just picking one to display
 					view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
 					break;
