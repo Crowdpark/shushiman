@@ -5,7 +5,6 @@ package com.crowdpark.sushiman.views.leaderboard
 
 	/**
 	 * @author sandberg
-	 * TODO: Add background
 	 */
 	public class LeaderboardView extends Sprite
 	{

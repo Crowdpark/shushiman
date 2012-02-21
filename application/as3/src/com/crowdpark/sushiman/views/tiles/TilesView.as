@@ -1,12 +1,11 @@
 package com.crowdpark.sushiman.views.tiles 
 {
 	import com.crowdpark.sushiman.model.AssetsModel;
+	import com.crowdpark.sushiman.model.level.TileData;
+	import starling.display.Sprite;
 	import starling.textures.Texture;
 
-	import com.crowdpark.sushiman.model.level.TileData;
-	import com.crowdpark.sushiman.views.components.Tile;
 
-	import starling.display.Sprite;
 
 	/**
 	 * @author sandberg
@@ -14,7 +13,6 @@ package com.crowdpark.sushiman.views.tiles
 	 
 	public class TilesView extends Sprite 
 	{
-
 		private var _tiles:Vector.<Tile> = new Vector.<Tile>();
 		
 		public function addTile(textureId : String, tileTexture : Texture, data : TileData) : void 

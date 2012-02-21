@@ -1,5 +1,6 @@
 package com.crowdpark.sushiman.commands
 {
+	import com.crowdpark.sushiman.model.SushimanModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.services.interfaces.IScoreService;
 	import com.crowdpark.sushiman.views.player.PlayerEvent;
@@ -20,8 +21,16 @@ package com.crowdpark.sushiman.commands
 
 		override public function execute() : void
 		{
-			model.updateScoreByCollisionObject(event.assetType);
-			service.setScore(model.score);
+			if (event.type == PlayerEvent.COLLISION)
+			{
+				model.updateScoreByCollisionObject(event.assetType);
+							
+			} else if (event.type == PlayerEvent.AI_KILLED)
+			{
+				model.score += SushimanModel.KILLING_AI_SCORE;
+			}
+			service.setScore(model.score);	
+
 		}
 	}
 }

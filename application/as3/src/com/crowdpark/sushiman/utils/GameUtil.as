@@ -21,26 +21,7 @@ package com.crowdpark.sushiman.utils
 			}
 
 			var direction:int = int(Math.random()* directions.length);
-			
-			switch(direction)
-			{
-				case 0:
-					return directions[0];
-					break;
-				case 1:
-					return directions[1];
-					break;
-				case 2:
-					return directions[2];
-					break;
-				case 3:
-					return directions[3];
-					break;
-				default:
-					break;
-			}
-			return "";
-
+			return directions[direction];
 		}
 
 		public static function getOppositDirection(direction:String):String
@@ -64,8 +45,7 @@ package com.crowdpark.sushiman.utils
 			}
 			return "";			
 		}
-		
-		
+
 		public static function getRandomDeviationFromPosition(deviation:int=1):Point
 		{
 			var direction:int = int(Math.random()* 4);

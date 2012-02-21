@@ -22,15 +22,14 @@ package com.crowdpark.sushiman.views.player
 
 		[Inject]
 		public var view : PlayerView;
+		
 		private var _isActive : Boolean;
 		private var _moveLeft : Boolean;
 		private var _moveRight : Boolean;
 		private var _moveUp : Boolean;
 		private var _moveDown : Boolean;
 		private var _lastPosition:Point;
-		private var _isFighting:Boolean;
 		
-
 		override public function onRegister() : void
 		{
 			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
@@ -59,7 +58,7 @@ package com.crowdpark.sushiman.views.player
 		{
 			if (direction == GameUtil.DIRECTION_LEFT)
 			{
-				if (_isFighting)
+				if (view.isFighting)
 				{
 					return view.playerKnifeLeft;
 				} else
@@ -68,7 +67,7 @@ package com.crowdpark.sushiman.views.player
 				}
 			} else if (direction == GameUtil.DIRECTION_RIGHT)
 			{
-				if (_isFighting)
+				if (view.isFighting)
 				{
 					return view.playerKnifeRight;
 				} else
@@ -78,37 +77,39 @@ package com.crowdpark.sushiman.views.player
 			}
 			return null;
 		}
-
-		private function enterFrameHandler(event : Event) : void
-		{
-			var newPosition:Point = new Point(view.x,view.y);
-			
-			_lastPosition = new Point(view.x, view.y);
 		
+		private function move():void
+		{
+			_lastPosition = new Point(view.x,view.y);
+
 			if (_moveLeft)
 			{
-				newPosition.x -= PlayerView.SPEED;
+				view.x -= PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_LEFT);
 			}
 		
 			if (_moveRight)
 			{
-				newPosition.x += PlayerView.SPEED;
+				view.x += PlayerView.SPEED;
 				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
 			}
 
 			if (_moveUp)
 			{
-				newPosition.y -= PlayerView.SPEED;
+				view.y -= PlayerView.SPEED;
+				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_LEFT);
 			}
 
 			if (_moveDown)
 			{
-				newPosition.y += PlayerView.SPEED;
-			}
-			
-			view.x = newPosition.x;
-			view.y = newPosition.y;
+				view.y += PlayerView.SPEED;
+				view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
+			}			
+		}
+
+		private function enterFrameHandler(event : Event) : void
+		{
+			move();
 			dispatch(new PlayerEvent((PlayerEvent.MOVING)));
 		}
 
@@ -128,15 +129,11 @@ package com.crowdpark.sushiman.views.player
 				case Keyboard.DOWN:
 					_moveDown = true;
 					break;
+
 			}
 		}
 
-		/*
-		 * TODO: 
-		 * Check if movement could be allowed(no walls, not outside board)
-		 * Move - improve the quality of movement
-		 * Check for collission between other objects and decide what to do.
-		 */
+
 		private function keyUpHandler(event : KeyboardEvent) : void
 		{
 			switch(event.keyCode)
@@ -154,7 +151,10 @@ package com.crowdpark.sushiman.views.player
 					_moveDown = false;
 					break;
 				case Keyboard.SPACE:
-					_isFighting = !_isFighting;
+					view.isFighting = true;
+					// just picking one to display
+					view.currentView = getAnimationByDirection(GameUtil.DIRECTION_RIGHT);
+					break;
 			}
 		}
 		
@@ -175,13 +175,15 @@ package com.crowdpark.sushiman.views.player
 				case GameState.INIT:
 				case GameState.LEVEL_COMPLETE:
 				case GameState.GAME_OVER:
-					removePlayerListeners();
+					_isActive = false;
 				case GameState.LIFE_LOST:
+					_isActive = false;
 				break;
 				case GameState.PAUSED:
 					isActive = false;
 				break;
 				case GameState.PLAYING:
+					view.resetPosition();
 					isActive = true;
 				break;
 			}

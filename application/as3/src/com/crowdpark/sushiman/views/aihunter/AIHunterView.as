@@ -15,14 +15,14 @@ package com.crowdpark.sushiman.views.aihunter
 	 
 	public class AIHunterView extends Sprite
 	{
-		public static const SPEED:int = 2;
+		public static const SPEED:int = 1;
 		private var _data:TileData;
 		private var _stageArea:Rectangle;
 		
 		private var _angryLeft:MovieClip;
 		private var _angryRight:MovieClip;
 		private var _frightenedLeft:MovieClip;
-		private var _frightenedRight:MovieClip;
+		private var _frightenedRight:MovieClip; 
 		
 		private var _currentView:MovieClip;
 		
@@ -48,6 +48,29 @@ package com.crowdpark.sushiman.views.aihunter
 
 		}
 		
+		public function setCurrentViewByPlayer(isPlayerFighting:Boolean):void
+		{
+
+			if (currentView == _angryLeft || currentView == frightenedLeft)
+			{
+				if (isPlayerFighting)
+				{
+					currentView = frightenedLeft;
+				} else
+				{
+					currentView = angryLeft;
+				}
+			} else
+			{
+				if (isPlayerFighting)
+				{
+					currentView = frightenedRight;
+				} else
+				{
+					currentView = angryRight;
+				}
+			}
+		}
 
 
 		public function get angryLeft() : MovieClip

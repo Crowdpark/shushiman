@@ -1,8 +1,7 @@
 package com.crowdpark.sushiman.views.main
 {
-	import com.crowdpark.sushiman.views.friends.FriendsListView;
+	import com.crowdpark.sushiman.views.flashgui.FlashGUIView;
 	import com.crowdpark.sushiman.views.aihunter.AIHunterView;
-	import com.crowdpark.sushiman.views.hud.HudView;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
 	import com.crowdpark.sushiman.views.player.PlayerView;
 	import com.crowdpark.sushiman.views.tiles.TilesView;
@@ -22,14 +21,13 @@ package com.crowdpark.sushiman.views.main
 		public var player : PlayerView;
 		public var leaderBoard : LeaderboardView;
 		public var tilesView:TilesView;
-		public var hudView:HudView;
-		public var friendsView:FriendsListView;
 		public var backgroundMask:Image;
 		public var playButton:Button;
 		public var background : Image;
 		public var logo : Image;
 		public var signDead:Image;
 		public var signGameOver:Image;
+		private var  _flashGUI:FlashGUIView;
 
 		public function MainContainerView()
 		{
@@ -70,17 +68,7 @@ package com.crowdpark.sushiman.views.main
 			}
 		}
 		
-		public function addHudView(background:Image):void
-		{
-			if (hudView == null)
-			{
-				hudView = new HudView(background);
-			}
-			if (!this.contains(hudView))
-			{
-				addChild(hudView);
-			}
-		}
+
 
 		public function addTilesView():void
 		{
@@ -93,23 +81,9 @@ package com.crowdpark.sushiman.views.main
 			if (!this.contains(tilesView))
 			{
 				this.addChild(tilesView);
-			}
-						
+			}		
 		}
 
-		public function addFriendsListView(background:Image):void
-		{
-			if (friendsView == null)
-			{
-				friendsView = new FriendsListView(background);
-			}
-			if (!this.contains(friendsView))
-			{
-				addChild(friendsView);
-				friendsView.x = 0;
-				friendsView.y = this.background.height - friendsView.background.height;				
-			}
-		}
 		
 		public function addBackgroundMask(image:Image):void
 		{
@@ -117,10 +91,8 @@ package com.crowdpark.sushiman.views.main
 			{
 				addChild(image);
 			}
-			
 		}
-		
-		
+
 		public function get AITiles():Vector.<AIHunterView>
 		{
 			var tiles:Vector.<AIHunterView> = new Vector.<AIHunterView>();
@@ -134,6 +106,16 @@ package com.crowdpark.sushiman.views.main
 				}
 			}
 			return tiles;
+		}
+
+		public function get flashGUI() : FlashGUIView
+		{
+			return _flashGUI;
+		}
+
+		public function set flashGUI(flashGUI : FlashGUIView) : void
+		{
+			_flashGUI = flashGUI;
 		}
 		
 

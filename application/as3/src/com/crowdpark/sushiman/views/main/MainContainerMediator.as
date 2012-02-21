@@ -1,33 +1,33 @@
 package com.crowdpark.sushiman.views.main 
 {
-	import com.crowdpark.sushiman.views.player.PlayerView;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
-	import com.crowdpark.sushiman.views.aihunter.AIHunterView;
-	import com.crowdpark.sushiman.views.aihunter.AIHunterEvent;
-	import starling.display.DisplayObject;
-	import com.crowdpark.sushiman.views.player.PlayerEvent;
-	import com.crowdpark.sushiman.views.components.Tile;
-	import flash.geom.Rectangle;
-	import starling.core.Starling;
-	import starling.animation.Transitions;
-	import starling.animation.Tween;
-	import starling.events.Event;
-
+	import com.crowdpark.sushiman.model.SushimanModelEvent;
 	import com.crowdpark.sushiman.model.AssetsModel;
 	import com.crowdpark.sushiman.model.ISushimanModel;
 	import com.crowdpark.sushiman.model.gamestate.GameState;
 	import com.crowdpark.sushiman.model.gamestate.GameStateChangedEvent;
 	import com.crowdpark.sushiman.model.level.LevelProxy;
 	import com.crowdpark.sushiman.model.level.TileData;
+	import com.crowdpark.sushiman.views.aihunter.AIHunterEvent;
+	import com.crowdpark.sushiman.views.aihunter.AIHunterView;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardEvent;
 	import com.crowdpark.sushiman.views.leaderboard.LeaderboardView;
-
+	import com.crowdpark.sushiman.views.player.PlayerEvent;
+	import com.crowdpark.sushiman.views.player.PlayerView;
+	import com.crowdpark.sushiman.views.tiles.Tile;
+	import flash.events.TimerEvent;
+	import flash.geom.Rectangle;
+	import flash.utils.Timer;
 	import org.robotlegs.mvcs.StarlingMediator;
+	import starling.animation.Transitions;
+	import starling.animation.Tween;
+	import starling.core.Starling;
+	import starling.display.DisplayObject;
+	import starling.events.Event;
+
+
 
 	/**
 	 * @author francis
-	 * TODO: add something to pause the game when pause state is entered
 	 */
 	public class MainContainerMediator extends StarlingMediator
 	{
@@ -50,8 +50,24 @@ package com.crowdpark.sushiman.views.main
 			view.addPlayButton(assets.getPlayButtonTexture());
 			eventMap.mapListener(eventDispatcher, GameStateChangedEvent.CHANGE, gamestateChangeHandler);
 			eventMap.mapListener(eventDispatcher, LeaderboardEvent.SHOW_LEADERBOARD, openLeaderBoardHandler);	
+			eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_SCORE, scoreUpdateHandler);
+			eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_NUM_LIVES, numLivesUpdateHandler);
+			eventMap.mapListener(this.eventDispatcher, SushimanModelEvent.UPDATED_NUM_OCTOPUSSIES, numOctopussiesUpdateHandler);
 			
 			view.playButton.addEventListener(Event.TRIGGERED, playButtonTriggerHandler);
+		}
+
+		private function scoreUpdateHandler(event:SushimanModelEvent):void
+		{
+			view.flashGUI.score =  model.score;
+		}
+		private function numLivesUpdateHandler(event:SushimanModelEvent):void
+		{
+			view.flashGUI.numLives = model.numLives;
+		}
+		private function numOctopussiesUpdateHandler(event:SushimanModelEvent):void
+		{
+			view.flashGUI.numOctoPussies = model.numOctopussies;
 		}
 
 		private function playerMovingHandler(event:PlayerEvent) : void
@@ -60,19 +76,15 @@ package com.crowdpark.sushiman.views.main
 			{
 				checkPlayerCollision();
 			}
-			
 		}
 		
 		private function checkPlayerCollision() : void
 		{
-			var boxHalfSize:int = 10;
-			var playerPosX:int = view.player.x + view.player.width/2;
-			var playerPosY:int = view.player.y + view.player.height/2;
-			var boundingBox:Rectangle = new Rectangle(playerPosX - boxHalfSize, playerPosY - boxHalfSize, boxHalfSize * 2, boxHalfSize * 2);
+			var playerBox:Rectangle = getBoundingBox(view.player, 20);
+			var hitTile:Tile = getHitTile(playerBox);
 			
-			moveAI(boundingBox);
+			moveAI(playerBox);
 
-			var hitTile:Tile = getHitTile(boundingBox);
 			if (hitTile != null)
 			{
 				dispatch(new PlayerEvent(PlayerEvent.COLLISION, hitTile.textureType));
@@ -91,18 +103,25 @@ package com.crowdpark.sushiman.views.main
 			var ai:AIHunterView;
 			var aiBox:Rectangle;
 			var tile:Tile;
-			var boxHalfSize:int = 20;
 			
 			for(var i:uint = 0; i < n; i++)
 			{
 				ai = aiList[i];
-				aiBox = ai.getBounds(this.view);
-				
+				ai.setCurrentViewByPlayer(view.player.isFighting);
+
+				aiBox = getBoundingBox(ai, 40);
 				tile = getHitTile(aiBox);
 
 				if(player.intersects(aiBox))
 				{
-					dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT));
+					if(view.player.isFighting)
+					{
+						dispatch(new PlayerEvent(PlayerEvent.AI_KILLED));
+						view.removeChild(ai);
+					} else
+					{
+						dispatch(new PlayerEvent(PlayerEvent.COLLISION, AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT));
+					}
 					break;
 				} 
 				
@@ -114,10 +133,17 @@ package com.crowdpark.sushiman.views.main
 				} else
 				{
 					// move in old direction
-					//dispatch(new PlayerEvent(PlayerEvent.NO_COLLISION));
 					dispatch(new AIHunterEvent(AIHunterEvent.NO_COLLISION));
 				}
 			}
+		}
+
+		private function getBoundingBox(object:DisplayObject, size:int):Rectangle
+		{
+			var halfSize:int = size/2;
+			var posX:int = object.x + object.width/2;
+			var posY:int = object.y + object.height/2;
+			return new Rectangle(posX - halfSize, posY - halfSize, halfSize * 2, halfSize * 2);
 		}
 
 		private function getHitTile(boundingBox:Rectangle):Tile
@@ -164,8 +190,8 @@ package com.crowdpark.sushiman.views.main
 				view.addChild(view.leaderBoard);
 			}
 
-			view.leaderBoard.x = -view.background.width;
-			view.leaderBoard.y = view.hudView.background.height;
+//			view.leaderBoard.x = -view.background.width;
+//			view.leaderBoard.y = view.hudView.background.height;
 
 			var t:Tween = new Tween(view.leaderBoard, MainContainerView.TRANSITION_SPEED, Transitions.EASE_IN_OUT);
 			t.moveTo(0, view.leaderBoard.y);
@@ -205,8 +231,9 @@ package com.crowdpark.sushiman.views.main
 			_currentTimer = null;
 			
 			view.removeChild(view.signDead);
-			view.player.resetPosition();
 			_isPausing = false;
+			
+			this.dispatch(new MainContainerEvent(MainContainerEvent.PLAY));
 
 		}
 
@@ -225,45 +252,52 @@ package com.crowdpark.sushiman.views.main
 			removeLeaderboard();
 			view.removePlayButton();
 			
-			if (previousState != GameState.PAUSED)
+			if (previousState != GameState.PAUSED && previousState != GameState.LIFE_LOST)
 			{			
-				view.addTilesView();
-				view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
-											assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
-											assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_LEFT),
-											assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_RIGHT)
-											);
-				view.addChild(view.player);
-	
-				if (levelModel.currentLevel != null)
+				setup();
+			}
+
+		}
+		private function setup():void
+		{
+			view.addTilesView();
+						/* 
+			 * TODO: Fix below hack with stage height setting, when background graphics are properly configured
+			 * 
+			 */
+			var stageArea:Rectangle = new Rectangle(10,10,726,472);
+			view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
+										assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
+										assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_LEFT),
+										assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_RIGHT),
+										stageArea
+										);
+			view.addChild(view.player);
+
+			if (levelModel.currentLevel != null)
+			{
+				var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
+				
+				for each (var data:TileData in aiTiles)
 				{
-					var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
-					var stageArea:Rectangle = view.tilesView.getBounds(this.view);
-					for each (var data:TileData in aiTiles)
+					if (data.type == TileData.TYPE_OCTOPUSSY)
 					{
-						if (data.type == TileData.TYPE_OCTOPUSSY)
-						{
-							var hunter:AIHunterView = new AIHunterView( assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), 
-																assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_RIGHT),
-																assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_LEFT),
-																assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_RIGHT),
-																data, 
-																stageArea
-																);
-							view.addChild(hunter);
-							//view.addAITile(assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT, data, stageArea);
-						}
+						var hunter:AIHunterView = new AIHunterView( assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_LEFT), 
+															assets.getTextures(AssetsModel.PATH_OCTOPUSSY_ANGRY_RIGHT),
+															assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_LEFT),
+															assets.getTextures(AssetsModel.PATH_OCTOPUSSY_FRIGHTENED_RIGHT),
+															data, 
+															stageArea
+															);
+						view.addChild(hunter);
 					}
 				}
 			}
-		
 			view.addBackgroundMask(assets.getBackgroundMask());
-			view.addHudView(assets.getBackgroundHud());
-			view.addFriendsListView(assets.getBackgroundFriendsView());
+			
 			eventMap.mapListener(eventDispatcher, PlayerEvent.MOVING, playerMovingHandler);
-			eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);
+			eventMap.mapListener(eventDispatcher, AIHunterEvent.MOVING, playerMovingHandler);		
 		}
-
 		private function configureGameOverState():void
 		{
 				_isPausing = true;

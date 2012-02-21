@@ -1,5 +1,8 @@
 package com.crowdpark.sushiman.views.player
 {
+	import flash.geom.Rectangle;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	import starling.core.Starling;
 	import starling.textures.Texture;
 	import starling.display.Sprite;
@@ -10,9 +13,10 @@ package com.crowdpark.sushiman.views.player
 	public class PlayerView extends Sprite
 	{
 		public static const SPEED : int = 2;
-		public static const START_X:int = 10;
+		public static const FIGHTING_TIMER_DELAY:int = 500;
+		public static const START_X:int = 0;
 		public static const START_Y:int = 200;
-		
+
 		private var _currentView:MovieClip;
 		
 		private var _playerWalkingLeft:MovieClip;
@@ -20,19 +24,44 @@ package com.crowdpark.sushiman.views.player
 		private var _playerKnifeLeft:MovieClip;
 		private var _playerKnifeRight:MovieClip;
 		
-		public function PlayerView(walkingLeft:Vector.<Texture>, walkingRight:Vector.<Texture>, knifeLeft:Vector.<Texture>, knifeRight:Vector.<Texture>)
+		private var _isFighting:Boolean;
+		private var _fightingTimer:Timer;
+		private var _stageArea:Rectangle;
+
+		public function PlayerView(walkingLeft:Vector.<Texture>, walkingRight:Vector.<Texture>, knifeLeft:Vector.<Texture>, knifeRight:Vector.<Texture>, stageArea:Rectangle)
 		{
 			_playerWalkingLeft = new MovieClip(walkingLeft, 24);
 			_playerWalkingRight = new MovieClip(walkingRight, 24);
 			_playerKnifeLeft = new MovieClip(knifeLeft, 24);
 			_playerKnifeRight = new MovieClip(knifeRight, 24);
+			_stageArea = stageArea;
 		}
-		
-		
+
 		public function resetPosition():void
 		{
 			x = START_X;
 			y = START_Y;
+		}
+
+		private function configureFightingTimer() : void
+		{
+			if(_fightingTimer == null)
+			{
+				_fightingTimer = new Timer(1000);
+				_fightingTimer.addEventListener(TimerEvent.TIMER, fightingTimerHandler);
+				_fightingTimer.start();
+			}
+		}
+
+		private function fightingTimerHandler(event : TimerEvent) : void
+		{
+			if(_fightingTimer != null)
+			{
+				_fightingTimer.removeEventListener(TimerEvent.TIMER, fightingTimerHandler);
+				_fightingTimer.stop();
+				_fightingTimer = null;
+				isFighting = false;
+			}
 		}
 
 		public function get playerWalkingLeft() : MovieClip
@@ -82,15 +111,42 @@ package com.crowdpark.sushiman.views.player
 
 		public function set currentView(currentView : MovieClip) : void
 		{
-			if(_currentView != null && this.contains(_currentView))
+			if (_currentView != currentView)
 			{
-				this.removeChild(_currentView);
-				Starling.juggler.remove(_currentView);
+				if(_currentView != null && this.contains(_currentView))
+				{
+					this.removeChild(_currentView);
+					Starling.juggler.remove(_currentView);
+				}
+				_currentView = currentView;
+				this.addChild(_currentView);
+				Starling.juggler.add(_currentView);
 			}
-			_currentView = currentView;
-			this.addChild(_currentView);
-			Starling.juggler.add(_currentView);
-
 		}
+
+		public function get isFighting() : Boolean
+		{
+			return _isFighting;
+		}
+
+		public function set isFighting(isFighting : Boolean) : void
+		{
+			_isFighting = isFighting;
+			if(_isFighting)
+			{
+				configureFightingTimer();
+			}
+		}
+
+		public function get stageArea() : Rectangle
+		{
+			return _stageArea;
+		}
+
+		public function set stageArea(stageArea : Rectangle) : void
+		{
+			_stageArea = stageArea;
+		}
+
 	}
 }

@@ -1,5 +1,7 @@
 package com.crowdpark.sushiman
 {
+
+	import com.crowdpark.sushiman.views.flashgui.FlashGUIView;
 	import fr.kouma.starling.utils.Stats;
 	import com.crowdpark.sushiman.views.main.MainContainerView;
 
@@ -10,15 +12,16 @@ package com.crowdpark.sushiman
 	/**
 	 * @author sandberg
 	 */
-	public class SushimanGame extends Sprite
+	public class StarlingGame extends starling.display.Sprite
 	{
-		private var _context : SushimanContext;
+		private var _context : MainContext;
 		private var _mainView : MainContainerView;
 		private var _stats : Stats;
+		
 
-		public function SushimanGame()
+		public function StarlingGame()
 		{
-			_context = new SushimanContext(this as DisplayObjectContainer);
+			_context = new MainContext(this as DisplayObjectContainer);
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 
@@ -27,7 +30,14 @@ package com.crowdpark.sushiman
 			_stats = new Stats();
 			_mainView = new MainContainerView();
 			addChild(_mainView);
-			//addChild(_stats);
+			// addChild(_stats);
 		}
+
+
+		public function set flashGUI(flashGUI : FlashGUIView) : void
+		{
+			_mainView.flashGUI = flashGUI;
+		}
+
 	}
 }

@@ -1,6 +1,5 @@
 package com.crowdpark.sushiman.views.aihunter
 {
-	import com.crowdpark.sushiman.views.player.PlayerEvent;
 	import flash.geom.Point;
 	import com.crowdpark.sushiman.utils.GameUtil;
 	import org.robotlegs.mvcs.StarlingMediator;
@@ -10,11 +9,10 @@ package com.crowdpark.sushiman.views.aihunter
 	 */
 	public class AIHunterMediator extends StarlingMediator
 	{
-		
 		[Inject]
 		public var view:AIHunterView;
 		
-		private var _lastDirection : String = "";
+		private var _lastDirection : String = GameUtil.DIRECTION_DOWN;
 		
 		override public function onRegister():void
 		{
@@ -25,7 +23,7 @@ package com.crowdpark.sushiman.views.aihunter
 		
 		private function collisionHandler(event:AIHunterEvent):void
 		{
-			if (event.type == PlayerEvent.COLLISION)
+			if (event.type == AIHunterEvent.COLLISION_WALL)
 			{
 				moveInNewDirection();
 			} else
@@ -46,9 +44,8 @@ package com.crowdpark.sushiman.views.aihunter
 
 		private function move(direction:String):void
 		{
-			var deviation:Point = GameUtil.getRandomDeviationFromPosition();
-			var oldPosition:Point;
-			var newPosition:Point = oldPosition = new Point(view.x, view.y);
+			//var deviation:Point = GameUtil.getRandomDeviationFromPosition(1);
+			var newPosition:Point = new Point(view.x, view.y);
 			
 			switch(direction)
 			{
@@ -66,20 +63,12 @@ package com.crowdpark.sushiman.views.aihunter
 					break;
 			}
 			
-			newPosition.x += deviation.x;
-			newPosition.y += deviation.y;
-			
-			view.x = newPosition.x;
-			view.y = newPosition.y;
-			
-			if (newPosition.x > view.stageArea.x &&
-				newPosition.x < view.stageArea.x + view.stageArea.width &&
-				newPosition.y > view.stageArea.y &&
-				newPosition.y < view.stageArea.y + view.stageArea.height)
-			//if (!this.getBounds(parent).intersects(_stageArea))
+
+			if (newPosition.x >= 0 && newPosition.x <= view.stageArea.width &&
+				newPosition.y >= 0 && newPosition.y <= view.stageArea.width)
 			{
-				view.x = newPosition.x;
-				view.y = newPosition.y;
+				view.x = newPosition.x;// + deviation.x;
+				view.y = newPosition.y;// + deviation.y;
 				_lastDirection = direction;	
 			} else
 			{
