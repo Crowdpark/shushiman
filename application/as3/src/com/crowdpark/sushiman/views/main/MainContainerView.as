@@ -42,8 +42,8 @@ package com.crowdpark.sushiman.views.main
 		public function addLogo(image : Image) : void
 		{
 			logo = image;
-			logo.x = 545;
-			logo.y = 32;
+			logo.x = 540;
+			logo.y = 504;
 			addChild(logo);
 		}
 		

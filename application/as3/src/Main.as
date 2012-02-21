@@ -20,7 +20,6 @@
 	[SWF(width="760", height="650", frameRate="60", backgroundColor="#000000")]
 	public class Main extends Sprite
 	{
-		
 		private var _starling : Starling;
 		private var _gui:FlashGUIView;
 		private var _starlingGame:StarlingGame;
