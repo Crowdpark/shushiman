@@ -63,14 +63,11 @@ package com.crowdpark.sushiman.views.main
 		
 		private function checkPlayerCollision() : void
 		{
-			var boxHalfSize:int = 10;
-			var playerPosX:int = view.player.x + view.player.width/2;
-			var playerPosY:int = view.player.y + view.player.height/2;
-			var boundingBox:Rectangle = new Rectangle(playerPosX - boxHalfSize, playerPosY - boxHalfSize, boxHalfSize * 2, boxHalfSize * 2);
+			var playerBox:Rectangle = getBoundingBox(view.player, 20);
+			var hitTile:Tile = getHitTile(playerBox);
 			
-			moveAI(boundingBox);
+			moveAI(playerBox);
 
-			var hitTile:Tile = getHitTile(boundingBox);
 			if (hitTile != null)
 			{
 				dispatch(new PlayerEvent(PlayerEvent.COLLISION, hitTile.textureType));
@@ -89,13 +86,13 @@ package com.crowdpark.sushiman.views.main
 			var ai:AIHunterView;
 			var aiBox:Rectangle;
 			var tile:Tile;
-			var boxHalfSize:int = 20;
 			
 			for(var i:uint = 0; i < n; i++)
 			{
 				ai = aiList[i];
 				ai.setCurrentViewByPlayer(view.player.isFighting);
-				aiBox = ai.getBounds(this.view);
+
+				aiBox = getBoundingBox(ai, 40);
 				tile = getHitTile(aiBox);
 
 				if(player.intersects(aiBox))
@@ -122,6 +119,14 @@ package com.crowdpark.sushiman.views.main
 					dispatch(new AIHunterEvent(AIHunterEvent.NO_COLLISION));
 				}
 			}
+		}
+
+		private function getBoundingBox(object:DisplayObject, size:int):Rectangle
+		{
+			var halfSize:int = size/2;
+			var posX:int = object.x + object.width/2;
+			var posY:int = object.y + object.height/2;
+			return new Rectangle(posX - halfSize, posY - halfSize, halfSize * 2, halfSize * 2);
 		}
 
 		private function getHitTile(boundingBox:Rectangle):Tile
@@ -239,17 +244,19 @@ package com.crowdpark.sushiman.views.main
 		private function setup():void
 		{
 			view.addTilesView();
+			var stageArea:Rectangle = view.tilesView.getBounds(this.view);
 			view.player = new PlayerView(assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_LEFT),
 										assets.getTextures(AssetsModel.PATH_PLAYER_WALKING_RIGHT),
 										assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_LEFT),
-										assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_RIGHT)
+										assets.getTextures(AssetsModel.PATH_PLAYER_KNIFE_RIGHT),
+										stageArea
 										);
 			view.addChild(view.player);
 
 			if (levelModel.currentLevel != null)
 			{
 				var aiTiles:Vector.<TileData> = levelModel.currentLevel.aiTiles;
-				var stageArea:Rectangle = view.tilesView.getBounds(this.view);
+				
 				for each (var data:TileData in aiTiles)
 				{
 					if (data.type == TileData.TYPE_OCTOPUSSY)
